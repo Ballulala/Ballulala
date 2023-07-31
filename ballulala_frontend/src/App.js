@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
+import Login from './components/member/Login';
+import Join from './components/member/Join';
+import FindPassword from './components/member/FindPassword';
+import Team from './components/team/Team'
 import './App.css';
+
+const Home = () => (
+  <div>
+    <div>
+      <Link to="/login">Login</Link>
+    </div>
+    <div>
+      <Link to="/team">Team</Link>
+    </div>
+  </div>
+);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  <Router>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/join" element={<Join />} />
+      <Route path="/findpassword" element={<FindPassword />} />
+      <Route path="/team" element={<Team />} />
+    </Routes>
+  </Router>
   );
 }
 

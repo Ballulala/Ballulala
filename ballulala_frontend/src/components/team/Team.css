@@ -1,0 +1,52 @@
+.team-page {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+.page-letter {
+    text-align: center;
+    font-size: 35px;
+}
+
+.month-team-img {
+    width: 100%;
+    height: auto;
+    margin: 20px;
+}
+
+.radius-button{
+    background-color: rgb(49, 97, 121);
+    color: white;
+    border: 1px solid rgb(49, 97, 121);
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-right: 25px;
+}
+
+.radius-button:hover {
+    background-color: rgb(245, 100, 105);
+    border: 1px solid rgb(245, 100, 105);
+    color: white;
+}
+
+.search-team {
+    display: flex;
+  }
+  
+  .buttons {
+    display: flex;
+  }
+  
+.team-search-box {
+    margin-left: auto;
+    padding: 5px;
+}
+
+.team-search-box input {
+    height: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(161, 160, 160);
+}
