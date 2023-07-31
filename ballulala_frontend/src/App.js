@@ -11,11 +11,13 @@ import TeamRank from './components/rank/TeamRank';
 import UserRank from './components/rank/UserRank';
 import './App.css';
 import Navbar from './components/home/HomeNavbar';
+import Logo from './components/home/HomeLogo'
 
 const Home = () => (
   <div>
+    <Logo />
     <Navbar />
-    <div>
+    <div className="link-container">
       <Link to="/login">Login</Link>
     </div>
 
@@ -43,3 +45,9 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
