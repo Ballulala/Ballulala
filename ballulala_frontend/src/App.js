@@ -4,9 +4,11 @@ import Join from './components/member/Join';
 import FindPassword from './components/member/FindPassword';
 import Team from './components/team/Team'
 import './App.css';
+import Navbar from './components/home/HomeNavbar';
 
 const Home = () => (
   <div>
+    <Navbar />
     <div>
       <Link to="/login">Login</Link>
     </div>
