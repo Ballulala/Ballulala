@@ -32,7 +32,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/ranking" className="nav-link">
+            <Link to="/teamrank" className="nav-link">
               <div className="nav-content">
                 <img
                   src={process.env.PUBLIC_URL + "/images/랭킹아이콘.png"}
@@ -44,7 +44,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/team-info" className="nav-link">
+            <Link to="/team" className="nav-link">
               <div className="nav-content">
                 <img
                   src={process.env.PUBLIC_URL + "/images/팀정보 아이콘.png"}
@@ -56,7 +56,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/community" className="nav-link">
+            <Link to="/freeboard" className="nav-link">
               <div className="nav-content">
                 <img
                   src={process.env.PUBLIC_URL + "/images/커뮤니티아이콘.png"}

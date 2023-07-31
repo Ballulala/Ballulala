@@ -18,7 +18,7 @@
 
 .board-search-box input {
     height: 100%;
-    padding: 3px;
+    padding: 2px;
     border-radius: 5px;
     border: 1px solid rgb(161, 160, 160);
 }
@@ -26,5 +26,5 @@
 .radius-button-selected {
     background-color: rgb(245, 100, 105);
     border: 1px solid rgb(245, 100, 105);
-    color: white;;
+    color: white;
 }

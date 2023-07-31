@@ -11,7 +11,7 @@ function FreeBoard() {
         <br/>
 
     <div className='community-nav'>
-    <div className='board-category'>
+    <div className='board-category buttons'>
         <Link to="/freeboard">
             <button className='radius-button radius-button-selected'>자유게시판</button>
         </Link>
