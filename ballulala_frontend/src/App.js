@@ -12,13 +12,16 @@ import UserRank from './components/rank/UserRank';
 import './App.css';
 import Navbar from './components/home/HomeNavbar';
 import Logo from './components/home/HomeLogo'
+import SwiperComponent from './components/home/swiper';
 
 const Home = () => (
   <div>
     <Logo />
+    <Link to="/login" className="login-link">Login</Link>
     <Navbar />
+    <SwiperComponent/>
     <div className="link-container">
-      <Link to="/login">Login</Link>
+     
     </div>
 
   </div>
@@ -27,20 +30,22 @@ const Home = () => (
 function App() {
   return (
   <Router>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/login" element={<Login />} />
-      <Route path="/join" element={<Join />} />
-      <Route path="/findpassword" element={<FindPassword />} />
-      <Route path="/team" element={<Team />} />
-      <Route path="/freeboard" element={<FreeBoard />} />
-      <Route path="/bestboard" element={<BestBoard />} />
-      <Route path="/findplayer" element={<FindPlayer />} />
-      <Route path="/consulting" element={<Consulting />} />
-      <Route path="/teamrank" element={<TeamRank />} />
-      <Route path="/userrank" element={<UserRank />} />
-    </Routes>
-  </Router>
+     <div className="container">
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/join" element={<Join />} />
+        <Route path="/findpassword" element={<FindPassword />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/freeboard" element={<FreeBoard />} />
+        <Route path="/bestboard" element={<BestBoard />} />
+        <Route path="/findplayer" element={<FindPlayer />} />
+        <Route path="/consulting" element={<Consulting />} />
+        <Route path="/teamrank" element={<TeamRank />} />
+        <Route path="/userrank" element={<UserRank />} />
+      </Routes>
+      </div>
+    </Router>
   );
 }
 
