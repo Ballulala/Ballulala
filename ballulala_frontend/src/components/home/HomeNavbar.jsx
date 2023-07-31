@@ -17,17 +17,17 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/ranking" className="nav-link">
+            <Link to="/teamrank" className="nav-link">
               랭킹
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/team-info" className="nav-link">
+            <Link to="/team" className="nav-link">
               팀 정보
             </Link>
           </li>
           <li className="nav-item">
-            <Link to="/community" className="nav-link">
+            <Link to="/freeboard" className="nav-link">
               커뮤니티
             </Link>
           </li>
