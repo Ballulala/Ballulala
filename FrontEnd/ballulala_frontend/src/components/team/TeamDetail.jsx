@@ -1,8 +1,15 @@
 import React, { useState } from "react";
 import "./TeamDetail.css";
 import TopNavbar from "../home/TopNavbar";
+import { Link } from 'react-router-dom';
 
 function TeamDetail() {
+  const [name, setName] = useState('');
+  const [age, setAge] = useState('');
+  const [phonenum, setPhonenum] = useState('');
+  const [position, setPosition] = useState('');
+  const [skill, setSkill] = useState('');
+
   const [showModal, setShowModal] = useState(false);
 
   const openModal = () => {
@@ -49,10 +56,12 @@ function TeamDetail() {
           <button className="team-join-btn" type="submit" onClick={openModal}>
             가입신청
           </button>
+
         </div>
 
         <div className="team-more">
           <div>소개글 들어갈 공간</div>
+          <Link to='/teamsetting'>팀 관리 페이지로</Link>
         </div>
       </div>
 
@@ -60,13 +69,71 @@ function TeamDetail() {
         <div className="ball-modal">
           <div className="ball-modal-content">
             <div className="ball-modal-title">
-              <div>모달 title 여기에</div>
+              <div>가입 신청</div>
             </div>
 
             
-            <div>모달 content 여기에</div>
+            <div className="inputbox">
+                <br />
+                <label htmlFor="name"></label>
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="이름"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                />
+              </div>
 
-            <div className="modal-btns">
+              <div className="inputbox">
+                <br />
+                <label htmlFor="age"></label>
+                <input
+                  type="text"
+                  id="age"
+                  placeholder="나이"
+                  value={age}
+                  onChange={(event) => setAge(event.target.value)}
+                />
+              </div>
+
+              <div className="inputbox">
+                <br />
+                <label htmlFor="phonenum"></label>
+                <input
+                  type="text"
+                  id="phonenum"
+                  placeholder="휴대폰번호"
+                  value={phonenum}
+                  onChange={(event) => setPhonenum(event.target.value)}
+                />
+              </div>
+
+              <div className="inputbox">
+                <br />
+                <label htmlFor="position"></label>
+                <input
+                  type="text"
+                  id="position"
+                  placeholder="선호포지션"
+                  value={position}
+                  onChange={(event) => setPosition(event.target.value)}
+                />
+              </div>
+
+              <div className="inputbox">
+                <br />
+                <label htmlFor="skill"></label>
+                <input
+                  type="text"
+                  id="skill"
+                  placeholder="실력"
+                  value={skill}
+                  onChange={(event) => setSkill(event.target.value)}
+                />
+              </div>
+
+            <div className="modal-btns detail-btns">
               <button
                 className="modal-no-btn"
                 type="button"

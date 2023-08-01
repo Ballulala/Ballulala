@@ -10,6 +10,8 @@ import Consulting from './components/community/Consulting';
 import TeamRank from './components/rank/TeamRank';
 import UserRank from './components/rank/UserRank';
 import TeamDetail from './components/team/TeamDetail';
+import TeamSetting from './components/team/TeamSetting';
+import TeamSettingDaily from './components/team/TeamSettingDaily';
 import './App.css';
 import Navbar from './components/home/HomeNavbar';
 import Logo from './components/home/HomeLogo'
@@ -46,6 +48,8 @@ function App() {
         <Route path="/teamrank" element={<TeamRank />} />
         <Route path="/userrank" element={<UserRank />} />
         <Route path="/teamdetail" element={<TeamDetail />} />
+        <Route path="/teamsetting" element={<TeamSetting />} />
+        <Route path="/teamsettingdaily" element={<TeamSettingDaily />} />
       </Routes>
       </div>
     </Router>
