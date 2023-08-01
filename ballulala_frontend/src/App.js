@@ -13,13 +13,14 @@ import './App.css';
 import Navbar from './components/home/HomeNavbar';
 import Logo from './components/home/HomeLogo'
 import SwiperComponent from './components/home/swiper';
-
+import DateBar from './components/date_bar/Date_Bar.jsx';
 const Home = () => (
   <div>
     <Logo />
     <Link to="/login" className="login-link">Login</Link>
     <Navbar />
     <SwiperComponent/>
+    <DateBar />
     <div className="link-container">
      
     </div>

@@ -34,6 +34,10 @@
 .App-link {
   color: #61dafb;
 }
+.container {
+  height: 100vh;
+  overflow: auto;
+}
 
 @keyframes App-logo-spin {
   from {
