@@ -9,8 +9,7 @@ function Team() {
     <div className='team-page'>
       <div className='page-letter'>TEAM</div>
       
-      {/* month_team.img 이미지를 홈으로 이동하도록 링크를 추가하세요. */}
-      <Link to="/">
+      <Link to="/teamdetail">
         <img className='month-team-img' src='month_team.png' alt='Month Team' />
       </Link>
 

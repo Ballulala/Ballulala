@@ -131,15 +131,11 @@ const Join = () => {
         </form>
 
         {showModal && (
-          <div className="join-modal">
-            <div className="join-modal-content">
-              <span className="close" onClick={closeModal}>
-                &times;
-              </span>
-              <div className="letter">
+          <div className="ball-modal">
+            <div className="ball-modal-content">
+              <div className="ball-modal-title">
                 <div>추가 정보 작성</div>
               </div>
-              <hr />
 
               <div className="inputbox">
                 <br />
@@ -178,16 +174,28 @@ const Join = () => {
               </div>
               <br />
 
+              <div className='modal-btns'>
               <button
-                className="loginbtn"
+                className="modal-no-btn"
+                type="button"
+                onClick={() => {
+                  closeModal();
+                }}
+              >
+                취소
+              </button>
+
+              <button
+                className="modal-yes-btn"
                 type="button"
                 onClick={() => {
                   handleSubmit();
                   closeModal();
                 }}
               >
-                회원가입
+                확인
               </button>
+              </div>
             </div>
           </div>
         )}
