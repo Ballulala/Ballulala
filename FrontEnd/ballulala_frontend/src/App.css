@@ -2,7 +2,7 @@
   text-align: center;
 }
 .container {
-  padding: 0 100px; /* 위 아래 패딩 0, 좌우 패딩 20px */
+  padding: 0 100px; 
 }
 .App-logo {
   height: 40vmin;
