@@ -1,6 +1,8 @@
 package com.passion.ballulala.controller;
 
+import com.passion.ballulala.dto.ResponseDto;
 import com.passion.ballulala.dto.UserDto;
+import com.passion.ballulala.entity.User;
 import com.passion.ballulala.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +21,7 @@ public class UserController {
 
     @PostMapping(value = "/login")
     public ResponseEntity<?> login(@RequestBody UserDto user) {
-        ResponseDto<HashMap<String, String>> response = new ResponseDto<>();
+        ResponseDto<UserDto> response = new ResponseDto<UserDto>();
 
         try {
             UserDto loginUser = userService.login(user);
