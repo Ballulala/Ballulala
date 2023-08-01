@@ -1,0 +1,36 @@
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .dateWrap {
+    width: 87px;
+    text-align: center;
+    padding: 20px 0;
+  }
+  
+  .dateWrap.isSun {
+    color: red;
+  }
+  
+  .dateWrap.isSat {
+    color: blue;
+  }
+  
+  .dateWrap:hover {
+    background-color: rgb(49, 97, 121);
+    color: #fff;
+    border-radius: 10px;
+  }
+  
+  .dateWrap p {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .dateWrap span {
+    font-size: 12px;
+  }
+  
