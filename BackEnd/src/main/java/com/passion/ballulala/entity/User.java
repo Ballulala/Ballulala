@@ -71,7 +71,7 @@ public class User {
     @Column(nullable = false)
     private int tier;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     private List<UserItem> userItems = new ArrayList<>();
 
 }

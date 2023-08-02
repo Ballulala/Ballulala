@@ -21,7 +21,7 @@ public class UserItem {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name = "store_id",nullable = false)
+    @JoinColumn(name = "item_id",nullable = false)
     private Item product;
 
     @Column(nullable = false, columnDefinition = "date")
