@@ -19,7 +19,6 @@ public class UserController {
 
     @PostMapping(value = "/login")
     public ResponseEntity<?> login(@RequestBody UserDto user) {
-        System.out.println("hi");
         ResponseDto<Long> response = new ResponseDto<Long>();
 
         try {
