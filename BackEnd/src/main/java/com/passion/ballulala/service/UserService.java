@@ -13,8 +13,9 @@ public class UserService {
     public Long login(UserDto user){
 
         User loginUser = null;
+        System.out.println("in UserService");
         loginUser = userRepo.findByEmail(user.getEmail());
-
+        System.out.println("after UserRepo");
         if(loginUser==null) {
             return -1L;
         }else{

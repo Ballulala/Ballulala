@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
@@ -56,4 +58,20 @@ public class User {
 
     @Column(nullable = false)
     private int manner;
+
+    @Column(nullable = false, columnDefinition = "varchar(20)")
+    private String sido;
+
+    @Column(nullable = false, columnDefinition = "varchar(20)")
+    private String gugun;
+
+    @Column(name = "profile_image", nullable = false, columnDefinition = "varchar(100)")
+    private String profileImage;
+
+    @Column(nullable = false)
+    private int tier;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<UserItem> userItems = new ArrayList<>();
+
 }

@@ -22,7 +22,7 @@ public class UserItem {
 
     @ManyToOne
     @JoinColumn(name = "store_id",nullable = false)
-    private Store product;
+    private Item product;
 
     @Column(nullable = false, columnDefinition = "date")
     private LocalDateTime deadline;

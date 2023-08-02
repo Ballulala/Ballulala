@@ -7,10 +7,10 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Store {
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "store_id", nullable = false)
+    @Column(name = "item_id", nullable = false)
     private Long id;
 
     @Column(nullable = false, columnDefinition = "varchar(30)")

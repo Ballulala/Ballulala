@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @Getter
@@ -40,5 +43,11 @@ public class Team {
 
     @Column(name = "lose_count", nullable = false)
     private int loseCount;
+
+    @Column(name = "winning_streak", nullable = false)
+    private int winningStreak;
+
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    private List<TeamItem> teamItems = new ArrayList<>();
 
 }
