@@ -4,6 +4,10 @@ import './Team.css';
 
 function Team() {
   const [team, setTeam] = useState('');
+  const [image, setImage] = useState('');
+  const [name, setName] = useState('');
+  const [location, setLocation] = useState('');
+  const [statusMsg, setStatusMsg] = useState('');
 
   const [showModal, setShowModal] = useState(false);
 
@@ -17,7 +21,10 @@ function Team() {
 
   const handleSubmit = () => {
     console.log('Form submitted');
+    console.log('Image file:', image.name); // 이미지 이름 로깅 추가
+    // 여기에서 추가적인 작업을 수행하십시오 (예: 이 정보를 백엔드에 보내십시오)
   };
+  
 
   return (
     <div className="team-page">
@@ -61,10 +68,45 @@ function Team() {
         <div className="ball-modal">
           <div className="ball-modal-content">
             <div className="ball-modal-title">
-              <div>모달 title 여기에</div>
+              <div>팀 등록하기</div>
             </div>
 
-            <div>모달 content 여기에</div>
+            <div>
+              <label htmlFor="image">로고</label>
+              <br/>
+              <input
+                type="file"
+                id="image"
+                onChange={(event) => setImage(event.target.files[0])}
+              />
+              <br />
+              <label htmlFor="name">팀 이름</label>
+              <br />
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+              <br />
+              <label htmlFor="location">위치</label>
+              <br />
+              <input
+                type="text"
+                id="location"
+                value={location}
+                onChange={(event) => setLocation(event.target.value)}
+              />
+              <br />
+              <label htmlFor="statusMsg">소개 (선택)</label>
+              <br />
+              <input
+                type="text"
+                id="statusMsg"
+                value={statusMsg}
+                onChange={(event) => setStatusMsg(event.target.value)}
+              />
+            </div>
 
             <div className="modal-btns">
               <button
