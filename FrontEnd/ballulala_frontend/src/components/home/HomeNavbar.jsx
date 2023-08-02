@@ -8,7 +8,7 @@ const Navbar = () => {
       <div>
         <ul className="navbar-nav">
           <li className="nav-item">
-            <Link to="/team-match" className="nav-link">
+            <Link to="/Match_team" className="nav-link">
               <div className="nav-content">
                 <img
                   src={process.env.PUBLIC_URL + "/images/팀매치아이콘.png"}
