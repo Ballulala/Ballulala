@@ -1,20 +1,15 @@
 import React, { useEffect, useState } from "react";
 import TopNavbar from "../home/TopNavbar";
-import axios from "axios";
+// import axios from "axios";
 import Carousel from "./Team_Carousel";
+import { dummyData } from "./dummyData";
+import DateBar from "../date_bar/Date_Bar.jsx";
 
 function Team_Matching() {
   const [teams, setTeams] = useState([]);
 
   useEffect(() => {
-    axios
-      .get("http://your-api-url.com/teams")
-      .then((response) => {
-        setTeams(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error!", error);
-      });
+    setTeams(dummyData);
   }, []);
 
   return (
@@ -22,6 +17,7 @@ function Team_Matching() {
       <TopNavbar />
       <h1>Matching</h1>
       <Carousel teams={teams} />
+      <DateBar />
     </div>
   );
 }
