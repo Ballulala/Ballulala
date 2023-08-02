@@ -19,6 +19,7 @@ import SwiperComponent from './components/home/swiper';
 import DateBar from './components/date_bar/Date_Bar.jsx';
 import Sidebar from './components/side_bar/Side_Bar';
 import VideoChat from './components/interview/videoconference';
+import Matchteam from './components/match_team/Match_team';
 const Home = () => (
   <div>
     <Logo />
@@ -56,6 +57,7 @@ function App() {
         <Route path="/teamsetting" element={<TeamSetting />} />
         <Route path="/teamsettingdaily" element={<TeamSettingDaily />} />
         <Route path="/videochat/:id" element={<VideoChat />} />
+        <Route path="/Match_team" element={<Matchteam/>} />
       </Routes>
       </div>
     </Router>
