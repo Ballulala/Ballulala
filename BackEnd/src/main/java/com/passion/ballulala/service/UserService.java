@@ -10,15 +10,15 @@ public class UserService {
 
     UserRepo userRepo;
 
-    public Long login(String email, String password){
+    public Long login(UserDto user){
 
         User loginUser = null;
-        loginUser = userRepo.findByEmail(email);
+        loginUser = userRepo.findByEmail(user.getEmail());
 
         if(loginUser==null) {
             return -1L;
         }else{
-            if(password!=loginUser.getPassword()){
+            if(user.getPassword()!=loginUser.getPassword()){
                 return -1L;
             }
             return loginUser.getId();
