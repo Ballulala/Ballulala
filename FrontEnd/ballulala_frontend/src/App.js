@@ -18,12 +18,13 @@ import Logo from './components/home/HomeLogo'
 import SwiperComponent from './components/home/swiper';
 import DateBar from './components/date_bar/Date_Bar.jsx';
 import Sidebar from './components/side_bar/Side_Bar';
+import VideoChat from './components/interview/videoconference';
 const Home = () => (
   <div>
     <Logo />
     < Sidebar />  
     <Link to="/login" className="login-link">Login</Link> 
-   
+    <Link to="/videochat/12345">Video Chat</Link>
       <Navbar />
       
       <SwiperComponent/>
@@ -54,6 +55,7 @@ function App() {
         <Route path="/teamdetail" element={<TeamDetail />} />
         <Route path="/teamsetting" element={<TeamSetting />} />
         <Route path="/teamsettingdaily" element={<TeamSettingDaily />} />
+        <Route path="/videochat/:id" element={<VideoChat />} />
       </Routes>
       </div>
     </Router>
