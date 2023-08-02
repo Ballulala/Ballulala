@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './TeamSetting.css';
-import TopNavbar from '../home/TopNavbar';
+import TopNavbar from '../top_navbar/TopNavbar';
 import TeamModal from './TeamModal';
 import { Link } from 'react-router-dom';
 

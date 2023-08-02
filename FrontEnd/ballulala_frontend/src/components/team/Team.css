@@ -5,7 +5,8 @@
 
 .page-letter {
     text-align: center;
-    font-size: 35px;
+    font-size: 30px;
+    font-family: "bri";
 }
 
 .month-team-img {
@@ -24,6 +25,7 @@
     padding-right: 25px;
     margin-right: 25px;
     height: 100%;
+    width: 20vh;
 }
 
 .radius-button:hover {
@@ -50,4 +52,13 @@
     padding: 5px;
     border-radius: 5px;
     border: 1px solid rgb(161, 160, 160);
+}
+
+.modal-input {
+    border: 1px solid gray;
+    border-radius: 3px;
+    width: 90%;
+    padding: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }

@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import TopNavbar from '../top_navbar/TopNavbar';
 
 function UserRank() {
 const [player, setPlayer] = useState('');
 
   return (
     <div className='team-page'>
+      <TopNavbar/>
       <div className='page-letter'>RANK</div>
       
       {/* month_team.img 이미지를 홈으로 이동하도록 링크를 추가하세요. */}

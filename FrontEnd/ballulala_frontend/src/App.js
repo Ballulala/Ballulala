@@ -45,7 +45,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
-        <Route path="/findpassword" element={<FindPassword />} />
+        <Route path="/findpwd" element={<FindPassword />} />
         <Route path="/team" element={<Team />} />
         <Route path="/freeboard" element={<FreeBoard />} />
         <Route path="/bestboard" element={<BestBoard />} />

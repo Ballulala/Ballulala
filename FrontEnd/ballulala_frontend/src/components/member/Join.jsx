@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Join.css';
 
+
 const Join = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

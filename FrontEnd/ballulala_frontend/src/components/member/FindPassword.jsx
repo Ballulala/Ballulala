@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './FindPassword.css';
 
+
 const FindPassword = () => {
   const [email, setEmail] = useState('');
 
@@ -16,7 +17,7 @@ const FindPassword = () => {
     <div className="find-page">
       <div className="stadium-section">
         <Link to="/">
-          <img src="/stadium.png" alt="stadium" />
+          <img src="/stadium2.png" alt="stadium" />
         </Link>
       </div>
 

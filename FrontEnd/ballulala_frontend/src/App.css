@@ -29,6 +29,7 @@
   position: absolute;
   top: 0;
   right: 0;
+  font-family: "player";
 }
 
 .App-link {
@@ -46,4 +47,14 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@font-face {
+  font-family: Player;
+  src: url("./fonts/I\ AM\ A\ PLAYER.ttf");
+}
+
+@font-face {
+  font-family: bri;
+  src: url("./fonts/britanic.ttf");
 }

@@ -1,11 +1,14 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
+import TopNavbar from '../top_navbar/TopNavbar';
+
 
 function FindPlayer() {
   const [board, setBoard] = useState('');
 
 return (
   <div className='board-page'>
+    <TopNavbar/>
       <div className='page-letter'>COMMUNITY</div>
       <br/>
 
