@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./TeamDetail.css";
-import TopNavbar from "../home/TopNavbar";
+import TopNavbar from '../top_navbar/TopNavbar';
 import { Link } from 'react-router-dom';
 
 function TeamDetail() {

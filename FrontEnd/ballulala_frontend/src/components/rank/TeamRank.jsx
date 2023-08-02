@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import './TeamRank.css';
+import TopNavbar from '../top_navbar/TopNavbar';
 
 function TeamRank() {
 const [team, setTeam] = useState('');
+const [showRegions, setShowRegions] = useState(false);
 
   return (
     <div className='team-page'>
+      <TopNavbar/>
       <div className='page-letter'>RANK</div>
       
       {/* month_team.img 이미지를 홈으로 이동하도록 링크를 추가하세요. */}
@@ -39,9 +42,23 @@ const [team, setTeam] = useState('');
 
       </div>
       
-      <div className='rank-second-line'>
-        <div className='buttons'>
-          <button className='rank-button'>지역별</button>
+      <div className="rank-second-line">
+        <div className="buttons">
+          <div className="region-container">
+            <button
+              className="rank-button"
+              onClick={() => setShowRegions(!showRegions)}
+            >
+              지역별 ▼
+            </button>
+            {showRegions && (
+              <div className="region-list">
+                <button>서울</button>
+                <button>대구</button>
+                {/* 추가로 지역 버튼을 넣고 싶으시면 여기에 추가하시면 됩니다. */}
+              </div>
+            )}
+          </div>
         </div>
 
         <div className='rank-info'>

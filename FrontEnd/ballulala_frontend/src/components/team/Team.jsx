@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Team.css';
+import TopNavbar from '../top_navbar/TopNavbar';
 
 function Team() {
   const [team, setTeam] = useState('');
@@ -28,6 +29,7 @@ function Team() {
 
   return (
     <div className="team-page">
+      <TopNavbar/>
       <div className="page-letter">TEAM</div>
 
       <Link to="/teamdetail">
@@ -62,13 +64,14 @@ function Team() {
         </ul>
       </div>
 
-      <button onClick={openModal}>팀 등록하기</button>
+      <button onClick={openModal}>새로운 팀 만들기</button>
 
       {showModal && (
         <div className="ball-modal">
           <div className="ball-modal-content">
             <div className="ball-modal-title">
               <div>팀 등록하기</div>
+              <br/>
             </div>
 
             <div>
@@ -80,6 +83,7 @@ function Team() {
                 onChange={(event) => setImage(event.target.files[0])}
               />
               <br />
+              <br/>
               <label htmlFor="name">팀 이름</label>
               <br />
               <input
@@ -87,8 +91,10 @@ function Team() {
                 id="name"
                 value={name}
                 onChange={(event) => setName(event.target.value)}
+                className='modal-input'
               />
               <br />
+              <br/>
               <label htmlFor="location">위치</label>
               <br />
               <input
@@ -96,8 +102,10 @@ function Team() {
                 id="location"
                 value={location}
                 onChange={(event) => setLocation(event.target.value)}
+                className='modal-input'
               />
               <br />
+              <br/>
               <label htmlFor="statusMsg">소개 (선택)</label>
               <br />
               <input
@@ -105,10 +113,11 @@ function Team() {
                 id="statusMsg"
                 value={statusMsg}
                 onChange={(event) => setStatusMsg(event.target.value)}
+                className='modal-input'
               />
             </div>
 
-            <div className="modal-btns">
+            <div className="modal-btns" style={{ marginTop: '10%' }}>
               <button
                 className="modal-no-btn"
                 type="button"
