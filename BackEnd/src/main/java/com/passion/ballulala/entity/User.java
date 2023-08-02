@@ -3,6 +3,8 @@ package com.passion.ballulala.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,41 +12,41 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter
+@Getter @Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id", nullable = false)
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "tinyint")
+    @Column(nullable = true, columnDefinition = "tinyint")
     private Byte status;
 
-    @Column(nullable = false, columnDefinition = "tinyint")
+    @Column(nullable = true, columnDefinition = "tinyint")
     private Byte role;
 
-    @Column(nullable = false, columnDefinition = "varchar(30)")
+    @Column(nullable = true, columnDefinition = "varchar(30)")
     private String email;
 
-    @Column(nullable = false, columnDefinition = "varchar(30)")
+    @Column(nullable = true, columnDefinition = "varchar(30)")
     private String password;
 
-    @Column(nullable = false, columnDefinition = "varchar(10)")
+    @Column(nullable = true, columnDefinition = "varchar(10)")
     private String name;
 
-    @Column(nullable = false, columnDefinition = "varchar(30)")
+    @Column(nullable = true, columnDefinition = "varchar(30)")
     private String nickname;
 
-    @Column(nullable = false, columnDefinition = "tinyint")
+    @Column(nullable = true, columnDefinition = "tinyint")
     private Byte gender;
 
-    @Column(nullable = false, columnDefinition = "date")
+    @Column(nullable = true, columnDefinition = "date")
     private LocalDateTime birthday;
 
-    @Column(name = "phone_number", nullable = false, columnDefinition = "varchar(20)")
+    @Column(name = "phone_number", nullable = true, columnDefinition = "varchar(20)")
     private String phoneNumber;
 
-    @Column(name = "mvp_count", nullable = false)
+    @Column(name = "mvp_count", nullable = true)
     private int mvpCount;
 
     @Column(columnDefinition = "varchar(100)")
@@ -53,22 +55,22 @@ public class User {
     @Column(columnDefinition = "varchar(100)")
     private String refreshtoken;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int point;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int manner;
 
-    @Column(nullable = false, columnDefinition = "varchar(20)")
+    @Column(nullable = true, columnDefinition = "varchar(20)")
     private String sido;
 
-    @Column(nullable = false, columnDefinition = "varchar(20)")
+    @Column(nullable = true, columnDefinition = "varchar(20)")
     private String gugun;
 
-    @Column(name = "profile_image", nullable = false, columnDefinition = "varchar(100)")
+    @Column(name = "profile_image", nullable = true, columnDefinition = "varchar(100)")
     private String profileImage;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private int tier;
 
     @OneToMany(mappedBy = "user")
