@@ -24,7 +24,7 @@ public class UserController {
             Long userNo = userService.login(user);
             if (userNo == -1L) { //해당 아이디와 비밀번호의 유저를 조회할 수 없음.
                 response.setState("FAIL");
-                response.setMessage("아이디 혹은 비밀번호가 일치하지 않습니다." + userNo);
+                response.setMessage("아이디 혹은 비밀번호가 일치하지 않습니다.");
                 return new ResponseEntity<ResponseDto<Long>>(response, HttpStatus.OK);
             } else { //정상적으로 로그인이 진행됨.
                 response.setState("SUCCESS");
