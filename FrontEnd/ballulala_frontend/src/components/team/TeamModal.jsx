@@ -7,7 +7,7 @@ const TeamModal = ({ title, isOpen, onClose, children, onSubmit }) => {
   }
 
   return (
-    <div className="ball-modal">
+    <div className="ball-modal start-modal">
       <div className="ball-modal-content">
         <div className="ball-modal-title modal-element">
           <div>{title}</div>

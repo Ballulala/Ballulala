@@ -51,6 +51,12 @@ function TeamDetail() {
             <button className="team-more-btn">more</button>
           </div>
 
+          <div className="team-info-more">
+            <img src={"/images/point_black.png"} alt="img" />
+            <div>2000</div>
+            <button className="team-more-btn">gave</button>
+          </div>
+
           <br />
           <br />
           <button className="team-join-btn" type="submit" onClick={openModal}>

@@ -8,7 +8,7 @@ import { differenceInMinutes, addMinutes } from 'date-fns'; // date-fns 라이�
 import { isEqual, uniqWith, sortBy } from 'lodash';
 import 'react-datepicker/dist/react-datepicker.css';
 
-function TeamSetting() {
+function TeamSettingJoinList() {
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
   const [location, setLocation] = useState('');
@@ -109,10 +109,10 @@ const toggleTime = (time) => {
 
           <div className="member-now">
             <img src={"/icon_member.png"} alt="img" />
-            <Link to="/teamsetting" className='setting-link-selected'>
+            <Link to="/teamsetting" className='setting-link'>
               멤버
             </Link>
-            <Link to="/teamsettingjoinlist" className='setting-link'>
+            <Link to="/teamsettingjoinlist" className='setting-link-selected'>
               가입대기중
             </Link>
 
@@ -125,9 +125,9 @@ const toggleTime = (time) => {
 
           </div>
 
-        <div className='member-list'>
-          멤버 명단
-          </div>
+          <div className='member-list'>
+            가입 대기 명단
+            </div>
         
         </div>
       </div>
@@ -253,9 +253,9 @@ const toggleTime = (time) => {
       >
         <div>중단</div>
       </TeamModal>
-    
+
     </div>
   );
 }
 
-export default TeamSetting;
+export default TeamSettingJoinList;
