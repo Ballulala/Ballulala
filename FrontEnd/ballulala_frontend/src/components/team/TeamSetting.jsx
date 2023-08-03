@@ -5,6 +5,11 @@ import TeamModal from './TeamModal';
 import { Link } from 'react-router-dom';
 
 function TeamSetting() {
+  const [image, setImage] = useState('');
+  const [name, setName] = useState('');
+  const [location, setLocation] = useState('');
+  const [statusMsg, setStatusMsg] = useState('');
+
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
@@ -22,8 +27,9 @@ function TeamSetting() {
 
   const closeDeleteModal = () => {
     setIsDeleteModalOpen(false);
+    console.log('Image file:', image.name);
   };
-
+  
   return (
     <div>
       <TopNavbar />
@@ -63,6 +69,48 @@ function TeamSetting() {
         isOpen={isEditModalOpen}
         onClose={closeEditModal}
       >
+        <div>
+              <label htmlFor="image">로고</label>
+              <br/>
+              <input
+                type="file"
+                id="image"
+                onChange={(event) => setImage(event.target.files[0])}
+              />
+              <br />
+              <br/>
+              <label htmlFor="name">팀 이름</label>
+              <br />
+              <input
+                type="text"
+                id="name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+                className='modal-input'
+              />
+              <br />
+              <br/>
+              <label htmlFor="location">위치</label>
+              <br />
+              <input
+                type="text"
+                id="location"
+                value={location}
+                onChange={(event) => setLocation(event.target.value)}
+                className='modal-input'
+              />
+              <br />
+              <br/>
+              <label htmlFor="statusMsg">소개 (선택)</label>
+              <br />
+              <input
+                type="text"
+                id="statusMsg"
+                value={statusMsg}
+                onChange={(event) => setStatusMsg(event.target.value)}
+                className='modal-input'
+              />
+            </div>
       </TeamModal>
 
       <TeamModal

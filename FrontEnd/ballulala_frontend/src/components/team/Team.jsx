@@ -11,6 +11,8 @@ function Team() {
   const [statusMsg, setStatusMsg] = useState('');
 
   const [showModal, setShowModal] = useState(false);
+  const [showRegions, setShowRegions] = useState(false);
+  const [showMmrs, setShowMmrs] = useState(false);
 
   const openModal = () => {
     setShowModal(true);
@@ -39,9 +41,35 @@ function Team() {
       {/* 지역별 버튼 리스트. 원하는 지역명으로 변경하고 해당 지역의 페이지 경로를 설정하세요. */}
       <div className="search-team">
         <div className="buttons">
-          <button className="radius-button">지역별</button>
-          <button className="radius-button">멤버 모집중</button>
-          <button className="radius-button">mmr</button>
+          <div className="region-container">
+            <button 
+            className="radius-button"
+            onClick={() => setShowRegions(!showRegions)}
+            >지역별　▼
+            </button>
+            {showRegions && (
+                <div className="region-list">
+                  <button>서울</button>
+                  <button>대구</button>
+                  {/* 추가로 지역 버튼을 넣고 싶으시면 여기에 추가하시면 됩니다. */}
+                </div>
+              )}
+            </div>
+            <button className="radius-button">멤버 모집중</button>
+          <div className="region-container">
+          <button 
+            className="radius-button"
+            onClick={() => setShowMmrs(!showMmrs)}
+            >mmr　▼
+            </button>
+            {showMmrs && (
+                <div className="region-list">
+                  <button>10</button>
+                  <button>20</button>
+                  {/* 추가로 지역 버튼을 넣고 싶으시면 여기에 추가하시면 됩니다. */}
+                </div>
+              )}
+          </div>
         </div>
         <div className="team-search-box">
           <label htmlFor="email"></label>

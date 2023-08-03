@@ -67,7 +67,7 @@ function TeamDetail() {
 
       {showModal && (
         <div className="ball-modal">
-          <div className="ball-modal-content">
+          <div className="team-join-modal-content ball-modal-content">
             <div className="ball-modal-title">
               <div>가입 신청</div>
             </div>

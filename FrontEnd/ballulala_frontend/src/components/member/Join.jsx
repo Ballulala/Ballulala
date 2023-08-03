@@ -134,6 +134,7 @@ const Join = () => {
         {showModal && (
           <div className="ball-modal">
             <div className="ball-modal-content">
+              
               <div className="ball-modal-title">
                 <div>추가 정보 작성</div>
               </div>
