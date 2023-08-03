@@ -22,12 +22,15 @@ import DateBar from './components/date_bar/Date_Bar.jsx';
 import Sidebar from './components/side_bar/Side_Bar';
 import VideoChat from './components/interview/videoconference';
 import Matchteam from './components/match_team/Match_team';
+import Mypage from './components/mypage/mypage';
 const Home = () => (
   <div>
+    
     <Logo />
     < Sidebar />  
     <Link to="/login" className="login-link">Login</Link> 
     <Link to="/videochat/12345">Video Chat</Link>
+    <Link to="/Mypage">Mypage</Link>
       <Navbar />
       
       <SwiperComponent/>
@@ -41,9 +44,11 @@ const Home = () => (
 
 function App() {
   return (
+
   <Router>
      <div className="container">
       <Routes>
+       
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/join" element={<Join />} />
@@ -62,6 +67,7 @@ function App() {
         <Route path="/teamsettingdaily" element={<TeamSettingDaily />} />
         <Route path="/videochat/:id" element={<VideoChat />} />
         <Route path="/Match_team" element={<Matchteam/>} />
+        <Route path="/Mypage" element={<Mypage/>} />
       </Routes>
       </div>
     </Router>

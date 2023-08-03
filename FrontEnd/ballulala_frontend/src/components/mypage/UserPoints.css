@@ -1,0 +1,53 @@
+.user-points {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-points button {
+    padding: 10px;
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.user-points button:hover {
+    background-color: #0056b3;
+}
+.user-points {
+    display: flex;
+    justify-content: space-between;
+  }
+  .button {
+    margin: 0 10px;
+    padding: 10px 20px; 
+    font-size: 12px; 
+    color: #fff; 
+    background-color: #007bff; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1); 
+    transition: all 0.3s ease 0s; 
+    text-align: center; 
+    width: 150px; 
+    height: 40px; 
+  }
+  
+  .button:hover {
+    background-color: #0056b3; 
+    box-shadow: 0px 15px 20px rgba(46, 229, 157, 0.4); 
+    color: #fff;
+    transform: translateY(-7px); 
+  } 

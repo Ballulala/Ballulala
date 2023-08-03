@@ -1,0 +1,42 @@
+.user-profile {
+    display: flex;
+    justify-content: space-around;
+    align-items: stretch; /* Change this from center to stretch */
+    margin-top: 50px;
+    gap: 30px;
+}
+
+.left-section, .right-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around; /* Add this to distribute space evenly within each card */
+    width: 45%;
+    padding: 20px;
+    box-sizing: border-box;
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+    height: 100%; /* Add this to make sure the cards take up full height of the container */
+}
+
+.left-section img, .right-section .team-logo img {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+h2 {
+    margin-bottom: 10px;
+    color: #333;
+    font-size: 15px;
+}
+
+p {
+    margin-bottom: 5px;
+    color: #666;
+    font-size: 1em;
+}
