@@ -1,6 +1,9 @@
 import React from "react";
 import "./UserProfile.css";
 import UserStats from "./UserStats";
+import TeamInfo from "./TeamInfo";
+import UserPoints from "./UserPoints";
+import UserInfo from "./UserInfo"; // 새로 추가된 줄입니다.
 
 function UserProfile({ user }) {
   return (
@@ -8,18 +11,17 @@ function UserProfile({ user }) {
       <div className="left-section">
         <img src={user.profilePicture} alt="User profile" />
         <h2>{user.name}</h2>
-        <p>Age: {user.age}</p>
-        <p>Gender: {user.gender}</p>
-        <p>Location: {user.location}</p>
-        <p>Email: {user.email}</p>
+        <UserInfo
+          age={user.age}
+          gender={user.gender}
+          location={user.location}
+          email={user.email}
+        />
       </div>
       <div className="right-section">
-        <p>
-          {" "}
-          <img src={user.teamLogo} alt="Team logo" />
-          Team: {user.teamName}
-        </p>
+        <TeamInfo teamLogo={user.teamLogo} teamName={user.teamName} />
         <UserStats mvpCount={user.mvpCount} mannerScore={user.mannerScore} />
+        <UserPoints points={user.points} />
       </div>
     </div>
   );
