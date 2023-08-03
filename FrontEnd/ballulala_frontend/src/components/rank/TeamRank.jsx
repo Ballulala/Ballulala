@@ -68,12 +68,15 @@ const [showRegions, setShowRegions] = useState(false);
       </div>
 
       {/* 여기에 전체 팀 리스트를 추가하세요. */}
-      <div className="team-list">
-        <ul>
-          <li>팀 1</li>
-          <li>팀 2</li>
-          <li>팀 3</li>
-        </ul>
+      <div className='list'>
+        <hr/>
+        <div className='team-list'>
+          <ul>
+            <li>팀 1</li>
+            <li>팀 2</li>
+            <li>팀 3</li>
+          </ul>
+        </div>
       </div>
     </div>
   )

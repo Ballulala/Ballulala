@@ -44,6 +44,11 @@ function FreeBoard() {
     </div>
     </div>
 
+    <div className='board-lists'>
+        <Link to="/freeboarddetail">디테일</Link>
+
+    </div>
+
     </div>
   )
 }

@@ -28,3 +28,7 @@
     border: 1px solid rgb(245, 100, 105);
     color: white;
 }
+
+.board-lists {
+    margin-top: 6%;
+}
