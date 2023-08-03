@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
+<<<<<<< HEAD
 import Swal from "sweetalert2";
+=======
+import Swal from 'sweetalert2';
+>>>>>>> 39aa25626f190e06b3ab03b375ede309eb4bbaf3
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -97,7 +101,7 @@ const Login = () => {
             </div>
             <div>|</div>
             <div>
-              <Link to="/findpassword">비밀번호 찾기</Link>
+              <Link to="/findpwd">비밀번호 찾기</Link>
             </div>
           </div>
         </form>

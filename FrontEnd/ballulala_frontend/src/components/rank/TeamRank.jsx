@@ -49,7 +49,7 @@ const [showRegions, setShowRegions] = useState(false);
               className="rank-button"
               onClick={() => setShowRegions(!showRegions)}
             >
-              지역별 ▼
+              지역별　▼
             </button>
             {showRegions && (
               <div className="region-list">
