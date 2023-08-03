@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import TopNavbar from "../home/TopNavbar";
+import TopNavbar from "../top_navbar/TopNavbar";
 // import axios from "axios";
 import Carousel from "./Team_Carousel";
 import { dummyData } from "./dummyData";
