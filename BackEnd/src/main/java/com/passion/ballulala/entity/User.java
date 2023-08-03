@@ -1,9 +1,7 @@
 package com.passion.ballulala.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -11,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@NoArgsConstructor
-@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+@Getter @Setter @Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -73,6 +71,7 @@ public class User {
     @Column(nullable = true)
     private int tier;
 
+    @Builder.Default
     @OneToMany(mappedBy = "user")
     private List<UserItem> userItems = new ArrayList<>();
 
