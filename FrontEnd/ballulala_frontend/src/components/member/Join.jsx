@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import axios from 'axios';
 import './Join.css';
 
 
 const Join = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [passwordConfirm, setPasswordConfirm] = useState('');
+  // const [passwordConfirm, setPasswordConfirm] = useState('');
   const [name, setName] = useState('');
+  const [nickname, setNickname] = useState('');
   const [birthday, setBirthday] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
-  const [region, setRegion] = useState('');
+  const [gender, setGender] = useState('');
+  const [sido, setSido] = useState('');
+  const [gugun, setGugun] = useState('');
+
+  const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
+
   
   const [showModal, setShowModal] = useState(false);
+
+  const handleClick = () => {
+    if (isSubmitSuccess) {
+      openModal();
+    } else {
+      alert('회원가입 중 오류가 발생했습니다.');
+    }
+  };
 
   const openModal = () => {
     setShowModal(true);
@@ -22,16 +37,73 @@ const Join = () => {
     setShowModal(false);
   };
 
-  const handleSubmit = (event) => {
-    event?.preventDefault();
-  
-    if (password !== passwordConfirm) {
-      alert("비밀번호와 비밀번호 확인이 일치하지 않습니다.");
-      return;
+  const registerUser = async (userData) => {
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+
+      const response = await axios.post(
+        "http://localhost:8080/users/signup",
+        userData,
+        config
+      );
+
+      return response.data.state; // data.state에 success/fail 값이 있습니다.
+    } catch (error) {
+      console.error(error);
+      return 'FAIL';
     }
-  
+  }; 
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    // 기존 입력 값 검사 코드 생략...
+
+    const userData = {
+      email,
+      password,
+      name,
+      nickname,
+      birthday,
+      phoneNumber,
+      gender,
+    };
+
+    const result = await registerUser(userData);
+
+    if (result === 'success') {
+      setIsSubmitSuccess(true);
+    } 
+    else {
+      setIsSubmitSuccess(false);
+    //   alert('이메일이 이미 사용 중이거나 회원가입 중 오류가 발생했습니다.');
+    }
+  };
+
+  const handleFinalSubmit = async (event) => {
+    event.preventDefault();
+
+  //   const userDataWithSidoGugun = {
+  //   email,
+  //   password,
+  //   name,
+  //   nickname,
+  //   birthday,
+  //   phoneNumber,
+  //   gender,
+  //   sido,
+  //   gugun,
+  // };
+
     // 회원가입 처리를 진행하세요
-    console.log(`Email: ${email}, Password: ${password}`);
+    console.log(
+      `Email: ${email}, Password: ${password}, Sido: ${sido}, Gugun: ${gugun}`
+    );
+    alert('회원가입 완료');
   };
   
 
@@ -71,17 +143,6 @@ const Join = () => {
               onChange={(event) => setPassword(event.target.value)}
             />
           </div>
-          <div className="inputbox">
-            <br />
-            <label htmlFor="passwordConfirm"></label>
-            <input
-              type="password"
-              id="passwordConfirm"
-              placeholder="비밀번호 확인"
-              value={passwordConfirm}
-              onChange={(event) => setPasswordConfirm(event.target.value)}
-            />
-          </div>
 
           <div className="inputbox">
             <br />
@@ -92,6 +153,18 @@ const Join = () => {
               placeholder="이름"
               value={name}
               onChange={(event) => setName(event.target.value)}
+            />
+          </div>
+
+          <div className="inputbox">
+            <br />
+            <label htmlFor="nickname"></label>
+            <input
+              type="text"
+              id="nickname"
+              placeholder="닉네임"
+              value={nickname}
+              onChange={(event) => setNickname(event.target.value)}
             />
           </div>
 
@@ -119,10 +192,30 @@ const Join = () => {
             />
           </div>
 
+          <div className="inputbox">
+            <br />
+            <label htmlFor="phonenumber"></label>
+            <input
+              type="tel"
+              id="gender"
+              placeholder="성별"
+              value={gender}
+              onChange={(event) => setGender(event.target.value)}
+            />
+          </div>
+
           <br />
-          <button className="loginbtn" type="submit" onClick={openModal}>
+          <button
+            className="loginbtn"
+            type="submit"
+            onClick={(event) => {
+              handleSubmit(event);
+              handleClick();
+            }}
+          >
             다음
           </button>
+
 
           <br />
           <br />
@@ -141,39 +234,29 @@ const Join = () => {
 
               <div className="inputbox">
                 <br />
-                <label htmlFor="region"></label>
+                <label htmlFor="sido"></label>
                 <input
                   type="text"
-                  id="region"
-                  placeholder="구/군"
-                  value={region}
-                  onChange={(event) => setRegion(event.target.value)}
-                />
-              </div>
-
-              <div className="inputbox">
-                <br />
-                <label htmlFor="region"></label>
-                <input
-                  type="text"
-                  id="region"
+                  id="sido"
                   placeholder="시/도"
-                  value={region}
-                  onChange={(event) => setPhoneNumber(event.target.value)}
+                  value={sido}
+                  onChange={(event) => setSido(event.target.value)}
                 />
               </div>
 
               <div className="inputbox">
                 <br />
-                <label htmlFor="region"></label>
+                <label htmlFor="gugun"></label>
                 <input
                   type="text"
-                  id="region"
-                  placeholder="실력"
-                  value={region}
-                  onChange={(event) => setPhoneNumber(event.target.value)}
+                  id="gugun"
+                  placeholder="구군"
+                  value={gugun}
+                  onChange={(event) => setGugun(event.target.value)}
                 />
               </div>
+
+
               <br />
 
               <div className='modal-btns'>
@@ -191,7 +274,7 @@ const Join = () => {
                 className="modal-yes-btn"
                 type="button"
                 onClick={() => {
-                  handleSubmit();
+                  handleFinalSubmit();
                   closeModal();
                 }}
               >
