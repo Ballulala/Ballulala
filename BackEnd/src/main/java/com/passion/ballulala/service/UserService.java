@@ -31,11 +31,8 @@ public class UserService {
     
     //회원가입 하기
     public boolean signUp(UserDto userDto){
-        System.out.println("왜안되노 씨바라");
         User user = userDto.toEntity();
-        System.out.println("왜안되노 씨바라");
         userRepo.save(user);
-        System.out.println("왜안되노 씨바라");
         return true;
     }
 

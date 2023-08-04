@@ -1,6 +1,8 @@
 package com.passion.ballulala.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,8 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @Getter
+@Builder
+@AllArgsConstructor
 public class TeamItem {
 
     @Id
@@ -16,17 +20,17 @@ public class TeamItem {
     @Column(name = "team_item_id", nullable = false)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id", nullable = false)
-    private Item product;
+    private Item item;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id", nullable = false)
     private Team team;
 
-    @Column(nullable = false, columnDefinition = "date")
+    @Column(nullable = true, columnDefinition = "date")
     private LocalDateTime deadline;
 
-    @Column(name = "buy_date", nullable = false, columnDefinition = "date")
+    @Column(name = "buy_date", nullable = true, columnDefinition = "date")
     private LocalDateTime buyDate;
 }
