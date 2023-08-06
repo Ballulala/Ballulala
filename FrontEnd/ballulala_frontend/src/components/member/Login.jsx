@@ -1,13 +1,14 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // useNavigate 추가
+import { useRecoilState } from 'recoil';
+import { emailState, passwordState } from './atoms/account';
+import { Link, useNavigate } from "react-router-dom"; 
 import "./Login.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate(); // navigate 객체 생성
+  const [email, setEmail] = useRecoilState(emailState);
+  const [password, setPassword] = useRecoilState(passwordState);
+  const navigate = useNavigate(); 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -29,7 +30,7 @@ const Login = () => {
         config
       );
 
-      // 로그인 성공 여부를 판단
+      
       if (response.data.state === "SUCCESS") {
         localStorage.setItem("data", response.data.data);
         localStorage.setItem("message", response.data.message);

@@ -3,13 +3,14 @@ package com.passion.ballulala.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter
+@Getter  @ToString
 public class Team {
 
     @Id
@@ -17,37 +18,44 @@ public class Team {
     @Column(name = "team_id", nullable = false)
     private Long id;
 
-    @Column(name = "team_status", nullable = false)
+    @Column(name = "team_status", nullable = true)
     private Byte teamStatus;
 
     @Column(nullable = false, columnDefinition = "varchar(30)", unique = true)
     private String name;
 
-    @Column(name = "leader_name", nullable = false, columnDefinition = "varchar(30)")
+    @Column(name = "leader_name", nullable = true, columnDefinition = "varchar(30)")
     private String leaderName;
 
-    @Column(name = "phone_number", nullable = false, columnDefinition = "varchar(30)")
+    @Column(name = "phone_number", nullable = true, columnDefinition = "varchar(30)")
     private String phoneNumber;
 
-    @Column(nullable = false)
-    private int mmr;
+    @Column(nullable = true)
+    private Integer mmr;
 
-    @Column(nullable = false, columnDefinition = "varchar(50)")
+    @Column(nullable = true, columnDefinition = "varchar(50)")
     private String logo;
 
-    @Column(nullable = false, columnDefinition = "varchar(1000)")
+    @Column(nullable = true, columnDefinition = "varchar(1000)")
     private String description;
 
-    @Column(name = "win_count", nullable = false)
-    private int winCount;
+    @Column(name = "win_count", nullable = true)
+    private Integer winCount;
 
-    @Column(name = "lose_count", nullable = false)
-    private int loseCount;
+    @Column(name = "lose_count", nullable = true)
+    private Integer loseCount;
 
-    @Column(name = "winning_streak", nullable = false)
-    private int winningStreak;
+    @Column(name = "winning_streak", nullable = true)
+    private Integer winningStreak;
+
+    @Column(nullable = true)
+    private Integer point;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<TeamItem> teamItems = new ArrayList<>();
+
+    public void updatePoint(int uss) {
+        this.point = uss;
+    }
 
 }
