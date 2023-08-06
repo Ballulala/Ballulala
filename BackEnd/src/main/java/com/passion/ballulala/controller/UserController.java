@@ -57,6 +57,24 @@ public class UserController {
         }
     }
 
+    @PostMapping(value = "/logout")
+    public ResponseEntity<?> logout(@RequestBody UserDto user) {
+        ResponseDto<Boolean> response = new ResponseDto<Boolean>();
+        //이메일, 닉네임, 비밀번호, 이름, 생년월일, 휴대폰 번호, 성별
+        //시도, 구군
+        try {
+            System.out.println("들어가기전");
+            userService.signUp(user);
+            response.setState("SUCCESS");
+            response.setMessage("회원가입을 완료하였습니다.");
+            return new ResponseEntity<ResponseDto<Boolean>>(response, HttpStatus.OK);
+        }catch(Exception e){ //로그인 중 의문의 오류 발생.
+            response.setState("FAIL");
+            response.setMessage("회원가입 중 오류가 발생하였습니다.");
+            return new ResponseEntity<ResponseDto<Boolean>>(response, HttpStatus.OK);
+        }
+    }
+
     @PostMapping(value = "/signUp/emailCheck")
     public ResponseEntity<?> emailCheck(@RequestBody UserDto user) {
         ResponseDto<Boolean> response = new ResponseDto<Boolean>();
