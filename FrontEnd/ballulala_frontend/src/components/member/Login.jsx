@@ -24,8 +24,11 @@ const Login = () => {
         password: password,
       };
 
+      console.log(email);
+      console.log(password);
+
       const response = await axios.post(
-        "http://localhost:8080/users/login",
+        "http://i9d110.p.ssafy.io:8081/users/login",
         body,
         config
       );

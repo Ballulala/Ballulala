@@ -12,13 +12,13 @@ const Join = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   // const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [name, setName] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [gender, setGender] = useState('');
-  const [sido, setSido] = useState('');
-  const [gugun, setGugun] = useState('');
+  const [name, setName] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [gender, setGender] = useState("");
+  const [sido, setSido] = useState("");
+  const [gugun, setGugun] = useState("");
 
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
 
@@ -26,7 +26,7 @@ const Join = () => {
 
   const checkEmail = async (email) => {
     try {
-      const response = await axios.get(`http://i9d110.p.ssafy.io:8081/users/signUp/emailCheck`);
+      const response = await axios.get(`https://i9d110.p.ssafy.io:8081/users/signUp/emailCheck`);
       return response.data.state;
     } catch (error) {
       console.error(error);
@@ -36,7 +36,7 @@ const Join = () => {
 
   const checkPhoneNumber = async (phoneNumber) => {
     try {
-      const response = await axios.get(`http://i9d110.p.ssafy.io:8081/users/signUp/phoneNumberCheck`);
+      const response = await axios.get(`https://i9d110.p.ssafy.io:8081/users/signUp/phoneNumberCheck`);
       return response.data.state;
     } catch (error) {
       console.error(error);
@@ -70,7 +70,7 @@ const Join = () => {
       };
 
       const response = await axios.post(
-        "http://i9d110.p.ssafy.io:8081/users/signUp",
+        "https://i9d110.p.ssafy.io:8081/users/signUp",
         userData,
         config
       );
@@ -78,9 +78,9 @@ const Join = () => {
       return response.data.state;
     } catch (error) {
       console.error(error);
-      return 'FAIL';
+      return "FAIL";
     }
-  }; 
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -135,7 +135,6 @@ const Join = () => {
     });
     navigate('/');
   };
-  
 
   return (
     <div className="join-page">
@@ -246,7 +245,6 @@ const Join = () => {
             다음
           </button>
 
-
           <br />
           <br />
           <div>
@@ -257,7 +255,6 @@ const Join = () => {
         {showModal && (
           <div className="ball-modal">
             <div className="ball-modal-content">
-              
               <div className="ball-modal-title">
                 <div>추가 정보 작성</div>
               </div>
@@ -286,19 +283,18 @@ const Join = () => {
                 />
               </div>
 
-
               <br />
 
-              <div className='modal-btns'>
-              <button
-                className="modal-no-btn"
-                type="button"
-                onClick={() => {
-                  closeModal();
-                }}
-              >
-                취소
-              </button>
+              <div className="modal-btns">
+                <button
+                  className="modal-no-btn"
+                  type="button"
+                  onClick={() => {
+                    closeModal();
+                  }}
+                >
+                  취소
+                </button>
 
               <button
                 className="modal-yes-btn"
