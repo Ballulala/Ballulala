@@ -18,14 +18,12 @@ public class Team {
     @Column(name = "team_id", nullable = false)
     private Long id;
 
-    @Column(name = "team_status", nullable = true)
-    private Byte teamStatus;
-
     @Column(nullable = false, columnDefinition = "varchar(30)", unique = true)
     private String name;
 
-    @Column(name = "leader_name", nullable = true, columnDefinition = "varchar(30)")
-    private String leaderName;
+    @ManyToOne
+    @JoinColumn( nullable = true, columnDefinition = "varchar(30)")
+    private User leader;
 
     @Column(name = "phone_number", nullable = true, columnDefinition = "varchar(30)")
     private String phoneNumber;

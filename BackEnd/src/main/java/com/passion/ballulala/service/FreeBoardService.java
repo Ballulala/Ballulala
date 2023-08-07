@@ -28,7 +28,7 @@ public class FreeBoardService {
             .createTime(freeBoardDto.getCreateTime())
             .hit(freeBoardDto.getHit())
             .userId(user)
-                .build();
+            .build();
         freeBoardRepo.save(freeBoard);
 //        matchRepo.save(match);
     }

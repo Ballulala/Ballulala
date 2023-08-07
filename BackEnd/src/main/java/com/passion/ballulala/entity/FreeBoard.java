@@ -1,15 +1,17 @@
 package com.passion.ballulala.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.sql.Clob;
 import java.time.LocalDateTime;
 
-@Entity
 @Getter
+@Setter
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
 @Table(name = "free_board")
 public class FreeBoard {
 
@@ -32,5 +34,5 @@ public class FreeBoard {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private User userId;
 }
