@@ -23,7 +23,7 @@ import Sidebar from './components/side_bar/Side_Bar';
 import VideoChat from './components/interview/videoconference';
 import Matchteam from './components/match_team/Match_team';
 import Mypage from './components/mypage/mypage';
-// import { RecoilRoot } from 'recoil';
+import { RecoilRoot } from 'recoil';
 const Home = () => (
   <div>
     
@@ -45,7 +45,7 @@ const Home = () => (
 
 function App() {
   return (
-  // <RecoilRoot>
+  <RecoilRoot>
   <Router>
      <div className="container">
       <Routes>
@@ -72,7 +72,7 @@ function App() {
       </Routes>
       </div>
     </Router>
-    // </RecoilRoot>
+    </RecoilRoot>
   );
 }
 
