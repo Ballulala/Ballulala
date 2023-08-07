@@ -29,29 +29,29 @@ function TeamDetail() {
     <div>
       <TopNavbar />
       <div className="team-detail-page">
-        <div className="team-info">
+        <div className="team-detail">
           <img className="team-logo-img" src={"/empty_img_circle.png"} alt="Logo" />
           <div className="team-name">Team Name</div>
           <br />
 
-          <div className="team-info-more">
+          <div className="team-detail-more">
             <img src={"/icon_member.png"} alt="img" />
             <div>6</div>
             <button className="team-more-btn">more</button>
           </div>
 
-          <div className="team-info-more">
+          <div className="team-detail-more">
             <img src={"/icon_location.png"} alt="img" />
             <div>대구 달서구</div>
           </div>
 
-          <div className="team-info-more">
+          <div className="team-detail-more">
             <img src={"/icon_soccer.png"} alt="img" />
             <div>3승 1패 (75%)</div>
             <button className="team-more-btn">more</button>
           </div>
 
-          <div className="team-info-more">
+          <div className="team-detail-more">
             <img src={"/images/point_black.png"} alt="img" />
             <div>2000</div>
             <button className="team-more-btn">gave</button>
@@ -60,7 +60,7 @@ function TeamDetail() {
           <br />
           <br />
           <button className="team-join-btn" type="submit" onClick={openModal}>
-            가입신청
+            가입신청/탈퇴 신청
           </button>
 
         </div>

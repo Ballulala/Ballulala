@@ -1,16 +1,39 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './FindPassword.css';
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "./FindPassword.css";
 
 const FindPassword = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
 
-  const handleSubmit = (event) => {
+  const findPassword = async (name, email) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const userData = { name, email };
+
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/users/findpwd",
+        userData,
+        config
+      );
+      return response.data.state;
+    } catch (error) {
+      console.error(error);
+      return "fail";
+    }
+  };
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // 비밀번호 찾기 처리를 진행하세요
-    console.log(`Email: ${email}`);
+    const result = await findPassword(name, email);
+    console.log(`Result: ${result}`);
   };
 
   return (
@@ -29,8 +52,19 @@ const FindPassword = () => {
           <hr />
           <br />
           <p className="navy-letter">
-            비밀번호 재설정을 위한 이메일을 입력하세요.
+            비밀번호 재설정을 위한 이름, 이메일을 입력하세요.
           </p>
+          <div className="inputbox">
+            <label htmlFor="name"></label>
+            <br />
+            <input
+              type="name"
+              id="name"
+              placeholder="이름"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+            />
+          </div>
           <div className="inputbox">
             <label htmlFor="email"></label>
             <br />

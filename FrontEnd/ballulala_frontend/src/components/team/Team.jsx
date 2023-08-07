@@ -91,8 +91,12 @@ function Team() {
           <li>팀 3</li>
         </ul>
       </div>
-
-      <button onClick={openModal}>새로운 팀 만들기</button>
+      
+       <div className="new-team-btn-container">
+        <button className="new-team-btn" onClick={openModal}>
+          새로운 팀 만들기
+        </button>
+      </div>
 
       {showModal && (
         <div className="ball-modal">
