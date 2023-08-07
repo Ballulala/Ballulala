@@ -15,7 +15,9 @@ const Navbar = () => {
                   alt="팀 매치"
                   className="nav-icon"
                 />
-                팀 매치
+                <div className="nav-letter">
+                  팀 매치
+                </div>
               </div>
             </Link>
           </li>
@@ -27,7 +29,9 @@ const Navbar = () => {
                   alt="개인 매치"
                   className="nav-icon"
                 />
-                개인 매치
+                <div className="nav-letter">
+                  개인 매치
+                </div>
               </div>
             </Link>
           </li>
@@ -39,7 +43,9 @@ const Navbar = () => {
                   alt="랭킹"
                   className="nav-icon"
                 />
-                랭킹
+                <div className="nav-letter">
+                  랭킹
+                </div>
               </div>
             </Link>
           </li>
@@ -51,7 +57,10 @@ const Navbar = () => {
                   alt="팀 정보"
                   className="nav-icon"
                 />
-                팀 정보
+                <div className="nav-letter">
+                  팀 정보
+                </div>
+
               </div>
             </Link>
           </li>
@@ -63,7 +72,9 @@ const Navbar = () => {
                   alt="커뮤니티"
                   className="nav-icon"
                 />
-                커뮤니티
+                <div className="nav-letter">
+                  커뮤니티
+                </div>
               </div>
             </Link>
           </li>
