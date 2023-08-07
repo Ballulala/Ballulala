@@ -24,8 +24,11 @@ const Login = () => {
         password: password,
       };
 
+      console.log(email);
+      console.log(password);
+
       const response = await axios.post(
-        "http://localhost:8080/users/login",
+        "http://i9d110.p.ssafy.io:8081/users/login",
         body,
         config
       );
@@ -87,7 +90,7 @@ const Login = () => {
           </div>
           <br />
           <button className="loginbtn" type="submit">
-            로그인하기
+            로그인
           </button>
           <br />
           <br />
@@ -107,7 +110,7 @@ const Login = () => {
           </div>
           <div className="links">
             <div>
-              <Link to="/join">이메일로 가입</Link>
+              <Link to="/signUp">이메일로 가입</Link>
             </div>
             <div>|</div>
             <div>
