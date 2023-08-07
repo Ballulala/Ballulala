@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './Join.css';
+import './signUp.css';
 
 
 const Join = () => {
@@ -18,15 +18,15 @@ const Join = () => {
 
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
 
-  
   const [showModal, setShowModal] = useState(false);
 
   const handleClick = () => {
     if (isSubmitSuccess) {
       openModal();
-    } else {
-      alert('회원가입 중 오류가 발생했습니다.');
-    }
+    } 
+    // else {
+    //   alert('회원가입 중 오류가 발생했습니다.');
+    // }
   };
 
   const openModal = () => {
@@ -77,10 +77,11 @@ const Join = () => {
 
     if (result === 'success') {
       setIsSubmitSuccess(true);
+      alert('성공')
     } 
     else {
       setIsSubmitSuccess(false);
-    //   alert('이메일이 이미 사용 중이거나 회원가입 중 오류가 발생했습니다.');
+      alert('이메일이 이미 사용 중이거나 회원가입 중 오류가 발생했습니다.');
     }
   };
 

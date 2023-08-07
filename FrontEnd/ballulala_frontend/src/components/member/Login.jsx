@@ -107,7 +107,7 @@ const Login = () => {
           </div>
           <div className="links">
             <div>
-              <Link to="/join">이메일로 가입</Link>
+              <Link to="/signUp">이메일로 가입</Link>
             </div>
             <div>|</div>
             <div>
