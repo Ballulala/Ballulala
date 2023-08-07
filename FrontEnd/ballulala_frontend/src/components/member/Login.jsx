@@ -1,9 +1,9 @@
-import { useRecoilState } from "recoil";
-import { emailState, passwordState } from "../../atoms/account";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
 import axios from "axios";
 import Swal from "sweetalert2";
+import { useRecoilState } from "recoil";
+import { emailState, passwordState } from "../../atoms/account";
 
 const Login = () => {
   const [email, setEmail] = useRecoilState(emailState);

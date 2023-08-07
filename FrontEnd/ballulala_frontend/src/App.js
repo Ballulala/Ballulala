@@ -45,11 +45,10 @@ const Home = () => (
 
 function App() {
   return (
-  <RecoilRoot>
-  <Router>
-     <div className="container">
+    <RecoilRoot>
+    <Router>
+      <div className="container">
       <Routes>
-       
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
@@ -71,7 +70,7 @@ function App() {
         <Route path="/Mypage" element={<Mypage/>} />
       </Routes>
       </div>
-    </Router>
+      </Router>
     </RecoilRoot>
   );
 }
