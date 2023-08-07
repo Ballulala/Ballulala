@@ -10,11 +10,20 @@
   .nav-item {
     padding: 0 10px;
   }
+
   .nav-icon {
     width: 100px;
     height: 100px;
     margin: 10px;
+    opacity: 1; /* 기본 불투명도 */
+    transition: opacity 0.3s, transform 0.3s; /* 애니메이션 효과 시간 설정 */
   }
+
+  .nav-icon:hover {
+    opacity: 0.5; /* 마우스 호버 시 불투명도 50% */
+    transform: translate(3px, 3px); /* 마우스 호버 시 이동 거리 (가로, 세로) */
+  }
+
   .nav-content {
     display: flex;
     flex-direction: column;
@@ -24,4 +33,10 @@
   .nav-link {
     text-decoration: none;  
     font-family: 'Arial';  
+  }
+
+  .nav-letter {
+    font-family: three;
+    color: black;
+    margin-top: 10px;
   }

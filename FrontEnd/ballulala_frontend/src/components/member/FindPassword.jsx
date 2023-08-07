@@ -18,7 +18,7 @@ const FindPassword = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/users/findpwd",
+        "http://i9d110.p.ssafy.io:8081/users/findpwd",
         userData,
         config
       );

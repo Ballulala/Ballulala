@@ -87,7 +87,7 @@ const Login = () => {
           </div>
           <br />
           <button className="loginbtn" type="submit">
-            로그인하기
+            로그인
           </button>
           <br />
           <br />

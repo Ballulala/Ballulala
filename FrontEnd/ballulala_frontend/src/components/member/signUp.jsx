@@ -2,9 +2,13 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import './signUp.css';
+import { useNavigate } from 'react-router-dom';
+import Swal from "sweetalert2";
 
 
 const Join = () => {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   // const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -19,6 +23,26 @@ const Join = () => {
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
+
+  const checkEmail = async (email) => {
+    try {
+      const response = await axios.get(`http://i9d110.p.ssafy.io:8081/users/signUp/emailCheck`);
+      return response.data.state;
+    } catch (error) {
+      console.error(error);
+      return 'FAIL';
+    }
+  };
+
+  const checkPhoneNumber = async (phoneNumber) => {
+    try {
+      const response = await axios.get(`http://i9d110.p.ssafy.io:8081/users/signUp/phoneNumberCheck`);
+      return response.data.state;
+    } catch (error) {
+      console.error(error);
+      return 'FAIL';
+    }
+  };
 
   const handleClick = () => {
     if (isSubmitSuccess) {
@@ -51,7 +75,7 @@ const Join = () => {
         config
       );
 
-      return response.data.state; // data.state에 success/fail 값이 있습니다.
+      return response.data.state;
     } catch (error) {
       console.error(error);
       return 'FAIL';
@@ -60,8 +84,6 @@ const Join = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // 기존 입력 값 검사 코드 생략...
 
     const userData = {
       email,
@@ -74,37 +96,44 @@ const Join = () => {
     };
 
     const result = await registerUser(userData);
+    
+    const emailResult = await checkEmail(email);
+    const phoneNumberResult = await checkPhoneNumber(phoneNumber);
 
-    if (result === 'success') {
+    if (result === 'SUCCESS') {
       setIsSubmitSuccess(true);
-      alert('성공')
+      openModal();
+      console.log(result)
     } 
+    // if (result === 'SUCCESS' && emailResult === 'SUCCESS' && phoneNumberResult === 'SUCCESS') {
+    //   setIsSubmitSuccess(true);
+    //   openModal();
+    //   console.log(result)
+    // } 
     else {
       setIsSubmitSuccess(false);
-      alert('이메일이 이미 사용 중이거나 회원가입 중 오류가 발생했습니다.');
+      console.log(result)
+      console.log(emailResult)
+      console.log(phoneNumberResult)
+      Swal.fire({
+        title: "회원가입 실패",
+        text: "이메일과 휴대폰번호를 다시 확인해보세요.",
+        icon: "error",
+        confirmButtonText: "확인",
+      });
     }
   };
 
   const handleFinalSubmit = async (event) => {
     event.preventDefault();
 
-  //   const userDataWithSidoGugun = {
-  //   email,
-  //   password,
-  //   name,
-  //   nickname,
-  //   birthday,
-  //   phoneNumber,
-  //   gender,
-  //   sido,
-  //   gugun,
-  // };
-
-    // 회원가입 처리를 진행하세요
-    console.log(
-      `Email: ${email}, Password: ${password}, Sido: ${sido}, Gugun: ${gugun}`
-    );
-    alert('회원가입 완료');
+    Swal.fire({
+      title: "환영합니다!",
+      text: "볼루랄라 가입이 완료되었습니다.",
+      icon: "success",
+      confirmButtonText: "확인",
+    });
+    navigate('/');
   };
   
 
@@ -274,13 +303,14 @@ const Join = () => {
               <button
                 className="modal-yes-btn"
                 type="button"
-                onClick={() => {
-                  handleFinalSubmit();
+                onClick={(event) => {
+                  handleFinalSubmit(event);
                   closeModal();
                 }}
               >
                 확인
               </button>
+
               </div>
             </div>
           </div>

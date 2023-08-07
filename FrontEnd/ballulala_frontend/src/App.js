@@ -31,13 +31,27 @@ const Home = () => (
     < Sidebar />  
     <Link to="/login" className="login-link">Login</Link> 
     <Link to="/videochat/12345">Video Chat</Link>
+    <br/>
     <Link to="/Mypage">Mypage</Link>
       <Navbar />
       
       <SwiperComponent/>
+
+      <div className='upcoming page-letter'>Upcoming Matches</div>
       <DateBar />
     <div className="link-container">
      
+    </div>
+
+    <div className='foot'>
+      <div className='foot-one'>
+        <img src='/small_logo.png' alt='logo' />
+      </div>
+      <div className='foot-two'>
+        SSAFY 9기 프로젝트
+        <br/>
+        김정환 김근우 김상진 김슬기 채경호 천병찬
+      </div>
     </div>
 
   </div>
