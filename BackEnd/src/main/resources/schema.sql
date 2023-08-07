@@ -1,0 +1,9 @@
+--insert into user(gender, manner, mvp_count, point , role ,
+--status , tier , birthday , accesstoken , email ,
+--gugun , name , nickname , password, phone_number ,
+--profile_image, refreshtoken, sido)
+--values(
+--0,0,0,0,0,
+--0,0,now(),"신병찬","신병찬",
+--"신병찬","신병찬","신병찬","신병찬", "신병찬",
+--"신병찬","신병찬","신병찬");
