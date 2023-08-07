@@ -1,31 +1,29 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import './Join.css';
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import "./Join.css";
 
 const Join = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   // const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [name, setName] = useState('');
-  const [nickname, setNickname] = useState('');
-  const [birthday, setBirthday] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [gender, setGender] = useState('');
-  const [sido, setSido] = useState('');
-  const [gugun, setGugun] = useState('');
+  const [name, setName] = useState("");
+  const [nickname, setNickname] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [gender, setGender] = useState("");
+  const [sido, setSido] = useState("");
+  const [gugun, setGugun] = useState("");
 
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
 
-  
   const [showModal, setShowModal] = useState(false);
 
   const handleClick = () => {
     if (isSubmitSuccess) {
       openModal();
     } else {
-      alert('회원가입 중 오류가 발생했습니다.');
+      alert("회원가입 중 오류가 발생했습니다.");
     }
   };
 
@@ -54,9 +52,9 @@ const Join = () => {
       return response.data.state; // data.state에 success/fail 값이 있습니다.
     } catch (error) {
       console.error(error);
-      return 'FAIL';
+      return "FAIL";
     }
-  }; 
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -75,37 +73,35 @@ const Join = () => {
 
     const result = await registerUser(userData);
 
-    if (result === 'success') {
+    if (result === "success") {
       setIsSubmitSuccess(true);
-    } 
-    else {
+    } else {
       setIsSubmitSuccess(false);
-    //   alert('이메일이 이미 사용 중이거나 회원가입 중 오류가 발생했습니다.');
+      //   alert('이메일이 이미 사용 중이거나 회원가입 중 오류가 발생했습니다.');
     }
   };
 
   const handleFinalSubmit = async (event) => {
     event.preventDefault();
 
-  //   const userDataWithSidoGugun = {
-  //   email,
-  //   password,
-  //   name,
-  //   nickname,
-  //   birthday,
-  //   phoneNumber,
-  //   gender,
-  //   sido,
-  //   gugun,
-  // };
+    //   const userDataWithSidoGugun = {
+    //   email,
+    //   password,
+    //   name,
+    //   nickname,
+    //   birthday,
+    //   phoneNumber,
+    //   gender,
+    //   sido,
+    //   gugun,
+    // };
 
     // 회원가입 처리를 진행하세요
     console.log(
       `Email: ${email}, Password: ${password}, Sido: ${sido}, Gugun: ${gugun}`
     );
-    alert('회원가입 완료');
+    alert("회원가입 완료");
   };
-  
 
   return (
     <div className="join-page">
@@ -216,7 +212,6 @@ const Join = () => {
             다음
           </button>
 
-
           <br />
           <br />
           <div>
@@ -227,7 +222,6 @@ const Join = () => {
         {showModal && (
           <div className="ball-modal">
             <div className="ball-modal-content">
-              
               <div className="ball-modal-title">
                 <div>추가 정보 작성</div>
               </div>
@@ -256,30 +250,29 @@ const Join = () => {
                 />
               </div>
 
-
               <br />
 
-              <div className='modal-btns'>
-              <button
-                className="modal-no-btn"
-                type="button"
-                onClick={() => {
-                  closeModal();
-                }}
-              >
-                취소
-              </button>
+              <div className="modal-btns">
+                <button
+                  className="modal-no-btn"
+                  type="button"
+                  onClick={() => {
+                    closeModal();
+                  }}
+                >
+                  취소
+                </button>
 
-              <button
-                className="modal-yes-btn"
-                type="button"
-                onClick={() => {
-                  handleFinalSubmit();
-                  closeModal();
-                }}
-              >
-                확인
-              </button>
+                <button
+                  className="modal-yes-btn"
+                  type="button"
+                  onClick={() => {
+                    handleFinalSubmit();
+                    closeModal();
+                  }}
+                >
+                  확인
+                </button>
               </div>
             </div>
           </div>

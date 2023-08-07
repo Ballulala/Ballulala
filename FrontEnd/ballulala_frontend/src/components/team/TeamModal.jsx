@@ -1,5 +1,5 @@
 import React from "react";
-import './TeamSetting.css';
+import "./TeamSetting.css";
 
 const TeamModal = ({ title, isOpen, onClose, children, onSubmit }) => {
   if (!isOpen) {
