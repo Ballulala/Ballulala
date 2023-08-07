@@ -46,7 +46,7 @@ const Join = () => {
       };
 
       const response = await axios.post(
-        "http://localhost:8080/users/signup",
+        "http://i9d110.p.ssafy.io:8081/users/signUp",
         userData,
         config
       );
