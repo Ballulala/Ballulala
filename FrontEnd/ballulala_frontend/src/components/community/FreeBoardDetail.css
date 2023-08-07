@@ -1,0 +1,79 @@
+.board-detail {
+    margin: 7%;
+}
+
+.board-detail > * {
+    margin-bottom: 20px;
+}
+
+.board-title {
+    font-size: 30px;
+    font-weight: 800;
+}
+
+.detail-line-one {
+    display: flex;
+}
+
+.detail-line-one > * {
+    margin-right: 12px;
+    height: 20px;
+}
+
+.detail-line-three > * {
+    height: 20px;
+}
+
+.detail-line-three {
+    display: flex;
+    margin-top: 40px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail-line-three img {
+    height: 20px;
+    margin-right: 10px;
+}
+
+
+.detail-line-three > div {
+    display: flex;
+    align-items: center;
+}
+
+.detail-line-three .detail-btns {
+    margin-right: 0;
+}
+
+.like-btn {
+    background-color: white;
+    padding: 6px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border: 2px solid rgb(49, 97, 121);
+    border-radius: 5px;
+    color: rgb(49, 97, 121);
+}
+
+.detail-btns button {
+    /* height: 30px; */
+    margin-left: 10px;
+    padding: 6px;
+    padding-left: 15px;
+    padding-right: 15px;
+    background-color: rgb(49, 97, 121);
+    border: 1px solid rgb(49, 97, 121);
+    border-radius: 5px;
+    color: white;
+}
+
+.detail-btns button:hover {
+    background-color: rgb(245, 100, 105);
+    border: 1px solid rgb(245, 100, 105);
+}
+
+.comments {
+    margin-top: 20px;
+}
+

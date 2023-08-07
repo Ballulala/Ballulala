@@ -1,0 +1,85 @@
+.team-page {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+.page-letter {
+    text-align: center;
+    font-size: 30px;
+    font-family: "ret";
+}
+
+.month-team-img {
+    width: 100%;
+    height: auto;
+    margin: 20px;
+}
+
+.radius-button{
+    background-color: rgb(49, 97, 121);
+    color: white;
+    border: 1px solid rgb(49, 97, 121);
+    border-radius: 5px;
+    padding: 5px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-right: 25px;
+    height: 100%;
+    width: 10vw;
+}
+
+.radius-button:hover {
+    background-color: rgb(245, 100, 105);
+    border: 1px solid rgb(245, 100, 105);
+    color: white;
+}
+
+.new-team-btn-container {
+    float: right;
+  }
+
+.new-team-btn {
+    background-color: rgb(245, 100, 105);
+    color: white;
+    border: 1px solid rgb(245, 100, 105);
+    border-radius: 5px;
+    padding: 10px;
+    height: 100%;
+    width: 10vw;
+}
+
+.new-team-btn:hover {
+    color: rgb(49, 97, 121);
+}
+
+.search-team {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+  .buttons {
+    display: flex;
+  }
+  
+.team-search-box {
+    /* margin-left: 25%; */
+    padding: 5px;
+    /* width: 10vw; */
+}
+
+.team-search-box input {
+    height: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(161, 160, 160);
+}
+
+.modal-input {
+    border: 1px solid gray;
+    border-radius: 3px;
+    width: 90%;
+    padding: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
