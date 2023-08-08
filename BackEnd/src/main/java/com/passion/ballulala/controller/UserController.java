@@ -1,10 +1,9 @@
 package com.passion.ballulala.controller;
 
+import com.passion.ballulala.dto.JwtTokenDto;
 import com.passion.ballulala.dto.ResponseDto;
 import com.passion.ballulala.dto.UserDto;
-import com.passion.ballulala.entity.User;
 import com.passion.ballulala.exception.ExceptionHandler;
-import com.passion.ballulala.jwt.JwtService;
 import com.passion.ballulala.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,35 +27,24 @@ public class UserController {
     //로그인 부분 구현
     @PostMapping(value = "/login")
     public ResponseEntity<?> login(@RequestBody UserDto user) {
-        ResponseDto<HashMap<String, String>> response = new ResponseDto<  HashMap<String, String>>();
+        ResponseDto<JwtTokenDto> response = new ResponseDto<JwtTokenDto>();
 
         try {
-            Long userNo = userService.login(user);
-
-            if (userNo == -1L) { //해당 아이디와 비밀번호의 유저를 조회할 수 없음.
+            JwtTokenDto jwtTokenDto = userService.login(user);
+            if (jwtTokenDto == null) { //해당 아이디와 비밀번호의 유저를 조회할 수 없음.
                 response.setState("FAIL");
                 response.setMessage("아이디 혹은 비밀번호가 일치하지 않습니다.");
+                return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
             } else { //정상적으로 로그인이 진행됨.
-
-                String accessToken = jwtService.createAccessToken("userNo", userNo);
-                String refreshToken = jwtService.createRefreshToken("userNo", userNo);
-
-                userService.saveRefreshToken(userNo, refreshToken);
-                HashMap<String, String> map = new HashMap<>();
-
-                map.put("Access-Token", accessToken);
-                map.put("Refresh-Token", refreshToken);
-
                 response.setState("SUCCESS");
                 response.setMessage("정상적으로 로그인이 되었습니다.");
-                response.setData(map);
-
+                response.setData(jwtTokenDto);
+                return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
             }
-            return new ResponseEntity<ResponseDto<HashMap<String, String>>>(response, HttpStatus.OK);
         }catch(Exception e){ //로그인 중 의문의 오류 발생.
             response.setState("FAIL");
             response.setMessage("로그인 중 오류가 발생하였습니다.");
-            return ExceptionHandler.exceptionResponse(response, e);
+            return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
         }
     }
 
