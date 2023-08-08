@@ -47,10 +47,10 @@ public class User {
     @Column(name = "mvp_count", nullable = true)
     private int mvpCount;
 
-    @Column(columnDefinition = "varchar(100)")
+    @Column(columnDefinition = "varchar(500)")
     private String accesstoken;
 
-    @Column(columnDefinition = "varchar(100)")
+    @Column(columnDefinition = "varchar(500)")
     private String refreshtoken;
 
     @Column(nullable = true)

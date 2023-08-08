@@ -3,8 +3,14 @@ package com.passion.ballulala.service;
 import com.passion.ballulala.dto.UserDto;
 import com.passion.ballulala.entity.User;
 import com.passion.ballulala.repo.UserRepo;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +34,29 @@ public class UserService {
             return -1L;
         }
     }
-    
+
+    @Transactional
+    public boolean saveRefreshToken(Long userNo, String refreshToken){
+        try{
+//            System.out.println(userNo);
+            User user = userRepo.findById(userNo)
+                    .orElseThrow(() -> new NoSuchElementException("유저 조회가 ㄴㄴ"));
+
+            System.out.println("조회는 됨");
+            user.setRefreshtoken(refreshToken);
+            return true;
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public Long findByRefreshtoken(String refreshToken){
+        User user = userRepo.findByRefreshtoken(refreshToken);
+        return user.getId();
+    }
+
     //회원가입 하기
     public boolean signUp(UserDto userDto){
         User user = userDto.toEntity();
