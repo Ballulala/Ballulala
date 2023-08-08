@@ -26,11 +26,11 @@ const Join = () => {
 
   const checkEmail = async (email) => {
     try {
-      const response = await axios.post(`https://i9d110.p.ssafy.io:8081/users/signUp/emailCheck`, {
-        params: {
+      const response = await axios.post(`https://i9d110.p.ssafy.io:8081/users/signUp/emailCheck`,
+        {
           email: email,
         },
-      });
+      );
       return response.data.state;
     } catch (error) {
       console.error(error);
@@ -41,11 +41,11 @@ const Join = () => {
   
   const checkPhoneNumber = async (phoneNumber) => {
     try {
-      const response = await axios.post(`https://i9d110.p.ssafy.io:8081/users/signUp/phoneNumberCheck`, {
-        params: {
+      const response = await axios.post(`https://i9d110.p.ssafy.io:8081/users/signUp/phoneNumberCheck`, 
+        {
           phoneNumber: phoneNumber,
         },
-      });
+      );
       return response.data.state;
     } catch (error) {
       console.error(error);
