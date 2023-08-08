@@ -54,3 +54,13 @@
     background-color: rgb(245, 100, 105);
     border: rgb(245, 100, 105);
 }
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .center-container button {
+    margin-top: 20px;
+  }

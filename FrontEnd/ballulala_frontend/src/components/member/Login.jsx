@@ -4,10 +4,12 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useRecoilState } from "recoil";
 import { emailState, passwordState } from "../../atoms/account";
+import { loggedInState } from "../../atoms/loginstate";
 
 const Login = () => {
   const [email, setEmail] = useRecoilState(emailState);
   const [password, setPassword] = useRecoilState(passwordState);
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedInState);
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,11 +26,11 @@ const Login = () => {
         password: password,
       };
 
-      console.log(email);
-      console.log(password);
+      // console.log(email);
+      // console.log(password);
 
       const response = await axios.post(
-        "http://i9d110.p.ssafy.io:8081/users/login",
+        "https://i9d110.p.ssafy.io:8081/users/login",
         body,
         config
       );
@@ -37,6 +39,7 @@ const Login = () => {
         localStorage.setItem("data", response.data.data);
         localStorage.setItem("message", response.data.message);
         localStorage.setItem("state", response.data.state);
+        setIsLoggedIn(true);
 
         navigate("/");
       } else {
