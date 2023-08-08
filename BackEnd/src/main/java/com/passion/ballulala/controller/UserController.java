@@ -3,12 +3,11 @@ package com.passion.ballulala.controller;
 import com.passion.ballulala.dto.JwtTokenDto;
 import com.passion.ballulala.dto.ResponseDto;
 import com.passion.ballulala.dto.UserDto;
-import com.passion.ballulala.exception.ExceptionHandler;
 import com.passion.ballulala.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import com.passion.ballulala.exception.ExceptionHandler;
 import java.util.HashMap;
 
 @RestController
@@ -16,11 +15,9 @@ import java.util.HashMap;
 public class UserController {
 
     private final String TOKEN ="Access-Token";
-    private JwtService jwtService;
     private UserService userService;
-    public UserController(UserService userService, JwtService jwtService){
+    public UserController(UserService userService){
         this.userService = userService;
-        this.jwtService = jwtService;
     }
 
     
@@ -48,27 +45,23 @@ public class UserController {
         }
     }
 
-    @PostMapping(value = "/refresh")
-    public ResponseEntity<?> login(@RequestBody HashMap<String, String> map) {
-        ResponseDto<String> response = new ResponseDto<String>();
-        String refreshToken = map.get("refreshToken");
-
-        try {
-            Long userNo = userService.findByRefreshtoken(refreshToken);
-
-            String AccessToken = jwtService.createAccessToken("userNo", userNo);
-
-            response.setState("SUCCESS");
-            response.setMessage("정상적으로 로그인이 진행되었습니다.");
-            response.setData(AccessToken);
-
-            return new ResponseEntity<ResponseDto<String>>(response, HttpStatus.OK);
-        } catch (Exception e) {
-            response.setState("FAIL");
-            response.setMessage("로그인 도중 오류가 발생했습니다.");
-            return ExceptionHandler.exceptionResponse(response, e);
-        }
-    }
+//    @PostMapping(value = "/refresh")
+//    public ResponseEntity<?> login(@RequestBody HashMap<String, String> map) {
+//        ResponseDto<String> response = new ResponseDto<String>();
+//        String refreshToken = map.get("refreshToken");
+//
+//        try {
+//            Long userNo = userService.findByRefreshtoken(refreshToken);
+//
+//            response.setState("SUCCESS");
+//            response.setMessage("정상적으로 로그인이 진행되었습니다.");
+//
+//            return new ResponseEntity<ResponseDto<String>>(response, HttpStatus.OK);
+//        } catch (Exception e) {
+//            response.setState("FAIL");
+//            response.setMessage("로그인 도중 오류가 발생했습니다.");
+//        }
+//    }
 
 
     //로그아웃 부분
