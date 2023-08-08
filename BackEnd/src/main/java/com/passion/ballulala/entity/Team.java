@@ -1,9 +1,7 @@
 package com.passion.ballulala.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +9,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @Getter  @ToString
+@AllArgsConstructor @Builder
 public class Team {
 
     @Id
@@ -21,12 +20,12 @@ public class Team {
     @Column(nullable = false, columnDefinition = "varchar(30)", unique = true)
     private String name;
 
-    @ManyToOne
-    @JoinColumn( nullable = true, columnDefinition = "varchar(30)")
-    private User leader;
+//    @ManyToOne
+//    @JoinColumn( nullable = true, columnDefinition = "varchar(30)")
+//    private User leader;
 
-    @Column(name = "phone_number", nullable = true, columnDefinition = "varchar(30)")
-    private String phoneNumber;
+//    @Column(name = "phone_number", nullable = true, columnDefinition = "varchar(30)")
+//    private String phoneNumber;
 
     @Column(nullable = true)
     private Integer mmr;
@@ -49,8 +48,17 @@ public class Team {
     @Column(nullable = true)
     private Integer point;
 
+    @Column(nullable = false, columnDefinition = "varchar(20)")
+    private String sido;
+
+    @Column(nullable = false, columnDefinition = "varchar(20)")
+    private String gugun;
+
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<TeamItem> teamItems = new ArrayList<>();
+
+    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    private List<TeamUser> teamUsers = new ArrayList<>();
 
     public void updatePoint(int uss) {
         this.point = uss;

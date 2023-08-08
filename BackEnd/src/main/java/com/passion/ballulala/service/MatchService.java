@@ -26,31 +26,66 @@ public class MatchService {
     private final UserRepo userRepo;
     private final StadiumRepo stadiumRepo;
     @Transactional
+
+
     public void saveMatch(MatchAddDto matchDto){
 
 
-        Team team1 = teamRepo.getReferenceById(matchDto.getTeam1());
+        Team team = teamRepo.getReferenceById(matchDto.getTeam());
         System.out.println(1);
-        Team team2 = teamRepo.getReferenceById(matchDto.getTeam2());
-        System.out.println(2);
-        Team team3 = teamRepo.getReferenceById(matchDto.getTeam3());
-        System.out.println(3);
-        User manager = userRepo.getReferenceById(matchDto.getManager());
+        System.out.println(matchDto);
+
+//        Team team2 = teamRepo.getReferenceById(matchDto.getTeam2());
+//        System.out.println(2);
+//        Team team3 = teamRepo.getReferenceById(matchDto.getTeam3());
+//        System.out.println(3);
+//        User manager = userRepo.getReferenceById(matchDto.getManager());
         System.out.println(4);
         Stadium stadium = stadiumRepo.getReferenceById(matchDto.getStadium());
-        System.out.println(5);
-        Match match = Match.builder()
-                    .matchDate(matchDto.getMatchDate()) //그날짜에
-                    .team1(team1)
-                    .team2(team2)
-                    .team3(team3)
-                    .time(matchDto.getTime()) // 그 시간을 사용자가 입력 하는거거든
-                    .manager(manager)
-                    .stadium(stadium)
-                    .state(matchDto.getState())
-                    .build();
 
-        matchRepo.save(match);
+//        Match existingMatch = matchRepo.findByTimeAndStadium_Id(matchDto.getTime(), matchDto.getStadium());
+//        System.out.println(existingMatch);
+        String[] args = matchDto.getMatchDate().split("-");
+        LocalDateTime date = (LocalDateTime.of(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]),0,0,0));
+        Match existingMatch = matchRepo.findByMatchDateAndTimeAndStadium_Id(date, matchDto.getTime(), matchDto.getStadium());
+        if(existingMatch==null){
+//            System.out.println(matchRepo.findByMatchDateAndTimeAndStadium_Id(matchDto.getMatchDate(),matchDto.getTime(),matchDto.getStadium()));
+            Match match = Match.builder()
+                    .matchDate(date) //그날짜에
+                    .team1(team)
+                    .team2(null)
+                    .team3(null)
+                    .time(matchDto.getTime()) // 그 시간을 사용자가 입력 하는거거든
+//                    .manager(manager)
+                    .stadium(stadium)
+                    .state((byte) 0)
+                    .build();
+            matchRepo.save(match);
+        }
+        else {
+
+            if (existingMatch.getTeam2() == null) {
+                // Update Team2
+                existingMatch.setTeam2(team);
+                existingMatch.setTime(matchDto.getTime());
+//                existingMatch.setManager(manager);
+//                existingMatch.setState(matchDto.getState());
+
+                matchRepo.save(existingMatch);
+            } else if (existingMatch.getTeam3() == null) {
+                // Update Team3
+                existingMatch.setTeam3(team);
+                existingMatch.setTime(matchDto.getTime());
+//                existingMatch.setManager(manager);
+//                existingMatch.setState(matchDto.getState());
+
+                matchRepo.save(existingMatch);
+            }
+            else{
+                System.out.println("already full");
+            }
+            // Update other fields if needed
+        }
     }
 
     public List<Match> getMatchesByDate(LocalDateTime matchDate, Byte state) {

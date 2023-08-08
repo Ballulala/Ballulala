@@ -1,10 +1,7 @@
 package com.passion.ballulala.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +9,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor @AllArgsConstructor
 @Getter
 @Builder
+@Setter
 @Table(name = "matches")
 public class Match {
 
@@ -24,22 +22,22 @@ public class Match {
     private LocalDateTime matchDate;
 
     @ManyToOne
-    @JoinColumn(name = "team_id1", nullable = false)
+    @JoinColumn(name = "team_id1", nullable = true)
     private Team team1;
 
     @ManyToOne
-    @JoinColumn(name = "team_id2", nullable = false)
+    @JoinColumn(name = "team_id2", nullable = true)
     private Team team2;
 
     @ManyToOne
-    @JoinColumn(name = "team_id3", nullable = false)
+    @JoinColumn(name = "team_id3", nullable = true)
     private Team team3;
 
     @Column(name = "match_time", nullable = false)
-    private int time;
+    private Integer time;
 
     @ManyToOne
-    @JoinColumn(name = "manager_id", nullable = false)
+    @JoinColumn(name = "manager_id", nullable = true)
     private User manager;
 
     @ManyToOne

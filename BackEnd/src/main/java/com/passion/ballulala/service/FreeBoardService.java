@@ -1,6 +1,7 @@
 package com.passion.ballulala.service;
 
 import com.passion.ballulala.dto.FreeBoardDto;
+import com.passion.ballulala.dto.FreeBoardListDto;
 import com.passion.ballulala.dto.MatchAddDto;
 import com.passion.ballulala.entity.*;
 import com.passion.ballulala.repo.FreeBoardRepo;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -25,11 +27,17 @@ public class FreeBoardService {
         FreeBoard freeBoard = FreeBoard.builder()
             .title(freeBoardDto.getTitle())
             .content(freeBoardDto.getContent())
-            .createTime(freeBoardDto.getCreateTime())
-            .hit(freeBoardDto.getHit())
+            .createTime(LocalDateTime.now())
+            .hit(0L)
             .userId(user)
             .build();
         freeBoardRepo.save(freeBoard);
 //        matchRepo.save(match);
     }
+
+    public List<FreeBoardListDto> getFreeBoardList() {
+        return freeBoardRepo.findAllList();
+    }
+
+
 }

@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface MatchRepo extends JpaRepository<Match, Long> {
         List<Match> findAllByMatchDateAndState(LocalDateTime matchDate, Byte state);
+        Match findByMatchDateAndTimeAndStadium_Id(LocalDateTime matchDate, Integer time, Long stadium);
+//        Match findByMatchDateAndTimeAndStadium_Id(LocalDateTime matchDate, Integer time, Long stadium);
 }

@@ -12,13 +12,11 @@ import java.time.LocalDateTime;
 @Getter @Setter @Data
 public class MatchAddDto {
 
-    private LocalDateTime matchDate;
-    private Long team1;
-    private Long team2;
-    private Long team3;
+    private String matchDate;
+    private Long team;
+//    private Long team2;
+//    private Long team3;
     private Integer time;
-    private Long manager;
     private Long stadium;
-    private Byte state;
 
 }

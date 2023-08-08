@@ -1,12 +1,16 @@
 package com.passion.ballulala.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Getter
 @NoArgsConstructor
+@Getter  @ToString
+@AllArgsConstructor
+@Builder
 public class Stadium {
 
     @Id
@@ -25,4 +29,8 @@ public class Stadium {
 
     @Column(name = "phone_number", nullable = false, columnDefinition = "varchar(30)")
     private String phoneNumber;
+
+    @OneToMany(mappedBy = "stadium", cascade = CascadeType.ALL)
+    private List<Match> matches = new ArrayList<>();
+
 }

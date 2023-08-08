@@ -56,7 +56,8 @@ public class SecurityConfig {
                 )
 
                 .authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
-                        .requestMatchers("/users/**","/matches/**", "/teamitem/**", "/freeboard/**")
+                        .requestMatchers("/users/**","/matches/**", "/teamitem/**", "/freeboard/**",
+                                "/teams/**", "/freeboardreply/**")
                         .permitAll()
                         //                        .requestMatchers(PathRequest.toH2Console()).permitAll()
                         .anyRequest()
