@@ -46,6 +46,8 @@
     padding: 10px;
     height: 100%;
     width: 10vw;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .new-team-btn:hover {
@@ -83,3 +85,36 @@
     margin-top: 5px;
     margin-bottom: 5px;
 }
+
+/* .team-list {
+    display: flex;
+} */
+
+.team-item {
+    list-style-type: none;
+    display: inline-flex;
+    width: 48%;
+    padding: 1%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.team-item-one {
+    width: 25%;
+}
+
+.team-item-two {
+    width: 75%;
+}
+
+.team-item-two a {
+    text-decoration: none;
+    font-weight: 700;
+    color: black;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+
+  .team-item-two a:hover {
+    color:rgb(245, 100, 105);
+  }

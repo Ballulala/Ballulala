@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./TeamDetail.css";
 import TopNavbar from '../top_navbar/TopNavbar';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { teamDetailData } from './TeamDummyData';
 
 function TeamDetail() {
   const [name, setName] = useState('');
@@ -9,6 +10,48 @@ function TeamDetail() {
   const [phonenum, setPhonenum] = useState('');
   const [position, setPosition] = useState('');
   const [skill, setSkill] = useState('');
+
+      // 백 구현 이후
+  // useParams 훅을 사용해서 URL로부터 teamId를 가져옵니다.
+   const { teamId } = useParams();
+
+  //   // useEffect를 사용하여 컴포넌트 마운트 시 팀 정보를 가져와 상태 업데이트를 진행합니다.
+  //   useEffect(() => {
+  //     // 이 부분에서 팀 정보를 가져오는 로직을 작성합니다.
+  //     // 서버로부터 정보를 가져와, setTeamInfo 함수를 사용하여 저장할 수 있습니다.
+  //     const fetchTeamData = async () => {
+  //       const teamData = await getTeamDataFromServer(teamId); // getTeamDataFromServer 함수를 작성해서 사용하십시오.
+  //       // teamData를 사용해 원하는 상태를 설정하십시오.
+  
+  //       // 예시:
+  //       // setName(teamData.name);
+  //       // ...
+  //     };
+  
+  //     fetchTeamData();
+  //   }, [teamId]); 
+  
+
+  const getTeamDataFromServer = (teamId) => {
+    return new Promise((resolve) => {
+      const teamData = teamDetailData.find((team) => team.team_id === teamId);
+      resolve(teamData);
+    });
+  };  
+   
+
+  const [team, setTeam] = useState({});
+
+  useEffect(() => {
+    const fetchTeamData = async () => {
+      const teamData = await getTeamDataFromServer(teamId);
+      setTeam(teamData);
+    };
+  
+    fetchTeamData();
+  }, [teamId]);
+  
+
 
   const [showModal, setShowModal] = useState(false);
 
@@ -30,30 +73,33 @@ function TeamDetail() {
       <TopNavbar />
       <div className="team-detail-page">
         <div className="team-detail">
-          <img className="team-logo-img" src={"/empty_img_circle.png"} alt="Logo" />
-          <div className="team-name">Team Name</div>
+          <img className="team-logo-img" src={team.logo} alt={`${team.name} 로고`} />
+          <div className="team-name">{team.name}</div>
           <br />
 
           <div className="team-detail-more">
             <img src={"/icon_member.png"} alt="img" />
-            <div>6</div>
-            <button className="team-more-btn">more</button>
-          </div>
+            <div>{team.member_count}</div>
+              <button className="team-more-btn">more</button>
+            </div>
 
           <div className="team-detail-more">
             <img src={"/icon_location.png"} alt="img" />
-            <div>대구 달서구</div>
+            <div>{team.sido} {team.gugun}</div>
           </div>
 
           <div className="team-detail-more">
             <img src={"/icon_soccer.png"} alt="img" />
-            <div>3승 1패 (75%)</div>
+            <div>
+              {team.win_count}승 {team.lose_count}패 
+              ({(team.win_count / (team.win_count + team.lose_count) * 100).toFixed(2)}%)
+            </div>
             <button className="team-more-btn">more</button>
           </div>
 
           <div className="team-detail-more">
             <img src={"/images/point_black.png"} alt="img" />
-            <div>2000</div>
+            <div>{team.point}</div>
             <button className="team-more-btn">gave</button>
           </div>
 
@@ -66,8 +112,8 @@ function TeamDetail() {
         </div>
 
         <div className="team-more">
-          <div>소개글 들어갈 공간</div>
-          <Link to='/teamsetting'>팀 관리 페이지로</Link>
+          <div>{team.description}</div>
+          <Link to={`/teamsetting/${teamId}`}>팀 관리 페이지로</Link>
         </div>
       </div>
 

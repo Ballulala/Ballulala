@@ -23,6 +23,7 @@ import DateBar from './components/date_bar/Date_Bar.jsx';
 import VideoChat from './components/interview/videoconference';
 import Matchteam from './components/match_team/Match_team';
 import Mypage from './components/mypage/mypage';
+
 import { RecoilRoot } from 'recoil';
 import { useRecoilState } from 'recoil';
 import { loggedInState } from './atoms/loginstate';
@@ -95,6 +96,9 @@ function App() {
         <Route path="/videochat/:id" element={<VideoChat />} />
         <Route path="/Match_team" element={<Matchteam/>} />
         <Route path="/Mypage" element={<Mypage/>} />
+        <Route path="/teamdetail/:teamId" element={<TeamDetail />} />
+        <Route path="/teamsetting/:teamId" element={<TeamSetting />} />
+        <Route path="/teamsettingjoinlist/:teamId" element={<TeamSetting />} />
         <Route path="/Match_individual" element={<Individual_Matching />} />
       </Routes>
       </div>

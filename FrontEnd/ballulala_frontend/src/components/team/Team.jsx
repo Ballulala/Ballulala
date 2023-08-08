@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import './Team.css';
 import TopNavbar from '../top_navbar/TopNavbar';
+// import { fetchTeams } from './TeamAPI';
+import { teamDetailData } from './TeamDummyData';
 
 function Team() {
   const [team, setTeam] = useState('');
@@ -10,9 +12,62 @@ function Team() {
   const [location, setLocation] = useState('');
   const [statusMsg, setStatusMsg] = useState('');
 
+  const [teams, setTeams] = useState(teamDetailData);
+
   const [showModal, setShowModal] = useState(false);
   const [showRegions, setShowRegions] = useState(false);
   const [showMmrs, setShowMmrs] = useState(false);
+
+  const addTeam = () => {
+    const newTeam = {
+      team_id: (Math.random() * 1000000).toFixed(0), // 임의로 생성한 팀 ID입니다. 실제로는 다른 방식으로 ID를 할당해야 합니다.
+      logo: URL.createObjectURL(image),
+      name: name,
+      gugun: "",
+      sido: location,
+      lose_count: 0,
+      mmr: 0,
+      point: 0,
+      win_count: 0,
+      winning_streak: 0,
+      description: statusMsg,
+      member_count: 0,
+      mojib: 0,
+    };
+  
+    // 기존의 팀 목록에 새로운 팀을 추가합니다.
+    setTeams([...teams, newTeam]);
+  };
+  
+  const handleSubmit = () => {
+    console.log('Form submitted');
+    console.log('Image file:', image.name);
+    addTeam(); // 팀 데이터 추가합니다.
+  };
+  
+  
+  const { teamId } = useParams();
+
+  useEffect(() => {
+    const foundTeam = teamDetailData.find((t) => t.team_id === teamId);
+    if (foundTeam) {
+      setTeam(foundTeam);
+    }
+  }, [teamId]);
+
+  
+  // api 생성 이후
+
+  // const [teams, setTeams] = useState(null);
+
+  // useEffect(() => {
+  //   const loadTeams = async () => {
+  //     const fetchedTeams = await fetchTeams();
+  //     setTeams(fetchedTeams);
+  //   };
+
+  //   loadTeams();
+  // }, []);
 
   const openModal = () => {
     setShowModal(true);
@@ -22,12 +77,6 @@ function Team() {
     setShowModal(false);
   };
 
-  const handleSubmit = () => {
-    console.log('Form submitted');
-    console.log('Image file:', image.name); // 이미지 이름 로깅 추가
-    // 여기에서 추가적인 작업을 수행하십시오 (예: 이 정보를 백엔드에 보내십시오)
-  };
-  
 
   return (
     <div className="team-page">
@@ -45,7 +94,8 @@ function Team() {
             <button 
             className="radius-button"
             onClick={() => setShowRegions(!showRegions)}
-            >지역별　▼
+            >지역별
+            　▼
             </button>
             {showRegions && (
                 <div className="region-list">
@@ -83,14 +133,39 @@ function Team() {
         </div>
       </div>
 
+    
       {/* 여기에 전체 팀 리스트를 추가하세요. */}
-      <div className="team-list">
+      {/* <div className="team-list">
         <ul>
-          <li>팀 1</li>
-          <li>팀 2</li>
-          <li>팀 3</li>
+          {teams && teams.map((team) => (
+            <li key={team.team_id}>
+              <Link to={`/teamdetail/${team.team_id}`}>{team.name}</Link>
+            </li>
+          ))}
         </ul>
+      </div> */}
+
+      <div className='team-list'>
+      <ul>
+        {teams.map((team) => (
+          <li key={team.team_id} className='team-item'>
+            <div className='team-item-one'>
+              <Link to={`/teamdetail/${team.team_id}`}>
+                <img src={team.logo} alt={team.name + " 로고"} />
+                </Link>
+            </div>
+            <div className='team-item-two'>
+              <Link to={`/teamdetail/${team.team_id}`}>
+                {team.name}
+              </Link>
+              <div>{team.sido} {team.gugun}</div>
+            </div>
+          </li>
+        ))}
+      </ul>
       </div>
+
+
       
        <div className="new-team-btn-container">
         <button className="new-team-btn" onClick={openModal}>
