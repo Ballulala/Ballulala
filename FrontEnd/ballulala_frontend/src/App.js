@@ -26,6 +26,7 @@ import Mypage from './components/mypage/mypage';
 import { RecoilRoot } from 'recoil';
 import { useRecoilState } from 'recoil';
 import { loggedInState } from './atoms/loginstate';
+import Individual_Matching from './components/match_individual/Match_individual'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -94,6 +95,7 @@ function App() {
         <Route path="/videochat/:id" element={<VideoChat />} />
         <Route path="/Match_team" element={<Matchteam/>} />
         <Route path="/Mypage" element={<Mypage/>} />
+        <Route path="/Match_individual" element={<Individual_Matching />} />
       </Routes>
       </div>
       </Router>

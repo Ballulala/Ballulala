@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import "./Match_team_modal.css";
 
-function TeamMatchingModal() {
+function TeamMatchingModal({ onMatchAdded }) {
   const [showModal, setShowModal] = useState(false);
-
-  // 상태 추가
   const [teamName, setTeamName] = useState("");
   const [stadium, setStadium] = useState("");
   const [startTime, setStartTime] = useState("");
+  const [matchDate, setMatchDate] = useState("");
 
   const openModal = () => {
     setShowModal(true);
@@ -17,12 +16,43 @@ function TeamMatchingModal() {
     setShowModal(false);
   };
 
-  const handleSubmit = () => {
-    console.log("Form submitted");
-    // 폼 제출 처리 로직 추가
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      matchDate: matchDate,
+      team: teamName,
+      time: startTime,
+      stadium: stadium,
+    };
+
+    try {
+      const response = await fetch(
+        "https://i9d110.p.ssafy.io:8081/matches/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
+
+      if (response.ok) {
+        console.log("Form submitted successfully");
+        onMatchAdded(formData);
+      } else {
+        console.error("Server responded with an error");
+      }
+    } catch (error) {
+      console.error("There was an error submitting the form", error);
+    }
+
     setTeamName("");
     setStadium("");
     setStartTime("");
+    setMatchDate("");
+    closeModal();
   };
 
   return (
@@ -36,7 +66,16 @@ function TeamMatchingModal() {
               <h2>팀 매칭 등록</h2>
             </div>
 
-            <form>
+            <form onSubmit={handleSubmit}>
+              <label>
+                날짜:
+                <input
+                  type="date"
+                  value={matchDate}
+                  onChange={(e) => setMatchDate(e.target.value)}
+                />
+              </label>
+              <br />
               <label>
                 팀 이름:
                 <input
@@ -67,28 +106,20 @@ function TeamMatchingModal() {
               </label>
               <br />
               <br />
+              <div className="modal-btns">
+                <button
+                  className="modal-no-btn"
+                  type="button"
+                  onClick={closeModal}
+                >
+                  취소
+                </button>
+
+                <button className="modal-yes-btn" type="submit">
+                  확인
+                </button>
+              </div>
             </form>
-
-            <div className="modal-btns">
-              <button
-                className="modal-no-btn"
-                type="button"
-                onClick={closeModal}
-              >
-                취소
-              </button>
-
-              <button
-                className="modal-yes-btn"
-                type="button"
-                onClick={() => {
-                  handleSubmit();
-                  closeModal();
-                }}
-              >
-                확인
-              </button>
-            </div>
           </div>
         </div>
       )}
