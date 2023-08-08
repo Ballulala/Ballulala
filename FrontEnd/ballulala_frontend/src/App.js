@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
 import Login from './components/member/Login';
 import SignUp from './components/member/signUp';
 import FindPassword from './components/member/FindPassword';
+import { useNavigate } from 'react-router-dom';
 import Team from './components/team/Team'
 import FreeBoard from './components/community/FreeBoard';
 import FreeBoardDetail from './components/community/FreeBoardDetail';
@@ -19,45 +20,56 @@ import Navbar from './components/home/HomeNavbar';
 import Logo from './components/home/HomeLogo'
 import SwiperComponent from './components/home/swiper';
 import DateBar from './components/date_bar/Date_Bar.jsx';
-import Sidebar from './components/side_bar/Side_Bar';
 import VideoChat from './components/interview/videoconference';
 import Matchteam from './components/match_team/Match_team';
 import Mypage from './components/mypage/mypage';
 
 import { RecoilRoot } from 'recoil';
+import { useRecoilState } from 'recoil';
+import { loggedInState } from './atoms/loginstate';
+import Individual_Matching from './components/match_individual/Match_individual'
 
-const Home = () => (
-  <div>
+const Home = () => {
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedInState);
+
+  return (
+    <div>
+      <Logo />
     
-    <Logo />
-    < Sidebar />  
-    <Link to="/login" className="login-link">Login</Link> 
-    <Link to="/videochat/12345">Video Chat</Link>
-    <br/>
-    <Link to="/Mypage">Mypage</Link>
+      {isLoggedIn ? (
+        <div className="nav-items">
+          <button className="auth-button" onClick={() => setIsLoggedIn(false)}>로그아웃</button>
+          <Link to="/Mypage">Mypage</Link>
+        </div>
+      ) : (
+        <div className="nav-items">
+          <button className="auth-button" onClick={() => navigate("/login")}>로그인</button>
+          <Link to="/videochat/12345">Video Chat</Link>
+        </div>
+      )}
+      <br />
       <Navbar />
       
-      <SwiperComponent/>
+      <SwiperComponent />
 
       <div className='upcoming page-letter'>Upcoming Matches</div>
       <DateBar />
-    <div className="link-container">
-     
-    </div>
+      <div className="link-container"></div>
 
-    <div className='foot'>
-      <div className='foot-one'>
-        <img src='/small_logo.png' alt='logo' />
-      </div>
-      <div className='foot-two'>
-        SSAFY 9기 프로젝트
-        <br/>
-        김정환 김근우 김상진 김슬기 채경호 천병찬
+      <div className='foot'>
+        <div className='foot-one'>
+          <img src='/small_logo.png' alt='logo' />
+        </div>
+        <div className='foot-two'>
+          SSAFY 9기 프로젝트
+          <br />
+          김정환 김근우 김상진 김슬기 채경호 천병찬
+        </div>
       </div>
     </div>
-
-  </div>
-);
+  );
+};
 
 function App() {
   return (
@@ -87,6 +99,7 @@ function App() {
         <Route path="/teamdetail/:teamId" element={<TeamDetail />} />
         <Route path="/teamsetting/:teamId" element={<TeamSetting />} />
         <Route path="/teamsettingjoinlist/:teamId" element={<TeamSetting />} />
+        <Route path="/Match_individual" element={<Individual_Matching />} />
       </Routes>
       </div>
       </Router>
