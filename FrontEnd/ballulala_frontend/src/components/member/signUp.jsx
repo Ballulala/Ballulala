@@ -26,23 +26,34 @@ const Join = () => {
 
   const checkEmail = async (email) => {
     try {
-      const response = await axios.get(`https://i9d110.p.ssafy.io:8081/users/signUp/emailCheck`);
+      const response = await axios.post(`https://i9d110.p.ssafy.io:8081/users/signUp/emailCheck`, {
+        params: {
+          email: email,
+        },
+      });
       return response.data.state;
     } catch (error) {
       console.error(error);
+      console.log(email)
       return 'FAIL';
     }
   };
-
+  
   const checkPhoneNumber = async (phoneNumber) => {
     try {
-      const response = await axios.get(`https://i9d110.p.ssafy.io:8081/users/signUp/phoneNumberCheck`);
+      const response = await axios.post(`https://i9d110.p.ssafy.io:8081/users/signUp/phoneNumberCheck`, {
+        params: {
+          phoneNumber: phoneNumber,
+        },
+      });
       return response.data.state;
     } catch (error) {
       console.error(error);
       return 'FAIL';
     }
   };
+  
+
 
   const handleClick = () => {
     if (isSubmitSuccess) {
@@ -94,30 +105,39 @@ const Join = () => {
       phoneNumber,
       gender,
     };
-
-    const result = await registerUser(userData);
     
-    const emailResult = await checkEmail(email);
-    const phoneNumberResult = await checkPhoneNumber(phoneNumber);
+    try {
+      const [result, emailResult, phoneNumberResult] = await Promise.all([
+        registerUser(userData),
+        checkEmail(email),
+        checkPhoneNumber(phoneNumber),
+      ]);
 
-    if (result === 'SUCCESS') {
-      setIsSubmitSuccess(true);
-      openModal();
-      console.log(result)
-    } 
-    // if (result === 'SUCCESS' && emailResult === 'SUCCESS' && phoneNumberResult === 'SUCCESS') {
-    //   setIsSubmitSuccess(true);
-    //   openModal();
-    //   console.log(result)
-    // } 
-    else {
+
+      if (result === 'SUCCESS' && emailResult === 'SUCCESS' && phoneNumberResult === 'SUCCESS') {
+        setIsSubmitSuccess(true);
+        openModal();
+        console.log(result);
+        console.log(emailResult);
+        console.log(phoneNumberResult);
+      } else {
+        setIsSubmitSuccess(false);
+        console.log(result);
+        console.log(emailResult);
+        console.log(phoneNumberResult);
+        Swal.fire({
+          title: "회원가입 실패",
+          text: "이메일과 휴대폰번호를 다시 확인해 보세요.",
+          icon: "error",
+          confirmButtonText: "확인",
+        });
+      }
+    } catch (error) {
+      console.error(error);
       setIsSubmitSuccess(false);
-      console.log(result)
-      console.log(emailResult)
-      console.log(phoneNumberResult)
       Swal.fire({
         title: "회원가입 실패",
-        text: "이메일과 휴대폰번호를 다시 확인해보세요.",
+        text: "서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.",
         icon: "error",
         confirmButtonText: "확인",
       });

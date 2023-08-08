@@ -23,7 +23,9 @@ import Sidebar from './components/side_bar/Side_Bar';
 import VideoChat from './components/interview/videoconference';
 import Matchteam from './components/match_team/Match_team';
 import Mypage from './components/mypage/mypage';
+
 import { RecoilRoot } from 'recoil';
+
 const Home = () => (
   <div>
     
@@ -82,6 +84,9 @@ function App() {
         <Route path="/videochat/:id" element={<VideoChat />} />
         <Route path="/Match_team" element={<Matchteam/>} />
         <Route path="/Mypage" element={<Mypage/>} />
+        <Route path="/teamdetail/:teamId" element={<TeamDetail />} />
+        <Route path="/teamsetting/:teamId" element={<TeamSetting />} />
+        <Route path="/teamsettingjoinlist/:teamId" element={<TeamSetting />} />
       </Routes>
       </div>
       </Router>
