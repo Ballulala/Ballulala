@@ -15,7 +15,6 @@ import java.util.logging.Logger;
 @RestController
 @RequestMapping("/teamitem")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TeamItemController {
 
 

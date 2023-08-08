@@ -19,7 +19,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/freeboard")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FreeBoardController {
 
     private final FreeBoardService freeBoardService;

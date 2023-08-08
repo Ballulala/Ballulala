@@ -22,7 +22,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/matches")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MatchController {
 
     private final MatchService matchService;
