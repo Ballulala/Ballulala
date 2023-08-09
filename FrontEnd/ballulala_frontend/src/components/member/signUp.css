@@ -81,3 +81,9 @@
     background-color: rgb(245, 100, 105);
     border: rgb(245, 100, 105);
 }
+
+.selectbox {
+    height: 40px;
+    border-radius: 3px;
+    font-family: three;
+}

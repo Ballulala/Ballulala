@@ -17,7 +17,7 @@ export const teamDetailData = [
         {
         team_id: "2",
         logo: "/google_logo.png",
-        name: "Team B",
+        name: "팀 구글",
         gugun: "남구",
         sido: "부산광역시",
         lose_count: 1,
@@ -32,7 +32,7 @@ export const teamDetailData = [
         {
         team_id: "3",
         logo: "/kakao_logo.png",
-        name: "Team C",
+        name: "팀 카카오",
         gugun: "서구",
         sido: "대전광역시",
         lose_count: 3,

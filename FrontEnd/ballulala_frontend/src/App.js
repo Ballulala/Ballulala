@@ -98,7 +98,8 @@ function App() {
         <Route path="/Mypage" element={<Mypage/>} />
         <Route path="/teamdetail/:teamId" element={<TeamDetail />} />
         <Route path="/teamsetting/:teamId" element={<TeamSetting />} />
-        <Route path="/teamsettingjoinlist/:teamId" element={<TeamSetting />} />
+        <Route path="/teamsettingjoinlist/:teamId" element={<TeamSettingJoinList />} />
+        <Route path="/teamsettingdaily/:teamId" element={<TeamSettingDaily />} />
         <Route path="/Match_individual" element={<Individual_Matching />} />
       </Routes>
       </div>

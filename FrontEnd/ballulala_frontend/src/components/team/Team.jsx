@@ -4,12 +4,14 @@ import './Team.css';
 import TopNavbar from '../top_navbar/TopNavbar';
 // import { fetchTeams } from './TeamAPI';
 import { teamDetailData } from './TeamDummyData';
+import axios from 'axios';
 
 function Team() {
   const [team, setTeam] = useState('');
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
-  const [location, setLocation] = useState('');
+  const [sido, setSido] = useState('');
+  const [gugun, setGugun] = useState('');
   const [statusMsg, setStatusMsg] = useState('');
 
   const [teams, setTeams] = useState(teamDetailData);
@@ -18,34 +20,6 @@ function Team() {
   const [showRegions, setShowRegions] = useState(false);
   const [showMmrs, setShowMmrs] = useState(false);
 
-  const addTeam = () => {
-    const newTeam = {
-      team_id: (Math.random() * 1000000).toFixed(0), // 임의로 생성한 팀 ID입니다. 실제로는 다른 방식으로 ID를 할당해야 합니다.
-      logo: URL.createObjectURL(image),
-      name: name,
-      gugun: "",
-      sido: location,
-      lose_count: 0,
-      mmr: 0,
-      point: 0,
-      win_count: 0,
-      winning_streak: 0,
-      description: statusMsg,
-      member_count: 0,
-      mojib: 0,
-    };
-  
-    // 기존의 팀 목록에 새로운 팀을 추가합니다.
-    setTeams([...teams, newTeam]);
-  };
-  
-  const handleSubmit = () => {
-    console.log('Form submitted');
-    console.log('Image file:', image.name);
-    addTeam(); // 팀 데이터 추가합니다.
-  };
-  
-  
   const { teamId } = useParams();
 
   useEffect(() => {
@@ -55,19 +29,37 @@ function Team() {
     }
   }, [teamId]);
 
-  
-  // api 생성 이후
+  const addTeam = async () => {
+    const formData = new FormData();
+    formData.append("logo", image);
+    formData.append("name", name);
+    formData.append("sido", sido);
+    formData.append("gugun", gugun);
+    formData.append("description", statusMsg);
+    formData.append("user", 1);
 
-  // const [teams, setTeams] = useState(null);
+    try {
+      const response = await axios.post(
+        "https://i9d110.p.ssafy.io:8081/teams/add",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log("Form submitted:", response.data);
+      setTeams([...teams, response.data]);
+    } catch (error) {
+      console.error("Error submitting the form:", error);
+    }
+  };
 
-  // useEffect(() => {
-  //   const loadTeams = async () => {
-  //     const fetchedTeams = await fetchTeams();
-  //     setTeams(fetchedTeams);
-  //   };
-
-  //   loadTeams();
-  // }, []);
+  const handleSubmit = () => {
+    console.log('Form submitted');
+    // console.log('Image file:', image.name);
+    addTeam(); // 팀 데이터 추가합니다.
+  };
 
   const openModal = () => {
     setShowModal(true);
@@ -190,6 +182,7 @@ function Team() {
                 onChange={(event) => setImage(event.target.files[0])}
               />
               <br />
+
               <br/>
               <label htmlFor="name">팀 이름</label>
               <br />
@@ -202,16 +195,27 @@ function Team() {
               />
               <br />
               <br/>
-              <label htmlFor="location">위치</label>
+              <label htmlFor="sido">시/도</label>
               <br />
               <input
                 type="text"
-                id="location"
-                value={location}
-                onChange={(event) => setLocation(event.target.value)}
+                id="sido"
+                value={sido}
+                onChange={(event) => setSido(event.target.value)}
                 className='modal-input'
               />
               <br />
+              <br />
+              <label htmlFor="gugun">구/군</label>
+              <br />
+              <input
+                type="text"
+                id="gugun"
+                value={gugun}
+                onChange={(event) => setGugun(event.target.value)}
+                className='modal-input'
+              />
+
               <br/>
               <label htmlFor="statusMsg">소개 (선택)</label>
               <br />
@@ -251,6 +255,6 @@ function Team() {
       )}
     </div>
   );
-}
+};
 
 export default Team;
