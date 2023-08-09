@@ -19,16 +19,17 @@ import org.springframework.web.filter.CorsFilter;
 
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
 
     private final CorsFilter corsFilter;
     private final JwtTokenProvider jwtTokenProvider;
 
     public SecurityConfig(
-        CorsFilter corsFilter
+        CorsFilter corsFilter,
+        JwtTokenProvider jwtTokenProvider
     ){
         this.corsFilter = corsFilter;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @Bean
