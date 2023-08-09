@@ -1,32 +1,30 @@
 package com.passion.ballulala.controller;
 
-import com.passion.ballulala.dto.TeamItemBuyDto;
-import com.passion.ballulala.service.TeamItemService;
+import com.passion.ballulala.dto.MatchAddDto;
+import com.passion.ballulala.dto.TeamAddDto;
+import com.passion.ballulala.service.MatchService;
+import com.passion.ballulala.service.TeamService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
-
 @RestController
-@RequestMapping("/teamitem")
+@RequestMapping("/teams")
 @RequiredArgsConstructor
-public class TeamItemController {
+public class TeamController {
 
-
-    private final TeamItemService teamItemService;
-
+    private final TeamService teamService;
     @PostMapping("/add")
-    public ResponseEntity<Map<String, Object>> add(@RequestBody TeamItemBuyDto teamItemBuyDto) {
+    public ResponseEntity<Map<String, Object>> add(@RequestBody TeamAddDto teamAddDto) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
+//        TeamAddDto t = new TeamAddDto(teamAddDto.getName(),teamAddDto.getSido(),teamAddDto.getGugun(),teamAddDto.getDescription());
         try {
-            System.out.println(1);
-            teamItemService.saveItem(teamItemBuyDto);
+            System.out.println(teamAddDto);
+            teamService.saveTeam(teamAddDto);
             System.out.println(2);
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;

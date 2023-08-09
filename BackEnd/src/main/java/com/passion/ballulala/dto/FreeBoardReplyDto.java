@@ -9,10 +9,8 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Data
-public class FreeBoardDto {
-
-    private String title;
+public class FreeBoardReplyDto {
     private String content;
     private Long userId;
-
+    private Long board;
 }

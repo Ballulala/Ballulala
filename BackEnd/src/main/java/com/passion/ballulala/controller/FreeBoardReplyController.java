@@ -1,32 +1,30 @@
 package com.passion.ballulala.controller;
 
-import com.passion.ballulala.dto.TeamItemBuyDto;
-import com.passion.ballulala.service.TeamItemService;
+import com.passion.ballulala.dto.FreeBoardDto;
+import com.passion.ballulala.dto.FreeBoardReplyDto;
+import com.passion.ballulala.service.FreeBoardReplyService;
 import lombok.RequiredArgsConstructor;
-import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/teamitem")
+@RequestMapping("/freeboardreply")
 @RequiredArgsConstructor
-public class TeamItemController {
+public class FreeBoardReplyController {
 
-
-    private final TeamItemService teamItemService;
+    private final FreeBoardReplyService freeBoardReplyService;
 
     @PostMapping("/add")
-    public ResponseEntity<Map<String, Object>> add(@RequestBody TeamItemBuyDto teamItemBuyDto) {
+    public ResponseEntity<Map<String, Object>> add(@RequestBody FreeBoardReplyDto freeBoardReplyDto) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {
             System.out.println(1);
-            teamItemService.saveItem(teamItemBuyDto);
+            freeBoardReplyService.saveFreeBoardReply(freeBoardReplyDto);
             System.out.println(2);
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;
@@ -39,4 +37,6 @@ public class TeamItemController {
 
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
+
+
 }

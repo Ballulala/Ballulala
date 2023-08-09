@@ -1,14 +1,15 @@
 package com.passion.ballulala.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@NoArgsConstructor
+@NoArgsConstructor @AllArgsConstructor
 @Getter
+@Builder
+@Setter
 @Table(name = "matches")
 public class Match {
 
@@ -17,20 +18,33 @@ public class Match {
     @Column(name = "matches_id", nullable = false)
     private Long id;
 
-    @Column(name = "home_score", nullable = false)
-    private int homeScore;
-
-    @Column(name = "away_score", nullable = false)
-    private int awayScore;
-
     @Column(name = "match_date", nullable = false, columnDefinition = "date")
     private LocalDateTime matchDate;
 
     @ManyToOne
-    @JoinColumn(name = "home_user_id", nullable = false)
-    private User home;
+    @JoinColumn(name = "team_id1", nullable = true)
+    private Team team1;
 
     @ManyToOne
-    @JoinColumn(name = "away_user_id", nullable = false)
-    private User away;
+    @JoinColumn(name = "team_id2", nullable = true)
+    private Team team2;
+
+    @ManyToOne
+    @JoinColumn(name = "team_id3", nullable = true)
+    private Team team3;
+
+    @Column(name = "match_time", nullable = false)
+    private Integer time;
+
+    @ManyToOne
+    @JoinColumn(name = "manager_id", nullable = true)
+    private User manager;
+
+    @ManyToOne
+    @JoinColumn(name = "stadium_id", nullable = false)
+    private Stadium stadium;
+
+    @Column(name = "state", nullable = false, columnDefinition = "tinyint(1)")
+    private Byte state;
+
 }

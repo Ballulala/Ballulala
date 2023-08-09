@@ -22,12 +22,20 @@ import org.springframework.web.filter.CorsFilter;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
+    private final CorsFilter corsFilter;
     private final JwtTokenProvider jwtTokenProvider;
+
+    public SecurityConfig(
+        CorsFilter corsFilter
+    ){
+        this.corsFilter = corsFilter;
+    }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf->csrf.disable())
+                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests(
                         authorizeRequests->authorizeRequests
                                 .requestMatchers("/users/login","/users/signUp").permitAll()

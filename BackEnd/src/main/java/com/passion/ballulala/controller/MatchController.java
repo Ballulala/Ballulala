@@ -1,35 +1,37 @@
 package com.passion.ballulala.controller;
 
-import com.passion.ballulala.dto.FreeBoardDto;
-import com.passion.ballulala.dto.FreeBoardListDto;
 import com.passion.ballulala.dto.MatchAddDto;
+import com.passion.ballulala.dto.MatchLoadDto;
+import com.passion.ballulala.dto.TeamItemBuyDto;
 import com.passion.ballulala.entity.Match;
-import com.passion.ballulala.service.FreeBoardService;
 import com.passion.ballulala.service.MatchService;
+import com.passion.ballulala.service.TeamItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/freeboard")
+@RequestMapping("/matches")
 @RequiredArgsConstructor
-public class FreeBoardController {
+public class MatchController {
 
-    private final FreeBoardService freeBoardService;
+    private final MatchService matchService;
+
     @PostMapping("/add")
-    public ResponseEntity<Map<String, Object>> add(@RequestBody FreeBoardDto freeBoardDto) {
+    public ResponseEntity<Map<String, Object>> add(@RequestBody MatchAddDto matchAddDto) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {
-            System.out.println(1);
-            freeBoardService.saveFreeBoard(freeBoardDto);
-            System.out.println(2);
+            matchService.saveMatch(matchAddDto);
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;
         } catch (Exception e) {
@@ -43,18 +45,23 @@ public class FreeBoardController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Map<String, Object>> list() {
+    public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) String matchDate, @RequestParam(required = false) Byte state) {
+        System.out.println(matchDate);
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
+        System.out.println("1");
+//        LocalDateTime date = LocalDateTime.parse(matchDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//        System.out.println("date= "+date);
         try {
             System.out.println("111");
-            List<FreeBoardListDto> freeBoardList = freeBoardService.getFreeBoardList();
-            resultMap.put("freeBoardList", freeBoardList);
+            String[] args = matchDate.split("-");
+            LocalDateTime date = (LocalDateTime.of(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]),0,0,0));
+            List<Match> matchesByDate = matchService.getMatchesByDate(date, state);
+            resultMap.put("matchList", matchesByDate);
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;
         } catch (Exception e) {
 //            logger.error("질문 검색 실패", e);
-            System.out.println(e);
             resultMap.put("message", "fail: " + e.getClass().getSimpleName());
             status = HttpStatus.INTERNAL_SERVER_ERROR;
         }
