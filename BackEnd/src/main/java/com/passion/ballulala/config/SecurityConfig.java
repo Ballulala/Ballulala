@@ -39,7 +39,10 @@ public class SecurityConfig {
                 .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
                 .authorizeRequests(
                         authorizeRequests->authorizeRequests
-                                .requestMatchers("/users/login","/users/signUp").permitAll()
+                                //배포용
+                                .requestMatchers("/**").permitAll()
+                                //서비스용
+                                //.requestMatchers("/users/login","/users/signUp").permitAll()
                                 .anyRequest().authenticated()
                 )
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
