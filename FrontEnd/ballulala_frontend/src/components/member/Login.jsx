@@ -3,46 +3,48 @@ import "./Login.css";
 import axios from "axios";
 import Swal from "sweetalert2";
 import { useRecoilState } from "recoil";
-import { emailState, passwordState } from "../../atoms/account";
-import { loggedInState } from "../../atoms/loginstate";
+import {
+  emailState,
+  passwordState,
+  tokenState,
+  userDataState,
+  loggedInState,
+} from "../../../src/atoms";
+
+// Axios 인스턴스 설정
+const api = axios.create({
+  baseURL: "https://i9d110.p.ssafy.io:8081",
+  headers: {
+    "Content-Type": "application/json",
+  },
+});
 
 const Login = () => {
   const [email, setEmail] = useRecoilState(emailState);
   const [password, setPassword] = useRecoilState(passwordState);
+  const [token, setToken] = useRecoilState(tokenState);
+  const [, setUserData] = useRecoilState(userDataState);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedInState);
+
   const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-
       const body = {
-        email: email,
-        password: password,
+        email,
+        password,
       };
 
-      // console.log(email);
-      // console.log(password);
-
-      const response = await axios.post(
-        "https://i9d110.p.ssafy.io:8081/users/login",
-        body,
-        config
-      );
+      const response = await api.post("/users/login", body);
 
       if (response.data.state === "SUCCESS") {
-        localStorage.setItem("data", response.data.data);
-        localStorage.setItem("message", response.data.message);
-        localStorage.setItem("state", response.data.state);
+        const accessToken = response.data.data.accessToken;
+
+        setToken(accessToken);
+        api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
         setIsLoggedIn(true);
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${response.data.data.accessToken}`;
 
         navigate("/");
       } else {
@@ -57,7 +59,6 @@ const Login = () => {
       });
     }
   };
-
   return (
     <div className="login-page">
       <div className="stadium-section">
