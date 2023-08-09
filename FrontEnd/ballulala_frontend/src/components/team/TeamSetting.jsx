@@ -123,22 +123,18 @@ function TeamSetting() {
         </div>
 
         <div className="team-settings">
-        <div className="setting-category">
-          <Link to="/teamsetting" className='setting-link-selected'>
-            멤버
-          </Link>
-          <div>|</div>
-          <Link to="/teamsettingdaily" className='setting-link'>
-            일정
-          </Link>
-        </div>
+            <div className='setting-category'>
+                <Link to={`/teamsetting/${teamId}`} className='setting-link-selected'>멤버</Link>
+                <div>|</div>
+                <Link to={`/teamsettingdaily/${teamId}`} className='setting-link'>일정</Link>
+            </div>
 
-          <div className="member-now">
+        <div className="member-now">
             <img src={"/icon_member.png"} alt="img" />
-            <Link to="/teamsetting" className='setting-link-selected'>
+            <Link to={`/teamsetting/${teamId}`} className='setting-link-selected'>
               멤버
             </Link>
-            <Link to="/teamsettingjoinlist" className='setting-link'>
+            <Link to={`/teamsettingjoinlist/${teamId}`} className='setting-link'>
               가입대기중
             </Link>
 

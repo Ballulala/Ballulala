@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import Swal from "sweetalert2";
 
 
-const Join = () => {
+const SignUp = () => {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -23,6 +23,12 @@ const Join = () => {
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
 
   const [showModal, setShowModal] = useState(false);
+
+  const isValidEmail = (email) => {
+    // email pattern
+    const pattern = /^[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9]+\.[a-zA-Z0-9]+$/;
+    return pattern.test(email);
+  };  
 
   const checkEmail = async (email) => {
     try {
@@ -53,8 +59,6 @@ const Join = () => {
     }
   };
   
-
-
   const handleClick = () => {
     if (isSubmitSuccess) {
       openModal();
@@ -95,7 +99,17 @@ const Join = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
+    if (!isValidEmail(email)) {
+      Swal.fire({
+        title: '회원가입 실패',
+        text: '올바른 이메일 형식을 사용해 주세요.',
+        icon: 'error',
+        confirmButtonText: '확인',
+      });
+      return;
+    }
+  
     const userData = {
       email,
       password,
@@ -105,29 +119,32 @@ const Join = () => {
       phoneNumber,
       gender,
     };
-    
+  
     try {
-      const [result, emailResult, phoneNumberResult] = await Promise.all([
-        registerUser(userData),
+      const [emailResult, phoneNumberResult] = await Promise.all([
         checkEmail(email),
         checkPhoneNumber(phoneNumber),
       ]);
-
-
-      if (result === 'SUCCESS' && emailResult === 'SUCCESS' && phoneNumberResult === 'SUCCESS') {
-        setIsSubmitSuccess(true);
-        openModal();
-        console.log(result);
-        console.log(emailResult);
-        console.log(phoneNumberResult);
+  
+      if (emailResult === 'SUCCESS' && phoneNumberResult === 'SUCCESS') {
+        const result = await registerUser(userData);
+        if (result === 'SUCCESS') {
+          setIsSubmitSuccess(true);
+          openModal();
+        } else {
+          setIsSubmitSuccess(false);
+          Swal.fire({
+            title: "회원가입 실패",
+            text: "서버 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.",
+            icon: "error",
+            confirmButtonText: "확인",
+          });
+        }
       } else {
         setIsSubmitSuccess(false);
-        console.log(result);
-        console.log(emailResult);
-        console.log(phoneNumberResult);
         Swal.fire({
           title: "회원가입 실패",
-          text: "이메일과 휴대폰번호를 다시 확인해 보세요.",
+          text: "이메일이나 휴대폰번호를 다시 확인해주세요.",
           icon: "error",
           confirmButtonText: "확인",
         });
@@ -143,6 +160,7 @@ const Join = () => {
       });
     }
   };
+  
 
   const handleFinalSubmit = async (event) => {
     event.preventDefault();
@@ -160,7 +178,7 @@ const Join = () => {
     <div className="join-page">
       <div className="stadium-section">
         <Link to="/">
-          <img src="/stadium.png" alt="stadium" />
+          <img src="/stadium2.png" alt="stadium" />
         </Link>
       </div>
 
@@ -174,7 +192,7 @@ const Join = () => {
             <label htmlFor="email"></label>
             <br />
             <input
-              type="email"
+              type="text"
               id="email"
               placeholder="이메일"
               value={email}
@@ -243,15 +261,19 @@ const Join = () => {
 
           <div className="inputbox">
             <br />
-            <label htmlFor="phonenumber"></label>
-            <input
-              type="tel"
+            <label htmlFor="gender"></label>
+            <select
+              className="inputbox selectbox"
               id="gender"
-              placeholder="성별"
               value={gender}
               onChange={(event) => setGender(event.target.value)}
-            />
+            >
+              <option value="">성별</option>
+              <option value="남자">남자</option>
+              <option value="여자">여자</option>
+            </select>
           </div>
+
 
           <br />
           <button
@@ -336,4 +358,4 @@ const Join = () => {
   );
 };
 
-export default Join;
+export default SignUp;
