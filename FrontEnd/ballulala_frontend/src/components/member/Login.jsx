@@ -40,6 +40,9 @@ const Login = () => {
         localStorage.setItem("message", response.data.message);
         localStorage.setItem("state", response.data.state);
         setIsLoggedIn(true);
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${response.data.data.accessToken}`;
 
         navigate("/");
       } else {

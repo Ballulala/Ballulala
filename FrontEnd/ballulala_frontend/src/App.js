@@ -27,10 +27,35 @@ import { RecoilRoot } from 'recoil';
 import { useRecoilState } from 'recoil';
 import { loggedInState } from './atoms/loginstate'; 
 import IndividualMatching from './components/match_individual/Match_individual'
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Home = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedInState);
+  const handleLogout = () => {
+    try {
+     
+      localStorage.removeItem("data");
+      localStorage.removeItem("message");
+      localStorage.removeItem("state");
+      setIsLoggedIn(false);
+
+      // axios의 기본 헤더에서 accessToken을 제거합니다.
+      delete axios.defaults.headers.common["Authorization"];
+
+      
+      navigate("/login");
+
+    } catch (error) {
+      Swal.fire({
+        title: "로그아웃 실패",
+        text: "로그아웃 중 문제가 발생했습니다.",
+        icon: "error",
+        confirmButtonText: "확인",
+      });
+    }
+  };
 
   return (
     <div>
