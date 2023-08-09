@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import "./Match_team_modal.css";
 
-function TeamMatchingModal({ onMatchAdded }) {
+function TeamMatchingModal({ isOpen, onClose, onRegister }) {
   const [showModal, setShowModal] = useState(false);
-  const [teamName, setTeamName] = useState("");
-  const [stadium, setStadium] = useState("");
-  const [startTime, setStartTime] = useState("");
   const [matchDate, setMatchDate] = useState("");
+  const [teamName, setTeamName] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [stadium, setStadium] = useState("");
 
   const openModal = () => {
     setShowModal(true);
@@ -16,13 +16,11 @@ function TeamMatchingModal({ onMatchAdded }) {
     setShowModal(false);
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const formData = {
+  const handleSubmit = async () => {
+    const requestBody = {
       matchDate: matchDate,
       team: teamName,
-      time: startTime,
+      time: parseInt(startTime),
       stadium: stadium,
     };
 
@@ -34,25 +32,27 @@ function TeamMatchingModal({ onMatchAdded }) {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(formData),
+          body: JSON.stringify(requestBody),
         }
       );
 
-      if (response.ok) {
-        console.log("Form submitted successfully");
-        onMatchAdded(formData);
+      const responseData = await response.json();
+
+      if (responseData.message === "success") {
+        console.log("매칭이 성공적으로 등록되었습니다.");
+
+        onRegister(requestBody);
       } else {
-        console.error("Server responded with an error");
+        console.error("매칭 등록에 실패하였습니다.");
       }
     } catch (error) {
-      console.error("There was an error submitting the form", error);
+      console.error("서버에 요청을 보내는 중 오류가 발생했습니다.", error);
     }
 
-    setTeamName("");
-    setStadium("");
-    setStartTime("");
     setMatchDate("");
-    closeModal();
+    setTeamName("");
+    setStartTime("");
+    setStadium("");
   };
 
   return (
@@ -66,7 +66,7 @@ function TeamMatchingModal({ onMatchAdded }) {
               <h2>팀 매칭 등록</h2>
             </div>
 
-            <form onSubmit={handleSubmit}>
+            <form>
               <label>
                 날짜:
                 <input
@@ -86,15 +86,6 @@ function TeamMatchingModal({ onMatchAdded }) {
               </label>
               <br />
               <label>
-                구장:
-                <input
-                  type="text"
-                  value={stadium}
-                  onChange={(e) => setStadium(e.target.value)}
-                />
-              </label>
-              <br />
-              <label>
                 시작 시간:
                 <input
                   type="number"
@@ -105,21 +96,38 @@ function TeamMatchingModal({ onMatchAdded }) {
                 />
               </label>
               <br />
+              <label>
+                구장:
+                <input
+                  type="text"
+                  value={stadium}
+                  onChange={(e) => setStadium(e.target.value)}
+                />
+              </label>
               <br />
-              <div className="modal-btns">
-                <button
-                  className="modal-no-btn"
-                  type="button"
-                  onClick={closeModal}
-                >
-                  취소
-                </button>
-
-                <button className="modal-yes-btn" type="submit">
-                  확인
-                </button>
-              </div>
+              <br />
             </form>
+
+            <div className="modal-btns">
+              <button
+                className="modal-no-btn"
+                type="button"
+                onClick={closeModal}
+              >
+                취소
+              </button>
+
+              <button
+                className="modal-yes-btn"
+                type="button"
+                onClick={() => {
+                  handleSubmit();
+                  closeModal();
+                }}
+              >
+                확인
+              </button>
+            </div>
           </div>
         </div>
       )}

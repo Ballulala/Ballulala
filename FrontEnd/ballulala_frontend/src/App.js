@@ -21,13 +21,12 @@ import Logo from './components/home/HomeLogo'
 import SwiperComponent from './components/home/swiper';
 import DateBar from './components/date_bar/Date_Bar.jsx';
 import VideoChat from './components/interview/videoconference';
-import Matchteam from './components/match_team/Match_team';
+import TeamMatching from './components/match_team/Match_team';
 import Mypage from './components/mypage/mypage';
-
 import { RecoilRoot } from 'recoil';
 import { useRecoilState } from 'recoil';
-import { loggedInState } from './atoms/loginstate';
-import Individual_Matching from './components/match_individual/Match_individual'
+import { loggedInState } from './atoms/loginstate'; 
+import IndividualMatching from './components/match_individual/Match_individual'
 
 const Home = () => {
   const navigate = useNavigate();
@@ -94,12 +93,12 @@ function App() {
         <Route path="/teamsettingjoinlist" element={<TeamSettingJoinList />} />
         <Route path="/teamsettingdaily" element={<TeamSettingDaily />} />
         <Route path="/videochat/:id" element={<VideoChat />} />
-        <Route path="/Match_team" element={<Matchteam/>} />
+        <Route path="/Match_team" element={<TeamMatching/>} />
         <Route path="/Mypage" element={<Mypage/>} />
         <Route path="/teamdetail/:teamId" element={<TeamDetail />} />
         <Route path="/teamsetting/:teamId" element={<TeamSetting />} />
         <Route path="/teamsettingjoinlist/:teamId" element={<TeamSetting />} />
-        <Route path="/Match_individual" element={<Individual_Matching />} />
+        <Route path="/Match_individual" element={<IndividualMatching />} />
       </Routes>
       </div>
       </Router>
