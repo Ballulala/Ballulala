@@ -2,10 +2,13 @@ package com.passion.ballulala.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -47,10 +50,10 @@ public class User {
     @Column(name = "mvp_count", nullable = true)
     private int mvpCount;
 
-    @Column(columnDefinition = "varchar(100)")
+    @Column(columnDefinition = "varchar(500)")
     private String accesstoken;
 
-    @Column(columnDefinition = "varchar(100)")
+    @Column(columnDefinition = "varchar(500)")
     private String refreshtoken;
 
     @Column(nullable = true)
@@ -72,10 +75,6 @@ public class User {
     private int tier;
 
     @Builder.Default
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user")
     private List<UserItem> userItems = new ArrayList<>();
-
-    @Builder.Default
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    private List<TeamUser> teamUsers = new ArrayList<>();
 }
