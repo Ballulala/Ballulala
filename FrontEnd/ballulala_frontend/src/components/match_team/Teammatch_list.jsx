@@ -1,8 +1,20 @@
 import React from "react";
 import "./Teammatch_list.css";
 
-function MatchList({ matches }) {
-  // props로 matches를 받습니다.
+function MatchList() {
+  const matches = [
+    {
+      id: 1,
+      stadium: "서울 영등포 더에프 필드 A구장",
+      time: "09:00",
+      teams: [
+        { logoUrl: "logo1.png", name: "Team 1" },
+        { logoUrl: "logo2.png", name: "Team 2" },
+        { logoUrl: "logo3.png", name: "Team 3" },
+      ],
+    },
+    
+  ];
 
   return (
     <div className="match-list">
