@@ -15,7 +15,7 @@ const SwiperComponent = () => {
     >
       <SwiperSlide>
         <img
-          src={process.env.PUBLIC_URL + "/images/축구선수.jpg"}
+          src={process.env.PUBLIC_URL + "/images/swiper_1.jpg"}
           alt="Slide 1"
           style={{ width: "100%", height: "100%" }}
         />

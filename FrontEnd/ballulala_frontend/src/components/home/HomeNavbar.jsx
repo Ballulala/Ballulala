@@ -11,7 +11,7 @@ const Navbar = () => {
             <Link to="/Match_team" className="nav-link">
               <div className="nav-content">
                 <img
-                  src={process.env.PUBLIC_URL + "/images/팀매치아이콘.png"}
+                  src={process.env.PUBLIC_URL + '/images/icon_team_match.png'}
                   alt="팀 매치"
                   className="nav-icon"
                 />
@@ -23,7 +23,7 @@ const Navbar = () => {
             <Link to="/Match_individual" className="nav-link">
               <div className="nav-content">
                 <img
-                  src={process.env.PUBLIC_URL + "/images/개인매치아이콘.png"}
+                  src={process.env.PUBLIC_URL + "/images/icon_person_match.png"}
                   alt="개인 매치"
                   className="nav-icon"
                 />
@@ -35,7 +35,7 @@ const Navbar = () => {
             <Link to="/teamrank" className="nav-link">
               <div className="nav-content">
                 <img
-                  src={process.env.PUBLIC_URL + "/images/랭킹아이콘.png"}
+                  src={process.env.PUBLIC_URL + "/images/icon_rank.png"}
                   alt="랭킹"
                   className="nav-icon"
                 />
@@ -47,7 +47,7 @@ const Navbar = () => {
             <Link to="/team" className="nav-link">
               <div className="nav-content">
                 <img
-                  src={process.env.PUBLIC_URL + "/images/팀정보 아이콘.png"}
+                  src={process.env.PUBLIC_URL + "/images/icon_team_info.png"}
                   alt="팀 정보"
                   className="nav-icon"
                 />
@@ -59,7 +59,7 @@ const Navbar = () => {
             <Link to="/freeboard" className="nav-link">
               <div className="nav-content">
                 <img
-                  src={process.env.PUBLIC_URL + "/images/커뮤니티아이콘.png"}
+                  src={process.env.PUBLIC_URL + "/images/icon_community.png"}
                   alt="커뮤니티"
                   className="nav-icon"
                 />
