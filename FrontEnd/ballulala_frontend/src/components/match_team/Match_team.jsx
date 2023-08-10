@@ -10,21 +10,15 @@ import "./Match_team.css";
 function TeamMatching() {
   const [teams, setTeams] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-<<<<<<< HEAD
-=======
   const [registeredMatches, setRegisteredMatches] = useState([]);
->>>>>>> 705e3c4419237649f754b7b30ae14684d58a66c3
 
   useEffect(() => {
     setTeams(dummyData);
   }, []);
-<<<<<<< HEAD
-=======
 
   const handleMatchRegistration = (match) => {
     setRegisteredMatches((prev) => [...prev, match]);
   };
->>>>>>> 705e3c4419237649f754b7b30ae14684d58a66c3
 
   return (
     <div>
@@ -37,18 +31,11 @@ function TeamMatching() {
         <TeamMatchingModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
-<<<<<<< HEAD
-        />
-      </div>
-      <DateBar />
-      <MatchList />
-=======
           onRegister={handleMatchRegistration}
         />
       </div>
       <DateBar />
       <MatchList matches={registeredMatches} />
->>>>>>> 705e3c4419237649f754b7b30ae14684d58a66c3
     </div>
   );
 }
