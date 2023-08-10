@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import "./Match_team_modal.css";
 
+<<<<<<< HEAD
+function TeamMatchingModal() {
+  const [showModal, setShowModal] = useState(false);
+
+  // 상태 추가
+  const [teamName, setTeamName] = useState("");
+  const [stadium, setStadium] = useState("");
+  const [startTime, setStartTime] = useState("");
+=======
 function TeamMatchingModal({ isOpen, onClose, onRegister }) {
   const [showModal, setShowModal] = useState(false);
   const [matchDate, setMatchDate] = useState("");
   const [teamName, setTeamName] = useState("");
   const [startTime, setStartTime] = useState("");
   const [stadium, setStadium] = useState("");
+>>>>>>> 705e3c4419237649f754b7b30ae14684d58a66c3
 
   const openModal = () => {
     setShowModal(true);
@@ -16,6 +26,14 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
     setShowModal(false);
   };
 
+<<<<<<< HEAD
+  const handleSubmit = () => {
+    console.log("Form submitted");
+    // 폼 제출 처리 로직 추가
+    setTeamName("");
+    setStadium("");
+    setStartTime("");
+=======
   const handleSubmit = async () => {
     const requestBody = {
       matchDate: matchDate,
@@ -53,6 +71,7 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
     setTeamName("");
     setStartTime("");
     setStadium("");
+>>>>>>> 705e3c4419237649f754b7b30ae14684d58a66c3
   };
 
   return (
@@ -67,6 +86,8 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
             </div>
 
             <form>
+<<<<<<< HEAD
+=======
               <label>
                 날짜:
                 <input
@@ -76,6 +97,7 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
                 />
               </label>
               <br />
+>>>>>>> 705e3c4419237649f754b7b30ae14684d58a66c3
               <label>
                 팀 이름:
                 <input
