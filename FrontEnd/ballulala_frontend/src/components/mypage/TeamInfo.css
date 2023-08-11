@@ -1,4 +1,4 @@
-.team-info {
+.team-info1 {
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
@@ -11,7 +11,7 @@
     align-items: center;
 }
 
-.team-info img {
+.team-info1 img {
     width: 150px;
     height: 150px;
     border-radius: 50%;

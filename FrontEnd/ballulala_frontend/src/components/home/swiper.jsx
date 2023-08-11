@@ -11,7 +11,7 @@ const SwiperComponent = () => {
       scrollbar={{ draggable: true }}
       onSwiper={(swiper) => console.log(swiper)}
       onSlideChange={() => console.log("slide change")}
-      style={{ height: "300px" }} // 높이를 원하는 크기로 조정하세요.
+      style={{ height: "300px" }}
     >
       <SwiperSlide>
         <img
