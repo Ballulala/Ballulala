@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.config.annotation.authentication.builders.*;
 
@@ -40,11 +41,27 @@ public class UserService {
             UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(""+userNo,loginUser.getPassword());
             Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
             JwtTokenDto jwtTokenDto = jwtTokenProvider.generateToken(authentication);
+
             return jwtTokenDto;
         }catch(Exception e) {
             return null;
         }
     }
+
+    public User myInfo(String accessToken){
+
+        User myUser;
+        Long userNo;
+        try{
+            userNo = jwtTokenProvider.decodeToken(accessToken);
+            myUser = userRepo.findById(userNo)
+                    .orElseThrow(() -> new UsernameNotFoundException("해당하는 유저를 찾을 수 없습니다."));
+            return myUser;
+        }catch(Exception e){
+            return null;
+        }
+    }
+
 
 //    @Transactional
 //    public boolean saveRefreshToken(Long userNo, String refreshToken){

@@ -3,12 +3,17 @@ package com.passion.ballulala.controller;
 import com.passion.ballulala.dto.JwtTokenDto;
 import com.passion.ballulala.dto.ResponseDto;
 import com.passion.ballulala.dto.UserDto;
+import com.passion.ballulala.entity.Team;
+import com.passion.ballulala.entity.User;
+import com.passion.ballulala.service.TeamService;
 import com.passion.ballulala.service.UserService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.passion.ballulala.exception.ExceptionHandler;
 import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/users")
@@ -16,8 +21,11 @@ public class UserController {
 
     private final String TOKEN ="Access-Token";
     private UserService userService;
-    public UserController(UserService userService){
+    private TeamService teamService;
+
+    public UserController(UserService userService, TeamService teamService){
         this.userService = userService;
+        this.teamService = teamService;
     }
 
     
@@ -36,6 +44,7 @@ public class UserController {
                 response.setState("SUCCESS");
                 response.setMessage("정상적으로 로그인이 되었습니다.");
                 response.setData(jwtTokenDto);
+
                 return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
             }
         }catch(Exception e){ //로그인 중 의문의 오류 발생.
@@ -44,6 +53,55 @@ public class UserController {
             return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
         }
     }
+
+    //회원 마이페이지 조회
+    @GetMapping(value = "myInfo")
+    public ResponseEntity<?> myInfo(HttpServletRequest request){
+
+        System.out.println("토큰 받기 전");
+        String accessToken = request.getHeader("Authorization");
+        System.out.println("토큰 받기 후");
+        Map<String, Object> map = new HashMap<>();
+        System.out.println(accessToken);
+        try{
+            User user = userService.myInfo(accessToken);
+            map.put("user", user);
+            map.put("state", "SUCCESS");
+            map.put("message", "유저 정보 불러오기에 성공하였습니다.");
+//            Team teamDto = teamService.
+            return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+        }
+        catch(Exception e){
+            map.put("state", "FAIL");
+            map.put("message", "유저 정보 불러오기는 중 오류가 발생하였습니다.");
+            return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+        }
+    }
+
+
+    //수정하기
+//    @PutMapping(value = "{userNo}/modify")
+//    public ResponseEntity<?> modify(@PathVariable("questionNo") Long userNo, @RequestBody UserDto userDto) {
+//        ResponseDto<JwtTokenDto> response = new ResponseDto<JwtTokenDto>();
+//
+//        try {
+//            JwtTokenDto jwtTokenDto = userService.login(user);
+//            if (jwtTokenDto == null) { //해당 아이디와 비밀번호의 유저를 조회할 수 없음.
+//                response.setState("FAIL");
+//                response.setMessage("아이디 혹은 비밀번호가 일치하지 않습니다.");
+//                return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
+//            } else { //정상적으로 로그인이 진행됨.
+//                response.setState("SUCCESS");
+//                response.setMessage("정상적으로 로그인이 되었습니다.");
+//                response.setData(jwtTokenDto);
+//                return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
+//            }
+//        }catch(Exception e){ //로그인 중 의문의 오류 발생.
+//            response.setState("FAIL");
+//            response.setMessage("로그인 중 오류가 발생하였습니다.");
+//            return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
+//        }
+//    }
 
 //    @PostMapping(value = "/refresh")
 //    public ResponseEntity<?> login(@RequestBody HashMap<String, String> map) {
