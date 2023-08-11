@@ -5,6 +5,7 @@ import FindPassword from './components/member/FindPassword';
 import { useNavigate } from 'react-router-dom';
 import Team from './components/team/Team'
 import FreeBoard from './components/community/FreeBoard';
+import FreeBoardAdd from './components/community/FreeBoardAdd';
 import FreeBoardDetail from './components/community/FreeBoardDetail';
 import BestBoard from './components/community/BestBoard';
 import FindPlayer from './components/community/FindPlayer';
@@ -16,7 +17,7 @@ import TeamSetting from './components/team/TeamSetting';
 import TeamSettingJoinList from './components/team/TeamSettingJoinList';
 import TeamSettingDaily from './components/team/TeamSettingDaily';
 import './App.css';
-import Navbar from './components/home/HomeNavbar';
+import Navbar from './components/home/HomeNavbar2';
 import Logo from './components/home/HomeLogo'
 import SwiperComponent from './components/home/swiper';
 import DateBar from './components/date_bar/Date_Bar.jsx';
@@ -25,7 +26,7 @@ import TeamMatching from './components/match_team/Match_team';
 import Mypage from './components/mypage/mypage';
 import { RecoilRoot } from 'recoil';
 import { useRecoilState } from 'recoil';
-import { loggedInState } from './atoms/loginstate'; 
+import { loggedInState } from './atoms/loginstate';
 import IndividualMatching from './components/match_individual/Match_individual'
 
 const Home = () => {
@@ -34,31 +35,47 @@ const Home = () => {
 
   return (
     <div>
-      <Logo />
+      {/* <Logo /> */}
+      <Navbar />
     
       {isLoggedIn ? (
-        <div className="nav-items">
-          <button className="auth-button" onClick={() => setIsLoggedIn(false)}>로그아웃</button>
-          <Link to="/Mypage">Mypage</Link>
-        </div>
-      ) : (
-        <div className="nav-items">
-          <button className="auth-button" onClick={() => navigate("/login")}>로그인</button>
-          <Link to="/videochat/12345">Video Chat</Link>
-        </div>
-      )}
-      <br />
-      <Navbar />
+  <div className="nav-items">
+    <button onClick={() => setIsLoggedIn(false)}>Logout</button>
+    <Link to="/Mypage">Mypage</Link>
+  </div>
+) : (
+  <div className="nav-items">
+    <button onClick={() => navigate("/login")}>Login</button>
+    {/* Link 컴포넌트와 button 요소 같이 사용 */}
+    <Link to="/videochat/12345" tabIndex={-1}>
+      <button>Video Chat</button>
+    </Link>
+  </div>
+)}
+<br />
+
+
+
+      {/* <div className='nav-seul-btns'>
+            <div>Login</div>
+            <div>MyPage</div>
+        </div> */}
       
       <SwiperComponent />
 
-      <div className='upcoming page-letter'>Upcoming Matches</div>
+      <div className='upcoming'>
+        <div>Upcoming</div>
+        <div className='upcoming-one'>
+          <div>Matches</div>
+          <div className='upcoming-arrow'>↘</div>
+        </div>
+      </div>
       <DateBar />
       <div className="link-container"></div>
 
       <div className='foot'>
         <div className='foot-one'>
-          <img src='/small_logo.png' alt='logo' />
+         <div className="nav-one" style={{ padding: "0px" }}>BALLULALA</div>
         </div>
         <div className='foot-two'>
           SSAFY 9기 프로젝트
@@ -82,6 +99,7 @@ function App() {
         <Route path="/findpwd" element={<FindPassword />} />
         <Route path="/team" element={<Team />} />
         <Route path="/freeboard" element={<FreeBoard />} />
+        <Route path="/freeboard/add" element={<FreeBoardAdd />} />
         <Route path="/freeboarddetail" element={<FreeBoardDetail />} />
         <Route path="/bestboard" element={<BestBoard />} />
         <Route path="/findplayer" element={<FindPlayer />} />

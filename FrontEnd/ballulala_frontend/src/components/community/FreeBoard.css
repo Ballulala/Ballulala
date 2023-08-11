@@ -30,8 +30,23 @@
 }
 
 .board-lists {
-    margin-top: 6%;
+    margin-top: 4%;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+}
+
+.board-item {
+    color: black;
+    text-decoration: none;
+    padding: 15px;
+    width: calc(100% - 20%);
+  box-sizing: border-box;
+}
+
+.board-item:hover {
+    border-radius: 5px;
+    background-color: rgba(155, 155, 155, 0.5);
+    transform: scale(1.05); /* 이 값을 변경하여 원하는 확대 비율을 설정하세요 */
+    transition: transform 0.3s ease-in-out; /* 원활한 변환 효과를 위해 전환 시간을 설정 */
 }
