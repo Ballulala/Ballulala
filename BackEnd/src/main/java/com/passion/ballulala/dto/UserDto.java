@@ -1,17 +1,17 @@
 package com.passion.ballulala.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.passion.ballulala.controller.MatchTeamDto;
+import com.passion.ballulala.entity.Match;
 import com.passion.ballulala.entity.User;
+import com.passion.ballulala.repo.TeamRepo;
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.type.descriptor.java.LocalDateJavaType;
 
 import java.time.LocalDateTime;
 
-@Getter @Setter @ToString @Data
+@Getter @Setter @ToString @Data @Builder
 public class UserDto {
     private long id;
     private byte status;
@@ -44,6 +44,21 @@ public class UserDto {
                 .gender(gender)
                 .sido(sido)
                 .gugun(gugun)
+                .build();
+    }
+
+    public static UserDto fromEntity(User user){
+        TeamRepo teamRepo = null;
+        return UserDto.builder()
+                .email(user.getEmail())
+                .nickname(user.getNickname())
+                .password(user.getPassword())
+                .name(user.getName())
+                .birthday(user.getBirthday().toString())
+                .phoneNumber(user.getPhoneNumber())
+                .gender(user.getGender())
+                .sido(user.getSido())
+                .gugun(user.getGugun())
                 .build();
     }
 }

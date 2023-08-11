@@ -3,7 +3,10 @@ package com.passion.ballulala.service;
 
 import com.passion.ballulala.dto.TeamAddDto;
 import com.passion.ballulala.dto.TeamItemBuyDto;
+import com.passion.ballulala.dto.TeamListDto;
+import com.passion.ballulala.dto.TeamMatchListDto;
 import com.passion.ballulala.entity.*;
+import com.passion.ballulala.jwt.JwtTokenProvider;
 import com.passion.ballulala.repo.TeamRepo;
 import com.passion.ballulala.repo.TeamUserRepo;
 import com.passion.ballulala.repo.UserRepo;
@@ -12,12 +15,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class TeamService {
 
+    private final JwtTokenProvider jwtTokenProvider;
     private final TeamRepo teamRepo;
     private final TeamUserRepo teamUserRepo;
     private final UserRepo userRepo;
@@ -75,6 +80,15 @@ public class TeamService {
         }
     }
 
-
+    public List<TeamMatchListDto> getTeamById(String accessToken){
+        try{
+            Long userNo = jwtTokenProvider.decodeToken(accessToken);
+            List<TeamMatchListDto> list = teamRepo.findAllListById(userNo);
+            return list;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 
 }

@@ -1,7 +1,7 @@
 package com.passion.ballulala.service;
 
 import com.passion.ballulala.dto.MatchAddDto;
-import com.passion.ballulala.dto.MatchLoadDto;
+import com.passion.ballulala.dto.TeamListDto;
 import com.passion.ballulala.dto.TeamMatchListDto;
 import com.passion.ballulala.entity.*;
 import com.passion.ballulala.jwt.JwtTokenProvider;
@@ -102,7 +102,7 @@ public class MatchService {
     public List<TeamMatchListDto> getTeamById(String accessToken){
 
         Long userNo = jwtTokenProvider.decodeToken(accessToken);
-        return matchRepo.findAllListById(userNo);
+        return teamRepo.findAllListById(userNo);
     }
 
 }

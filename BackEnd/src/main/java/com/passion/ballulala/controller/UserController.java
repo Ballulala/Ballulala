@@ -1,9 +1,8 @@
 package com.passion.ballulala.controller;
 
-import com.passion.ballulala.dto.JwtTokenDto;
-import com.passion.ballulala.dto.ResponseDto;
-import com.passion.ballulala.dto.UserDto;
+import com.passion.ballulala.dto.*;
 import com.passion.ballulala.entity.Team;
+import com.passion.ballulala.entity.TeamUser;
 import com.passion.ballulala.entity.User;
 import com.passion.ballulala.service.TeamService;
 import com.passion.ballulala.service.UserService;
@@ -13,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.passion.ballulala.exception.ExceptionHandler;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -60,13 +60,14 @@ public class UserController {
 
         String accessToken = request.getHeader("Authorization");
         Map<String, Object> map = new HashMap<>();
-        System.out.println(accessToken);
         try{
             User user = userService.myInfo(accessToken);
-            map.put("user", user);
+            UserDto userDto = UserDto.fromEntity(user);
+            List<TeamMatchListDto> teamList = teamService.getTeamById(accessToken);
+            map.put("user", userDto);
+            map.put("teamList", teamList);
             map.put("state", "SUCCESS");
             map.put("message", "유저 정보 불러오기에 성공하였습니다.");
-//            Team teamDto = teamService.
             return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
         }
         catch(Exception e){
