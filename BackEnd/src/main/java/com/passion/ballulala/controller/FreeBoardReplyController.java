@@ -62,6 +62,38 @@ public class FreeBoardReplyController {
         return new ResponseEntity<>(resultMap, status);
     }
 
+    @PutMapping("/modify/{id}")
+    public ResponseEntity<Map<String, Object>> update(@PathVariable Long id, @RequestBody FreeBoardReplyDto freeBoardReplyDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status;
+        try {
+            freeBoardReplyService.updateFreeBoardReply(id, freeBoardReplyDto);
+            resultMap.put("message", "success");
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e);
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status;
+        try {
+            freeBoardReplyService.deleteFreeBoardReply(id);
+            resultMap.put("message", "success");
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e);
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
 
 
 }

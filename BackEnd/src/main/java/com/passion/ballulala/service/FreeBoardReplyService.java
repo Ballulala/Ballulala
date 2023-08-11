@@ -44,4 +44,15 @@ public class FreeBoardReplyService {
         return freeBoardReplyRepo.findAllList(freeBoardId);
     }
 
+    @Transactional
+    public void updateFreeBoardReply(Long id, FreeBoardReplyDto freeBoardReplyDto) {
+        FreeBoardReply freeBoardReply = freeBoardReplyRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 답변입니다."));
+        freeBoardReply.setContent(freeBoardReplyDto.getContent());
+    }
+
+    @Transactional
+    public void deleteFreeBoardReply(Long id) {
+        FreeBoardReply freeBoardReply = freeBoardReplyRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 답변입니다."));
+        freeBoardReplyRepo.delete(freeBoardReply);
+    }
 }
