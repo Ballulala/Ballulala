@@ -7,31 +7,42 @@ import TeamMatchingModal from "./Match_team_modal";
 import MatchList from "./Teammatch_list";
 import "./Match_team.css";
 
-function Team_Matching() {
+function TeamMatching() {
   const [teams, setTeams] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [registeredMatches, setRegisteredMatches] = useState([]);
+
+  const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
 
   useEffect(() => {
     setTeams(dummyData);
   }, []);
 
+  const handleMatchRegistration = (match) => {
+    setRegisteredMatches((prev) => [...prev, match]);
+  };
+
   return (
     <div>
       <TopNavbar />
-      <div className="center-container">
-        <h1>Matching</h1>
+      <div
+        className="image-container sliding-image"
+        style={{ backgroundImage: `url(${coverImagePath})` }}
+      >
+        <div className="rank-text">Match (team)</div>
       </div>
       <Carousel teams={teams} />
       <div className="center-container">
         <TeamMatchingModal
           isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
+          onRegister={handleMatchRegistration}
         />
       </div>
       <DateBar />
-      <MatchList />
+      <MatchList matches={registeredMatches} />
     </div>
   );
 }
 
-export default Team_Matching;
+export default TeamMatching;

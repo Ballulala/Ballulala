@@ -1,0 +1,103 @@
+.nav-seul {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 2vw;
+    padding-right: 2vw;
+  }
+  
+  .nav-one {
+    text-align: left;
+    font-family: six;
+    font-size: 30px;
+    padding: 20px;
+    color: rgb(104,225,223);
+    text-decoration: none;
+  }
+
+  .nav-one:hover {
+    color: rgba(104, 225, 223, 0.6);
+  }
+
+  .link-no-line {
+    text-decoration: none;
+  }
+  
+  .nav-two {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-two > div {
+    margin-left: 2vw;
+    margin-right: 7vw;
+    position: relative;
+    padding:8px;
+  }
+
+  .sub-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    margin-top: 10px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    display: none;
+    flex-direction: column;
+    background-color: rgba(215, 215, 215, 0.85);
+    border-radius: 3px;
+    min-width: 110px;
+    z-index: 1000;
+    /* visibility 및 transition 속성을 제거해도 됩니다. */
+  }
+
+  .sub-menu a{
+    text-decoration: none;
+    color: rgb(106, 106, 106);
+  }
+
+  .sub-menu > a:hover {
+    /* background-color: #f1f1f1; */
+    color: white;
+}
+  
+  /* :hover 상태를 제거하고 대신에 display 속성을 추가합니다. */
+  .menu-item .sub-menu {
+    display: none;
+  }
+  
+  .menu-item .sub-menu.active {
+    display: flex;
+  }
+
+  .sub-menu.active > a {
+    margin: 5px;
+  }
+
+  .menu-item {
+    color:rgb(130, 130, 130);
+  }
+  .menu-item i {
+    margin-left: 5px; /* 여백을 조정하세요 */
+    transition: color 0.3s; /* 호버 효과의 전환속도 */
+
+  }
+
+  
+  /* 기존 스타일 생성 */
+.menu-item:hover {
+    background-color: rgb(104,225,223);
+    color:white;
+    border-radius: 50px;
+  }
+  
+  /* 새로운 스타일 생성 */
+  .menu-item.active {
+    background-color: rgb(104,225,223);
+    color:white;
+    border-radius: 50px;
+  }
+  
+

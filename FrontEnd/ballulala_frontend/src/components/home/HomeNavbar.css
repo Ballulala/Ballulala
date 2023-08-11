@@ -15,13 +15,13 @@
     width: 100px;
     height: 100px;
     margin: 10px;
-    opacity: 1; /* 기본 불투명도 */
-    transition: opacity 0.3s, transform 0.3s; /* 애니메이션 효과 시간 설정 */
+    opacity: 1; 
+    transition: opacity 0.3s, transform 0.3s;
   }
 
   .nav-icon:hover {
-    opacity: 0.5; /* 마우스 호버 시 불투명도 50% */
-    transform: translate(3px, 3px); /* 마우스 호버 시 이동 거리 (가로, 세로) */
+    opacity: 0.5; 
+    transform: translate(3px, 3px); 
   }
 
   .nav-content {

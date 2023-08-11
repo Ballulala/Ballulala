@@ -17,4 +17,8 @@
     height: 40px;
     cursor: pointer;
   }
+
+  img:hover {
+    color: rgba(104, 225, 223, 0.6);
+  }
   

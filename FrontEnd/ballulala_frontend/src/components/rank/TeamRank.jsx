@@ -3,29 +3,37 @@ import { Link } from 'react-router-dom';
 import './TeamRank.css';
 import TopNavbar from '../top_navbar/TopNavbar';
 
+
 function TeamRank() {
 const [team, setTeam] = useState('');
 const [showRegions, setShowRegions] = useState(false);
 
+const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_8.jpg";
+
   return (
     <div className='team-page'>
       <TopNavbar/>
-      <div className='page-letter'>RANK</div>
-      
-      {/* month_team.img 이미지를 홈으로 이동하도록 링크를 추가하세요. */}
-      <Link to="/">
-        <img className='month-team-img' src='league.png' alt='league' />
-      </Link>
+
+      <div
+        className="image-container sliding-image"
+        style={{ backgroundImage: `url(${coverImagePath})` }}
+      >
+        <div className="rank-text">RANK (team)</div>
+      </div>
+
+
+
+
 
       {/* 지역별 버튼 리스트. 원하는 지역명으로 변경하고 해당 지역의 페이지 경로를 설정하세요. */}
       <div className='search-team'>
         <div className='buttons'>
           <Link to="/teamrank">
-            <button className='radius-button-selected radius-button'>팀 순위</button>
+            <button className='radius-btn-selected'>팀 순위</button>
           </Link>
 
           <Link to="/userrank">
-            <button className='radius-button'>개인 순위</button>
+            <button className='radius-btn'>개인 순위</button>
           </Link>
         </div>
 

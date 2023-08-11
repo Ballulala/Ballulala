@@ -25,7 +25,7 @@
   
   .team-more {
     width: 55%;
-    border: 3px solid rgb(49, 97, 121);
+    border: 3px solid rgb(104,225,223);
     border-radius: 5px;
     padding: 50px;
   }
@@ -42,9 +42,9 @@
   }
 
   .team-join-btn{
-    background-color: rgb(49, 97, 121);
+    background-color: rgb(104,225,223);
     color: white;
-    border: 1px solid rgb(49, 97, 121);
+    border: 1px solid rgb(104,225,223);
     border-radius: 5px;
     padding: 15px;
     padding-left: 35px;
@@ -55,15 +55,15 @@
 }
 
 .team-join-btn:hover {
-    background-color: rgb(245, 100, 105);
-    border: 1px solid rgb(245, 100, 105);
+    background-color: rgb(255, 145, 148);
+    border: 1px solid rgb(255, 145, 148);
     color: white;
 }
 
 .team-more-btn {
     background-color: rgb(255, 255, 255);
-    color: rgb(49, 97, 121);
-    border: 1px solid rgb(49, 97, 121);
+    color: rgb(147, 147, 147);
+    border: 1px solid rgb(147, 147, 147);
     border-radius: 5px;
     padding: 10px;
     margin-left: 20px;

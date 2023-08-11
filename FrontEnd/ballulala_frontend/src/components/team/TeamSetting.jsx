@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './TeamSetting.css';
 import TopNavbar from '../top_navbar/TopNavbar';
 import TeamModal from './TeamModal';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import DatePicker from 'react-datepicker';
 import { differenceInMinutes, addMinutes } from 'date-fns'; // date-fns 라이브러리를 사용하지 않으시면 설치해주세요 (npm install date-fns --save)
-import { isEqual, uniqWith, sortBy } from 'lodash';
+import { isEqual, uniqWith } from 'lodash';
+// import { isEqual, uniqWith, sortBy } from 'lodash';
 import 'react-datepicker/dist/react-datepicker.css';
+import { teamDetailData } from './TeamDummyData';
 
 function TeamSetting() {
   const [image, setImage] = useState('');
@@ -14,7 +16,6 @@ function TeamSetting() {
   const [location, setLocation] = useState('');
   const [statusMsg, setStatusMsg] = useState('');
 
-  const [Recruit, setRecruit] = useState(0);
   const [isRecruitStartModalOpen, setIsRecruitStartModalOpen] = useState(false);
   const [isRecruitCancelModalOpen, setIsRecruitCancelModalOpen] = useState(false);
 
@@ -32,13 +33,22 @@ function TeamSetting() {
   }
   return options;
 };
-const toggleTime = (time) => {
-  const newTimes = interviewTimes.some((it) => isEqual(it, time))
-    ? interviewTimes.filter((it) => !isEqual(it, time))
-    : uniqWith([...interviewTimes, time], isEqual).sort();
-  setInterviewTimes(newTimes);
-}
+  const toggleTime = (time) => {
+    const newTimes = interviewTimes.some((it) => isEqual(it, time))
+      ? interviewTimes.filter((it) => !isEqual(it, time))
+      : uniqWith([...interviewTimes, time], isEqual).sort();
+    setInterviewTimes(newTimes);
+  }
 
+  const { teamId } = useParams();
+  const [team, setTeam] = useState({});
+
+  useEffect(() => {
+    const foundTeam = teamDetailData.find((t) => t.team_id === teamId);
+    if (foundTeam) {
+      setTeam(foundTeam);
+    }
+  }, [teamId]);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -71,8 +81,22 @@ const toggleTime = (time) => {
     const closeRecruitCancleModal = () => {
       setIsRecruitCancelModalOpen(false);
     };
-    
 
+    const handleRecruitCancelConfirm = () => {
+      setTeam({ ...team, mojib: 0 });
+    };
+    
+    const handleRecruitStartConfirm = () => {
+      setTeam({ ...team, mojib: 1 });
+    };
+  
+    const handleUpdateTeamInfo = () => {
+      // team 객체에서 원래 정보를 상태 변수에 설정합니다.
+      setImage(team.image);
+      setName(team.name);
+      setLocation(team.location);
+      setStatusMsg(team.statusMsg);
+    }
 
   return (
     <div>
@@ -81,12 +105,14 @@ const toggleTime = (time) => {
       <div className="team-setting-page">
         <div className="team-setting-section">
           <div className="team-setting-info">
-            <img
+            {/* <img
               className="team-logo-img"
               src={"/empty_img_circle.png"}
               alt="Logo"
-            />
-            <div className="team-name">Team Name</div>
+            /> */}
+            <img className="team-logo-img" src={team.logo} alt={`${team.name} 로고`} />
+
+            <div className="team-name">{team.name}</div>
             <button className="team-edit-btn team-join-btn" onClick={openEditModal}>
               팀 정보 수정
             </button>
@@ -97,30 +123,26 @@ const toggleTime = (time) => {
         </div>
 
         <div className="team-settings">
-        <div className="setting-category">
-          <Link to="/teamsetting" className='setting-link-selected'>
-            멤버
-          </Link>
-          <div>|</div>
-          <Link to="/teamsettingdaily" className='setting-link'>
-            일정
-          </Link>
-        </div>
+            <div className='setting-category'>
+                <Link to={`/teamsetting/${teamId}`} className='setting-link-selected'>멤버</Link>
+                <div>|</div>
+                <Link to={`/teamsettingdaily/${teamId}`} className='setting-link'>일정</Link>
+            </div>
 
-          <div className="member-now">
+        <div className="member-now">
             <img src={"/icon_member.png"} alt="img" />
-            <Link to="/teamsetting" className='setting-link-selected'>
+            <Link to={`/teamsetting/${teamId}`} className='setting-link-selected'>
               멤버
             </Link>
-            <Link to="/teamsettingjoinlist" className='setting-link'>
+            <Link to={`/teamsettingjoinlist/${teamId}`} className='setting-link'>
               가입대기중
             </Link>
 
             <button
-              className='recruit-btn'
-              onClick={Recruit ? openRecruitCancleModal : openRecruitModal}
+              className="recruit-btn"
+              onClick={team.mojib === 1 ? openRecruitCancleModal : openRecruitModal}
             >
-              {Recruit ? "모집중단" : "모집시작"}
+              {team.mojib === 1 ? "모집중단" : "모집시작"}
             </button>
 
           </div>
@@ -136,6 +158,7 @@ const toggleTime = (time) => {
         title="팀 정보 수정"
         isOpen={isEditModalOpen}
         onClose={closeEditModal}
+        onSubmit={handleUpdateTeamInfo}
       >
         <div>
               <label htmlFor="image">로고</label>
@@ -181,6 +204,7 @@ const toggleTime = (time) => {
             </div>
       </TeamModal>
 
+
       <TeamModal
         title="팀 삭제하기"
         isOpen={isDeleteModalOpen}
@@ -190,17 +214,27 @@ const toggleTime = (time) => {
       </TeamModal>
 
       <TeamModal
-  title="모집 시작"
-  isOpen={isRecruitStartModalOpen}
-  onClose={closeRecruitModal}
->
-  <div>
-    <h4>모집 종료 날짜</h4>
-    <DatePicker
-      selected={recruitmentDate}
-      onChange={(date) => setRecruitmentDate(date)}
-    />
-  </div>
+        title="모집 중단"
+        isOpen={isRecruitCancelModalOpen}
+        onClose={closeRecruitCancleModal}
+        onSubmit={handleRecruitCancelConfirm}
+      >
+        <div>모집을 중단하시겠습니까?</div>
+      </TeamModal>
+
+      <TeamModal
+        title="모집 시작"
+        isOpen={isRecruitStartModalOpen}
+        onClose={closeRecruitModal}
+        onSubmit={handleRecruitStartConfirm}
+      >
+        <div>
+          <h4>모집 종료 날짜</h4>
+          <DatePicker
+            selected={recruitmentDate}
+            onChange={(date) => setRecruitmentDate(date)}
+          />
+        </div>
 
   <div>
     <h4>면접 여부</h4>
@@ -246,13 +280,6 @@ const toggleTime = (time) => {
 </TeamModal>
 
 
-      <TeamModal
-        title="팀 삭제하기"
-        isOpen={isRecruitCancelModalOpen}
-        onClose={closeRecruitCancleModal}
-      >
-        <div>중단</div>
-      </TeamModal>
     
     </div>
   );

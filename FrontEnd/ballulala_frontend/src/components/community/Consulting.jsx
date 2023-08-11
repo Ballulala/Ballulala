@@ -5,28 +5,37 @@ import TopNavbar from '../top_navbar/TopNavbar';
 function Consulting() {
   const [board, setBoard] = useState('');
 
+  const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
+
   return (
     <div className='board-page'>
         <TopNavbar/>
-        <div className='page-letter'>COMMUNITY</div>
-        <br/>
+
+        <div
+        className="image-container sliding-image"
+        style={{ backgroundImage: `url(${coverImagePath})` }}
+      >
+        <div className="rank-text">
+            <div>컨설팅</div>
+        </div>
+      </div>
   
     <div className='community-nav'>
     <div className='board-category'>
         <Link to="/freeboard">
-            <button className='radius-button'>자유게시판</button>
+            <button className='radius-btn'>자유게시판</button>
         </Link>
   
         <Link to="/bestboard">
-            <button className='radius-button'>명예의 전당</button>
+            <button className='radius-btn'>명예의 전당</button>
         </Link>
         
         <Link to="/findplayer">
-            <button className='radius-button'>용병 모집</button>
+            <button className='radius-btn'>용병 모집</button>
         </Link>
   
         <Link to="/consulting">
-            <button className='radius-button radius-button-selected'>컨설팅</button>
+            <button className='radius-btn-selected'>컨설팅</button>
         </Link>
     </div>
   

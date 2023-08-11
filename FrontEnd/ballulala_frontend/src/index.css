@@ -47,3 +47,18 @@ code {
   font-family: three;
   src: url("./fonts/SCDream4.otf");
 }
+
+@font-face {
+  font-family: four;
+  src: url("./fonts/Blinker-Black.ttf");
+}
+
+@font-face {
+  font-family: five;
+  src: url("./fonts/SHRIMP.ttf");
+}
+
+@font-face {
+  font-family: six;
+  src: url("./fonts/Chivo-ExtraBold.ttf");
+}
