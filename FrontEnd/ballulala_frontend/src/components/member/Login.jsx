@@ -7,11 +7,9 @@ import {
   emailState,
   passwordState,
   tokenState,
-  userDataState,
   loggedInState,
 } from "../../../src/atoms";
 
-// Axios 인스턴스 설정
 const api = axios.create({
   baseURL: "https://i9d110.p.ssafy.io:8081",
   headers: {
@@ -23,7 +21,6 @@ const Login = () => {
   const [email, setEmail] = useRecoilState(emailState);
   const [password, setPassword] = useRecoilState(passwordState);
   const [token, setToken] = useRecoilState(tokenState);
-  const [, setUserData] = useRecoilState(userDataState);
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedInState);
 
   const navigate = useNavigate();
@@ -43,6 +40,7 @@ const Login = () => {
         const accessToken = response.data.data.accessToken;
 
         setToken(accessToken);
+        localStorage.setItem("token", accessToken);
         api.defaults.headers.common["Authorization"] = `Bearer ${accessToken}`;
         setIsLoggedIn(true);
 

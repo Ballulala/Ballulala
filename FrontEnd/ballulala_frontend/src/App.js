@@ -18,7 +18,7 @@ import TeamSettingJoinList from './components/team/TeamSettingJoinList';
 import TeamSettingDaily from './components/team/TeamSettingDaily';
 import './App.css';
 import Navbar from './components/home/HomeNavbar2';
-import Logo from './components/home/HomeLogo'
+// import Logo from './components/home/HomeLogo'
 import SwiperComponent from './components/home/swiper';
 import DateBar from './components/date_bar/Date_Bar.jsx';
 import VideoChat from './components/interview/videoconference';
@@ -29,22 +29,23 @@ import { useRecoilState } from 'recoil';
 import { loggedInState } from './atoms/loginstate';
 import IndividualMatching from './components/match_individual/Match_individual'
 import axios from "axios";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const Home = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedInState);
   
   const handleLogout = () => {
-    // ... (로그아웃 처리 로직)
-    setIsLoggedIn(false); // 로그아웃 상태로 변경
+
+    setIsLoggedIn(false);
     delete axios.defaults.headers.common["Authorization"];
+    localStorage.removeItem('token');
     navigate("/login");
   };
 
   return (
     <div>
-      {/* <Logo /> */}
+    
       <Navbar />
     
       {isLoggedIn ? (
@@ -55,7 +56,7 @@ const Home = () => {
 ) : (
   <div className="nav-items">
     <button onClick={() => navigate("/login")}>Login</button>
-    {/* Link 컴포넌트와 button 요소 같이 사용 */}
+    
     <Link to="/videochat/12345" tabIndex={-1}>
       <button>Video Chat</button>
     </Link>
@@ -63,13 +64,6 @@ const Home = () => {
 )}
 <br />
 
-
-
-      {/* <div className='nav-seul-btns'>
-            <div>Login</div>
-            <div>MyPage</div>
-        </div> */}
-      
       <SwiperComponent />
 
       <div className='upcoming'>
