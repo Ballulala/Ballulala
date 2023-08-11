@@ -8,7 +8,7 @@ function TeamRank() {
 const [team, setTeam] = useState('');
 const [showRegions, setShowRegions] = useState(false);
 
-const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
+const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_8.jpg";
 
   return (
     <div className='team-page'>

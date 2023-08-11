@@ -46,7 +46,7 @@
     padding-bottom: 10px;
     display: none;
     flex-direction: column;
-    background-color: rgba(215, 215, 215, 0.5);
+    background-color: rgba(215, 215, 215, 0.85);
     border-radius: 3px;
     min-width: 110px;
     z-index: 1000;
@@ -55,12 +55,12 @@
 
   .sub-menu a{
     text-decoration: none;
-    color: rgb(155, 155, 155);
+    color: rgb(106, 106, 106);
   }
 
   .sub-menu > a:hover {
     /* background-color: #f1f1f1; */
-    color: rgb(104,225,223);
+    color: white;
 }
   
   /* :hover 상태를 제거하고 대신에 display 속성을 추가합니다. */
@@ -76,9 +76,13 @@
     margin: 5px;
   }
 
+  .menu-item {
+    color:rgb(130, 130, 130);
+  }
   .menu-item i {
     margin-left: 5px; /* 여백을 조정하세요 */
     transition: color 0.3s; /* 호버 효과의 전환속도 */
+
   }
 
   

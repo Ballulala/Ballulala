@@ -31,7 +31,7 @@ function FreeBoardAdd() {
     <div className='board-add-page'>
         <TopNavbar/>
       <div className='board-page-letter'>자유게시판 작성</div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className='board-form'>
         <div>
           <label htmlFor="title" className='board-input-letter'>제목</label>
           <br/>
@@ -53,7 +53,10 @@ function FreeBoardAdd() {
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
         </div>
-        <button type="submit">Submit</button>
+
+        <div className='board-btn-wrap'>
+          <button type="submit" className='board-btn'>작성하기</button>
+        </div>
       </form>
     </div>
   );

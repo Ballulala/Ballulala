@@ -32,6 +32,8 @@ import PointShop from "./components/points/individual_points";
 
 
 const Home = () => {
+  const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_3.jpg";
+
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedInState);
   
@@ -64,7 +66,23 @@ const Home = () => {
 )}
 <br />
 
-      <SwiperComponent />
+
+
+      {/* <div className='nav-seul-btns'>
+            <div>Login</div>
+            <div>MyPage</div>
+        </div> */}
+      
+      {/* <SwiperComponent /> */}
+
+      <div
+        className="image-container sliding-image"
+        style={{ backgroundImage: `url(${coverImagePath})` }}
+      >
+        <div className="rank-text home-text">
+            <div>Ballulala !</div>
+        </div>
+      </div>
 
       <div className='upcoming'>
         <div>Upcoming</div>
@@ -103,7 +121,7 @@ function App() {
         <Route path="/team" element={<Team />} />
         <Route path="/freeboard" element={<FreeBoard />} />
         <Route path="/freeboard/add" element={<FreeBoardAdd />} />
-        <Route path="/freeboarddetail" element={<FreeBoardDetail />} />
+        <Route path="/freeboard/:boardID" element={<FreeBoardDetail />} />
         <Route path="/bestboard" element={<BestBoard />} />
         <Route path="/findplayer" element={<FindPlayer />} />
         <Route path="/consulting" element={<Consulting />} />
