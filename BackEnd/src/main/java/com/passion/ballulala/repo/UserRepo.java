@@ -10,4 +10,5 @@ public interface UserRepo extends JpaRepository<User,Long> {
     User findByPhoneNumber(String phoneNumber);
     User findByNickname(String nickname);
     User findByRefreshtoken(String refreshToken);
+
 }

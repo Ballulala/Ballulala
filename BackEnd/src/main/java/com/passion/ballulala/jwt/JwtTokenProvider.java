@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 
 import java.security.Key;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
@@ -107,4 +108,15 @@ public class JwtTokenProvider {
             return e.getClaims();
         }
     }
+
+    public Long decodeToken(String accessToken){
+        Long userNo;
+
+        String chunks[] = accessToken.split("\\.");
+        Base64.Decoder decoder = Base64.getUrlDecoder();
+        String payload = new String(decoder.decode(chunks[1]));
+        userNo = Long.parseLong(payload.split("\"")[3]);
+        return userNo;
+    }
+
 }

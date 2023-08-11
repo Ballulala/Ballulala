@@ -9,6 +9,7 @@ import lombok.ToString;
 import org.hibernate.type.descriptor.java.LocalDateJavaType;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter @Setter @ToString
 public class UserDto {
