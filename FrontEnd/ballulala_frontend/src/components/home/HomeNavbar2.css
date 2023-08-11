@@ -12,6 +12,15 @@
     font-size: 30px;
     padding: 20px;
     color: rgb(104,225,223);
+    text-decoration: none;
+  }
+
+  .nav-one:hover {
+    color: rgba(104, 225, 223, 0.6);
+  }
+
+  .link-no-line {
+    text-decoration: none;
   }
   
   .nav-two {

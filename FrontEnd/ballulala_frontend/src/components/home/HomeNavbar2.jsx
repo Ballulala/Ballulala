@@ -44,7 +44,9 @@ function HomeNavbar2() {
 
   return (
     <div className="nav-seul">
-      <div className="nav-one">BALLULALA</div>
+      <Link to='/' className="link-no-line">
+        <div className="nav-one">BALLULALA</div>
+      </Link>
       <div className="nav-two">
         {menuItems.map((item) => (
           <div

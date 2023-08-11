@@ -14,14 +14,13 @@ const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
   return (
     <div className='team-page'>
       <TopNavbar/>
-      {/* <div className='page-letter'>RANK</div> */}
-      
+
       <div
-  className="image-container sliding-image"
-  style={{ backgroundImage: `url(${coverImagePath})` }}
->
-  <div className="rank-text">RANK</div>
-</div>
+        className="image-container sliding-image"
+        style={{ backgroundImage: `url(${coverImagePath})` }}
+      >
+        <div className="rank-text">RANK</div>
+      </div>
 
 
 
