@@ -3,15 +3,18 @@ import DateBar from "../date_bar/Date_Bar.jsx";
 import { Link } from "react-router-dom";
 
 function IndividualMatching() {
+  const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
+
   return (
     <div>
       <TopNavbar />
-      <div className="center-container">
-        <h1>개인 매칭</h1>
-        <Link to="/">
-          <img className="month-team-img" src="league.png" alt="league" />
-        </Link>
+      <div
+        className="image-container sliding-image"
+        style={{ backgroundImage: `url(${coverImagePath})` }}
+      >
+        <div className="rank-text">Match (player)</div>
       </div>
+
       <DateBar />
     </div>
   );

@@ -7,6 +7,8 @@ import { teamDetailData } from './TeamDummyData';
 import axios from 'axios';
 
 function Team() {
+  const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
+
   const [team, setTeam] = useState('');
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
@@ -73,18 +75,20 @@ function Team() {
   return (
     <div className="team-page">
       <TopNavbar/>
-      <div className="page-letter">TEAM</div>
 
-      <Link to="/teamdetail">
-        <img className="month-team-img" src="month_team.png" alt="Month Team" />
-      </Link>
+      <div
+        className="image-container sliding-image"
+        style={{ backgroundImage: `url(${coverImagePath})` }}
+      >
+        <div className="rank-text">TEAM</div>
+      </div>
 
       {/* 지역별 버튼 리스트. 원하는 지역명으로 변경하고 해당 지역의 페이지 경로를 설정하세요. */}
       <div className="search-team">
         <div className="buttons">
           <div className="region-container">
             <button 
-            className="radius-button"
+            className="radius-btn"
             onClick={() => setShowRegions(!showRegions)}
             >지역별
             　▼
@@ -97,10 +101,10 @@ function Team() {
                 </div>
               )}
             </div>
-            <button className="radius-button">멤버 모집중</button>
+            <button className="radius-btn">멤버 모집중</button>
           <div className="region-container">
           <button 
-            className="radius-button"
+            className="radius-btn"
             onClick={() => setShowMmrs(!showMmrs)}
             >mmr　▼
             </button>

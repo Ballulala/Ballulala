@@ -18,7 +18,7 @@ import TeamSettingJoinList from './components/team/TeamSettingJoinList';
 import TeamSettingDaily from './components/team/TeamSettingDaily';
 import './App.css';
 import Navbar from './components/home/HomeNavbar2';
-import Logo from './components/home/HomeLogo'
+// import Logo from './components/home/HomeLogo'
 import SwiperComponent from './components/home/swiper';
 import DateBar from './components/date_bar/Date_Bar.jsx';
 import VideoChat from './components/interview/videoconference';
@@ -29,7 +29,7 @@ import { useRecoilState } from 'recoil';
 import { loggedInState } from './atoms/loginstate';
 import IndividualMatching from './components/match_individual/Match_individual'
 import axios from "axios";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
 const Home = () => {
   const navigate = useNavigate();

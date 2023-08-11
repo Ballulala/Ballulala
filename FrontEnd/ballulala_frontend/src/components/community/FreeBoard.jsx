@@ -7,6 +7,8 @@ import axios from 'axios';
 function FreeBoard() {
     const [boards, setBoards] = useState([]);
 
+    const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
+
     useEffect(() => {
         const fetchBoards = async () => {
             try {
@@ -26,25 +28,32 @@ function FreeBoard() {
   return (
     <div className='board-page'>
         <TopNavbar/>
-        <div className='page-letter'>COMMUNITY</div>
-        <br/>
+
+              <div
+        className="image-container sliding-image"
+        style={{ backgroundImage: `url(${coverImagePath})` }}
+      >
+        <div className="rank-text">
+            <div>자유게시판</div>
+        </div>
+      </div>
 
     <div className='community-nav'>
     <div className='board-category buttons'>
         <Link to="/freeboard">
-            <button className='radius-button radius-button-selected'>자유게시판</button>
+            <button className='radius-btn-selected'>자유게시판</button>
         </Link>
 
         <Link to="/bestboard">
-            <button className='radius-button'>명예의 전당</button>
+            <button className='radius-btn'>명예의 전당</button>
         </Link>
         
         <Link to="/findplayer">
-            <button className='radius-button'>용병 모집</button>
+            <button className='radius-btn'>용병 모집</button>
         </Link>
 
         <Link to="/consulting">
-            <button className='radius-button'>컨설팅</button>
+            <button className='radius-btn'>컨설팅</button>
         </Link>
     </div>
 
