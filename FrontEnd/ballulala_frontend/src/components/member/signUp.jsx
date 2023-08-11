@@ -298,7 +298,7 @@ const SignUp = () => {
           <br />
           <br />
           <div>
-            <Link to="/login">이미 계정이 있으신가요?</Link>
+            <Link to="/login" className='already'>이미 계정이 있으신가요?</Link>
           </div>
         </form>
 

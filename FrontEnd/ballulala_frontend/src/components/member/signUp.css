@@ -71,19 +71,28 @@
     padding: 10px;
     padding-left: 19px;
     padding-right: 19px;
-    background-color: rgb(49, 97, 121);
-    border: rgb(49, 97, 121);
+    background-color: rgb(104,225,223);
+    border: rgb(104,225,223);
     color: white;
     border-radius: 5px;
 }
 
 .modal-yes-btn:hover {
-    background-color: rgb(245, 100, 105);
-    border: rgb(245, 100, 105);
+    background-color: rgb(255, 145, 148);
+    border: rgb(255, 145, 148);
 }
 
 .selectbox {
     height: 40px;
     border-radius: 3px;
     font-family: three;
+}
+
+.already {
+    text-decoration: none;
+    color: rgb(255, 145, 148);
+}
+
+.already:hover {
+    color: rgb(255, 145, 148, 0.7);
 }

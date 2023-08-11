@@ -92,13 +92,13 @@
   }
   
   .interview-times-list li.selected {
-    background-color: rgb(49, 97, 121);
+    background-color: rgb(104,225,223);
     color: white;
   }
   
   .recruit-btn {
-    background-color: rgb(49, 97, 121);
-    border: 1px solid rgb(49, 97, 121);
+    background-color: rgb(104,225,223);
+    border: 1px solid rgb(104,225,223);
     color: white;
     border-radius: 5px;
     padding: 10px;

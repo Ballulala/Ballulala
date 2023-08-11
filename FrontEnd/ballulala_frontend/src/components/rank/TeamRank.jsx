@@ -10,7 +10,6 @@ const [showRegions, setShowRegions] = useState(false);
 
 const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
 
-
   return (
     <div className='team-page'>
       <TopNavbar/>
@@ -19,7 +18,7 @@ const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
         className="image-container sliding-image"
         style={{ backgroundImage: `url(${coverImagePath})` }}
       >
-        <div className="rank-text">RANK</div>
+        <div className="rank-text">RANK (team)</div>
       </div>
 
 
@@ -30,11 +29,11 @@ const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
       <div className='search-team'>
         <div className='buttons'>
           <Link to="/teamrank">
-            <button className='radius-button-selected radius-button'>팀 순위</button>
+            <button className='radius-btn-selected'>팀 순위</button>
           </Link>
 
           <Link to="/userrank">
-            <button className='radius-button'>개인 순위</button>
+            <button className='radius-btn'>개인 순위</button>
           </Link>
         </div>
 

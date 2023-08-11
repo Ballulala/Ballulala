@@ -12,6 +12,8 @@ function TeamMatching() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [registeredMatches, setRegisteredMatches] = useState([]);
 
+  const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
+
   useEffect(() => {
     setTeams(dummyData);
   }, []);
@@ -23,8 +25,11 @@ function TeamMatching() {
   return (
     <div>
       <TopNavbar />
-      <div className="center-container">
-        <h1>Matching</h1>
+      <div
+        className="image-container sliding-image"
+        style={{ backgroundImage: `url(${coverImagePath})` }}
+      >
+        <div className="rank-text">Match (team)</div>
       </div>
       <Carousel teams={teams} />
       <div className="center-container">
