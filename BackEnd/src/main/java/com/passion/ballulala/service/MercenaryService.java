@@ -1,7 +1,9 @@
 package com.passion.ballulala.service;
 
+import com.passion.ballulala.dto.FreeBoardDto;
 import com.passion.ballulala.dto.MercenaryDto;
 import com.passion.ballulala.dto.MercenaryListDto;
+import com.passion.ballulala.entity.FreeBoard;
 import com.passion.ballulala.entity.Mercenary;
 import com.passion.ballulala.entity.User;
 import com.passion.ballulala.repo.MercenaryRepo;
@@ -36,5 +38,31 @@ public class MercenaryService {
 
     public List<MercenaryListDto> getMercenaryList() {
         return mercenaryRepo.findAllList();
+    }
+
+
+    @Transactional
+    public MercenaryDto getMercenaryDetail(Long mercenaryId) {
+        Mercenary mercenary = mercenaryRepo.findById(mercenaryId).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+        mercenaryRepo.updateHits(mercenaryId);
+        return MercenaryDto.builder()
+                .title(mercenary.getTitle())
+                .content(mercenary.getContent())
+                .userId(mercenary.getUserId().getId())
+                .build();
+    }
+
+
+    @Transactional
+    public void updateMercenary(Long id, MercenaryDto mercenaryDto) {
+        Mercenary mercenary = mercenaryRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+        mercenary.setTitle(mercenaryDto.getTitle());
+        mercenary.setContent(mercenaryDto.getContent());
+    }
+
+    @Transactional
+    public void deleteMercenary(Long id) {
+        Mercenary mercenary = mercenaryRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+        mercenaryRepo.delete(mercenary);
     }
 }

@@ -1,5 +1,6 @@
 package com.passion.ballulala.controller;
 
+import com.passion.ballulala.dto.FreeBoardDto;
 import com.passion.ballulala.dto.MercenaryDto;
 import com.passion.ballulala.dto.MercenaryListDto;
 import com.passion.ballulala.service.MercenaryService;
@@ -53,6 +54,55 @@ public class MercenaryController {
 //            logger.error("질문 검색 실패", e);
             System.out.println(e);
             resultMap.put("message", "fail: " + e.getClass().getSimpleName());
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
+    @GetMapping("/detail/{mercenaryId}")
+    public ResponseEntity<Map<String, Object>> detail(@PathVariable Long mercenaryId) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status;
+        try {
+            MercenaryDto mercenaryDto = mercenaryService.getMercenaryDetail(mercenaryId);
+            resultMap.put("mercenary", mercenaryDto);
+            resultMap.put("message", "success");
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e);
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
+    @PutMapping("/modify/{mercenaryId}")
+    public ResponseEntity<Map<String, Object>> update(@PathVariable Long mercenaryId, @RequestBody MercenaryDto mercenaryDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status;
+        try {
+            mercenaryService.updateMercenary(mercenaryId, mercenaryDto);
+            resultMap.put("message", "success");
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e);
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
+    @DeleteMapping("/delete/{mercenaryId}")
+    public ResponseEntity<Map<String, Object>> delete(@PathVariable Long mercenaryId) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status;
+        try {
+            mercenaryService.deleteMercenary(mercenaryId);
+            resultMap.put("message", "success");
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e);
             status = HttpStatus.INTERNAL_SERVER_ERROR;
         }
 
