@@ -142,6 +142,10 @@ const SignUp = () => {
         }
       } else {
         setIsSubmitSuccess(false);
+        const result = await registerUser(userData);
+        console.log(result);
+        console.log(checkEmail);
+        console.log(checkPhoneNumber);
         Swal.fire({
           title: "회원가입 실패",
           text: "이메일이나 휴대폰번호를 다시 확인해주세요.",
@@ -150,7 +154,11 @@ const SignUp = () => {
         });
       }
     } catch (error) {
+      const result = await registerUser(userData);
       console.error(error);
+      console.log(result);
+      console.log(checkEmail);
+      console.log(checkPhoneNumber);
       setIsSubmitSuccess(false);
       Swal.fire({
         title: "회원가입 실패",
@@ -269,8 +277,8 @@ const SignUp = () => {
               onChange={(event) => setGender(event.target.value)}
             >
               <option value="">성별</option>
-              <option value="남자">남자</option>
-              <option value="여자">여자</option>
+              <option value="0">남자</option>
+              <option value="1">여자</option>
             </select>
           </div>
 

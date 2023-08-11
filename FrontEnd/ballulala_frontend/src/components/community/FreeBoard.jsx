@@ -61,10 +61,11 @@ function FreeBoard() {
     </div>
 
     <div className='board-lists'>
-        {/* <Link to="/freeboarddetail">디테일</Link> */}
+        <Link to="/freeboarddetail">디테일</Link>
+        <Link to="/freeboard/add">작성</Link>
 
         {boards.map((board) => (
-        <Link key={board.id} to={`/freeboarddetail/${board.id}`}>
+        <Link key={board.id} to={`/freeboarddetail/${board.id}`} className="board-item">
             {board.title}
         </Link>
     ))}

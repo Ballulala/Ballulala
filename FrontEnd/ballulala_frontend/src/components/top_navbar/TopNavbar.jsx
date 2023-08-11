@@ -6,13 +6,13 @@ function TopNavbar() {
   return (
     <div className='top-navbar'>
         <div className='nav-item-left'>
-            <Link to='/'>
-                <img src={'/small_logo2.png'} alt='Logo' />
+            <Link to='/' className="link-no-line">
+                <div className="nav-one">BALLULALA</div>
             </Link>
         </div>
         <div className='nav-item-right'>
             <Link to='/'>
-                <img src={'/mypage2.png'} alt='My Page' />
+                <img src={'/mypage.png'} alt='My Page' />
             </Link>
         </div>
     </div>
