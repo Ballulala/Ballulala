@@ -13,10 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.config.annotation.authentication.builders.*;
 
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
@@ -48,8 +45,29 @@ public class UserService {
         }
     }
 
-    public User myInfo(String accessToken){
+    @Transactional
+    public Boolean modify(UserDto user, String accessToken){
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
 
+        try{
+            User myUser = userRepo.findById(userNo)
+                    .orElseThrow(() -> new UsernameNotFoundException("해당하는 유저를 찾을 수 없습니다."));
+            myUser.setPassword(user.getPassword());
+
+            String args[] = user.getBirthday().split("-");
+            myUser.setBirthday(LocalDateTime.of(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]),0,0,0));
+            myUser.setName(user.getName());
+            myUser.setGender(user.getGender());
+            myUser.setSido(user.getSido());
+
+            return true;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public User myInfo(String accessToken){
         User myUser;
         Long userNo;
         try{

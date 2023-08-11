@@ -54,13 +54,11 @@ public class UserController {
         }
     }
 
-    //회원 마이페이지 조회
+    //회원 마이페이지 조회, 아직 팀 리스트 불러오기 덜 함.
     @GetMapping(value = "myInfo")
     public ResponseEntity<?> myInfo(HttpServletRequest request){
 
-        System.out.println("토큰 받기 전");
         String accessToken = request.getHeader("Authorization");
-        System.out.println("토큰 받기 후");
         Map<String, Object> map = new HashMap<>();
         System.out.println(accessToken);
         try{
@@ -80,28 +78,27 @@ public class UserController {
 
 
     //수정하기
-//    @PutMapping(value = "{userNo}/modify")
-//    public ResponseEntity<?> modify(@PathVariable("questionNo") Long userNo, @RequestBody UserDto userDto) {
-//        ResponseDto<JwtTokenDto> response = new ResponseDto<JwtTokenDto>();
-//
-//        try {
-//            JwtTokenDto jwtTokenDto = userService.login(user);
-//            if (jwtTokenDto == null) { //해당 아이디와 비밀번호의 유저를 조회할 수 없음.
-//                response.setState("FAIL");
-//                response.setMessage("아이디 혹은 비밀번호가 일치하지 않습니다.");
-//                return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
-//            } else { //정상적으로 로그인이 진행됨.
-//                response.setState("SUCCESS");
-//                response.setMessage("정상적으로 로그인이 되었습니다.");
-//                response.setData(jwtTokenDto);
-//                return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
-//            }
-//        }catch(Exception e){ //로그인 중 의문의 오류 발생.
-//            response.setState("FAIL");
-//            response.setMessage("로그인 중 오류가 발생하였습니다.");
-//            return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
-//        }
-//    }
+    @PutMapping(value = "/modify")
+    public ResponseEntity<?> modify(@RequestBody UserDto user, HttpServletRequest request) {
+        ResponseDto<Boolean> response = new ResponseDto<>();
+        try {
+            String accessToken = request.getHeader("Authorization");
+            Boolean check = userService.modify(user,accessToken);
+            if (!check) { //해당 아이디와 비밀번호의 유저를 조회할 수 없음.
+                response.setState("FAIL");
+                response.setMessage("회원정보 수정에 실패하였습니다.");
+                return new ResponseEntity<ResponseDto<Boolean>>(response, HttpStatus.OK);
+            } else { //정상적으로 로그인이 진행됨.
+                response.setState("SUCCESS");
+                response.setMessage("회원정보가 성공적으로 수정 되었습니다.");
+                return new ResponseEntity<ResponseDto<Boolean>>(response, HttpStatus.OK);
+            }
+        }catch(Exception e){ //로그인 중 의문의 오류 발생.
+            response.setState("FAIL");
+            response.setMessage("회원정보 수정 중 오류가 발생하였습니다.");
+            return new ResponseEntity<ResponseDto<Boolean>>(response, HttpStatus.OK);
+        }
+    }
 
 //    @PostMapping(value = "/refresh")
 //    public ResponseEntity<?> login(@RequestBody HashMap<String, String> map) {
