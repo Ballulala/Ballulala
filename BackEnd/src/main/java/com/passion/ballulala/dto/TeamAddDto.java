@@ -17,5 +17,6 @@ public class TeamAddDto {
     private String sido;
     private String gugun;
     private String description;
+    private String logo;
     private Long user;
 }

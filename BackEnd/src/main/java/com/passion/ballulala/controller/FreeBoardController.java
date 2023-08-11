@@ -19,6 +19,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/freeboard")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class FreeBoardController {
 
     private final FreeBoardService freeBoardService;
@@ -61,4 +62,55 @@ public class FreeBoardController {
 
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
+
+    @GetMapping("/detail/{id}")
+    public ResponseEntity<Map<String, Object>> detail(@PathVariable Long id) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status;
+        try {
+            FreeBoardDto freeBoardDto = freeBoardService.getFreeBoardDetail(id);
+            resultMap.put("freeBoard", freeBoardDto);
+            resultMap.put("message", "success");
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e);
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
+    @PutMapping("/modify/{id}")
+    public ResponseEntity<Map<String, Object>> update(@PathVariable Long id, @RequestBody FreeBoardDto freeBoardDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status;
+        try {
+            freeBoardService.updateFreeBoard(id, freeBoardDto);
+            resultMap.put("message", "success");
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e);
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<Map<String, Object>> delete(@PathVariable Long id) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status;
+        try {
+            freeBoardService.deleteFreeBoard(id);
+            resultMap.put("message", "success");
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e);
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
+
 }

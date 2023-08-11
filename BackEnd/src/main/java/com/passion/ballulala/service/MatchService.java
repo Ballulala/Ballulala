@@ -1,10 +1,9 @@
 package com.passion.ballulala.service;
 
 import com.passion.ballulala.dto.MatchAddDto;
-import com.passion.ballulala.entity.Match;
-import com.passion.ballulala.entity.Stadium;
-import com.passion.ballulala.entity.Team;
-import com.passion.ballulala.entity.User;
+import com.passion.ballulala.dto.MatchLoadDto;
+import com.passion.ballulala.dto.TeamMatchListDto;
+import com.passion.ballulala.entity.*;
 import com.passion.ballulala.repo.MatchRepo;
 import com.passion.ballulala.repo.StadiumRepo;
 import com.passion.ballulala.repo.TeamRepo;
@@ -31,7 +30,7 @@ public class MatchService {
     public void saveMatch(MatchAddDto matchDto){
 
 
-        Team team = teamRepo.getReferenceById(matchDto.getTeam());
+        Team team = teamRepo.findByName(matchDto.getTeam());
         System.out.println(1);
         System.out.println(matchDto);
 
@@ -88,8 +87,18 @@ public class MatchService {
         }
     }
 
-    public List<Match> getMatchesByDate(LocalDateTime matchDate, Byte state) {
-        return matchRepo.findAllByMatchDateAndState(matchDate, state);
+    public List<Match> getMatchesByDate(LocalDateTime matchDate) {
+        return matchRepo.findByMatchDate(matchDate);
+
+    }
+//    public List<Match> getMatchesByDate(LocalDateTime matchDate, Byte state) {
+//
+//            return matchRepo.findAllListByMatchDateAndState(matchDate, state);
+//
+//    }
+
+    public List<TeamMatchListDto> getTeamById(Long id){
+        return matchRepo.findAllListById(id);
     }
 
 }

@@ -39,5 +39,29 @@ public class FreeBoardService {
         return freeBoardRepo.findAllList();
     }
 
+    @Transactional
+    public FreeBoardDto getFreeBoardDetail(Long id) {
+        FreeBoard freeBoard = freeBoardRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+        freeBoardRepo.updateHits(id);
+        return FreeBoardDto.builder()
+                .title(freeBoard.getTitle())
+                .content(freeBoard.getContent())
+                .userId(freeBoard.getUserId().getId())
+                .build();
+    }
+
+    @Transactional
+    public void updateFreeBoard(Long id, FreeBoardDto freeBoardDto) {
+        FreeBoard freeBoard = freeBoardRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+        freeBoard.setTitle(freeBoardDto.getTitle());
+        freeBoard.setContent(freeBoardDto.getContent());
+    }
+
+    @Transactional
+    public void deleteFreeBoard(Long id) {
+        FreeBoard freeBoard = freeBoardRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+        freeBoardRepo.delete(freeBoard);
+    }
+
 
 }

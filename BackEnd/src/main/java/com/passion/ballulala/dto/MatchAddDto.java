@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 public class MatchAddDto {
 
     private String matchDate;
-    private Long team;
+    private String team;
 //    private Long team2;
 //    private Long team3;
     private Integer time;

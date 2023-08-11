@@ -3,7 +3,10 @@ package com.passion.ballulala.controller;
 import com.passion.ballulala.dto.MatchAddDto;
 import com.passion.ballulala.dto.MatchLoadDto;
 import com.passion.ballulala.dto.TeamItemBuyDto;
+import com.passion.ballulala.dto.TeamMatchListDto;
 import com.passion.ballulala.entity.Match;
+import com.passion.ballulala.entity.Team;
+import com.passion.ballulala.entity.TeamUser;
 import com.passion.ballulala.service.MatchService;
 import com.passion.ballulala.service.TeamItemService;
 import lombok.RequiredArgsConstructor;
@@ -43,9 +46,29 @@ public class MatchController {
 
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
+    @GetMapping("/teamList")
+    public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) Long id) {
+        System.out.println(id);
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status = null;
+        System.out.println("1");
+        try {
+            System.out.println("111");
+            List<TeamMatchListDto> teamList = matchService.getTeamById(id);
+            resultMap.put("matchList", teamList);
+            resultMap.put("message", "success");
+            status = HttpStatus.ACCEPTED;
+        } catch (Exception e) {
+//            logger.error("질문 검색 실패", e);
+            resultMap.put("message", "fail: " + e.getClass().getSimpleName());
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
 
     @GetMapping("/list")
-    public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) String matchDate, @RequestParam(required = false) Byte state) {
+//    public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) String matchDate, @RequestParam(required = false) Byte state) {
+    public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) String matchDate) {
         System.out.println(matchDate);
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
@@ -53,10 +76,13 @@ public class MatchController {
 //        LocalDateTime date = LocalDateTime.parse(matchDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 //        System.out.println("date= "+date);
         try {
-            System.out.println("111");
             String[] args = matchDate.split("-");
             LocalDateTime date = (LocalDateTime.of(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]),0,0,0));
-            List<Match> matchesByDate = matchService.getMatchesByDate(date, state);
+            List<MatchLoadDto> matchesByDate = matchService.getMatchesByDate(date).stream().map((m) -> {
+                return MatchLoadDto.fromEntity(m);
+            }).toList();
+
+
             resultMap.put("matchList", matchesByDate);
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;

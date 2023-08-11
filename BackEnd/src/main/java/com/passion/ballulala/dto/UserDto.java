@@ -3,15 +3,15 @@ package com.passion.ballulala.dto;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.passion.ballulala.entity.User;
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.type.descriptor.java.LocalDateJavaType;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
-@Getter @Setter @ToString
+@Getter @Setter @ToString @Data
 public class UserDto {
     private long id;
     private byte status;

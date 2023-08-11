@@ -8,9 +8,10 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter  @ToString
+@Getter
 @AllArgsConstructor
 @Builder
+@ToString
 public class Stadium {
 
     @Id
@@ -30,6 +31,7 @@ public class Stadium {
     @Column(name = "phone_number", nullable = false, columnDefinition = "varchar(30)")
     private String phoneNumber;
 
+    @Builder.Default
     @OneToMany(mappedBy = "stadium", cascade = CascadeType.ALL)
     private List<Match> matches = new ArrayList<>();
 

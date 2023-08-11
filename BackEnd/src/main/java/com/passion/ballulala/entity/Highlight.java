@@ -1,6 +1,8 @@
 package com.passion.ballulala.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +11,8 @@ import java.time.LocalDateTime;
 @Entity
 @NoArgsConstructor
 @Getter
+@AllArgsConstructor
+@Builder
 public class Highlight {
 
     @Id
@@ -31,11 +35,11 @@ public class Highlight {
     @Column(nullable = false)
     private Long hit;
 
-    @Column(name = "likes", nullable = false)
+    @Column(name = "likes", nullable = true)
     private Long like;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private User userId;
 
 }

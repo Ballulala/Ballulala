@@ -30,16 +30,36 @@ public class TeamService {
         // 팀에서 가지고 있는 포인트를 가져와 - item에서 가격을 가져와서 빼기
         // 0이하면 thorw
         // 아니면 뺀 값을 팀에 다시 저장
-        Team team = Team.builder()
-                .name(teamAddDto.getName())
-                .sido(teamAddDto.getSido())
-                .gugun(teamAddDto.getGugun())
-                .description(teamAddDto.getDescription())
-                .build();
+        Team team;
+        if(teamAddDto.getLogo()==null){
+            team = Team.builder()
+                    .name(teamAddDto.getName())
+                    .sido(teamAddDto.getSido())
+                    .gugun(teamAddDto.getGugun())
+                    .description(teamAddDto.getDescription())
+                    .winCount(0)
+                    .loseCount(0)
+                    .winningStreak(0)
+                    .point(0)
+                    .mmr(0)
+                    .build();
+        }else{
+            team = Team.builder()
+                    .name(teamAddDto.getName())
+                    .sido(teamAddDto.getSido())
+                    .gugun(teamAddDto.getGugun())
+                    .description(teamAddDto.getDescription())
+                    .winCount(0)
+                    .loseCount(0)
+                    .winningStreak(0)
+                    .point(0)
+                    .mmr(0)
+                    .logo(teamAddDto.getLogo())
+                    .build();
+        }
+
 
         User user = userRepo.getReferenceById(teamAddDto.getUser());
-
-
 
         if(teamRepo.findByName(teamAddDto.getName()) == null) {
             teamRepo.save(team);
@@ -53,6 +73,8 @@ public class TeamService {
         } else {
             System.out.println("이름을 고쳐주세요");
         }
-
     }
+
+
+
 }

@@ -75,6 +75,22 @@ public class User {
     private int tier;
 
     @Builder.Default
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserItem> userItems = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<TeamUser> teamUsers = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    private List<PersonalMatchUser> personalMatchUsers = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "send", cascade = CascadeType.ALL)
+    private List<Message> send = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "receive", cascade = CascadeType.ALL)
+    private List<Message> receive = new ArrayList<>();
 }

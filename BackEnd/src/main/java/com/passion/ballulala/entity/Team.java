@@ -10,6 +10,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter  @ToString
 @AllArgsConstructor @Builder
+
 public class Team {
 
     @Id
@@ -54,9 +55,11 @@ public class Team {
     @Column(nullable = false, columnDefinition = "varchar(20)")
     private String gugun;
 
+    @Builder.Default
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<TeamItem> teamItems = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
     private List<TeamUser> teamUsers = new ArrayList<>();
 
