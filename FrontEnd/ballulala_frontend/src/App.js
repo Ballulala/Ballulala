@@ -28,10 +28,19 @@ import { RecoilRoot } from 'recoil';
 import { useRecoilState } from 'recoil';
 import { loggedInState } from './atoms/loginstate';
 import IndividualMatching from './components/match_individual/Match_individual'
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const Home = () => {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedInState);
+  
+  const handleLogout = () => {
+    // ... (로그아웃 처리 로직)
+    setIsLoggedIn(false); // 로그아웃 상태로 변경
+    delete axios.defaults.headers.common["Authorization"];
+    navigate("/login");
+  };
 
   return (
     <div>

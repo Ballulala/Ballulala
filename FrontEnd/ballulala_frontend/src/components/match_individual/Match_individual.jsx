@@ -12,7 +12,6 @@ function IndividualMatching() {
           <img className="month-team-img" src="league.png" alt="league" />
         </Link>
       </div>
-
       <DateBar />
     </div>
   );

@@ -1,56 +1,49 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react"; 
 import "./Match_team_modal.css";
 
 function TeamMatchingModal({ isOpen, onClose, onRegister }) {
-  const [showModal, setShowModal] = useState(false);
   const [matchDate, setMatchDate] = useState("");
-  const [teamName, setTeamName] = useState("");
+  const [team, setTeam] = useState("");
   const [startTime, setStartTime] = useState("");
   const [stadium, setStadium] = useState("");
+  const [userTeams, setUserTeams] = useState([]);
+  const [showModal, setShowModal] = useState(isOpen);
 
+  useEffect(() => {
+ 
+    const fetchUserTeams = async () => {
+      try {
+        const response = await fetch("https://i9d110.p.ssafy.io/matches/teamList?id=1");
+        const data = await response.json();
+        setUserTeams(data);
+      } catch (error) {
+        console.error("Error fetching user teams:", error);
+      }
+    };
+    
+    fetchUserTeams();
+  }, []);
   const openModal = () => {
     setShowModal(true);
   };
 
   const closeModal = () => {
     setShowModal(false);
+    onClose();  
   };
 
   const handleSubmit = async () => {
     const requestBody = {
       matchDate: matchDate,
-      team: teamName,
+      team: parseInt(team),
       time: parseInt(startTime),
       stadium: stadium,
     };
 
-    try {
-      const response = await fetch(
-        "https://i9d110.p.ssafy.io:8081/matches/add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(requestBody),
-        }
-      );
-
-      const responseData = await response.json();
-
-      if (responseData.message === "success") {
-        console.log("매칭이 성공적으로 등록되었습니다.");
-
-        onRegister(requestBody);
-      } else {
-        console.error("매칭 등록에 실패하였습니다.");
-      }
-    } catch (error) {
-      console.error("서버에 요청을 보내는 중 오류가 발생했습니다.", error);
-    }
+  
 
     setMatchDate("");
-    setTeamName("");
+    setTeam("");
     setStartTime("");
     setStadium("");
   };
@@ -58,7 +51,6 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
   return (
     <div>
       <button onClick={openModal}>팀 매칭 등록</button>
-
       {showModal && (
         <div className="ball-modal">
           <div className="ball-modal-content">
@@ -68,7 +60,7 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
 
             <form>
               <label>
-                날짜:
+                매치 날짜:
                 <input
                   type="date"
                   value={matchDate}
@@ -76,15 +68,19 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
                 />
               </label>
               <br />
+
               <label>
-                팀 이름:
-                <input
-                  type="text"
-                  value={teamName}
-                  onChange={(e) => setTeamName(e.target.value)}
-                />
+                팀 선택:
+                <select value={team} onChange={(e) => setTeam(e.target.value)}>
+                  {userTeams.map((userTeam) => (
+                    <option key={userTeam.id} value={userTeam.id}>
+                      {userTeam.name}
+                    </option>
+                  ))}
+                </select>
               </label>
               <br />
+
               <label>
                 시작 시간:
                 <input
@@ -96,6 +92,7 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
                 />
               </label>
               <br />
+
               <label>
                 구장:
                 <input
