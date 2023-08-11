@@ -4,6 +4,7 @@ import com.passion.ballulala.dto.MatchAddDto;
 import com.passion.ballulala.dto.MatchLoadDto;
 import com.passion.ballulala.dto.TeamMatchListDto;
 import com.passion.ballulala.entity.*;
+import com.passion.ballulala.jwt.JwtTokenProvider;
 import com.passion.ballulala.repo.MatchRepo;
 import com.passion.ballulala.repo.StadiumRepo;
 import com.passion.ballulala.repo.TeamRepo;
@@ -24,6 +25,7 @@ public class MatchService {
     private final TeamRepo teamRepo;
     private final UserRepo userRepo;
     private final StadiumRepo stadiumRepo;
+    private final JwtTokenProvider jwtTokenProvider;
     @Transactional
 
 
@@ -97,8 +99,10 @@ public class MatchService {
 //
 //    }
 
-    public List<TeamMatchListDto> getTeamById(Long id){
-        return matchRepo.findAllListById(id);
+    public List<TeamMatchListDto> getTeamById(String accessToken){
+
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        return matchRepo.findAllListById(userNo);
     }
 
 }

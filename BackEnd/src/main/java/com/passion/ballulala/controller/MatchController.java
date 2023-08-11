@@ -9,6 +9,7 @@ import com.passion.ballulala.entity.Team;
 import com.passion.ballulala.entity.TeamUser;
 import com.passion.ballulala.service.MatchService;
 import com.passion.ballulala.service.TeamItemService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,14 +48,14 @@ public class MatchController {
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
     @GetMapping("/teamList")
-    public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) Long id) {
-        System.out.println(id);
+    public ResponseEntity<Map<String, Object>> add(HttpServletRequest request) {
+        String accessToken = request.getHeader("Authorization");
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         System.out.println("1");
         try {
             System.out.println("111");
-            List<TeamMatchListDto> teamList = matchService.getTeamById(id);
+            List<TeamMatchListDto> teamList = matchService.getTeamById(accessToken);
             resultMap.put("matchList", teamList);
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;
