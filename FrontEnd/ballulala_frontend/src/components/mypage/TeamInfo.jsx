@@ -3,7 +3,8 @@ import "./TeamInfo.css";
 
 function TeamInfo({ teamLogo, teamName }) {
   return (
-    <div className="team-info">
+    <div className="team-info1">
+      <p>Team logo</p>
       <img src={teamLogo} alt="Team logo" />
       <p>Team: {teamName}</p>
     </div>

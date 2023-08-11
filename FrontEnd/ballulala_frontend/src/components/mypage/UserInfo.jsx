@@ -4,10 +4,10 @@ import "./UserInfo.css";
 function UserInfo({ age, gender, location, email }) {
   return (
     <div className="user-info">
-      <p>Age: {age}</p>
-      <p>Gender: {gender}</p>
-      <p>Location: {location}</p>
-      <p>Email: {email}</p>
+      <p>나이: {age}살</p>
+      <p>성별: {gender}</p>
+      <p>주소: {location}</p>
+      <p>이메일: {email}</p>
     </div>
   );
 }
