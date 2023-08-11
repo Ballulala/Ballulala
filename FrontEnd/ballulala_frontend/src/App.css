@@ -90,6 +90,7 @@
 
 .foot-two {
   width: 50%;
+  color: rgb(99, 99, 99);
 }
 
 @keyframes App-logo-spin {
@@ -133,4 +134,8 @@
 
 .nav-seul-btns > div {
   margin-left: 10px;
+}
+
+.home-text {
+  font-family: five;
 }

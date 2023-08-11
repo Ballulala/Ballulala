@@ -19,7 +19,7 @@ import TeamSettingDaily from './components/team/TeamSettingDaily';
 import './App.css';
 import Navbar from './components/home/HomeNavbar2';
 // import Logo from './components/home/HomeLogo'
-import SwiperComponent from './components/home/swiper';
+// import SwiperComponent from './components/home/swiper';
 import DateBar from './components/date_bar/Date_Bar.jsx';
 import VideoChat from './components/interview/videoconference';
 import TeamMatching from './components/match_team/Match_team';
@@ -32,6 +32,8 @@ import axios from "axios";
 // import Swal from "sweetalert2";
 
 const Home = () => {
+  const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_3.jpg";
+
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedInState);
   
@@ -70,7 +72,16 @@ const Home = () => {
             <div>MyPage</div>
         </div> */}
       
-      <SwiperComponent />
+      {/* <SwiperComponent /> */}
+
+      <div
+        className="image-container sliding-image"
+        style={{ backgroundImage: `url(${coverImagePath})` }}
+      >
+        <div className="rank-text home-text">
+            <div>Ballulala !</div>
+        </div>
+      </div>
 
       <div className='upcoming'>
         <div>Upcoming</div>
@@ -109,7 +120,7 @@ function App() {
         <Route path="/team" element={<Team />} />
         <Route path="/freeboard" element={<FreeBoard />} />
         <Route path="/freeboard/add" element={<FreeBoardAdd />} />
-        <Route path="/freeboarddetail" element={<FreeBoardDetail />} />
+        <Route path="/freeboard/:boardID" element={<FreeBoardDetail />} />
         <Route path="/bestboard" element={<BestBoard />} />
         <Route path="/findplayer" element={<FindPlayer />} />
         <Route path="/consulting" element={<Consulting />} />
