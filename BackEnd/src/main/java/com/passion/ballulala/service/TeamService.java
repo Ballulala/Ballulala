@@ -2,8 +2,6 @@ package com.passion.ballulala.service;
 
 
 import com.passion.ballulala.dto.TeamAddDto;
-import com.passion.ballulala.dto.TeamItemBuyDto;
-import com.passion.ballulala.dto.TeamListDto;
 import com.passion.ballulala.dto.TeamMatchListDto;
 import com.passion.ballulala.entity.*;
 import com.passion.ballulala.jwt.JwtTokenProvider;
@@ -11,10 +9,12 @@ import com.passion.ballulala.repo.TeamRepo;
 import com.passion.ballulala.repo.TeamUserRepo;
 import com.passion.ballulala.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -89,6 +89,12 @@ public class TeamService {
             System.out.println(e.getMessage());
             return null;
         }
+    }
+
+    public Page<Team> getTeamList(int page){
+        Pageable pageRequest = PageRequest.of((page), 5);
+        return teamRepo.findAll(pageRequest);
+
     }
 
 }
