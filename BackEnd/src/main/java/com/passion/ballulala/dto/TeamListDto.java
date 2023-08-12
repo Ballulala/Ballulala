@@ -13,4 +13,5 @@ public class TeamListDto {
     String name;
     String sido;
     String gugun;
+
 }
