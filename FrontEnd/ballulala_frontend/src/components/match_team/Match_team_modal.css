@@ -1,5 +1,8 @@
-/* Add some styling for form elements */
 
+.ball-modal {
+    z-index: 1000; 
+   
+}
 .ball-modal form {
     display: flex;
     flex-direction: column;
