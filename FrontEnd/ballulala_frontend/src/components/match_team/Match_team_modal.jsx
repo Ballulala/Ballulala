@@ -123,8 +123,3 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
 }
 
 export default TeamMatchingModal;
-
-
-
-
-
