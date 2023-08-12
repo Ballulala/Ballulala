@@ -15,7 +15,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Builder
 public class TeamListDto {
-
+    
     private Long id;
     private String name;
     private String sido;
@@ -44,5 +44,6 @@ public class TeamListDto {
                 .point(team.getPoint())
                 .build();
     }
+
 
 }
