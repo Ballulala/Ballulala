@@ -2,6 +2,7 @@ package com.passion.ballulala.service;
 
 
 import com.passion.ballulala.dto.TeamAddDto;
+import com.passion.ballulala.dto.TeamListDto;
 import com.passion.ballulala.dto.TeamMatchListDto;
 import com.passion.ballulala.entity.*;
 import com.passion.ballulala.jwt.JwtTokenProvider;
@@ -102,4 +103,7 @@ public class TeamService {
 
     }
 
+    public TeamListDto getTeamDetail(String teamName){
+        return TeamListDto.fromEntity(teamRepo.findByName(teamName));
+    }
 }

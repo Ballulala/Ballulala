@@ -92,27 +92,24 @@ public class TeamController {
     }
 
     //팀 상세 페이지 보기, 이름으로 받아올거임
-//    @GetMapping(value = "detail")
-//    public ResponseEntity<?> detail(HttpServletRequest request){
-//
-//        String accessToken = request.getHeader("Authorization");
-//        Map<String, Object> map = new HashMap<>();
-//        try{
-//            User user = userService.myInfo(accessToken);
-//            UserDto userDto = UserDto.fromEntity(user);
-//            List<TeamMatchListDto> teamList = teamService.getTeamById(accessToken);
-//            map.put("user", userDto);
-//            map.put("teamList", teamList);
-//            map.put("state", "SUCCESS");
-//            map.put("message", "유저 정보 불러오기에 성공하였습니다.");
-//            return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
-//        }
-//        catch(Exception e){
-//            map.put("state", "FAIL");
-//            map.put("message", "유저 정보 불러오기는 중 오류가 발생하였습니다.");
-//            return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
-//        }
-//    }
+    @GetMapping(value = "detail")
+    public ResponseEntity<?> detail(@RequestBody TeamListDto teamListDto, HttpServletRequest request){
+
+        String accessToken = request.getHeader("Authorization");
+        TeamListDto teamDetail = teamService.getTeamDetail(teamListDto.getName());
+        Map<String, Object> map = new HashMap<>();
+        try{
+            map.put("teamDetail", teamDetail);
+            map.put("state", "SUCCESS");
+            map.put("message", "해당 팀 정보 불러오기에 성공하였습니다.");
+            return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+        }
+        catch(Exception e){
+            map.put("state", "FAIL");
+            map.put("message", "해당 팀 정보 불러오기는 중 오류가 발생하였습니다.");
+            return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+        }
+    }
 
 
     //팀 관리자 페이지 보기
