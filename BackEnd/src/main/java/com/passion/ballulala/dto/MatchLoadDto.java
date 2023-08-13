@@ -1,9 +1,6 @@
 package com.passion.ballulala.dto;
 
-import com.passion.ballulala.controller.MatchTeamDto;
 import com.passion.ballulala.entity.Match;
-import com.passion.ballulala.entity.Team;
-import com.passion.ballulala.entity.User;
 import com.passion.ballulala.repo.TeamRepo;
 import lombok.*;
 
