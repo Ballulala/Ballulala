@@ -5,6 +5,7 @@ import com.passion.ballulala.entity.Team;
 import com.passion.ballulala.entity.User;
 import com.passion.ballulala.service.MatchService;
 import com.passion.ballulala.service.TeamService;
+import com.passion.ballulala.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -26,21 +27,20 @@ import java.util.stream.Collectors;
 public class TeamController {
 
     private final TeamService teamService;
+    private final UserService userService;
+
     @PostMapping("/add")
     public ResponseEntity<Map<String, Object>> add(@RequestBody TeamAddDto teamAddDto) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
 //        TeamAddDto t = new TeamAddDto(teamAddDto.getName(),teamAddDto.getSido(),teamAddDto.getGugun(),teamAddDto.getDescription());
         try {
-            System.out.println(teamAddDto);
             teamService.saveTeam(teamAddDto);
-            System.out.println(2);
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;
         } catch (Exception e) {
 //            logger.error("질문 생성 실패: {}", e.getMessage());
             resultMap.put("message", "fail: " + e.getClass().getSimpleName());
-            System.out.println(e);
             status = HttpStatus.INTERNAL_SERVER_ERROR;
         }
 
@@ -49,10 +49,8 @@ public class TeamController {
 
     @GetMapping("/list")
     public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) int page) {
-        System.out.println(page);
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
-        System.out.println("1");
         try {
             Page<Team> teamList = teamService.getTeamList(page);//.stream().map(TeamListDto::fromEntity).toList()
 //            Page<TeamListDto> teamPage = teamService.getTeamList(page)
@@ -92,14 +90,34 @@ public class TeamController {
     }
 
     //팀 상세 페이지 보기, 이름으로 받아올거임
-    @GetMapping(value = "detail")
+    //유저와 팀 관계를 찾아서
+    @GetMapping(value = "/detail")
     public ResponseEntity<?> detail(@RequestBody TeamListDto teamListDto, HttpServletRequest request){
 
         String accessToken = request.getHeader("Authorization");
+        //내가 가입한 팀 리스트가 나옴
+
         TeamListDto teamDetail = teamService.getTeamDetail(teamListDto.getName());
+
+        Byte userState = userService.getUserState(accessToken, teamDetail.getId());
+
+        System.out.println(userState);
+
         Map<String, Object> map = new HashMap<>();
         try{
             map.put("teamDetail", teamDetail);
+
+            if(userState==null){
+                map.put("userState", "미가입자");
+            }else{
+                switch (userState){
+                    case 0:
+                        map.put("userState", "관리자");
+                        break;
+                    case 1:
+                        map.put("userState", "일반회원");
+                }
+            }
             map.put("state", "SUCCESS");
             map.put("message", "해당 팀 정보 불러오기에 성공하였습니다.");
             return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);

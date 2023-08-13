@@ -1,6 +1,8 @@
 package com.passion.ballulala.service;
 
 import com.passion.ballulala.dto.JwtTokenDto;
+import com.passion.ballulala.dto.TeamMatchListDto;
+import com.passion.ballulala.dto.TeamUserDto;
 import com.passion.ballulala.dto.UserDto;
 import com.passion.ballulala.entity.User;
 import com.passion.ballulala.jwt.JwtTokenProvider;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.security.config.annotation.authentication.builders.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -96,6 +99,17 @@ public class UserService {
 //            return false;
 //        }
 //    }
+
+    public Byte getUserState(String accessToken, Long teamId){
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        try{
+            Byte state = userRepo.getUserState(userNo, teamId).getState();
+            return state;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
 
     public Long findByRefreshtoken(String refreshToken){
         User user = userRepo.findByRefreshtoken(refreshToken);
