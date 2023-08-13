@@ -7,6 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public interface TeamRepo extends JpaRepository<Team, Long> {
             "FROM Team t JOIN TeamUser tu ON t = tu.team WHERE tu.user.id = :id")
     List<TeamMatchListDto> findAllListById(Long id);
     @Query("SELECT t FROM Team t WHERE t.sido = ?1")
-    Page<Team>findbySido(Pageable pageable, String sido);
-//    Page<Team> findAll(Pageable pageable);
+    Page<Team>findbySido( @PageableDefault Pageable pageable, String sido);
+    @Query("SELECT t FROM Team t")
+    Page<Team> findAll( @PageableDefault Pageable pageable);
 }
