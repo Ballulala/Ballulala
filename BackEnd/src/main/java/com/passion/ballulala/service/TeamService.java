@@ -97,6 +97,14 @@ public class TeamService {
         return teamRepo.findAll(pageRequest);
 
     }
+    public Page<Team> getTeamBysido(int page, String sido){
+        System.out.println(page);
+        System.out.println(sido);
+        Pageable pageRequest = PageRequest.of((page), 5);
+        return teamRepo.findbySido(pageRequest, sido);
+
+    }
+
 
     public TeamListDto getTeamDetail(String teamName){
         return TeamListDto.fromEntity(teamRepo.findByName(teamName));
