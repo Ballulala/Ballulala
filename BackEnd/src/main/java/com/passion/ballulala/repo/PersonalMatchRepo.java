@@ -6,9 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Repository
 public interface PersonalMatchRepo  extends JpaRepository<PersonalMatch, Long> {
 
     PersonalMatch findByMatchDateAndTimeAndStadium_Id(LocalDateTime matchDate, Integer time, Long stadium);
+    List<PersonalMatch> findAllByMatchDate(LocalDateTime matchDate);
 }

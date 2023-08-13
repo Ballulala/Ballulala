@@ -9,5 +9,5 @@ import lombok.Setter;
 @Data
 public class PersonalMatchUserDto {
     private Long PersonalMatchId;
-    private Long UserId;
+    private String accessToken;
 }

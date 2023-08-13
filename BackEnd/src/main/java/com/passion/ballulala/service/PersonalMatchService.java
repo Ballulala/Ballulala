@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -47,5 +48,10 @@ public class PersonalMatchService {
         }
 
     }
+    @Transactional
+    public List<PersonalMatch> personalMatchList(LocalDateTime matchDate){
+        return personalMatchRepo.findAllByMatchDate(matchDate);
+    }
+
 
 }
