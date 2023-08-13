@@ -116,7 +116,7 @@ public class TeamController {
 
     //팀 상세 페이지 보기, 이름으로 받아올거임
     //유저와 팀 관계를 찾아서
-    @GetMapping(value = "/detail")
+    @PostMapping(value = "/detail")
     public ResponseEntity<?> detail(@RequestBody TeamListDto teamListDto, HttpServletRequest request){
 
         String accessToken = request.getHeader("Authorization");
