@@ -2,6 +2,7 @@ package com.passion.ballulala.service;
 
 
 import com.passion.ballulala.dto.TeamAddDto;
+import com.passion.ballulala.dto.TeamListDto;
 import com.passion.ballulala.dto.TeamMatchListDto;
 import com.passion.ballulala.entity.*;
 import com.passion.ballulala.jwt.JwtTokenProvider;
@@ -83,7 +84,12 @@ public class TeamService {
     public List<TeamMatchListDto> getTeamById(String accessToken){
         try{
             Long userNo = jwtTokenProvider.decodeToken(accessToken);
+            System.out.println(userNo);
             List<TeamMatchListDto> list = teamRepo.findAllListById(userNo);
+            System.out.println(userNo);
+            for(int i = 0 ; i < list.size(); i++){
+                System.out.println(list.get(i));
+            }
             return list;
         }catch (Exception e){
             System.out.println(e.getMessage());
@@ -105,4 +111,7 @@ public class TeamService {
     }
 
 
+    public TeamListDto getTeamDetail(String teamName){
+        return TeamListDto.fromEntity(teamRepo.findByName(teamName));
+    }
 }

@@ -1,13 +1,8 @@
 package com.passion.ballulala.dto;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.passion.ballulala.controller.MatchTeamDto;
-import com.passion.ballulala.entity.Match;
 import com.passion.ballulala.entity.User;
 import com.passion.ballulala.repo.TeamRepo;
-import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.type.descriptor.java.LocalDateJavaType;
 
 import java.time.LocalDateTime;
 
@@ -50,6 +45,7 @@ public class UserDto {
     public static UserDto fromEntity(User user){
         TeamRepo teamRepo = null;
         return UserDto.builder()
+                .id(user.getId())
                 .email(user.getEmail())
                 .nickname(user.getNickname())
                 .password(user.getPassword())

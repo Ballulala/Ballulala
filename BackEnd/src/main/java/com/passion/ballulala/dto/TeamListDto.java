@@ -1,10 +1,6 @@
 package com.passion.ballulala.dto;
 
-import com.passion.ballulala.controller.MatchTeamDto;
-import com.passion.ballulala.entity.Match;
 import com.passion.ballulala.entity.Team;
-import com.passion.ballulala.repo.TeamRepo;
-import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

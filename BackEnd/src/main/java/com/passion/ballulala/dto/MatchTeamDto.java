@@ -1,4 +1,4 @@
-package com.passion.ballulala.controller;
+package com.passion.ballulala.dto;
 
 import com.passion.ballulala.entity.Team;
 import lombok.Builder;
