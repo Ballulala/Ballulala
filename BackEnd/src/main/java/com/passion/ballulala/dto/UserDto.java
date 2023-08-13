@@ -45,6 +45,7 @@ public class UserDto {
     public static UserDto fromEntity(User user){
         TeamRepo teamRepo = null;
         return UserDto.builder()
+                .id(user.getId())
                 .email(user.getEmail())
                 .nickname(user.getNickname())
                 .password(user.getPassword())

@@ -83,7 +83,12 @@ public class TeamService {
     public List<TeamMatchListDto> getTeamById(String accessToken){
         try{
             Long userNo = jwtTokenProvider.decodeToken(accessToken);
+            System.out.println(userNo);
             List<TeamMatchListDto> list = teamRepo.findAllListById(userNo);
+            System.out.println(userNo);
+            for(int i = 0 ; i < list.size(); i++){
+                System.out.println(list.get(i));
+            }
             return list;
         }catch (Exception e){
             System.out.println(e.getMessage());

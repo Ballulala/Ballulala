@@ -1,12 +1,11 @@
 package com.passion.ballulala.controller;
 
-import com.passion.ballulala.dto.MatchAddDto;
-import com.passion.ballulala.dto.MatchLoadDto;
-import com.passion.ballulala.dto.TeamAddDto;
-import com.passion.ballulala.dto.TeamListDto;
+import com.passion.ballulala.dto.*;
 import com.passion.ballulala.entity.Team;
+import com.passion.ballulala.entity.User;
 import com.passion.ballulala.service.MatchService;
 import com.passion.ballulala.service.TeamService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -71,5 +70,53 @@ public class TeamController {
 
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
+
+
+    //내가 가입한 팀 리스트 불러옴.
+    @GetMapping(value = "/myTeam")
+    public ResponseEntity<?> myTeam(HttpServletRequest request){
+        String accessToken = request.getHeader("Authorization");
+        Map<String, Object> map = new HashMap<>();
+        try{
+            List<TeamMatchListDto> teamList = teamService.getTeamById(accessToken);
+            map.put("teamList", teamList);
+            map.put("state", "SUCCESS");
+            map.put("message", "내 팀 리스트 불러오기에 성공하였습니다.");
+            return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+        }
+        catch(Exception e){
+            map.put("state", "FAIL");
+            map.put("message", "내 팀 정보를 불러오는 중 오류가 발생하였습니다.");
+            return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+        }
+    }
+
+    //팀 상세 페이지 보기, 이름으로 받아올거임
+//    @GetMapping(value = "detail")
+//    public ResponseEntity<?> detail(HttpServletRequest request){
+//
+//        String accessToken = request.getHeader("Authorization");
+//        Map<String, Object> map = new HashMap<>();
+//        try{
+//            User user = userService.myInfo(accessToken);
+//            UserDto userDto = UserDto.fromEntity(user);
+//            List<TeamMatchListDto> teamList = teamService.getTeamById(accessToken);
+//            map.put("user", userDto);
+//            map.put("teamList", teamList);
+//            map.put("state", "SUCCESS");
+//            map.put("message", "유저 정보 불러오기에 성공하였습니다.");
+//            return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+//        }
+//        catch(Exception e){
+//            map.put("state", "FAIL");
+//            map.put("message", "유저 정보 불러오기는 중 오류가 발생하였습니다.");
+//            return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
+//        }
+//    }
+
+
+    //팀 관리자 페이지 보기
+
+    //팀 상점 인벤토리 리스트 보기
 
 }
