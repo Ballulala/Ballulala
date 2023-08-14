@@ -87,4 +87,8 @@ public class User {
     @Builder.Default
     @OneToMany(mappedBy = "receive", cascade = CascadeType.ALL)
     private List<Message> receive = new ArrayList<>();
+
+    public void updatePoint(int uss) {
+        this.point = uss;
+    }
 }
