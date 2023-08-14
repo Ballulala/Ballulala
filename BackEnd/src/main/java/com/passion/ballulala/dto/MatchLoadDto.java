@@ -1,6 +1,8 @@
 package com.passion.ballulala.dto;
 
 import com.passion.ballulala.entity.Match;
+import com.passion.ballulala.entity.Stadium;
+import com.passion.ballulala.repo.StadiumRepo;
 import com.passion.ballulala.repo.TeamRepo;
 import lombok.*;
 
@@ -14,12 +16,13 @@ public class MatchLoadDto {
     private MatchTeamDto team2;
     private MatchTeamDto team3;
     private Integer time;
-    private Long stadium;
+    private StadiumDto stadium;
     private Long manager;
     private Byte state;
 
     public static MatchLoadDto fromEntity(Match match){
         TeamRepo teamRepo = null;
+        StadiumRepo stadiumRepo = null;
         return MatchLoadDto.builder()
                 .id(match.getId())
                 .matchDate(match.getMatchDate())
@@ -27,7 +30,7 @@ public class MatchLoadDto {
                 .team2(match.getTeam2() == null ? null : MatchTeamDto.fromEntity(match.getTeam2()))
                 .team3(match.getTeam3() == null ? null : MatchTeamDto.fromEntity(match.getTeam3()))
                 .time(match.getTime())
-                .stadium(match.getStadium().getId())
+                .stadium(StadiumDto.fromEntity(match.getStadium()))
                 .manager(match.getManager() == null ? null : match.getManager().getId())
                 .state(match.getState())
                 .build();

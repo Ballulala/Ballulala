@@ -18,7 +18,7 @@ import java.time.LocalDateTime;
 public class PersonalMatchListDto {
     private LocalDateTime matchDate;
     private Integer time;
-    private Long stadium;
+    private StadiumDto stadium;
     private Long id;
     private Byte state;
     private Long manager;
@@ -29,7 +29,7 @@ public class PersonalMatchListDto {
                 .id(personalMatch.getId())
                 .matchDate(personalMatch.getMatchDate())
                 .time(personalMatch.getTime())
-                .stadium(personalMatch.getStadium().getId())
+                .stadium(StadiumDto.fromEntity(personalMatch.getStadium()))
                 .manager(personalMatch.getManager() == null ? null : personalMatch.getManager().getId())
                 .state(personalMatch.getState()== null ? null : personalMatch.getState())
                 .build();

@@ -89,8 +89,11 @@ public class MatchService {
         }
     }
 
-    public List<Match> getMatchesByDate(LocalDateTime matchDate) {
-        return matchRepo.findByMatchDate(matchDate);
+    public List<Match> getMatchesByDateFull(LocalDateTime matchDate) {
+        return matchRepo.findByMatchDateAndTeam3IsNotNull(matchDate);
+
+    }public List<Match> getMatchesByDateLess(LocalDateTime matchDate) {
+        return matchRepo.findByMatchDateAndTeam3IsNull(matchDate);
 
     }
 //    public List<Match> getMatchesByDate(LocalDateTime matchDate, Byte state) {
