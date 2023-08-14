@@ -1,5 +1,6 @@
 package com.passion.ballulala.service;
 
+import com.passion.ballulala.dto.FreeBoardDetailDto;
 import com.passion.ballulala.dto.FreeBoardDto;
 import com.passion.ballulala.dto.FreeBoardListDto;
 import com.passion.ballulala.dto.MatchAddDto;
@@ -40,14 +41,12 @@ public class FreeBoardService {
     }
 
     @Transactional
-    public FreeBoardDto getFreeBoardDetail(Long id) {
-        FreeBoard freeBoard = freeBoardRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+    public FreeBoardDetailDto getFreeBoardDetail(Long id) {
+        freeBoardRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+
         freeBoardRepo.updateHits(id);
-        return FreeBoardDto.builder()
-                .title(freeBoard.getTitle())
-                .content(freeBoard.getContent())
-                .userId(freeBoard.getUserId().getId())
-                .build();
+
+        return freeBoardRepo.findDetail(id);
     }
 
     @Transactional

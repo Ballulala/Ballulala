@@ -1,5 +1,6 @@
 package com.passion.ballulala.controller;
 
+import com.passion.ballulala.dto.FreeBoardDetailDto;
 import com.passion.ballulala.dto.FreeBoardDto;
 import com.passion.ballulala.dto.FreeBoardListDto;
 import com.passion.ballulala.dto.MatchAddDto;
@@ -74,7 +75,7 @@ public class FreeBoardController {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status;
         try {
-            FreeBoardDto freeBoardDto = freeBoardService.getFreeBoardDetail(id);
+            FreeBoardDetailDto freeBoardDto = freeBoardService.getFreeBoardDetail(id);
             resultMap.put("freeBoard", freeBoardDto);
             resultMap.put("message", "success");
             status = HttpStatus.OK;
