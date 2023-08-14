@@ -1,9 +1,6 @@
 package com.passion.ballulala.controller;
 
-import com.passion.ballulala.dto.FreeBoardDto;
-import com.passion.ballulala.dto.FreeBoardListDto;
-import com.passion.ballulala.dto.HighlightDto;
-import com.passion.ballulala.dto.HighlightListDto;
+import com.passion.ballulala.dto.*;
 import com.passion.ballulala.jwt.JwtTokenProvider;
 import com.passion.ballulala.service.FreeBoardService;
 import com.passion.ballulala.service.HighlightService;
@@ -60,6 +57,55 @@ public class HightlightController {
 //            logger.error("질문 검색 실패", e);
             System.out.println(e);
             resultMap.put("message", "fail: " + e.getClass().getSimpleName());
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
+    @GetMapping("/detail/{highlightId}")
+    public ResponseEntity<Map<String, Object>> detail(@PathVariable Long highlightId) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status;
+        try {
+            HighlightDetailDto highlightDetailDto = highlightService.getHighlightDetail(highlightId);
+            resultMap.put("highlightDetailDto", highlightDetailDto);
+            resultMap.put("message", "success");
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e);
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
+    @PutMapping("/modify/{highlightId}")
+    public ResponseEntity<Map<String, Object>> update(@PathVariable Long highlightId, @RequestBody HighlightDto highlightDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status;
+        try {
+            highlightService.updateHighlight(highlightId, highlightDto);
+            resultMap.put("message", "success");
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e);
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
+    @DeleteMapping("/delete/{highlightId}")
+    public ResponseEntity<Map<String, Object>> delete(@PathVariable Long highlightId) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status;
+        try {
+            highlightService.deleteHighlight(highlightId);
+            resultMap.put("message", "success");
+            status = HttpStatus.OK;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e);
             status = HttpStatus.INTERNAL_SERVER_ERROR;
         }
 

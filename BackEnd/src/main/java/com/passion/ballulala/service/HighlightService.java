@@ -1,8 +1,6 @@
 package com.passion.ballulala.service;
 
-import com.passion.ballulala.dto.FreeBoardDto;
-import com.passion.ballulala.dto.HighlightDto;
-import com.passion.ballulala.dto.HighlightListDto;
+import com.passion.ballulala.dto.*;
 import com.passion.ballulala.entity.FreeBoard;
 import com.passion.ballulala.entity.Highlight;
 import com.passion.ballulala.entity.User;
@@ -41,5 +39,27 @@ public class HighlightService {
 
     public List<HighlightListDto> getHighlightList() {
         return highlightRepo.findAllList();
+    }
+
+    @Transactional
+    public HighlightDetailDto getHighlightDetail(Long id) {
+        highlightRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+
+        highlightRepo.updateHits(id);
+
+        return highlightRepo.findDetail(id);
+    }
+
+    @Transactional
+    public void updateHighlight(Long id, HighlightDto highlightDto) {
+        Highlight highlight = highlightRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+        highlight.setTitle(highlightDto.getTitle());
+        highlight.setContent(highlightDto.getContent());
+    }
+
+    @Transactional
+    public void deleteHighlight(Long id) {
+        Highlight highlight = highlightRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+        highlightRepo.delete(highlight);
     }
 }

@@ -1,16 +1,14 @@
 package com.passion.ballulala.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
 @Getter
+@Setter
 @AllArgsConstructor
 @Builder
 public class Highlight {
