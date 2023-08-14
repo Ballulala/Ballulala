@@ -70,14 +70,14 @@ public class TeamController {
     }
 
 
-    @GetMapping("/listSido")
-    public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) int page,@RequestParam(required = false) String sido) {
+    @GetMapping("/listGugun")
+    public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) int page,@RequestParam(required = false) byte gugun) {
         System.out.println(page);
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         System.out.println("1");
         try {
-            Page<Team> teamList = teamService.getTeamBysido(page,sido);//.stream().map(TeamListDto::fromEntity).toList()
+            Page<Team> teamList = teamService.getTeamByGugun(page,gugun);//.stream().map(TeamListDto::fromEntity).toList()
 //            Page<TeamListDto> teamPage = teamService.getTeamList(page)
 //                    .map(TeamListDto::fromEntity)
 //                    .collect(Collectors.collectingAndThen(Collectors.toList(),

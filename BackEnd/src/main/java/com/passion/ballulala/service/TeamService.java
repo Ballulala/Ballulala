@@ -41,7 +41,6 @@ public class TeamService {
         if(teamAddDto.getLogo()==null){
             team = Team.builder()
                     .name(teamAddDto.getName())
-                    .sido(teamAddDto.getSido())
                     .gugun(teamAddDto.getGugun())
                     .description(teamAddDto.getDescription())
                     .winCount(0)
@@ -53,7 +52,6 @@ public class TeamService {
         }else{
             team = Team.builder()
                     .name(teamAddDto.getName())
-                    .sido(teamAddDto.getSido())
                     .gugun(teamAddDto.getGugun())
                     .description(teamAddDto.getDescription())
                     .winCount(0)
@@ -98,11 +96,9 @@ public class TeamService {
         return teamRepo.findAll(pageRequest);
 
     }
-    public Page<Team> getTeamBysido(int page, String sido){
-        System.out.println(page);
-        System.out.println(sido);
+    public Page<Team> getTeamByGugun(int page, Byte gugun){
         Pageable pageRequest = PageRequest.of((page), 5);
-        return teamRepo.findbySido(pageRequest, sido);
+        return teamRepo.findbyGugun(pageRequest, gugun);
 
     }
 

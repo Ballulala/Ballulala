@@ -14,8 +14,7 @@ public class TeamListDto {
     
     private Long id;
     private String name;
-    private String sido;
-    private String gugun;
+    private byte gugun;
     private Integer mmr;
     private String logo;
     private String description;
@@ -29,7 +28,6 @@ public class TeamListDto {
         return TeamListDto.builder()
                 .id(team.getId())
                 .name(team.getName())
-                .sido(team.getSido())
                 .gugun(team.getGugun())
                 .mmr(team.getMmr())
                 .logo(team.getLogo())

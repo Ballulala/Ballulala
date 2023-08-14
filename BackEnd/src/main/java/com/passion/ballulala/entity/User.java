@@ -51,9 +51,6 @@ public class User {
     private int mvpCount;
 
     @Column(columnDefinition = "varchar(500)")
-    private String accesstoken;
-
-    @Column(columnDefinition = "varchar(500)")
     private String refreshtoken;
 
     @Column(nullable = true)
@@ -62,11 +59,8 @@ public class User {
     @Column(nullable = true)
     private int manner;
 
-    @Column(nullable = true, columnDefinition = "varchar(20)")
-    private String sido;
-
-    @Column(nullable = true, columnDefinition = "varchar(20)")
-    private String gugun;
+    @Column(nullable = true, columnDefinition = "tinyint")
+    private Byte gugun;
 
     @Column(name = "profile_image", nullable = true, columnDefinition = "varchar(100)")
     private String profileImage;

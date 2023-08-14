@@ -15,13 +15,11 @@ public class UserDto {
     private String password;
     private String name;
     private String nickname;
-    private String sido;
-    private String gugun;
+    private byte gugun;
     private byte gender;
     private String birthday;
     private String phoneNumber;
     private int mvpCount;
-    private String accesstoken;
     private String refreshtoken;
     private int point;
     private int manner;
@@ -37,7 +35,6 @@ public class UserDto {
                 .birthday(LocalDateTime.of(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]),0,0,0))
                 .phoneNumber(phoneNumber)
                 .gender(gender)
-                .sido(sido)
                 .gugun(gugun)
                 .build();
     }
@@ -53,7 +50,6 @@ public class UserDto {
                 .birthday(user.getBirthday().toString())
                 .phoneNumber(user.getPhoneNumber())
                 .gender(user.getGender())
-                .sido(user.getSido())
                 .gugun(user.getGugun())
                 .build();
     }

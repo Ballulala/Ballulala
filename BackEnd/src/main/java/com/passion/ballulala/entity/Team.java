@@ -49,11 +49,8 @@ public class Team {
     @Column(nullable = true)
     private Integer point;
 
-    @Column(nullable = false, columnDefinition = "varchar(20)")
-    private String sido;
-
-    @Column(nullable = false, columnDefinition = "varchar(20)")
-    private String gugun;
+    @Column(nullable = false, columnDefinition = "tinyint")
+    private Byte gugun;
 
     @Builder.Default
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)

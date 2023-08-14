@@ -61,7 +61,6 @@ public class UserService {
             myUser.setBirthday(LocalDateTime.of(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]),0,0,0));
             myUser.setName(user.getName());
             myUser.setGender(user.getGender());
-            myUser.setSido(user.getSido());
 
             return true;
         }catch(Exception e){

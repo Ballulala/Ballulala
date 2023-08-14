@@ -19,8 +19,8 @@ public class Stadium {
     @Column(name = "stadium_id", nullable = false)
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "varchar(20)")
-    private String region;
+    @Column(nullable = false, columnDefinition = "tinyint")
+    private Byte region;
 
     @Column(nullable = false, columnDefinition = "varchar(10)")
     private String name;
