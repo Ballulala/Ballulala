@@ -48,16 +48,13 @@ public class TeamController {
     }
 
     @GetMapping("/list")
-    public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) int page) {
+    public ResponseEntity<Map<String, Object>> add() {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {
-            Page<Team> teamList = teamService.getTeamList(page);//.stream().map(TeamListDto::fromEntity).toList()
-//            Page<TeamListDto> teamPage = teamService.getTeamList(page)
-//                    .map(TeamListDto::fromEntity)
-//                    .collect(Collectors.collectingAndThen(Collectors.toList(),
-//                            content -> new PageImpl<>(content, PageRequest.of(page, 5), content.size())));
-
+            List<TeamListDto> teamList = teamService.getTeamList().stream().map((m) -> {
+                return TeamListDto.fromEntity(m);
+            }).toList();
             resultMap.put("matchList", teamList);
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;
@@ -71,18 +68,14 @@ public class TeamController {
 
 
     @GetMapping("/listGugun")
-    public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) int page,@RequestParam(required = false) byte gugun) {
-        System.out.println(page);
+    public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) byte gugun) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         System.out.println("1");
         try {
-            Page<Team> teamList = teamService.getTeamByGugun(page,gugun);//.stream().map(TeamListDto::fromEntity).toList()
-//            Page<TeamListDto> teamPage = teamService.getTeamList(page)
-//                    .map(TeamListDto::fromEntity)
-//                    .collect(Collectors.collectingAndThen(Collectors.toList(),
-//                            content -> new PageImpl<>(content, PageRequest.of(page, 5), content.size())));
-
+            List<TeamListDto> teamList = teamService.getTeamByGugun(gugun).stream().map((m) -> {
+                return TeamListDto.fromEntity(m);
+            }).toList();
             resultMap.put("matchList", teamList);
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;

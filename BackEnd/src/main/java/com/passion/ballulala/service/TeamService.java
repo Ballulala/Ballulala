@@ -91,14 +91,12 @@ public class TeamService {
         }
     }
 
-    public Page<Team> getTeamList(int page){
-        Pageable pageRequest = PageRequest.of((page), 5);
-        return teamRepo.findAll(pageRequest);
+    public List<Team> getTeamList(){
+        return teamRepo.findAll();
 
     }
-    public Page<Team> getTeamByGugun(int page, Byte gugun){
-        Pageable pageRequest = PageRequest.of((page), 5);
-        return teamRepo.findbyGugun(pageRequest, gugun);
+    public List<Team> getTeamByGugun(Byte gugun){
+        return teamRepo.findByGugun(gugun);
 
     }
 

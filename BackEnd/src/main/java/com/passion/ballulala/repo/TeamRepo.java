@@ -21,8 +21,7 @@ public interface TeamRepo extends JpaRepository<Team, Long> {
     @Query("SELECT new com.passion.ballulala.dto.TeamMatchListDto(tu.id, t.name) " +
             "FROM Team t JOIN TeamUser tu ON t = tu.team WHERE tu.user.id = :id")
     List<TeamMatchListDto> findAllListById(Long id);
-    @Query("SELECT t FROM Team t WHERE t.gugun = ?1")
-    Page<Team>findbyGugun( @PageableDefault Pageable pageable, Byte gugun);
-    @Query("SELECT t FROM Team t")
-    Page<Team> findAll( @PageableDefault Pageable pageable);
+//    @Query("SELECT t FROM Team t WHERE t.gugun = ?1")
+    List<Team>findByGugun(Byte gugun);
+    List<Team> findAll();
 }
