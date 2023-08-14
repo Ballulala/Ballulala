@@ -31,6 +31,8 @@ public class PersonalMatchUserService {
         System.out.println(1);
         System.out.println(personalMatchUserDto);
         Long userNo = jwtTokenProvider.decodeToken(personalMatchUserDto.getAccessToken());
+        System.out.println(userNo);
+
         User user = userRepo.getReferenceById(userNo);
         PersonalMatch personalMatch = personalMatchRepo.getReferenceById(personalMatchUserDto.getPersonalMatchId());
             PersonalMatchUser personalMatchUser = PersonalMatchUser.builder()

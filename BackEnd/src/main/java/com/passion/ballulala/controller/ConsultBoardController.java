@@ -4,8 +4,10 @@ import com.passion.ballulala.dto.ConsultBoardDto;
 import com.passion.ballulala.dto.ConsultBoardListDto;
 import com.passion.ballulala.dto.FreeBoardDto;
 import com.passion.ballulala.dto.FreeBoardListDto;
+import com.passion.ballulala.jwt.JwtTokenProvider;
 import com.passion.ballulala.service.ConsultBoardService;
 import com.passion.ballulala.service.FreeBoardService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,8 +24,12 @@ import java.util.Map;
 public class ConsultBoardController {
 
     private final ConsultBoardService consultBoardService;
+    private final JwtTokenProvider jwtTokenProvider;
     @PostMapping("/add")
-    public ResponseEntity<Map<String, Object>> add(@RequestBody ConsultBoardDto consultBoardDto) {
+    public ResponseEntity<Map<String, Object>> add(@RequestBody ConsultBoardDto consultBoardDto, HttpServletRequest request) {
+        String accessToken = request.getHeader("Authorization");
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        consultBoardDto.setUserId(userNo);
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {

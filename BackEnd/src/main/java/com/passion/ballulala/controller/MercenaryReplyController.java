@@ -6,7 +6,9 @@ import com.passion.ballulala.dto.FreeBoardReplyListDto;
 import com.passion.ballulala.dto.MercenaryReplyDto;
 import com.passion.ballulala.dto.MercenaryReplyListDto;
 import com.passion.ballulala.entity.Mercenary;
+import com.passion.ballulala.jwt.JwtTokenProvider;
 import com.passion.ballulala.service.MercenaryReplyService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,9 +25,12 @@ import java.util.Map;
 public class MercenaryReplyController {
 
     private final MercenaryReplyService mercenaryReplyService;
-
+    private final JwtTokenProvider jwtTokenProvider;
     @PostMapping("/add")
-    public ResponseEntity<Map<String, Object>> add(@RequestBody MercenaryReplyDto mercenaryReplyDto) {
+    public ResponseEntity<Map<String, Object>> add(@RequestBody MercenaryReplyDto mercenaryReplyDto, HttpServletRequest request) {
+        String accessToken = request.getHeader("Authorization");
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        mercenaryReplyDto.setUserId(userNo);
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {

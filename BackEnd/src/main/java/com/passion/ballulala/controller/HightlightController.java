@@ -4,8 +4,10 @@ import com.passion.ballulala.dto.FreeBoardDto;
 import com.passion.ballulala.dto.FreeBoardListDto;
 import com.passion.ballulala.dto.HighlightDto;
 import com.passion.ballulala.dto.HighlightListDto;
+import com.passion.ballulala.jwt.JwtTokenProvider;
 import com.passion.ballulala.service.FreeBoardService;
 import com.passion.ballulala.service.HighlightService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,8 +23,12 @@ import java.util.Map;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class HightlightController {
     private final HighlightService highlightService;
+    private final JwtTokenProvider jwtTokenProvider;
     @PostMapping("/add")
-    public ResponseEntity<Map<String, Object>> add(@RequestBody HighlightDto highlightDto) {
+    public ResponseEntity<Map<String, Object>> add(@RequestBody HighlightDto highlightDto, HttpServletRequest request) {
+        String accessToken = request.getHeader("Authorization");
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        highlightDto.setUserId(userNo);
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {

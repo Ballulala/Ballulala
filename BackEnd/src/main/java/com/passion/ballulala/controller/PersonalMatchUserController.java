@@ -4,6 +4,7 @@ import com.passion.ballulala.dto.PersonalMatchDto;
 import com.passion.ballulala.dto.PersonalMatchUserDto;
 import com.passion.ballulala.repo.PersonalMatchUserRepo;
 import com.passion.ballulala.service.PersonalMatchUserService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +21,9 @@ public class PersonalMatchUserController {
     private final PersonalMatchUserService personalMatchUserService;
 
     @PostMapping("/add")
-    public ResponseEntity<Map<String, Object>> add(@RequestBody PersonalMatchUserDto personalMatchUserDto) {
+    public ResponseEntity<Map<String, Object>> add(@RequestBody PersonalMatchUserDto personalMatchUserDto, HttpServletRequest request) {
+        String accessToken = request.getHeader("Authorization");
+        personalMatchUserDto.setAccessToken(accessToken);
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {

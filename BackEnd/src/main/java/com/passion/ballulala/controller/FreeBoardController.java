@@ -4,8 +4,10 @@ import com.passion.ballulala.dto.FreeBoardDto;
 import com.passion.ballulala.dto.FreeBoardListDto;
 import com.passion.ballulala.dto.MatchAddDto;
 import com.passion.ballulala.entity.Match;
+import com.passion.ballulala.jwt.JwtTokenProvider;
 import com.passion.ballulala.service.FreeBoardService;
 import com.passion.ballulala.service.MatchService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,8 +25,12 @@ import java.util.Map;
 public class FreeBoardController {
 
     private final FreeBoardService freeBoardService;
+    private final JwtTokenProvider jwtTokenProvider;
     @PostMapping("/add")
-    public ResponseEntity<Map<String, Object>> add(@RequestBody FreeBoardDto freeBoardDto) {
+    public ResponseEntity<Map<String, Object>> add(@RequestBody FreeBoardDto freeBoardDto, HttpServletRequest request) {
+        String accessToken = request.getHeader("Authorization");
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        freeBoardDto.setUserId(userNo);
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {

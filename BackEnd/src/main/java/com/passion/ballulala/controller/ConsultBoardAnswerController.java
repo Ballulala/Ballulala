@@ -4,8 +4,10 @@ import com.passion.ballulala.dto.ConsultBoardAnswerDto;
 import com.passion.ballulala.dto.ConsultBoardAnswerListDto;
 import com.passion.ballulala.dto.ConsultBoardListDto;
 import com.passion.ballulala.dto.FreeBoardReplyDto;
+import com.passion.ballulala.jwt.JwtTokenProvider;
 import com.passion.ballulala.service.ConsultBoardAnswerService;
 import com.passion.ballulala.service.FreeBoardReplyService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,9 +23,12 @@ import java.util.Map;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class ConsultBoardAnswerController {
     private final ConsultBoardAnswerService consultBoardAnswerService;
-
+    private final JwtTokenProvider jwtTokenProvider;
     @PostMapping("/add")
-    public ResponseEntity<Map<String, Object>> add(@RequestBody ConsultBoardAnswerDto consultBoardAnswerDto) {
+    public ResponseEntity<Map<String, Object>> add(@RequestBody ConsultBoardAnswerDto consultBoardAnswerDto, HttpServletRequest request) {
+        String accessToken = request.getHeader("Authorization");
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        consultBoardAnswerDto.setUserId(userNo);
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {

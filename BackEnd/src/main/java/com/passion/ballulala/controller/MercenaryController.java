@@ -3,7 +3,9 @@ package com.passion.ballulala.controller;
 import com.passion.ballulala.dto.FreeBoardDto;
 import com.passion.ballulala.dto.MercenaryDto;
 import com.passion.ballulala.dto.MercenaryListDto;
+import com.passion.ballulala.jwt.JwtTokenProvider;
 import com.passion.ballulala.service.MercenaryService;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,9 +21,12 @@ import java.util.Map;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MercenaryController {
     private  final MercenaryService mercenaryService;
-
+    private final JwtTokenProvider jwtTokenProvider;
     @PostMapping("/add")
-    public ResponseEntity<Map<String, Object>> add(@RequestBody MercenaryDto mercenaryDto) {
+    public ResponseEntity<Map<String, Object>> add(@RequestBody MercenaryDto mercenaryDto, HttpServletRequest request) {
+        String accessToken = request.getHeader("Authorization");
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        mercenaryDto.setUserId(userNo);
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {
