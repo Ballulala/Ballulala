@@ -30,12 +30,12 @@ public class TeamController {
     private final UserService userService;
 
     @PostMapping("/add")
-    public ResponseEntity<Map<String, Object>> add(@RequestBody TeamAddDto teamAddDto) {
+    public ResponseEntity<Map<String, Object>> add(@RequestBody TeamAddDto teamAddDto, HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
 //        TeamAddDto t = new TeamAddDto(teamAddDto.getName(),teamAddDto.getSido(),teamAddDto.getGugun(),teamAddDto.getDescription());
         try {
-            teamService.saveTeam(teamAddDto);
+            teamService.saveTeam(teamAddDto, request.getHeader("Authorization"));
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;
         } catch (Exception e) {

@@ -29,10 +29,11 @@ public class TeamService {
     private final UserRepo userRepo;
 
     @Transactional
-    public void saveTeam(TeamAddDto teamAddDto) {
+    public void saveTeam(TeamAddDto teamAddDto, String accessToken) {
 //        itemRepo.save(new Item(teamItemBuyDto.getItemId(), "아이템1", 1000));
 //        teamItemRepo.save(teamItemBuyDto.getTeamId());
 
+        teamAddDto.setUser(jwtTokenProvider.decodeToken(accessToken));
         // 팀에서 가지고 있는 포인트를 가져와 - item에서 가격을 가져와서 빼기
         // 0이하면 thorw
         // 아니면 뺀 값을 팀에 다시 저장
