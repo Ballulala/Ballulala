@@ -1,6 +1,7 @@
 package com.passion.ballulala.service;
 
 import com.passion.ballulala.dto.FreeBoardDto;
+import com.passion.ballulala.dto.MercenaryDetailDto;
 import com.passion.ballulala.dto.MercenaryDto;
 import com.passion.ballulala.dto.MercenaryListDto;
 import com.passion.ballulala.entity.FreeBoard;
@@ -42,14 +43,10 @@ public class MercenaryService {
 
 
     @Transactional
-    public MercenaryDto getMercenaryDetail(Long mercenaryId) {
-        Mercenary mercenary = mercenaryRepo.findById(mercenaryId).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+    public MercenaryDetailDto getMercenaryDetail(Long mercenaryId) {
+        mercenaryRepo.findById(mercenaryId).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
         mercenaryRepo.updateHits(mercenaryId);
-        return MercenaryDto.builder()
-                .title(mercenary.getTitle())
-                .content(mercenary.getContent())
-                .userId(mercenary.getUserId().getId())
-                .build();
+        return mercenaryRepo.findDetail(mercenaryId);
     }
 
 

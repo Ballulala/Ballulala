@@ -1,6 +1,7 @@
 package com.passion.ballulala.controller;
 
 import com.passion.ballulala.dto.FreeBoardDto;
+import com.passion.ballulala.dto.MercenaryDetailDto;
 import com.passion.ballulala.dto.MercenaryDto;
 import com.passion.ballulala.dto.MercenaryListDto;
 import com.passion.ballulala.jwt.JwtTokenProvider;
@@ -70,7 +71,7 @@ public class MercenaryController {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status;
         try {
-            MercenaryDto mercenaryDto = mercenaryService.getMercenaryDetail(mercenaryId);
+            MercenaryDetailDto mercenaryDto = mercenaryService.getMercenaryDetail(mercenaryId);
             resultMap.put("mercenary", mercenaryDto);
             resultMap.put("message", "success");
             status = HttpStatus.OK;
