@@ -18,4 +18,7 @@ public class Item {
 
     @Column(nullable = false)
     private int cost;
+
+    @Column(nullable = true, columnDefinition = "varchar(100)")
+    private String img;
 }

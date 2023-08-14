@@ -9,8 +9,15 @@ import lombok.Getter;
 @Data
 @Builder
 @AllArgsConstructor
-public class TeamItemBuyDto {
+public class TeamItemBuyListDto {
+    private Long id;
 
-    private Long itemId;
-    private Long teamId;
+    private Integer point;
+
+//    private String logo;
+
+
+
+    private String img;
+
 }

@@ -1,20 +1,24 @@
-package com.passion.ballulala.repo;
-
+package com.passion.ballulala.repo;//package com.passion.ballulala.repo;
+import com.passion.ballulala.dto.TeamItemBuyListDto;
 import com.passion.ballulala.entity.TeamItem;
-import jakarta.persistence.EntityManager;
-import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-@Repository
-@RequiredArgsConstructor
-public class TeamItemRepo {
+import java.util.List;
 
-    private final EntityManager em;
-    public void save(TeamItem item) { // 결제
-        if(item.getId() == null) {
-            em.persist(item);
-        } else {
-            em.merge(item);
-        }
-    }
+@Repository
+public interface TeamItemRepo extends JpaRepository<TeamItem, Long> {
+
+
+//    @Query("SELECT t.id, t.point, i.logo, i.img " +
+//            "FROM Team t JOIN Item i ON t.item = i")
+@Query("SELECT distinct new com.passion.ballulala.dto.TeamItemBuyListDto(ti.id, ti.team.point, ti.item.img) " +
+        "FROM TeamItem ti WHERE ti.team.id = ?1")
+    List<TeamItemBuyListDto> findAllList(Long id);
 }
+
+
+
+
+

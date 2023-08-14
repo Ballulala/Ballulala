@@ -1,6 +1,8 @@
 package com.passion.ballulala.service;
 
+import com.passion.ballulala.dto.MercenaryListDto;
 import com.passion.ballulala.dto.TeamItemBuyDto;
+import com.passion.ballulala.dto.TeamItemBuyListDto;
 import com.passion.ballulala.entity.Item;
 import com.passion.ballulala.entity.Team;
 import com.passion.ballulala.entity.TeamItem;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
@@ -22,6 +25,7 @@ public class TeamItemService {
     private final ItemRepo itemRepo;
     private final TeamRepo teamRepo;
     private final TeamItemRepo teamItemRepo;
+
 
     // 구매하는 팀의정보
 
@@ -33,7 +37,7 @@ public class TeamItemService {
 //        itemRepo.save(new Item(teamItemBuyDto.getItemId(), "아이템1", 1000));
 //        teamItemRepo.save(teamItemBuyDto.getTeamId());
 
-        Item item = itemRepo.findOne(teamItemBuyDto.getItemId());
+        Item item = itemRepo.getOne(teamItemBuyDto.getItemId());
         Team team = teamRepo.getOne(teamItemBuyDto.getTeamId());
         // 팀에서 가지고 있는 포인트를 가져와 - item에서 가격을 가져와서 빼기
         // 0이하면 thorw
@@ -55,5 +59,9 @@ public class TeamItemService {
 
 
         teamItemRepo.save(teamItem);
+    }
+
+    public List<TeamItemBuyListDto> getTeamItemBuyList(Long id) {
+        return teamItemRepo.findAllList(id);
     }
 }
