@@ -71,7 +71,7 @@ public class MatchController {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         System.out.println("1");
-//        LocalDateTime date = LocalDateTime.parse(matchDate, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+//        LocalDateTime date = LocalDateTime.parse(matchDa1`te, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 //        System.out.println("date= "+date);
         try {
             String[] args = matchDate.split("-");

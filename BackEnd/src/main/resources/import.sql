@@ -43,5 +43,12 @@ insert into team_user(team_id, user_id, state) values(6,6,0);
 -- 1번 구장, 이름 haha1
 insert into stadium(stadium_id, description,name,phone_number,region)values(1,"ㅎㅎ","haha1", "haha", 0);
 
--- 1매치
+-- 2023-08-08
 insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(2,0,"2023-08-08",1,1,2,3);
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(4,0,"2023-08-08",1,1,2,3);
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(6,0,"2023-08-08",1,1,2,3);
+
+-- 2023-08-09
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(1,0,"2023-08-09",1,3,4,5);
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(3,0,"2023-08-09",1,1,2,3);
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(5,0,"2023-08-09",1,2,3,4);
