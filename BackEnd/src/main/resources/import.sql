@@ -171,8 +171,31 @@ insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id
 
 -- 자유게시판 글 작성
 insert into free_board (create_time, hit, user_id, content, title) values (now(), 0, 1, "1번이 썼습니다.", "1번이 쓴 글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 1,1,"1번 게시글에 1번 사람이 댓글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 1,2,"1번 게시글에 2번 사람이 댓글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 1,3,"1번 게시글에 3번 사람이 댓글");
+
 insert into free_board (create_time, hit, user_id, content, title) values (now(), 0, 1, "1번 두번쨰 글 썼습니다.", "1번이 쓴 글 (1)");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 2,3,"2번 게시글에 3번 사람이 댓글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 2,4,"2번 게시글에 4번 사람이 댓글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 2,5,"2번 게시글에 5번 사람이 댓글");
+
 insert into free_board (create_time, hit, user_id, content, title) values (now(), 0, 2, "2번이 썼습니다.", "2번이 쓴 글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 3,3,"3번 게시글에 3번 사람이 댓글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 3,4,"3번 게시글에 4번 사람이 댓글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 3,5,"3번 게시글에 5번 사람이 댓글");
+
 insert into free_board (create_time, hit, user_id, content, title) values (now(), 0, 2, "2번 두번쨰 글 썼습니다.", "2번이 쓴 글 (2)");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 4,3,"4번 게시글에 3번 사람이 댓글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 4,4,"4번 게시글에 4번 사람이 댓글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 4,5,"4번 게시글에 5번 사람이 댓글");
+
 insert into free_board (create_time, hit, user_id, content, title) values (now(), 0, 3, "3번이 썼습니다.", "3번이 쓴 글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 5,1,"5번 게시글에 1번 사람이 댓글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 5,2,"5번 게시글에 2번 사람이 댓글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 5,3,"5번 게시글에 3번 사람이 댓글");
+
 insert into free_board (create_time, hit, user_id, content, title) values (now(), 0, 3, "3번 두번쨰 글 썼습니다.", "3번이 쓴 글 (2)");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 6,1,"6번 게시글에 1번 사람이 댓글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 6,2,"6번 게시글에 2번 사람이 댓글");
+insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 6,3,"6번 게시글에 3번 사람이 댓글");

@@ -48,11 +48,14 @@ public class FreeBoardReplyController {
     }
 
     @GetMapping("/list/{freeboardId}")
-    public ResponseEntity<Map<String, Object>> list(@PathVariable(name = "freeboardId") Long freeBoardId) {
+    public ResponseEntity<Map<String, Object>> list(@PathVariable(name = "freeboardId") Long freeBoardId, HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
+        String accessToken = request.getHeader("Authorization");
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
         try {
             List<FreeBoardReplyListDto> freeBoardReplyList = freeBoardReplyService.getList(freeBoardId);
+            resultMap.put("userId", userNo);
             resultMap.put("replyList", freeBoardReplyList);
             resultMap.put("totalCnt", freeBoardReplyList.size());
             resultMap.put("message", "success");
