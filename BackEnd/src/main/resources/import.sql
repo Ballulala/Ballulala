@@ -12,17 +12,101 @@ insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` ,
 insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,10000,0,0,0,now(),"haha6@naver.com",5,"김슬기","슬기롭게살자","1234","010-2345-6789", "haha6");
 
 -- 1번 팀, 팀 이름 haha
-insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,0,0,0,1,"haha", "haha","haha", 0);
--- 2번 팀, 팀 이름 하랑
-insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,0,0,0,1,"haha", "haha","하랑", 0);
--- 3번 팀, 팀 이름 무적함대
-insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,0,0,0,1,"haha", "haha","무적함대", 1);
--- 4번 팀, 팀 이름 병찬
-insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,0,0,0,1,"haha", "haha","병찬", 2);
--- 5번 팀, 팀 이름 삿피
-insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,0,0,0,1,"haha", "haha","삿피", 3);
--- 6번 팀, 기가막힌팀
-insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,0,0,0,1,"haha", "haha","기가막힌팀", 4);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","haha", 0);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","자빠지기", 0);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","이게맞나fs", 0);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","우야꼬fs", 0);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","막창fs", 0);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","하랑", 0);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","무적함대", 1);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","레알fs", 1);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","맨시티", 1);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","라이프치히", 1);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","선넘네fs", 1);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","무적함대", 1);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","치기", 2);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","병찬", 2);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","조고", 2);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","양구", 2);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","병구", 2);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","병찬이", 2);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","좋구알fs", 3);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","유하하fs", 3);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","하하하fs", 3);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","키키킥fs", 3);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","저건좀fs", 3);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","이건fs", 3);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","날라가는팀", 4);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","꼬빌팀", 4);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","약발팀", 4);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","이건팀", 4);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","이게뭐지fs", 4);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","슈퍼개미fs", 5);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","개미fs", 5);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","거미fs", 5);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","벌레fs", 5);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","사마귀fs", 5);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","매미fs", 6);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","바람fs", 6);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","날씨fs", 6);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","좋은fs", 6);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","항공기fs", 6);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","비행기fs", 7);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","선박fs", 7);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","배fs", 7);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","루피fs", 7);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","아오키지fs", 7);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","에이지fs", 7);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","스톤fs", 9);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","기피fs", 9);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","기비fs", 9);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","시피fs", 9);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","삿표fs", 9);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","상진fs", 10);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","최강fs", 10);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","유지fs", 10);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","구미fs", 10);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","은평fs", 10);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","스타fs", 11);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","김택용fs", 11);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","하위fs", 11);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","힉스fs", 11);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","무보끼fs", 11);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","맛집fs", 11);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","국밥fs", 12);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","에혀fs", 12);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","요호fs", 12);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","요로fs", 12);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","유후fs", 12);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","입학fs", 13);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","최고fs", 13);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","기모디fs", 13);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","양기미fs", 13);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","다시fs", 13);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","마진fs", 14);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","미친fs", 14);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","실버fs", 14);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","골드fs", 14);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","아이언fs", 14);
+
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","실버fs", 15);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","플레티넘fs", 15);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","동쪽이fs", 15);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","은쪽이fs", 15);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","금쪽이fs", 15);
 
 -- 팀, 유저 관계
 -- 1번은 1~3번 팀에 가입
