@@ -32,10 +32,12 @@ public class UserItemService {
     //
     @Transactional
     public void saveItem(UserItemBuyDto userItemBuyDto, String accessToken) {
-
         Long userNo = jwtTokenProvider.decodeToken(accessToken);
         Item item = itemRepo.getOne(userItemBuyDto.getItemId());
         User user = userRepo.getOne(userNo);
+
+        System.out.println("안 날라가다.");
+
         // 유저에서 가지고 있는 포인트를 가져와 - item에서 가격을 가져와서 빼기
         // 0이하면 thorw
         // 아니면 뺀 값을 팀에 다시 저장

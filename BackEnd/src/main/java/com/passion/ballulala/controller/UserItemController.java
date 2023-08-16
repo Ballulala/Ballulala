@@ -25,6 +25,7 @@ public class UserItemController {
 
     @PostMapping("/add")
     public ResponseEntity<Map<String, Object>> add(@RequestBody UserItemBuyDto userItemBuyDto, HttpServletRequest request) {
+        System.out.println("받아오는 게 안되네");
         String accessToken = request.getHeader("Authorization");
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
