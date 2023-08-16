@@ -24,7 +24,7 @@ insert into team(lose_count, mmr, point, win_count ,winning_streak , description
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","맨시티", 1);
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","라이프치히", 1);
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","선넘네fs", 1);
-insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","무적함대", 1);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","이게중복이네", 1);
 
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","치기", 2);
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","병찬", 2);
@@ -98,7 +98,7 @@ insert into team(lose_count, mmr, point, win_count ,winning_streak , description
 
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","마진fs", 14);
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","미친fs", 14);
-insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","실버fs", 14);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","브라이언fs", 14);
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","골드fs", 14);
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","아이언fs", 14);
 
@@ -132,7 +132,7 @@ insert into item(cost, img, name) values(5000, "웃는 얼굴", "웃는 얼굴")
 insert into item(cost, img, name) values(10000, "웃는 얼굴", "웃는 얼굴");
 
 -- 1번 구장, 이름 haha1
-insert into stadium(escription,name,phone_number,region)values("서울스다디움","서울스다디움", "haha", 0);
+insert into stadium(description,name,phone_number,region)values("서울스다디움","서울스다디움", "haha", 0);
 insert into stadium(description,name,phone_number,region)values("경기스다디움","경기스다디움", "haha", 1);
 insert into stadium(description,name,phone_number,region)values("인천스다디움","인천스다디움", "haha", 2);
 insert into stadium(description,name,phone_number,region)values("강원스다디움","강원스다디움", "haha", 3);
