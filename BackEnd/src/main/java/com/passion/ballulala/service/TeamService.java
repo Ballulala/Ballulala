@@ -95,6 +95,11 @@ public class TeamService {
         return teamRepo.findAll();
 
     }
+
+    public List<Team> getTeamListMmr(){
+        return teamRepo.findAllByOrderByMmrDesc();
+    }
+
     public List<Team> getTeamByGugun(Byte gugun){
         return teamRepo.findByGugun(gugun);
 

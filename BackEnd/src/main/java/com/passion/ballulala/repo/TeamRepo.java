@@ -24,4 +24,5 @@ public interface TeamRepo extends JpaRepository<Team, Long> {
 //    @Query("SELECT t FROM Team t WHERE t.gugun = ?1")
     List<Team>findByGugun(Byte gugun);
     List<Team> findAll();
+    List<Team> findAllByOrderByMmrDesc();
 }

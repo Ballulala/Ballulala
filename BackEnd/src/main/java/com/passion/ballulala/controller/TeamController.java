@@ -65,7 +65,24 @@ public class TeamController {
 
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
+    @GetMapping("/listMmr")
+    public ResponseEntity<Map<String, Object>> add1() {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status = null;
+        try {
+            List<TeamListDto> teamList = teamService.getTeamListMmr().stream().map((m) -> {
+                return TeamListDto.fromEntity(m);
+            }).toList();
+            resultMap.put("matchList", teamList);
+            resultMap.put("message", "success");
+            status = HttpStatus.ACCEPTED;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e.getClass().getSimpleName());
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
 
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
 
     @GetMapping("/listGugun")
     public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) byte gugun) {
