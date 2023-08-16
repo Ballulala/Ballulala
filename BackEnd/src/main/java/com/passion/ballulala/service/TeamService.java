@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -106,7 +107,10 @@ public class TeamService {
     }
 
 
-    public TeamListDto getTeamDetail(String teamName){
-        return TeamListDto.fromEntity(teamRepo.findByName(teamName));
+    public TeamListDto getTeamDetail(Long teamId){
+
+        Team team = teamRepo.findById(teamId).orElseThrow(() -> new UsernameNotFoundException("해당하는 유저를 찾을 수 없습니다."));
+
+        return TeamListDto.fromEntity(team);
     }
 }

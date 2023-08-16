@@ -132,7 +132,7 @@ public class TeamController {
         String accessToken = request.getHeader("Authorization");
         //내가 가입한 팀 리스트가 나옴
 
-        TeamListDto teamDetail = teamService.getTeamDetail(teamListDto.getName());
+        TeamListDto teamDetail = teamService.getTeamDetail(teamListDto.getId());
 
         Byte userState = userService.getUserState(accessToken, teamDetail.getId());
 
