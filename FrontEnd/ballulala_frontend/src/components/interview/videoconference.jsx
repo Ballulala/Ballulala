@@ -9,7 +9,7 @@ const pc_config = {
     },
   ],
 };
-const SOCKET_SERVER_URL = "https://i9d110.p.ssafy.io";
+const SOCKET_SERVER_URL = "https://i9d110.p.ssafy.io:8083";
 
 const VideoChat = () => {
   const socketRef = useRef();
@@ -149,8 +149,6 @@ const VideoChat = () => {
         });
       }
     );
-
-    //... (이후의 코드는 이전과 동일)
 
     return () => {
       if (socketRef.current) {
