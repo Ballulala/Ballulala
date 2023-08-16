@@ -18,7 +18,7 @@ public interface FreeBoardRepo extends JpaRepository<FreeBoard, Long> {
             "FROM FreeBoard f JOIN f.userId u order by f.id desc")
     List<FreeBoardListDto> findAllList();
 
-    @Query("SELECT new com.passion.ballulala.dto.FreeBoardDetailDto(f.title, u.nickname, f.createTime, f.content) " +
+    @Query("SELECT new com.passion.ballulala.dto.FreeBoardDetailDto(f.title, u.nickname, f.createTime, f.content, u.id) " +
             "FROM FreeBoard f JOIN f.userId u where f.id = ?1")
     FreeBoardDetailDto findDetail(Long id);
 

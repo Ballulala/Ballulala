@@ -43,7 +43,6 @@ public class FreeBoardService {
     @Transactional
     public FreeBoardDetailDto getFreeBoardDetail(Long id) {
         freeBoardRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
-
         freeBoardRepo.updateHits(id);
 
         return freeBoardRepo.findDetail(id);

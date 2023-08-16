@@ -1,15 +1,19 @@
 -- 1번 유저, 이메일 haha1, 비번 1234 정환
-insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,10000,0,0,0,now(), "haha1@naver.com",0,"김정환","김정환킹","1234","010-1234-5678", "haha1");
+insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,0,0,0,now(), "haha1@naver.com",0,"김정환","김정환킹","1234","010-1234-5678", "haha1");
 -- 2번 유저, 이메일 haha2, 비번 1234 근우
-insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,10000,0,0,0,now(),"haha2@naver.com",1,"김근우","김근우짱","1234","010-2345-6789", "haha2");
+insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,0,0,0,now(),"haha2@naver.com",1,"김근우","김근우짱","1234","010-2345-6789", "haha2");
 -- 3번 유저, 이메일 haha3, 비번 1234 병찬
-insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,10000,0,0,0,now(),"haha3@naver.com",2,"천병찬","병찬좌","1234","010-2345-6789", "haha3");
+insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,0,0,0,now(),"haha3@naver.com",2,"천병찬","병찬좌","1234","010-2345-6789", "haha3");
 -- 4번 유저, 이메일 haha4, 비번 1234 경호
-insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,10000,0,0,0,now(),"haha4@naver.com",3,"채경호","채고경호","1234","010-2345-6789", "haha4");
+insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,0,0,0,now(),"haha4@naver.com",3,"채경호","채고경호","1234","010-2345-6789", "haha4");
 -- 5번 유저, 이메일 haha5, 비번 1234 상진
-insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,10000,0,0,0,now(),"haha5@naver.com",4,"김상진","금상진","1234","010-2345-6789", "haha5");
+insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,0,0,0,now(),"haha5@naver.com",4,"김상진","금상진","1234","010-2345-6789", "haha5");
 -- 6번 유저, 이메일 haha6, 비번 1234 슬기
-insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,10000,0,0,0,now(),"haha6@naver.com",5,"김슬기","슬기롭게살자","1234","010-2345-6789", "haha6");
+insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,0,0,0,now(),"haha6@naver.com",5,"김슬기","슬기롭게살자","1234","010-2345-6789", "haha6");
+-- 관리자 유저 7번
+insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,1,0,0,now(),"owner@naver.com",5,"볼루랄라운영자","볼루랄라운영자","1234","010-2345-6789", "haha6");
+-- 매니저 유저 8번
+insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,2,0,0,now(),"manager@naver.com",5,"매니저","매니저","1234","010-2345-6789", "haha6");
 
 -- 1번 팀, 팀 이름 haha
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","haha", 0);
@@ -125,11 +129,11 @@ insert into team_user(team_id, user_id, state) values(5,5,0);
 insert into team_user(team_id, user_id, state) values(6,6,0);
 
 -- 아이템 리스트 삽입
-insert into item(cost, img, name) values(500, "웃는 얼굴", "웃는 얼굴");
-insert into item(cost, img, name) values(1000, "웃는 얼굴", "웃는 얼굴");
-insert into item(cost, img, name) values(3000, "웃는 얼굴", "웃는 얼굴");
-insert into item(cost, img, name) values(5000, "웃는 얼굴", "웃는 얼굴");
-insert into item(cost, img, name) values(10000, "웃는 얼굴", "웃는 얼굴");
+insert into item(cost, img, name) values(500, "germany", "germany");
+insert into item(cost, img, name) values(500, "france", "france");
+insert into item(cost, img, name) values(500, "england", "england");
+insert into item(cost, img, name) values(500, "croatia", "croatia");
+insert into item(cost, img, name) values(500, "spain", "spain");
 
 -- 1번 구장, 이름 haha1
 insert into stadium(description,name,phone_number,region)values("서울스다디움","서울스다디움", "haha", 0);
@@ -162,3 +166,13 @@ insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id
 -- 2023-08-22
 insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(1,0,"2023-08-22",1,3,4,5);
 insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(3,0,"2023-08-22",1,1,2,3);
+
+
+
+-- 자유게시판 글 작성
+insert into free_board (create_time, hit, user_id, content, title) values (now(), 0, 1, "1번이 썼습니다.", "1번이 쓴 글");
+insert into free_board (create_time, hit, user_id, content, title) values (now(), 0, 1, "1번 두번쨰 글 썼습니다.", "1번이 쓴 글 (1)");
+insert into free_board (create_time, hit, user_id, content, title) values (now(), 0, 2, "2번이 썼습니다.", "2번이 쓴 글");
+insert into free_board (create_time, hit, user_id, content, title) values (now(), 0, 2, "2번 두번쨰 글 썼습니다.", "2번이 쓴 글 (2)");
+insert into free_board (create_time, hit, user_id, content, title) values (now(), 0, 3, "3번이 썼습니다.", "3번이 쓴 글");
+insert into free_board (create_time, hit, user_id, content, title) values (now(), 0, 3, "3번 두번쨰 글 썼습니다.", "3번이 쓴 글 (2)");

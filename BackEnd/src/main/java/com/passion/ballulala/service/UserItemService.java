@@ -36,28 +36,25 @@ public class UserItemService {
         Item item = itemRepo.getOne(userItemBuyDto.getItemId());
         User user = userRepo.getOne(userNo);
 
-        System.out.println("안 날라가다.");
 
         // 유저에서 가지고 있는 포인트를 가져와 - item에서 가격을 가져와서 빼기
         // 0이하면 thorw
         // 아니면 뺀 값을 팀에 다시 저장
         if(user.getPoint()-item.getCost()>=0){
             user.updatePoint(user.getPoint()-item.getCost());
+            userRepo.save(user);
+            UserItem userItem = UserItem.builder()
+                    .user(user)
+                    .item(item)
+                    .buyDate(LocalDateTime.now())
+                    .deadline(LocalDateTime.now().plusYears(1000))
+                    .build();
+            userItemRepo.save(userItem);
         }
         else{
             System.out.println("fail");
         }
-        userRepo.save(user);
 
-        UserItem userItem = UserItem.builder()
-                .user(user)
-                .item(item)
-                .buyDate(LocalDateTime.now())
-                .deadline(LocalDateTime.now().plusYears(1000))
-                .build();
-
-
-        userItemRepo.save(userItem);
     }
 
     public List<UserItemBuyListDto> getUserItemBuyList(String acccessToken) {

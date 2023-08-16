@@ -10,6 +10,7 @@ import com.passion.ballulala.service.FreeBoardService;
 import com.passion.ballulala.service.MatchService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,7 @@ public class FreeBoardController {
 
     private final FreeBoardService freeBoardService;
     private final JwtTokenProvider jwtTokenProvider;
+
     @PostMapping("/add")
     public ResponseEntity<Map<String, Object>> add(@RequestBody FreeBoardDto freeBoardDto, HttpServletRequest request) {
         String accessToken = request.getHeader("Authorization");
@@ -71,11 +73,18 @@ public class FreeBoardController {
     }
 
     @GetMapping("/detail/{id}")
-    public ResponseEntity<Map<String, Object>> detail(@PathVariable Long id) {
+    public ResponseEntity<Map<String, Object>> detail(@PathVariable(name = "id")Long id, HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<>();
+        String accessToken = request.getHeader("Authorization");
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
         HttpStatus status;
         try {
             FreeBoardDetailDto freeBoardDto = freeBoardService.getFreeBoardDetail(id);
+            if(userNo == freeBoardDto.getUserNo()){
+                resultMap.put("authority", "작성자");
+            }else{
+                resultMap.put("authority", "권한없음");
+            }
             resultMap.put("freeBoard", freeBoardDto);
             resultMap.put("message", "success");
             status = HttpStatus.OK;
