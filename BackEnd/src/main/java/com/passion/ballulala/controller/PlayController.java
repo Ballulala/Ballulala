@@ -1,16 +1,12 @@
 package com.passion.ballulala.controller;
 
-import com.passion.ballulala.dto.MatchLoadDto;
-import com.passion.ballulala.dto.PlayListDto;
+import com.passion.ballulala.dto.*;
 import com.passion.ballulala.entity.Play;
 import com.passion.ballulala.service.PlayService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.HashMap;
@@ -41,6 +37,24 @@ public class PlayController {
         }
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
 
+    }
+
+    @PostMapping("/result")
+    public ResponseEntity<Map<String, Object>> add(@RequestBody PlayResultDto playResultDto) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status = null;
+        try {
+            playService.saveResult(playResultDto);
+            resultMap.put("message", "success");
+            status = HttpStatus.ACCEPTED;
+        } catch (Exception e) {
+//            logger.error("질문 생성 실패: {}", e.getMessage());
+            resultMap.put("message", "fail: " + e.getClass().getSimpleName());
+            System.out.println(e);
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
 
 }

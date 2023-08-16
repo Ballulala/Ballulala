@@ -48,7 +48,7 @@ insert into item(cost, img, name) values(5000, "웃는 얼굴", "웃는 얼굴")
 insert into item(cost, img, name) values(10000, "웃는 얼굴", "웃는 얼굴");
 
 -- 1번 구장, 이름 haha1
-insert into stadium(escription,name,phone_number,region)values("서울스다디움","서울스다디움", "haha", 0);
+insert into stadium(description,name,phone_number,region)values("서울스다디움","서울스다디움", "haha", 0);
 insert into stadium(description,name,phone_number,region)values("경기스다디움","경기스다디움", "haha", 1);
 insert into stadium(description,name,phone_number,region)values("인천스다디움","인천스다디움", "haha", 2);
 insert into stadium(description,name,phone_number,region)values("강원스다디움","강원스다디움", "haha", 3);

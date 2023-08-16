@@ -10,4 +10,7 @@ import java.util.List;
 @Repository
 public interface PlayRepo extends JpaRepository<Play, Long> {
     List<Play> findByMatch_Id(Long match);
+
+
+
 }

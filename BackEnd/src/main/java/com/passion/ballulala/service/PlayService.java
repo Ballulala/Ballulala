@@ -2,6 +2,7 @@ package com.passion.ballulala.service;
 
 import com.passion.ballulala.dto.MatchAddDto;
 import com.passion.ballulala.dto.PlayDto;
+import com.passion.ballulala.dto.PlayResultDto;
 import com.passion.ballulala.entity.Match;
 import com.passion.ballulala.entity.Play;
 import com.passion.ballulala.entity.Team;
@@ -89,6 +90,33 @@ public class PlayService {
     public List<Play> getPlauList(Long match) {
         return playRepo.findByMatch_Id(match);
 
+    }
+    @Transactional
+    public void saveResult(PlayResultDto playResultDto){
+        Play play1 = playRepo.getReferenceById(playResultDto.getId1());
+        play1.setTeamScore1(playResultDto.getTeamScore11());
+        play1.setTeamScore2(playResultDto.getTeamScore12());
+//        playRepo.save(play1);
+        Play play2 = playRepo.getReferenceById(playResultDto.getId2());
+        play2.setTeamScore1(playResultDto.getTeamScore21());
+        play2.setTeamScore2(playResultDto.getTeamScore22());
+//        playRepo.save(play2);
+        Play play3 = playRepo.getReferenceById(playResultDto.getId3());
+        play3.setTeamScore1(playResultDto.getTeamScore31());
+        play3.setTeamScore2(playResultDto.getTeamScore32());
+//        playRepo.save(play3);
+        Play play4 = playRepo.getReferenceById(playResultDto.getId4());
+        play4.setTeamScore1(playResultDto.getTeamScore41());
+        play4.setTeamScore2(playResultDto.getTeamScore42());
+//        playRepo.save(play4);
+        Play play5 = playRepo.getReferenceById(playResultDto.getId5());
+        play5.setTeamScore1(playResultDto.getTeamScore51());
+        play5.setTeamScore2(playResultDto.getTeamScore52());
+//        playRepo.save(play5);
+        Play play6 = playRepo.getReferenceById(playResultDto.getId6());
+        play6.setTeamScore1(playResultDto.getTeamScore61());
+        play6.setTeamScore2(playResultDto.getTeamScore62());
+//        playRepo.save(play6);
     }
 
 }

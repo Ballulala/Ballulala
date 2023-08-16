@@ -1,10 +1,7 @@
 package com.passion.ballulala.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
@@ -12,6 +9,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor @AllArgsConstructor
 @Getter
 @Builder
+@Setter
 @Table(name = "play")
 public class Play {
 
