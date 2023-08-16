@@ -8,7 +8,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter  @ToString
+@Getter  @ToString @Setter
 @AllArgsConstructor @Builder
 
 public class Team {
