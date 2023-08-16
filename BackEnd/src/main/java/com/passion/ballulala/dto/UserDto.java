@@ -28,6 +28,9 @@ public class UserDto {
         String[] args = birthday.split("-");
 
         return User.builder()
+                .id(id)
+                .status(status)
+                .role(role)
                 .email(email)
                 .nickname(nickname)
                 .password(password)
@@ -36,6 +39,9 @@ public class UserDto {
                 .phoneNumber(phoneNumber)
                 .gender(gender)
                 .gugun(gugun)
+                .mvpCount(mvpCount)
+                .point(point)
+                .manner(manner)
                 .build();
     }
 
@@ -43,6 +49,8 @@ public class UserDto {
         TeamRepo teamRepo = null;
         return UserDto.builder()
                 .id(user.getId())
+                .status(user.getStatus())
+                .role(user.getRole())
                 .email(user.getEmail())
                 .nickname(user.getNickname())
                 .password(user.getPassword())
@@ -51,6 +59,8 @@ public class UserDto {
                 .phoneNumber(user.getPhoneNumber())
                 .gender(user.getGender())
                 .gugun(user.getGugun())
+                .mvpCount(user.getMvpCount())
+                .manner(user.getManner())
                 .build();
     }
 }

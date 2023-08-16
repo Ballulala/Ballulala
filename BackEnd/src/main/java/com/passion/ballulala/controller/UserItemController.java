@@ -29,8 +29,9 @@ public class UserItemController {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {
-            userItemService.saveItem(userItemBuyDto, accessToken);
-            resultMap.put("message", "success");
+            String message;
+            message = userItemService.saveItem(userItemBuyDto, accessToken);
+            resultMap.put("message", message);
             status = HttpStatus.ACCEPTED;
         } catch (Exception e) {
             resultMap.put("message", "fail: " + e.getClass().getSimpleName());

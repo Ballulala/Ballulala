@@ -31,7 +31,7 @@ public class UserItemService {
 
     //
     @Transactional
-    public void saveItem(UserItemBuyDto userItemBuyDto, String accessToken) {
+    public String saveItem(UserItemBuyDto userItemBuyDto, String accessToken) {
         Long userNo = jwtTokenProvider.decodeToken(accessToken);
         Item item = itemRepo.getOne(userItemBuyDto.getItemId());
         User user = userRepo.getOne(userNo);
@@ -50,9 +50,10 @@ public class UserItemService {
                     .deadline(LocalDateTime.now().plusYears(1000))
                     .build();
             userItemRepo.save(userItem);
+            return "SUCCESS";
         }
         else{
-            System.out.println("fail");
+            return "FAIL";
         }
 
     }
