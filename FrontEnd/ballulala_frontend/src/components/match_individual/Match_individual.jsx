@@ -1,9 +1,21 @@
+import React, { useState } from "react";
 import TopNavbar from "../top_navbar/TopNavbar";
-import DateBar from "../date_bar/Date_Bar.jsx";
-import { Link } from "react-router-dom";
+
+import MatchModal from "./Match_individual_modal";
 
 function IndividualMatching() {
   const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
+  const handleModalSubmit = (data) => {
+    console.log("Submitted Data:", data);
+    // 여기서 API 호출 등의 로직을 수행할 수 있습니다.
+    setModalOpen(false);
+  };
 
   return (
     <div>
@@ -14,8 +26,13 @@ function IndividualMatching() {
       >
         <div className="rank-text">Match (player)</div>
       </div>
-
-      <DateBar />
+      <button onClick={() => setModalOpen(true)}>매치 정보 입력</button>{" "}
+      {/* 모달을 열 버튼 */}
+      <MatchModal
+        isOpen={modalOpen}
+        onClose={handleModalClose}
+        onSubmit={handleModalSubmit}
+      />
     </div>
   );
 }

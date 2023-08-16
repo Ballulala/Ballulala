@@ -73,7 +73,13 @@ function TeamDetail() {
       <TopNavbar />
       <div className="team-detail-page">
         <div className="team-detail">
-          <img className="team-logo-img" src={team.logo} alt={`${team.name} 로고`} />
+            <img
+      className="team-logo-img"
+      src={team.logo}
+      alt={`${team.name} 로고`}
+      style={{ width: '40%' }}
+    />
+
           <div className="team-name">{team.name}</div>
           <br />
 

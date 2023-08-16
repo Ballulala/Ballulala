@@ -7,8 +7,13 @@ import Team from './components/team/Team'
 import FreeBoard from './components/community/FreeBoard';
 import FreeBoardAdd from './components/community/FreeBoardAdd';
 import FreeBoardDetail from './components/community/FreeBoardDetail';
+import FreeBoardModify from './components/community/FreeBoardModify';
 import BestBoard from './components/community/BestBoard';
+import BestBoardAdd from './components/community/BestBoardAdd';
 import FindPlayer from './components/community/FindPlayer';
+import FindPlayerAdd from './components/community/FindPlayerAdd';
+import FindPlayerDetail from './components/community/FindPlayerjDetail';
+import FindPlayerModify from './components/community/FindPlayerModify';
 import Consulting from './components/community/Consulting';
 import TeamRank from './components/rank/TeamRank';
 import UserRank from './components/rank/UserRank';
@@ -18,8 +23,8 @@ import TeamSettingJoinList from './components/team/TeamSettingJoinList';
 import TeamSettingDaily from './components/team/TeamSettingDaily';
 import './App.css';
 import Navbar from './components/home/HomeNavbar2';
-import SwiperComponent from './components/home/swiper';
-import DateBar from './components/date_bar/Date_Bar.jsx';
+// import SwiperComponent from './components/home/swiper';
+import HomeDateBar from './components/home/HomeDateBar';
 import VideoChat from './components/interview/videoconference';
 import TeamMatching from './components/match_team/Match_team';
 import Mypage from './components/mypage/mypage';
@@ -29,6 +34,8 @@ import { loggedInState } from './atoms/loginstate';
 import IndividualMatching from './components/match_individual/Match_individual'
 import axios from "axios";
 import PointShop from "./components/points/individual_points";
+import React, { useEffect } from "react";
+import Inventory from './components/points/inven';
 
 
 const Home = () => {
@@ -66,15 +73,6 @@ const Home = () => {
 )}
 <br />
 
-
-
-      {/* <div className='nav-seul-btns'>
-            <div>Login</div>
-            <div>MyPage</div>
-        </div> */}
-      
-      {/* <SwiperComponent /> */}
-
       <div
         className="image-container sliding-image"
         style={{ backgroundImage: `url(${coverImagePath})` }}
@@ -87,11 +85,11 @@ const Home = () => {
       <div className='upcoming'>
         <div>Upcoming</div>
         <div className='upcoming-one'>
-          <div>Matches</div>
+          <div className="slide-up-down">Matches</div>
           <div className='upcoming-arrow'>↘</div>
         </div>
       </div>
-      <DateBar />
+      <HomeDateBar />
       <div className="link-container"></div>
 
       <div className='foot'>
@@ -107,10 +105,26 @@ const Home = () => {
     </div>
   );
 };
-
-function App() {
+function Root() {
   return (
     <RecoilRoot>
+      <App />
+    </RecoilRoot>
+  );
+}
+function App() {
+  const [isLoggedIn, setIsLoggedIn] = useRecoilState(loggedInState);
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    if (storedToken) {
+      axios.defaults.headers.common["Authorization"] = `Bearer ${storedToken}`;
+      setIsLoggedIn(true);
+    }
+  }, []);
+
+  return (
+   
     <Router>
       <div className="container">
       <Routes>
@@ -122,8 +136,14 @@ function App() {
         <Route path="/freeboard" element={<FreeBoard />} />
         <Route path="/freeboard/add" element={<FreeBoardAdd />} />
         <Route path="/freeboard/:boardID" element={<FreeBoardDetail />} />
+        <Route path="/freeboard/modify/:boardID" element={<FreeBoardModify />} />
         <Route path="/bestboard" element={<BestBoard />} />
+        <Route path="/bestboard/add" element={<BestBoardAdd />} />
         <Route path="/findplayer" element={<FindPlayer />} />
+        <Route path="/findplayer/add" element={<FindPlayerAdd />} />
+        <Route path="/findplayer/:boardID" element={<FindPlayerDetail />} />
+        <Route path="/findplayer/modify/:boardID" element={<FindPlayerModify />} />
+
         <Route path="/consulting" element={<Consulting />} />
         <Route path="/teamrank" element={<TeamRank />} />
         <Route path="/userrank" element={<UserRank />} />
@@ -140,11 +160,12 @@ function App() {
         <Route path="/teamsettingdaily/:teamId" element={<TeamSettingDaily />} />
         <Route path="/Match_individual" element={<IndividualMatching />} />
         <Route path="/Pointshop" element={<PointShop />} />
+        <Route path="/Inventory" element={<Inventory />} />
       </Routes>
       </div>
       </Router>
-    </RecoilRoot>
+   
   );
 }
 
-export default App;
+export default Root;

@@ -32,6 +32,7 @@
 }
 
 .new-team-btn:hover {
+    background-color: rgb(255, 145, 148);
     color: rgb(49, 97, 121);
 }
 
@@ -82,6 +83,12 @@
 
 .team-item-one {
     width: 25%;
+    display: flex;
+  align-items: center;
+}
+
+.team-item-one img {
+    width: 40%;
 }
 
 .team-item-two {
@@ -90,6 +97,7 @@
 
 .team-item-two a {
     text-decoration: none;
+    font-size: 18px;
     font-weight: 700;
     color: black;
     margin-bottom: 10px;
@@ -98,4 +106,8 @@
 
   .team-item-two a:hover {
     color:rgb(245, 100, 105);
+  }
+
+  .team-item-two div {
+    color: rgb(94, 94, 94);
   }

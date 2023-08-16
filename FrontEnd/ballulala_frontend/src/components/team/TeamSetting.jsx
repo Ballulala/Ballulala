@@ -110,7 +110,7 @@ function TeamSetting() {
               src={"/empty_img_circle.png"}
               alt="Logo"
             /> */}
-            <img className="team-logo-img" src={team.logo} alt={`${team.name} 로고`} />
+            <img className="team-set-logo-img" src={team.logo} alt={`${team.name} 로고`} />
 
             <div className="team-name">{team.name}</div>
             <button className="team-edit-btn team-join-btn" onClick={openEditModal}>
@@ -130,7 +130,7 @@ function TeamSetting() {
             </div>
 
         <div className="member-now">
-            <img src={"/icon_member.png"} alt="img" />
+            <img src={"/icon_member.png"} alt="img" className='set-icon'/>
             <Link to={`/teamsetting/${teamId}`} className='setting-link-selected'>
               멤버
             </Link>
@@ -236,27 +236,28 @@ function TeamSetting() {
           />
         </div>
 
-  <div>
-    <h4>면접 여부</h4>
-    <label>
-      <input
-        type="radio"
-        value="Yes"
-        checked={interviewStatus === 'Yes'}
-        onChange={(e) => setInterviewStatus(e.target.value)}
-      />
-      Yes
-    </label>
-    <label>
-      <input
-        type="radio"
-        value="No"
-        checked={interviewStatus === 'No'}
-        onChange={(e) => setInterviewStatus(e.target.value)}
-      />
-      No
-    </label>
-  </div>
+        <div>
+  <h4>면접 여부</h4>
+  <label style={{ display: 'inline-block', marginRight: '1rem' }}>
+    <input
+      type="radio"
+      value="Yes"
+      checked={interviewStatus === 'Yes'}
+      onChange={(e) => setInterviewStatus(e.target.value)}
+    />
+    Yes
+  </label>
+  <label style={{ display: 'inline-block' }}>
+    <input
+      type="radio"
+      value="No"
+      checked={interviewStatus === 'No'}
+      onChange={(e) => setInterviewStatus(e.target.value)}
+    />
+    No
+  </label>
+</div>
+
 
   {interviewStatus === 'Yes' && (
   <div>

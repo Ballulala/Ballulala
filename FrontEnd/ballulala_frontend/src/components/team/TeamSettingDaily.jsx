@@ -42,7 +42,7 @@ function TeamSettingDaily() {
       <div className="team-setting-page">
         <div className='team-setting-section'>
         <div className="team-setting-info">
-        <img className="team-logo-img" src={team.logo} alt={`${team.name} 로고`} />
+        <img className="team-set-logo-img" src={team.logo} alt={`${team.name} 로고`} />
           <div className="team-name">{team.name}</div>
           <button className='team-edit-btn team-join-btn' onClick={openEditModal}>팀 정보 수정</button>
         </div>

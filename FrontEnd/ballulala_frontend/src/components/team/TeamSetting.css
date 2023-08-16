@@ -2,6 +2,7 @@
     display: flex;
     justify-content: space-between;
     width: 100%;
+    margin-top: 2%;
 }
 
 .team-setting-section {
@@ -105,10 +106,20 @@
   }
   
   .recruit-btn:hover {
-    background-color: rgb(245, 100, 105);
-    border: 1px solid rgb(245, 100, 105);
+    background-color: rgb(255, 145, 148);
+    border: 1px solid rgb(255, 145, 148);
     }
 
   .member-list {
     margin: 6% 10% 6% 10%;
+  }
+
+  .team-set-logo-img {
+    width: 40%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+
+  .set-icon {
+    width: 5%;
   }

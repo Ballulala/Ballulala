@@ -20,7 +20,7 @@
   }
   
   .dateWrap:hover {
-    background-color: rgb(49, 97, 121);
+    background-color: rgb(104,225,223, 0.55);
     color: #fff;
     border-radius: 10px;
   }

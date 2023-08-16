@@ -1,28 +1,67 @@
-import React from "react";
+import React, { useState } from "react";
+import ApplyMatchModal from "./Match_shinchung";
 import "./Teammatch_list.css";
 
 function MatchList({ matches }) {
-  if (!matches) {
-    return <div>매칭 데이터가 없습니다.</div>;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedMatch, setSelectedMatch] = useState(null);
+
+  const handleApplyClick = (match) => {
+    setSelectedMatch(match);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedMatch(null);
+  };
+
+  if (!matches || matches.length === 0) {
+    return <p>매치 정보가 없습니다.</p>;
   }
 
-  const handleApply = (match) => {
-   
+  const formatTime = (time) => {
+    return `${String(time).padStart(2, "0")}:00`;
   };
 
   return (
-    <div className="match-list">
-      {matches.map((match, index) => (
-        <div key={index} className="match-list-item">
-          <h3>{match.stadium}</h3>
-          <h2>
-            {match.teamName[0]} vs {match.teamName[1] || "대기 중"} vs {match.teamName[2] || "대기 중"}
-          </h2>
-          <p>{match.time}</p>
-          {match.teamName.length < 3 && <button onClick={() => handleApply(match)}>신청가능</button>}
+    <div className="match-list-container">
+      {matches.map((match) => (
+        <div key={match.id} className="match-item">
+          <div className="stadium-name">{match.stadium.name}</div>
+          <div className="teams">
+            {match.team1 ? (
+              match.team1.name
+            ) : (
+              <button onClick={() => handleApplyClick(match)}>신청 가능</button>
+            )}{" "}
+            vs
+            {match.team2 ? (
+              match.team2.name
+            ) : (
+              <button onClick={() => handleApplyClick(match)}>신청 가능</button>
+            )}{" "}
+            vs
+            {match.team3 ? (
+              match.team3.name
+            ) : (
+              <button onClick={() => handleApplyClick(match)}>신청 가능</button>
+            )}
+          </div>
+          <div className="match-time">{formatTime(match.time)}</div>
         </div>
       ))}
+      {selectedMatch && (
+        <ApplyMatchModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          matchDate={selectedMatch.matchDate}
+          startTime={selectedMatch.time}
+          stadium={selectedMatch.stadium.name}
+        />
+      )}
     </div>
   );
 }
+
 export default MatchList;

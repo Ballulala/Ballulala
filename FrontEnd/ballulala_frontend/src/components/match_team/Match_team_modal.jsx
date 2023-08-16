@@ -1,16 +1,49 @@
-import React, { useState } from "react"; 
+import React, { useState, useEffect } from "react";
 import "./Match_team_modal.css";
 import { tokenState } from "../../../src/atoms";
-import { useRecoilValue } from 'recoil';
-import axios from 'axios';
+import { useRecoilValue } from "recoil";
+import Swal from "sweetalert2";
 
 function TeamMatchingModal({ isOpen, onClose, onRegister }) {
   const [matchDate, setMatchDate] = useState("");
   const [team, setTeam] = useState("");
   const [startTime, setStartTime] = useState("");
   const [stadium, setStadium] = useState("");
+  const [userTeams, setUserTeams] = useState([]);
   const [showModal, setShowModal] = useState(isOpen);
   const token = useRecoilValue(tokenState);
+
+  useEffect(() => {
+    const fetchUserTeams = async () => {
+      try {
+        console.log(token);
+        const response = await fetch(
+          "https://i9d110.p.ssafy.io:8081/teams/myTeam",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        const data = await response.json();
+        if (data && data.teamList) {
+          setUserTeams(data.teamList);
+        }
+      } catch (error) {
+        console.error("Error fetching user teams:", error);
+      }
+    };
+
+    fetchUserTeams();
+  }, [token]);
+  const openModal = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    onClose();
+  };
 
   const handleSubmit = async () => {
     const requestBody = {
@@ -19,23 +52,38 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
       time: parseInt(startTime),
       stadium: stadium,
     };
-
     try {
-      const response = await axios.post("https://i9d110.p.ssafy.io/matches/add", requestBody, {
-        headers: {
-          'Authorization': `Bearer ${token}`
+      const response = await fetch(
+        "https://i9d110.p.ssafy.io:8081/matches/add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(requestBody),
         }
-      });
+      );
+      const result = await response.json();
 
-      if (response.data && response.data.message === "success") {
-        // 성공적으로 POST 요청이 처리된 경우
-        onClose();
+      if (response.ok && result.message === "success") {
+        Swal.fire({
+          title: "성공!",
+          text: "매치가 등록되었습니다.",
+          icon: "success",
+          confirmButtonText: "확인",
+        });
       } else {
-        // 서버에서 예상치 못한 응답이 왔을 때
-        console.error("Error submitting the form:", response.data);
+        Swal.fire({
+          title: "오류!",
+          text: "매치 등록에 실패했습니다.",
+          icon: "error",
+          confirmButtonText: "확인",
+        });
+        console.error("Failed to register the match", await response.text());
       }
     } catch (error) {
-      console.error("Error submitting the form:", error);
+      console.error("Error submitting the match:", error);
     }
 
     setMatchDate("");
@@ -43,10 +91,9 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
     setStartTime("");
     setStadium("");
   };
-
   return (
     <div>
-      <button onClick={() => setShowModal(true)}>팀 매칭 등록</button>
+      <button onClick={openModal}>팀 매칭 등록</button>
       {showModal && (
         <div className="ball-modal">
           <div className="ball-modal-content">
@@ -54,7 +101,7 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
               <h2>팀 매칭 등록</h2>
             </div>
 
-            <form onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
+            <form>
               <label>
                 매치 날짜:
                 <input
@@ -67,11 +114,13 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
 
               <label>
                 팀 선택:
-                <input
-                  type="text"
-                  value={team}
-                  onChange={(e) => setTeam(e.target.value)}
-                />
+                <select value={team} onChange={(e) => setTeam(e.target.value)}>
+                  {userTeams.map((userTeam) => (
+                    <option key={userTeam.teamId} value={userTeam.name}>
+                      {userTeam.name}
+                    </option>
+                  ))}
+                </select>
               </label>
               <br />
 
@@ -97,24 +146,28 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
               </label>
               <br />
               <br />
-
-              <div className="modal-btns">
-                <button
-                  className="modal-no-btn"
-                  type="button"
-                  onClick={() => setShowModal(false)}
-                >
-                  취소
-                </button>
-
-                <button
-                  className="modal-yes-btn"
-                  type="submit"
-                >
-                  확인
-                </button>
-              </div>
             </form>
+
+            <div className="modal-btns">
+              <button
+                className="modal-no-btn"
+                type="button"
+                onClick={closeModal}
+              >
+                취소
+              </button>
+
+              <button
+                className="modal-yes-btn"
+                type="button"
+                onClick={() => {
+                  handleSubmit();
+                  closeModal();
+                }}
+              >
+                확인
+              </button>
+            </div>
           </div>
         </div>
       )}

@@ -1,0 +1,26 @@
+.match-list-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .match-item {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .stadium-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .teams {
+    margin-bottom: 0.5rem;
+  }
+  
+  .match-time {
+    color: #555;
+  }

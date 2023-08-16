@@ -2,21 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import './Team.css';
 import TopNavbar from '../top_navbar/TopNavbar';
-// import { fetchTeams } from './TeamAPI';
-import { teamDetailData } from './TeamDummyData';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+import { getRegionName } from "../function/getRegionName";
+import useRegionFilter from '../hooks/useRegionFilter';
+import { tokenState } from '../../atoms/token';
+import { useRecoilValue } from "recoil";
 
 function Team() {
-  const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
+  const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_5.jpg";
+  const navigate = useNavigate();
 
-  const [team, setTeam] = useState('');
   const [image, setImage] = useState('');
   const [name, setName] = useState('');
-  const [sido, setSido] = useState('');
+  // const [sido, setSido] = useState('');
   const [gugun, setGugun] = useState('');
   const [statusMsg, setStatusMsg] = useState('');
 
-  const [teams, setTeams] = useState(teamDetailData);
+  const [team, setTeam] = useState(null);
+  const [teams, setTeams] = useState([]);
+  const [filteredTeams, setFilteredTeams] = useState([]);
 
   const [showModal, setShowModal] = useState(false);
   const [showRegions, setShowRegions] = useState(false);
@@ -24,43 +29,110 @@ function Team() {
 
   const { teamId } = useParams();
 
+  const token = useRecoilValue(tokenState);
+
+
+  // 팀 데이터를 가져오는 useEffect
   useEffect(() => {
-    const foundTeam = teamDetailData.find((t) => t.team_id === teamId);
-    if (foundTeam) {
-      setTeam(foundTeam);
-    }
+    const fetchTeams = async () => {
+      try {
+        console.log('토큰 값 :');
+        console.log(token)
+        const response = await axios.get(
+          "https://i9d110.p.ssafy.io:8081/teams/list?page=1"
+        );
+        const matchList = response.data.matchList;
+        setTeams(response.data.matchList);
+        setTeam(matchList.find((t) => t.id === parseInt(teamId)));
+      } catch (error) {
+        console.error("팀 데이터를 가져오는데 실패했습니다:", error);
+      }
+    };
+
+    fetchTeams();
   }, [teamId]);
 
+  // teams 상태에 따라 filteredTeams를 업데이트하는 useEffect
+  useEffect(() => {
+    setFilteredTeams(teams);
+  }, [teams]);
+
+  // 여기서 filteredTeams와 setFilteredTeams를 useRegionFilter 커스텀 훅에 전달합니다.
+  const { filterByGugun, clearFilter } = useRegionFilter(teams, filteredTeams, setFilteredTeams);
+
+  // 여기서 filteredTeams를 사용하여 필터링된 팀 목록을 표시합니다.
+  
+
   const addTeam = async () => {
-    const formData = new FormData();
-    formData.append("logo", image);
-    formData.append("name", name);
-    formData.append("sido", sido);
-    formData.append("gugun", gugun);
-    formData.append("description", statusMsg);
-    formData.append("user", 1);
+    if (image) {
+      const formData = new FormData();
+      formData.append("logo", image);
+      formData.append("name", name);
+      formData.append("gugun", gugun);
+      formData.append("description", statusMsg);
+  
+      try {
+        const response = await axios.post(
+          "https://i9d110.p.ssafy.io:8081/teams/add",
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+              "Authorization": `Bearer ${token}`,
+            },
+          }
+        );
+        console.log("Form submitted:", response.data);
+        setTeams([...teams, response.data]);
+        setTeam(response.data); 
+        // navigate(`/teamdetail/${response.data.id}`); 
+        navigate(`/`); 
+      } catch (error) {
+        console.error("Error submitting the form:", error);
+      }
 
-    try {
-      const response = await axios.post(
-        "https://i9d110.p.ssafy.io:8081/teams/add",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log("Form submitted:", response.data);
-      setTeams([...teams, response.data]);
-    } catch (error) {
-      console.error("Error submitting the form:", error);
+    } else {
+      // Without logo, send the request as JSON
+      const requestBody = {
+        name,
+        gugun,
+        description: statusMsg
+      }
+  
+      try {
+        const response = await axios.post(
+          "https://i9d110.p.ssafy.io:8081/teams/add",
+          requestBody,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${token}`,
+            },
+          }
+        );
+        
+        console.log("Form submitted:", response.data);
+        setTeams((prevTeams) => {
+          const updatedTeams = [...prevTeams, response.data];
+          setTeam(response.data);
+          // 팀 목록과 생성된 팀 정보를 업데이트한 후 페이지 이동
+          // navigate("/team");
+          navigate(`/`); 
+          return updatedTeams;
+        });
+      } catch (error) {
+        console.error("Error submitting the form:", error);
+      }
     }
-  };
+    };
 
-  const handleSubmit = () => {
+  
+  
+
+  const handleSubmit = async () => {
     console.log('Form submitted');
     // console.log('Image file:', image.name);
-    addTeam(); // 팀 데이터 추가합니다.
+    await addTeam(); // 팀 데이터 추가합니다.
   };
 
   const openModal = () => {
@@ -94,10 +166,24 @@ function Team() {
             　▼
             </button>
             {showRegions && (
-                <div className="region-list">
-                  <button>서울</button>
-                  <button>대구</button>
-                  {/* 추가로 지역 버튼을 넣고 싶으시면 여기에 추가하시면 됩니다. */}
+              <div className="region-list">
+                  <button onClick={() => clearFilter()}>전체 지역</button>
+                  <button onClick={() => filterByGugun(0)}>서울</button>
+                  <button onClick={() => filterByGugun(1)}>경기</button>
+                  <button onClick={() => filterByGugun(2)}>인천</button>
+                  <button onClick={() => filterByGugun(3)}>강원</button>
+                  <button onClick={() => filterByGugun(4)}>대구</button>
+                  <button onClick={() => filterByGugun(5)}>대전</button>
+                  <button onClick={() => filterByGugun(6)}>경남</button>
+                  <button onClick={() => filterByGugun(7)}>경북</button>
+                  <button onClick={() => filterByGugun(8)}>부산</button>
+                  <button onClick={() => filterByGugun(9)}>울산</button>
+                  <button onClick={() => filterByGugun(10)}>광주</button>
+                  <button onClick={() => filterByGugun(11)}>제주</button>
+                  <button onClick={() => filterByGugun(12)}>전남</button>
+                  <button onClick={() => filterByGugun(13)}>전북</button>
+                  <button onClick={() => filterByGugun(14)}>충남</button>
+                  <button onClick={() => filterByGugun(15)}>충북</button>
                 </div>
               )}
             </div>
@@ -123,43 +209,35 @@ function Team() {
             type="team"
             id="team"
             placeholder="팀 이름 검색"
-            value={team}
-            onChange={(event) => setTeam(event.target.value)}
+            // value={team}
+            // onChange={(event) => setTeam(event.target.value)}
           />
         </div>
       </div>
 
-    
-      {/* 여기에 전체 팀 리스트를 추가하세요. */}
-      {/* <div className="team-list">
-        <ul>
-          {teams && teams.map((team) => (
-            <li key={team.team_id}>
-              <Link to={`/teamdetail/${team.team_id}`}>{team.name}</Link>
-            </li>
-          ))}
-        </ul>
-      </div> */}
 
-      <div className='team-list'>
-      <ul>
+<div className='team-list'>
+      {/* <ul>
         {teams.map((team) => (
-          <li key={team.team_id} className='team-item'>
+          <li key={team.id} className='team-item'> */}
+          <ul>
+  {filteredTeams.map((team) => (
+    <li key={team.id} className="team-item">
             <div className='team-item-one'>
-              <Link to={`/teamdetail/${team.team_id}`}>
+              <Link to={`/teamdetail/${team.id}`}>
                 <img src={team.logo} alt={team.name + " 로고"} />
                 </Link>
             </div>
             <div className='team-item-two'>
-              <Link to={`/teamdetail/${team.team_id}`}>
+              <Link to={`/teamdetail/${team.id}`}>
                 {team.name}
               </Link>
-              <div>{team.sido} {team.gugun}</div>
+              <div>{getRegionName(team.gugun)}</div>
             </div>
           </li>
         ))}
       </ul>
-      </div>
+    </div>
 
 
       
@@ -198,19 +276,9 @@ function Team() {
                 className='modal-input'
               />
               <br />
-              <br/>
-              <label htmlFor="sido">시/도</label>
+
               <br />
-              <input
-                type="text"
-                id="sido"
-                value={sido}
-                onChange={(event) => setSido(event.target.value)}
-                className='modal-input'
-              />
-              <br />
-              <br />
-              <label htmlFor="gugun">구/군</label>
+              <label htmlFor="gugun">지역</label>
               <br />
               <input
                 type="text"
@@ -221,7 +289,7 @@ function Team() {
               />
 
               <br/>
-              <label htmlFor="statusMsg">소개 (선택)</label>
+              <label htmlFor="statusMsg">소개</label>
               <br />
               <input
                 type="text"

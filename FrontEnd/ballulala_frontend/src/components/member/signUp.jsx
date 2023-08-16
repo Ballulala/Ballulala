@@ -18,11 +18,9 @@ const SignUp = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
   const [sido, setSido] = useState("");
-  const [gugun, setGugun] = useState("");
+  // const [gugun, setGugun] = useState("");
 
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
-
-  const [showModal, setShowModal] = useState(false);
 
   const isValidEmail = (email) => {
     // email pattern
@@ -59,23 +57,6 @@ const SignUp = () => {
     }
   };
   
-  const handleClick = () => {
-    if (isSubmitSuccess) {
-      openModal();
-    } 
-    // else {
-    //   alert('회원가입 중 오류가 발생했습니다.');
-    // }
-  };
-
-  const openModal = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
   const registerUser = async (userData) => {
     try {
       const config = {
@@ -118,6 +99,7 @@ const SignUp = () => {
       birthday,
       phoneNumber,
       gender,
+      sido,
     };
   
     try {
@@ -130,7 +112,7 @@ const SignUp = () => {
         const result = await registerUser(userData);
         if (result === 'SUCCESS') {
           setIsSubmitSuccess(true);
-          openModal();
+          
         } else {
           setIsSubmitSuccess(false);
           Swal.fire({
@@ -282,6 +264,35 @@ const SignUp = () => {
             </select>
           </div>
 
+          <div className="inputbox">
+        <br />
+        <label htmlFor="sido"></label>
+        <select
+          className="inputbox selectbox"
+          id="sido"
+          value={sido}
+          onChange={(event) => setSido(event.target.value)}
+        >
+          <option value="">시/도</option>
+          <option value="0">서울</option>
+          <option value="1">경기</option>
+          <option value="2">인천</option>
+          <option value="3">강원</option>
+          <option value="4">대구</option>
+          <option value="5">대전</option>
+          <option value="6">경남</option>
+          <option value="7">경북</option>
+          <option value="8">부산</option>
+          <option value="9">울산</option>
+          <option value="10">광주</option>
+          <option value="11">제주</option>
+          <option value="12">전남</option>
+          <option value="13">전북</option>
+          <option value="14">충남</option>
+          <option value="15">충북</option>
+        </select>
+      </div>
+
 
           <br />
           <button
@@ -289,7 +300,6 @@ const SignUp = () => {
             type="submit"
             onClick={(event) => {
               handleSubmit(event);
-              handleClick();
             }}
           >
             다음
@@ -302,65 +312,7 @@ const SignUp = () => {
           </div>
         </form>
 
-        {showModal && (
-          <div className="ball-modal">
-            <div className="ball-modal-content">
-              <div className="ball-modal-title">
-                <div>추가 정보 작성</div>
-              </div>
-
-              <div className="inputbox">
-                <br />
-                <label htmlFor="sido"></label>
-                <input
-                  type="text"
-                  id="sido"
-                  placeholder="시/도"
-                  value={sido}
-                  onChange={(event) => setSido(event.target.value)}
-                />
-              </div>
-
-              <div className="inputbox">
-                <br />
-                <label htmlFor="gugun"></label>
-                <input
-                  type="text"
-                  id="gugun"
-                  placeholder="구군"
-                  value={gugun}
-                  onChange={(event) => setGugun(event.target.value)}
-                />
-              </div>
-
-              <br />
-
-              <div className="modal-btns">
-                <button
-                  className="modal-no-btn"
-                  type="button"
-                  onClick={() => {
-                    closeModal();
-                  }}
-                >
-                  취소
-                </button>
-
-              <button
-                className="modal-yes-btn"
-                type="button"
-                onClick={(event) => {
-                  handleFinalSubmit(event);
-                  closeModal();
-                }}
-              >
-                확인
-              </button>
-
-              </div>
-            </div>
-          </div>
-        )}
+       
       </div>
     </div>
   );

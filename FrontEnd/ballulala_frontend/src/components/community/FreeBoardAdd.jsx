@@ -1,30 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './FreeBoardAdd.css';
 import TopNavbar from '../top_navbar/TopNavbar';
+import { tokenState } from '../../atoms/token';
+import { useRecoilValue } from "recoil";
 
 function FreeBoardAdd() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  // const [userId, setUserId] = useState('');
+  // const { boardID } = useParams();
+  const navigate = useNavigate();
+
+  const token = useRecoilValue(tokenState);
+
+  useEffect(() => {
+    const fetchBoards = async () => {
+        try {
+            // 요청 시 headers에 토큰 추가하기
+            console.log(token);
+            console.log('토큰')
+            const response = await axios.post('https://i9d110.p.ssafy.io:8081/freeboard/add', {
+              headers: {'Authorization': `Bearer ${token}`}
+            });
+            
+           console.log("Response data:", response.data);
+          //  setBoards(response.data.freeBoardList)
+       } catch (error) {
+           console.error('Failed to fetch boards:', error);
+       }
+   };
+
+   fetchBoards();
+
+}, [token]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const postData = {
-      userId: 1, // 아직 구현 X. 임시로 1로 작성
+      // userId: token,
       title: title,
       content: content
     };
 
     try {
-      const response = await axios.post('https://i9d110.p.ssafy.io:8081/freeboard/add', postData);
-      console.log(response.data);
-      // 성공 시 리다이렉트, 상태 업데이트 등 필요한 작업 수행
-      // 디테일 페이지로 디라이렉트 작성 필요
+      const response = await axios.post('https://i9d110.p.ssafy.io:8081/freeboard/add', postData, {
+  headers: { Authorization: `Bearer ${token}` },
+});
+
+      console.log(response); // 전체 응답 객체를 출력합니다.
+      const newBoardID = response.data.boardID + 1
+      navigate(`/freeboard/${newBoardID}`);
+      navigate(`/freeboard`);
     } catch (error) {
       console.error('작성 에러:', error);
       // 에러 처리
     }
+    
   };
 
   return (

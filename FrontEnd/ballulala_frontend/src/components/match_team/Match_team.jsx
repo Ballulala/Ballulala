@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TopNavbar from "../top_navbar/TopNavbar";
 import Carousel from "./Team_Carousel";
 import { dummyData } from "./dummyData";
-import DateBar from "../date_bar/Date_Bar.jsx";
+import DateBar from "../date_bar/Team_Date_Bar.jsx";
 import TeamMatchingModal from "./Match_team_modal";
 import MatchList from "./Teammatch_list";
 import "./Match_team.css";
@@ -13,6 +13,20 @@ function TeamMatching() {
   const [registeredMatches, setRegisteredMatches] = useState([]);
 
   const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
+  const fetchMatchesByDate = async (selectedDate) => {
+    const formattedDate = selectedDate.toISOString().split("T")[0];
+    try {
+      const response = await fetch(
+        `https://i9d110.p.ssafy.io:8081/matches/listLess?matchDate=${formattedDate}`
+      );
+      const data = await response.json();
+      if (data.message === "success") {
+        setRegisteredMatches(data.matchList);
+      }
+    } catch (error) {
+      console.error("Error fetching matches:", error);
+    }
+  };
 
   useEffect(() => {
     setTeams(dummyData);
@@ -39,7 +53,7 @@ function TeamMatching() {
           onRegister={handleMatchRegistration}
         />
       </div>
-      <DateBar />
+      <DateBar onDateSelect={fetchMatchesByDate} />
       <MatchList matches={registeredMatches} />
     </div>
   );

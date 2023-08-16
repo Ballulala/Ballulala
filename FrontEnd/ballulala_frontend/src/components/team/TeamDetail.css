@@ -13,10 +13,15 @@
   }
 
   .team-logo-img {
-    width: 40%;
+    width: 100%;
     height: auto;
     margin: 15px;
   }
+
+  .team-detail img {
+    width: 10%;
+  }
+
 
   .team-name {
     font-size: 25px;

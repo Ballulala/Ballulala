@@ -110,7 +110,7 @@ function TeamSettingJoinList() {
               src={"/empty_img_circle.png"}
               alt="Logo"
             /> */}
-            <img className="team-logo-img" src={team.logo} alt={`${team.name} 로고`} />
+            <img className="team-set-logo-img" src={team.logo} alt={`${team.name} 로고`} />
 
             <div className="team-name">{team.name}</div>
             <button className="team-edit-btn team-join-btn" onClick={openEditModal}>
@@ -130,7 +130,7 @@ function TeamSettingJoinList() {
             </div>
 
         <div className="member-now">
-            <img src={"/icon_member.png"} alt="img" />
+            <img src={"/icon_member.png"} alt="img" className='set-icon'/>
             <Link to={`/teamsetting/${teamId}`} className='setting-link'>
               멤버
             </Link>

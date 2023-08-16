@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './FreeBoard.css';
 import TopNavbar from '../top_navbar/TopNavbar';
 import axios from 'axios';
 
 function FreeBoard() {
     const [boards, setBoards] = useState([]);
+    const navigate = useNavigate();
 
-    const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
+    const handleClick = () => {
+      navigate('/freeboard/add');
+    };
+
+    const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_7.jpg";
 
     useEffect(() => {
         const fetchBoards = async () => {
@@ -69,16 +74,36 @@ function FreeBoard() {
     </div>
     </div>
 
+    <div className="board-container">
+      <button className='board-add-btn' onClick={handleClick}>새 글 작성하기</button>
+    </div>
+
     <div className='board-lists'>
-        <Link to="/freeboarddetail">디테일</Link>
-        <Link to="/freeboard/add">작성</Link>
 
         {boards.map((board) => (
-        <Link key={board.id} to={`/freeboard/${board.id}`} className="board-item">
-            {board.title}
-            {/* {board.id} */}
-        </Link>
-    ))}
+          <Link
+  key={board.id}
+  to={{
+    pathname: `/freeboard/${board.id}`,
+    state: {
+      createTime: board.createTime,
+      nickname: board.nickname,
+    },
+  }}
+  className="board-item"
+>
+  <div className='free-board-title'>
+  {board.title}
+  </div>
+  <div>
+  {board.createTime.slice(0, 10)}　·　
+  {board.nickname}
+  </div>
+</Link>
+
+))}
+
+
     </div>
 
     </div>

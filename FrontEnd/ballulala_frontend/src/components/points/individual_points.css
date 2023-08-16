@@ -1,0 +1,17 @@
+.point-store-container {
+  padding: 20px;
+  text-align: center;
+ 
+}
+
+.point-store-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 200px;
+}
+
+.card {
+  width: calc(25% - 20px);  
+  margin: 10px;
+}

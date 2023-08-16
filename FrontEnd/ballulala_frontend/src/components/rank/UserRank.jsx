@@ -5,7 +5,7 @@ import TopNavbar from '../top_navbar/TopNavbar';
 function UserRank() {
 const [player, setPlayer] = useState('');
 
-const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
+const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_8.jpg";
 
   return (
     <div className='team-page'>
@@ -53,12 +53,26 @@ const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
       {/* 여기에 전체 팀 리스트를 추가하세요. */}
       <div className='list'>
         <hr />
-      <div className="team-list">
-        <ul>
-          <li>유저 1</li>
-          <li>유저 2</li>
-          <li>유저 3</li>
-        </ul>
+ <div>
+    {/* <ul>
+      {teams.map((team, index) => (
+        <li key={team.team_id}>
+          <div className='team-rank-one'>
+            <span>{index + 1}</span>
+            <Link to={`/teamdetail/${team.team_id}`}>
+              <img src={team.logo} alt={team.name + " 로고"} />
+            </Link>
+            <Link to={`/teamdetail/${team.team_id}`}>
+              {team.name}
+            </Link>
+          </div>
+          <div className='team-rank-two'>
+            <div>{team.win_count+team.lose_count}</div>
+            <div>{(team.win_count / (team.win_count + team.lose_count) * 100).toFixed(2)}%</div>
+          </div>
+        </li>
+      ))}
+    </ul> */}
         </div>
       </div>
     </div>

@@ -6,8 +6,13 @@ import "./Date_Bar.css";
 
 const weekDays = ["일", "월", "화", "수", "목", "금", "토"];
 
-const DateBar = () => {
+const DateBar = ({ onDateSelect }) => {
   const currentDate = new Date();
+  const handleDateClick = (selectedDate) => {
+    if (onDateSelect) {
+      onDateSelect(selectedDate);
+    }
+  };
 
   const slideArray = [];
   for (let i = 0; i < 14; i++) {
@@ -20,7 +25,7 @@ const DateBar = () => {
     }`;
 
     slideArray.push(
-      <SwiperSlide key={i}>
+      <SwiperSlide key={i} onClick={() => handleDateClick(date)}>
         <div id="datewrap" className={dateWrapClass}>
           <p>{formattedDate}</p>
           <span>{formattedDay}</span>

@@ -9,10 +9,10 @@ function UserPoints({ points }) {
     <div className="user-points">
       <p>Points: {points}</p>
       <button className="button" onClick={() => navigate("/pointshop")}>
-        Go to Points Store
+        포인트 상점 가기
       </button>
-      <button className="button" onClick={() => alert("Going to Inventory!")}>
-        Go to Inventory
+      <button className="button" onClick={() => navigate("/inventory")}>
+        인벤토리 가기
       </button>
     </div>
   );

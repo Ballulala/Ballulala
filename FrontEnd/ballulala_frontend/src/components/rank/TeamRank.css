@@ -28,6 +28,14 @@ color: rgb(138, 138, 138);
   width: 20vh;
 }
 
+.rank-button:hover {
+  background-color: rgb(255, 145, 148, 0.2);
+}
+
+.rank-logo {
+  width: 30px;
+}
+
 .region-container {
 position: relative;
 }
@@ -53,7 +61,7 @@ margin-bottom: 6px;
 }
 
 .region-list button:hover {
-background-color: rgb(49, 97, 121);
+background-color: rgb(255, 145, 148);
 color: white;
 }
 
@@ -101,4 +109,43 @@ margin-top:2%;
   0 0 10px #87ceeb,
   0 0 20px #87ceeb,
   0 0 30px #87ceeb;
+}
+
+.list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list li {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.team-rank-one span {
+  margin-right: 20px;
+}
+
+.team-rank-one img,
+.team-rank-one a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+/* 수정 */
+.team-rank-one {
+  display: flex;
+  align-items: center; /* 추가: 요소들을 왼쪽으로 정렬 */
+  margin-bottom: 20px;
+}
+
+.team-rank-two {
+  display: flex;
+  justify-content: flex-end; /* 수정: 요소들을 오른쪽으로 정렬 */
+}
+
+.team-rank-two div {
+  margin-left: 40px;
+  margin-right: 15px;
 }

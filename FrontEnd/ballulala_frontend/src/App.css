@@ -104,28 +104,30 @@
 
 .nav-items {
   justify-content: flex-end;
-  top: 100px; /* 로고 아래로 조금 내림. 필요에 따라 조절하세요. */
-  right: 20px; /* 오른쪽 끝에 위치하도록 설정 */
+  top: 100px; 
+  right: 20px; 
   display: flex;
-  flex-direction: row; /* 버튼이 수평으로 나열되도록 설정 */
-  gap: 20px; /* 버튼 사이의 간격 */
+  flex-direction: row; 
+  gap: 20px; 
 }
 
-.nav-items button {
-  background: none; /* 배경 없음 */
-  border: none; /* 테두리 없음 */
-  color: gray; /* 글자색 회색 */
-  cursor: pointer; /* 마우스 포인터를 클릭 가능한 상태로 변경 */
+.nav-items button, .nav-items a {
+  background: none; 
+  border: none; 
+  color: gray; 
+  cursor: pointer; 
   text-decoration: none;
   margin-top: 10px;
   margin-left: 15px;
+  padding: 5px 15px; 
+  display: inline-block; 
+  font-size: 16px;
 }
 
-/* 마우스 오버 시 상태 변경 */
-.nav-items button:hover {
-  color: darkgray; /* 글자색 어두운 회색 */
-}
 
+.nav-items button:hover, .nav-items a:hover {
+  color: darkgray; 
+}
 .nav-seul-btns {
   display: flex;
   justify-content: flex-end;
@@ -139,3 +141,4 @@
 .home-text {
   font-family: five;
 }
+

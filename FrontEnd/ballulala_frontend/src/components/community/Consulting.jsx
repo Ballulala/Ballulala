@@ -5,7 +5,7 @@ import TopNavbar from '../top_navbar/TopNavbar';
 function Consulting() {
   const [board, setBoard] = useState('');
 
-  const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_2.jpg";
+  const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_4.png";
 
   return (
     <div className='board-page'>
