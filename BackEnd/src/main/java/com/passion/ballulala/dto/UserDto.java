@@ -1,5 +1,7 @@
 package com.passion.ballulala.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.passion.ballulala.entity.User;
 import com.passion.ballulala.repo.TeamRepo;
 import lombok.*;
@@ -7,7 +9,9 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Getter @Setter @ToString @Data @Builder
+@AllArgsConstructor @NoArgsConstructor
 public class UserDto {
+
     private long id;
     private byte status;
     private byte role;
