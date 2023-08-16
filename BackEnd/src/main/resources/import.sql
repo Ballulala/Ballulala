@@ -65,12 +65,16 @@ insert into stadium(description,name,phone_number,region)values("전북스다디
 insert into stadium(description,name,phone_number,region)values("충남스다디움","충남스다디움", "haha", 14);
 insert into stadium(description,name,phone_number,region)values("충북스다디움","충북스다디움", "haha", 15);
 
--- 2023-08-08
-insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(2,0,"2023-08-08",1,1,2,3);
-insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(4,0,"2023-08-08",1,1,2,3);
-insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(6,0,"2023-08-08",1,1,2,3);
+-- 2023-08-20
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(2,0,"2023-08-20",1,1,2,3);
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(4,0,"2023-08-20",1,1,2,3);
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(6,0,"2023-08-20",1,1,2,3);
 
--- 2023-08-09
-insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(1,0,"2023-08-09",1,3,4,5);
-insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(3,0,"2023-08-09",1,1,2,3);
-insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(5,0,"2023-08-09",1,2,3,4);
+-- 2023-08-21
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(6,0,"2023-08-21",1,1,2,3);
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(6,0,"2023-08-21",1,1,2,3);
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(6,0,"2023-08-21",1,1,2,3);
+
+-- 2023-08-22
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(1,0,"2023-08-22",1,3,4,5);
+insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(3,0,"2023-08-22",1,1,2,3);
