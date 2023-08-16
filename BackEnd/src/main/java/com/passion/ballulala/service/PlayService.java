@@ -108,7 +108,7 @@ public class PlayService {
             up=calculateNewRatings(team11.getMmr(),team12.getMmr(),0);
         }
         else{
-            up=calculateNewRatings(team11.getMmr(),team12.getMmr(),0);
+            up=calculateNewRatings(team11.getMmr(),team12.getMmr(),0.5);
         }
         t1+=up[0];
         t2+=up[1];
@@ -124,7 +124,7 @@ public class PlayService {
             up=calculateNewRatings(team21.getMmr(),team22.getMmr(),0);
         }
         else{
-            up=calculateNewRatings(team21.getMmr(),team22.getMmr(),0);
+            up=calculateNewRatings(team21.getMmr(),team22.getMmr(),0.5);
         }
         t1+=up[0];
         t3+=up[1];
@@ -140,7 +140,7 @@ public class PlayService {
             up=calculateNewRatings(team31.getMmr(),team32.getMmr(),0);
         }
         else{
-            up=calculateNewRatings(team31.getMmr(),team32.getMmr(),0);
+            up=calculateNewRatings(team31.getMmr(),team32.getMmr(),0.5);
         }
         t2+=up[0];
         t3+=up[1];
@@ -156,7 +156,7 @@ public class PlayService {
             up=calculateNewRatings(team41.getMmr(),team42.getMmr(),0);
         }
         else{
-            up=calculateNewRatings(team41.getMmr(),team42.getMmr(),0);
+            up=calculateNewRatings(team41.getMmr(),team42.getMmr(),0.5);
         }
         t1+=up[0];
         t2+=up[1];
@@ -172,7 +172,7 @@ public class PlayService {
             up=calculateNewRatings(team51.getMmr(),team52.getMmr(),0);
         }
         else{
-            up=calculateNewRatings(team51.getMmr(),team52.getMmr(),0);
+            up=calculateNewRatings(team51.getMmr(),team52.getMmr(),0.5);
         }
         t1+=up[0];
         t3+=up[1];
@@ -188,7 +188,7 @@ public class PlayService {
             up=calculateNewRatings(team61.getMmr(),team62.getMmr(),0);
         }
         else{
-            up=calculateNewRatings(team61.getMmr(),team62.getMmr(),0);
+            up=calculateNewRatings(team61.getMmr(),team62.getMmr(),0.5);
         }
         t2+=up[0];
         t3+=up[1];
