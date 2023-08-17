@@ -16,8 +16,18 @@ insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` ,
 insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,2,0,0,now() - INTERVAL 100 YEAR,"manager@naver.com",5,"매니저","매니저","1234","010-2345-6789", "haha6");
 insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,2,0,0,now() - INTERVAL 100 YEAR,"doyun30@naver.com",5,"매니저","매니저","1234","010-2345-6789", "haha6");
 
+-- 테스트 계정 10번
+insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,100000,2,0,0,now() - INTERVAL 100 YEAR,"test@naver.com",5,"test계정","test계정","1234","010-2345-6789", "haha6");
+
+
 -- 1번 매니저, 이메일 manager1@naver.com, 비번 1234
 insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,10000,2,0,0,now() - INTERVAL 2000 YEAR,"manager1@naver.com",5,"오매니저","매니저입니다","1234","010-1234-5678", "haha7");
+
+-- test팀 1,2,3 시연때 mmr 변동을 보여 줄 예정
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,2200,0,0,1,"예시 팀입니다.", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END,"TEST ONE", 0);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,2100,0,0,1,"예시 팀 입니다.", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END,"TEST TWO", 0);
+insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,2000,0,0,1,"예시 팀 입니다.", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END,"TEST THREE", 0);
+
 
 -- 1번 팀, 팀 이름 haha
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,FLOOR(800 + RAND() * (1200 - 800 + 1)),0,0,1,"예시 팀입니다.", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END,"첫팀", 0);
@@ -117,6 +127,12 @@ insert into team(lose_count, mmr, point, win_count ,winning_streak , description
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,FLOOR(800 + RAND() * (1200 - 800 + 1)),0,0,1,"예시 팀 입니다.", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END,"금쪽이fs", 15);
 
 -- 팀, 유저 관계
+
+-- 테스트 계정은 1~3번 팀에 가입 됨
+insert into team_user(team_id, user_id, state) values(1,10,1);
+insert into team_user(team_id, user_id, state) values(2,10,1);
+insert into team_user(team_id, user_id, state) values(3,10,1);
+
 -- 1번은 1~3번 팀에 가입
 -- insert into team_user(team_id, user_id, state) values(팀id ,유저id, 유저state);
 insert into team_user(team_id, user_id, state) values(1,1,1);
@@ -142,23 +158,102 @@ insert into item(cost, img, name) values(500, "spain", "spain");
 insert into user_item(buy_date, deadline, item_id, user_id) values(now(), now()+ INTERVAL 1 YEAR, 1, 1);
 insert into user_item(buy_date, deadline, item_id, user_id) values(now(), now()+ INTERVAL 1 YEAR, 5, 1);
 
--- 1번 구장, 이름 haha1
-insert into stadium(description,name,phone_number,region)values("서울스다디움","서울스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 0);
-insert into stadium(description,name,phone_number,region)values("경기스다디움","경기스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 1);
-insert into stadium(description,name,phone_number,region)values("인천스다디움","인천스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 2);
-insert into stadium(description,name,phone_number,region)values("강원스다디움","강원스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 3);
-insert into stadium(description,name,phone_number,region)values("대구스다디움","대구스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 4);
-insert into stadium(description,name,phone_number,region)values("대전스다디움","대전스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 5);
-insert into stadium(description,name,phone_number,region)values("경남스다디움","경남스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 6);
-insert into stadium(description,name,phone_number,region)values("경북스다디움","경북스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 7);
-insert into stadium(description,name,phone_number,region)values("부산스다디움","부산스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 8);
-insert into stadium(description,name,phone_number,region)values("울산스다디움","울산스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 9);
-insert into stadium(description,name,phone_number,region)values("광주스다디움","광주스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 10);
-insert into stadium(description,name,phone_number,region)values("제주스다디움","제주스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 11);
-insert into stadium(description,name,phone_number,region)values("전남스다디움","전남스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 12);
-insert into stadium(description,name,phone_number,region)values("전북스다디움","전북스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 13);
-insert into stadium(description,name,phone_number,region)values("충남스다디움","충남스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 14);
-insert into stadium(description,name,phone_number,region)values("충북스다디움","충북스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 15);
+-- 구장부분
+insert into stadium(description,name,phone_number,region)values("서울스다디움","서울스다디움","010-XXXX-XXXX", 0);
+insert into stadium(description,name,phone_number,region)values("서울 은평 롯데몰","서울 은평 롯데몰","010-XXXX-XXXX", 0);
+insert into stadium(description,name,phone_number,region)values("서울 하라 풋살장","서울 하라 풋살장","010-XXXX-XXXX", 0);
+insert into stadium(description,name,phone_number,region)values("서울 도봉 루다 풋살장","서울 도봉 루다 풋살장","010-XXXX-XXXX", 0);
+insert into stadium(description,name,phone_number,region)values("HM풋살파크","HM풋살파크","010-XXXX-XXXX", 0);
+
+insert into stadium(description,name,phone_number,region)values("경기스다디움","경기스다디움","010-XXXX-XXXX", 1);
+insert into stadium(description,name,phone_number,region)values("팀업캠퍼스","팀업캠퍼스","010-XXXX-XXXX", 1);
+insert into stadium(description,name,phone_number,region)values("KGL 풋살파크","KGL 풋살파크","010-XXXX-XXXX", 1);
+insert into stadium(description,name,phone_number,region)values("푸마타운 풋살장","푸마타운 풋살장","010-XXXX-XXXX", 1);
+insert into stadium(description,name,phone_number,region)values("SKY풋살파크","SKY풋살파크","010-XXXX-XXXX", 1);
+
+insert into stadium(description,name,phone_number,region)values("인천스다디움","인천스다디움","010-XXXX-XXXX", 2);
+insert into stadium(description,name,phone_number,region)values("부평GOAT풋살","부평GOAT풋살","010-XXXX-XXXX", 2);
+insert into stadium(description,name,phone_number,region)values("현우풋살","현우풋살","010-XXXX-XXXX", 2);
+insert into stadium(description,name,phone_number,region)values("동춘 풋살파크","동춘 풋살파크","010-XXXX-XXXX", 2);
+insert into stadium(description,name,phone_number,region)values("인천 영종 풋살파크","인천 영종 풋살파크","010-XXXX-XXXX", 2);
+
+insert into stadium(description,name,phone_number,region)values("강원스다디움","강원스다디움","010-XXXX-XXXX", 3);
+insert into stadium(description,name,phone_number,region)values("강원랜드파크","강원스다강원랜드파크디움","010-XXXX-XXXX", 3);
+insert into stadium(description,name,phone_number,region)values("강원다니엘파크","강원다니엘파크","010-XXXX-XXXX", 3);
+insert into stadium(description,name,phone_number,region)values("강원기랜드파크","강원기랜드파크","010-XXXX-XXXX", 3);
+insert into stadium(description,name,phone_number,region)values("강원숭이나무 풋살클럽","강원숭이나무 풋살클럽","010-XXXX-XXXX", 3);
+
+insert into stadium(description,name,phone_number,region)values("대구스다디움","대구스다디움","010-XXXX-XXXX", 4);
+insert into stadium(description,name,phone_number,region)values("대구FC 풋살파크","대구FC 풋살파크","010-XXXX-XXXX", 4);
+insert into stadium(description,name,phone_number,region)values("대구 LFC 파크","대구 LFC 파크","010-XXXX-XXXX", 4);
+insert into stadium(description,name,phone_number,region)values("대구 제이풋살파크","대구 제이풋살파크","010-XXXX-XXXX", 4);
+
+insert into stadium(description,name,phone_number,region)values("대전스다디움","대전스다디움","010-XXXX-XXXX", 5);
+insert into stadium(description,name,phone_number,region)values("대전 유성풋살","대전 유성풋살","010-XXXX-XXXX", 5);
+insert into stadium(description,name,phone_number,region)values("대전FC 유소년파크","대전FC 유소년파크","010-XXXX-XXXX", 5);
+insert into stadium(description,name,phone_number,region)values("대전 하성파크","대전 하성파크","010-XXXX-XXXX", 5);
+
+insert into stadium(description,name,phone_number,region)values("경남 스타일파크","경남 스타일파크","010-XXXX-XXXX", 6);
+insert into stadium(description,name,phone_number,region)values("경남스다디움","경남스다디움","010-XXXX-XXXX", 6);
+insert into stadium(description,name,phone_number,region)values("경남 인재파크","경남 인재파크","010-XXXX-XXXX", 6);
+insert into stadium(description,name,phone_number,region)values("경남스다디리우움","경남스다디리우움","010-XXXX-XXXX", 6);
+insert into stadium(description,name,phone_number,region)values("경남 다리우스파크","경남 다리우스파크","010-XXXX-XXXX", 6);
+
+insert into stadium(description,name,phone_number,region)values("경북 케틀파크","경북 케틀파크","010-XXXX-XXXX", 7);
+insert into stadium(description,name,phone_number,region)values("경북스다디움","경북스다디움","010-XXXX-XXXX", 7);
+insert into stadium(description,name,phone_number,region)values("경북 궁파크","경북 궁파크","010-XXXX-XXXX", 7);
+insert into stadium(description,name,phone_number,region)values("경북 하렌다파크","경북 하렌다파크","010-XXXX-XXXX", 7);
+insert into stadium(description,name,phone_number,region)values("경북 잭로열풋살","경북 잭로열풋살","010-XXXX-XXXX", 7);
+
+insert into stadium(description,name,phone_number,region)values("부산스다디움","부산스다디움","010-XXXX-XXXX", 8);
+insert into stadium(description,name,phone_number,region)values("부산 양치기풋살","부산 양치기풋살","010-XXXX-XXXX", 8);
+insert into stadium(description,name,phone_number,region)values("부산 스까무풋살","부산 스까무풋살","010-XXXX-XXXX", 8);
+insert into stadium(description,name,phone_number,region)values("부산 무보까국밥파크","부산 무보까국밥파크","010-XXXX-XXXX", 8);
+insert into stadium(description,name,phone_number,region)values("부산 프로픽 풋볼","부산 프로픽 풋볼","010-XXXX-XXXX", 8);
+
+insert into stadium(description,name,phone_number,region)values("울산스다디움","울산스다디움","010-XXXX-XXXX", 9);
+insert into stadium(description,name,phone_number,region)values("울산 HN풋살파크","울산 HN풋살파크","010-XXXX-XXXX", 9);
+insert into stadium(description,name,phone_number,region)values("울산 지방검찰청풋살장","울산 지방검찰청풋살장","010-XXXX-XXXX", 9);
+insert into stadium(description,name,phone_number,region)values("울산 대공원풋살장","울산 대공원풋살장","010-XXXX-XXXX", 9);
+insert into stadium(description,name,phone_number,region)values("울산 대학교풋살구장","울산 대학교풋살구장","010-XXXX-XXXX", 9);
+
+insert into stadium(description,name,phone_number,region)values("광주스다디움","광주스다디움","010-XXXX-XXXX", 10);
+insert into stadium(description,name,phone_number,region)values("광주 써매기리파크","광주 써매기리파크","010-XXXX-XXXX", 10);
+insert into stadium(description,name,phone_number,region)values("광주 신화스포디움","광주 신화스포디움","010-XXXX-XXXX", 10);
+insert into stadium(description,name,phone_number,region)values("광주 챔피언스 풋살","광주 챔피언스 풋살","010-XXXX-XXXX", 10);
+insert into stadium(description,name,phone_number,region)values("광주 히딩크드림필드","광주 히딩크드림필드","010-XXXX-XXXX", 10);
+
+insert into stadium(description,name,phone_number,region)values("제주 감귤파크","제주 감귤파크","010-XXXX-XXXX", 11);
+insert into stadium(description,name,phone_number,region)values("제주스다디움","제주스다디움","010-XXXX-XXXX", 11);
+insert into stadium(description,name,phone_number,region)values("제주 한라산파크","제주 한라산파크","010-XXXX-XXXX", 11);
+insert into stadium(description,name,phone_number,region)values("제주 백록담풋살","제주 백록담풋살","010-XXXX-XXXX", 11);
+insert into stadium(description,name,phone_number,region)values("제주 한땀한땀파크","제주 한땀한땀파크","010-XXXX-XXXX", 11);
+
+insert into stadium(description,name,phone_number,region)values("전남스다디움","전남스다디움","010-XXXX-XXXX", 12);
+insert into stadium(description,name,phone_number,region)values("전남 드래곤즈 연습장","전남 드래곤즈 연습장","010-XXXX-XXXX", 12);
+insert into stadium(description,name,phone_number,region)values("전남 도립대풋살장","전남 도립대풋살장","010-XXXX-XXXX", 12);
+insert into stadium(description,name,phone_number,region)values("전남 비빔풋살","전남 비빔풋살","010-XXXX-XXXX", 12);
+insert into stadium(description,name,phone_number,region)values("전남 여만풋살","전남 여만풋살","010-XXXX-XXXX", 12);
+
+insert into stadium(description,name,phone_number,region)values("전북 구자랑장","전북 구자랑장","010-XXXX-XXXX", 13);
+insert into stadium(description,name,phone_number,region)values("전북스다디움","전북스다디움","010-XXXX-XXXX", 13);
+insert into stadium(description,name,phone_number,region)values("전북 젤나가풋살","전북 젤나가풋살","010-XXXX-XXXX", 13);
+insert into stadium(description,name,phone_number,region)values("전북 두잇 풋살파크","전북 두잇 풋살파크","010-XXXX-XXXX", 13);
+insert into stadium(description,name,phone_number,region)values("전북 둠치기파크","전북 둠치기파크","010-XXXX-XXXX", 13);
+insert into stadium(description,name,phone_number,region)values("전북 윈스턴풋살","전북 윈스턴풋살","010-XXXX-XXXX", 13);
+
+insert into stadium(description,name,phone_number,region)values("충남 아트풋살","충남 아트풋살","010-XXXX-XXXX", 14);
+insert into stadium(description,name,phone_number,region)values("충남 메가마트 풋살파크","충남 메가마트 풋살파크","010-XXXX-XXXX", 14);
+insert into stadium(description,name,phone_number,region)values("충남 말죽거리 구장","충남 말죽거리 구장","010-XXXX-XXXX", 14);
+insert into stadium(description,name,phone_number,region)values("충남 매치업 풋살장","충남 매치업 풋살장","010-XXXX-XXXX", 14);
+insert into stadium(description,name,phone_number,region)values("충남스다디움","충남스다디움","010-XXXX-XXXX", 14);
+
+insert into stadium(description,name,phone_number,region)values("충북스다디움","충북스다디움","010-XXXX-XXXX", 15);
+insert into stadium(description,name,phone_number,region)values("충북 유나이티드풋살센터","충북 유나이티드풋살센터","010-XXXX-XXXX", 15);
+insert into stadium(description,name,phone_number,region)values("충북 빌드업 스포츠 풋살장","충북 빌드업 스포츠 풋살장","010-XXXX-XXXX", 15);
+insert into stadium(description,name,phone_number,region)values("충북 NC백화점 스카이필드","충북 NC백화점 스카이필드","010-XXXX-XXXX", 15);
+insert into stadium(description,name,phone_number,region)values("충북 조윤 풋살장","충북 조윤 풋살장","010-XXXX-XXXX", 15);
+insert into stadium(description,name,phone_number,region)values("충북 장성 풋살장","충북 장성 풋살장","010-XXXX-XXXX", 15);
 
 -- 2023-08-20
 insert into matches(match_time, manager_id, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(2,7,0,"2023-08-20",1,1,2,3);

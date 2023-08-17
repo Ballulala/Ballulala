@@ -22,7 +22,7 @@ public class Stadium {
     @Column(nullable = false, columnDefinition = "tinyint")
     private Byte region;
 
-    @Column(nullable = false, columnDefinition = "varchar(10)")
+    @Column(nullable = false, columnDefinition = "varchar(50)")
     private String name;
 
     @Column(nullable = false, columnDefinition = "longtext")
