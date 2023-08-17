@@ -81,6 +81,17 @@ public class TeamService {
         }
     }
 
+    public List<Team> getCarousel(Long teamId){
+        try{
+            Team myTeam = teamRepo.findById(teamId).orElseThrow();
+            List<Team> list = teamRepo.getCaurosel(myTeam);
+            return list;
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
     public List<TeamMatchListDto> getTeamById(String accessToken){
         try{
             Long userNo = jwtTokenProvider.decodeToken(accessToken);

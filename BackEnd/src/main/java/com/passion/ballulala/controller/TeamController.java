@@ -33,13 +33,11 @@ public class TeamController {
     public ResponseEntity<Map<String, Object>> add(@RequestBody TeamAddDto teamAddDto, HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
-//        TeamAddDto t = new TeamAddDto(teamAddDto.getName(),teamAddDto.getSido(),teamAddDto.getGugun(),teamAddDto.getDescription());
         try {
             teamService.saveTeam(teamAddDto, request.getHeader("Authorization"));
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;
         } catch (Exception e) {
-//            logger.error("질문 생성 실패: {}", e.getMessage());
             resultMap.put("message", "fail: " + e.getClass().getSimpleName());
             status = HttpStatus.INTERNAL_SERVER_ERROR;
         }
@@ -84,11 +82,31 @@ public class TeamController {
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
 
+    @PostMapping("/carousel/{teamId}")
+    public ResponseEntity<Map<String,Object>> carousel(@PathVariable (name = "teamId") Long teamId){
+        Map<String ,Object> resultMap = new HashMap<>();
+        HttpStatus status = null;
+
+        try {
+            List<TeamListDto> teamList = teamService.getCarousel(teamId).stream().map((m) -> {
+                return TeamListDto.fromEntity(m);
+            }).toList();
+            resultMap.put("carousel", teamList);
+            resultMap.put("message", "success");
+            status = HttpStatus.ACCEPTED;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e.getClass().getSimpleName());
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
     @GetMapping("/listGugun")
     public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) byte gugun) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
-        System.out.println("1");
         try {
             List<TeamListDto> teamList = teamService.getTeamByGugun(gugun).stream().map((m) -> {
                 return TeamListDto.fromEntity(m);
