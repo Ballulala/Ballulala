@@ -34,9 +34,9 @@ public class SendEmailService {
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
-        message.setSubject("안녕하세요. 유캉스 임시 비밀번호 안내 이메일입니다.\n");
-        message.setText(setEmailHtmlWithButton(newPw, "http://localhost:3000/", "유캉스 홈페이지로 이동하기"));
-        message.setFrom("Youcance");
+        message.setSubject("안녕하세요. 볼루랄라 임시 비밀번호 안내 이메일입니다.\n");
+        message.setText(setEmailHtmlWithButton(newPw, "http://localhost:3000/", "볼루랄라 홈페이지로 이동하기"));
+        message.setFrom("Ballulala");
         mailSender.send(message);
     }
 
