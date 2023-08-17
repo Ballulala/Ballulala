@@ -64,6 +64,7 @@ public class UserDto {
                 .gender(user.getGender())
                 .gugun(user.getGugun())
                 .mvpCount(user.getMvpCount())
+                .point(user.getPoint())
                 .manner(user.getManner())
                 .build();
     }
