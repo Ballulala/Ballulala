@@ -48,7 +48,9 @@ function FindPlayerDetail() {
         const response = await axios.get(`https://i9d110.p.ssafy.io:8081/mercenary/detail/${boardID}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
+        console.log(response)
         setFindPlayer(response.data.mercenary);
+        setAuthority(response.data.authority);
         console.log('받아온 게시글 데이터:', response.data.mercenary); // 받아온 데이터 확인
       } catch (error) {
         console.error('데이터 가져오기 에러:', error);
@@ -80,7 +82,7 @@ function FindPlayerDetail() {
     } catch (error) {
       console.error('게시글 삭제 에러:', error);
     }
-    handleClose();
+    // handleClose();
   };
 
   // useEffect(() => {
@@ -103,7 +105,7 @@ function FindPlayerDetail() {
 
       await axios.post('https://i9d110.p.ssafy.io:8081/mercenaryreply/add',  {          
         content: newComment,
-        board: boardID,
+        mercenary: boardID,
                 },
                 {          
         headers: { Authorization:`Bearer ${token}` }, // 헤더에 토큰 추가       
@@ -129,7 +131,10 @@ function FindPlayerDetail() {
     try {
       await axios.put(`https://i9d110.p.ssafy.io:8081/mercenaryreply/modify/${editingComment.id}`, {
         content: editedComment,
+      }, {
+        headers: { Authorization: `Bearer ${token}` },
       });
+      
 
       const response = await axios.get(`https://i9d110.p.ssafy.io:8081/mercenaryreply/list/${boardID}`);
       setComments(response.data.replyList);
@@ -142,7 +147,9 @@ function FindPlayerDetail() {
 
   async function handleDeleteComment(commentID) {
     try {
-      await axios.delete(`https://i9d110.p.ssafy.io:8081/mercenaryreply/delete/${commentID}`);
+      await axios.delete(`https://i9d110.p.ssafy.io:8081/mercenaryreply/delete/${commentID}`, {
+  headers: { Authorization: `Bearer ${token}` },
+});
 
       const response = await axios.get(`https://i9d110.p.ssafy.io:8081/mercenaryreply/list/${boardID}`);
       setComments(response.data.replyList);
@@ -158,40 +165,48 @@ function FindPlayerDetail() {
         <div className='board-detail'>
 
           <div className='board-title'>{findPlayer.title}</div>
+
           <div style={{ marginBottom: '10px' }}>{findPlayer.nickname}</div>
+          <div>{findPlayer.createTime.slice(0, 10)}</div>
           <hr />
 
-          <div className='detail-line-one'>
-
-          </div>
-          <hr />
           <div className='detail-line-two'>{findPlayer.content}</div>
 
           <div className='detail-line-three'>
-         
-          <div>
-      {authority === "작성자" && (
-          <div className='detail-btns'>
-            <Link
-              to={{
-                pathname: `/findplayer/modify/${boardID}`,
-                // state: {
-                //   createTime: mercenary.createTime,
-                //   nickname: mercenary.nickname,
-                //   },
-              }}
-            >
-              <button className='detail-btns-btn'>수정</button>
-            </Link>
-            <button className='detail-btns-btn' onClick={handleShow}>삭제
-            </button>
-            </div>
-      )}
-    </div>
+       <>  
+            <div>
+              </div>
 
+              <div>
+            {authority === "작성자" && (
+            <div className='detail-btns'>
+              <Link
+                to={{
+                  pathname: `/findplayer/modify/${boardID}`,
+                  // state: {
+                  //   createTime: mercenary.createTime,
+                  //   nickname: mercenary.nickname,
+                  //   },
+                }}
+              >
+                <button className='detail-btns-btn'>수정</button>
+              </Link>
+              <button className='detail-btns-btn' onClick={handleShow}>삭제
+              </button>
+              </div>
+        )}
+    </div>
+</>
             {
   showModal && (
-    <div className='ball-modal'>
+    <div className='ball-modal'
+    style={{
+      position: "fixed",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      zIndex: 1000,
+    }}>
       <div className='ball-modal-content'>
         <div>정말로 삭제하시겠습니까?</div>
 
@@ -247,15 +262,20 @@ function FindPlayerDetail() {
                     <span className="comment-content">{comment.content}</span>
                   </div>
                   <div className='comment-item-three'>
+
+                    {currentUser && comment.userId === currentUser.id && (
+                  <>
                     <button className="comment-edit-btn" onClick={() => handleEditComment(comment)}>
                       수정
                     </button>
                     <button className="comment-delete-btn" onClick={() => handleDeleteComment(comment.id)}>
                       삭제
                     </button>
-                  </div>
-                </div>
-              ))}
+                  </>
+      )}
+    </div>
+  </div>
+))}
             </div>
 
 

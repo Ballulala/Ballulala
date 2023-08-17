@@ -26,6 +26,8 @@ function Team() {
   const [showModal, setShowModal] = useState(false);
   const [showRegions, setShowRegions] = useState(false);
   const [showMmrs, setShowMmrs] = useState(false);
+  const [minMmr, setMinMmr] = useState(null);
+
 
   const { teamId } = useParams();
 
@@ -63,6 +65,15 @@ function Team() {
   const { filterByGugun, clearFilter } = useRegionFilter(teams, filteredTeams, setFilteredTeams);
 
   // 여기서 filteredTeams를 사용하여 필터링된 팀 목록을 표시합니다.
+
+  useEffect(() => {
+    if (minMmr) {
+      setFilteredTeams(teams.filter((team) => team.mmr >= minMmr));
+    } else {
+      setFilteredTeams(teams);
+    }
+  }, [teams, minMmr]);
+  
   
 
   const addTeam = async () => {
@@ -191,7 +202,9 @@ function Team() {
                 </div>
               )}
             </div>
-            <button className="radius-btn">멤버 모집중</button>
+
+            {/* <button className="radius-btn">멤버 모집중</button> */}
+
           <div className="region-container">
           <button 
             className="radius-btn"
@@ -200,35 +213,27 @@ function Team() {
             </button>
             {showMmrs && (
                 <div className="region-list">
-                  <button>10</button>
-                  <button>20</button>
+                  <button onClick={() => setMinMmr(null)}>전체 mmr</button>
+                  <button onClick={() => setMinMmr(1000)}>1000 ▲</button>
+                  <button onClick={() => setMinMmr(1100)}>1100 ▲</button>
+                  <button onClick={() => setMinMmr(1200)}>1200 ▲</button>
+
                   {/* 추가로 지역 버튼을 넣고 싶으시면 여기에 추가하시면 됩니다. */}
                 </div>
               )}
           </div>
+          
         </div>
         <div className="team-search-box">
-          <label htmlFor="email"></label>
-          <input
-            type="team"
-            id="team"
-            placeholder="팀 이름 검색"
-            // value={team}
-            // onChange={(event) => setTeam(event.target.value)}
-          />
+        <button className="new-team-btn" onClick={openModal}>
+            새로운 팀 만들기
+          </button>
         </div>
 
         
       </div>
 
-      
-      <div className='search-team-2'>
-        <div className="new-team-btn-container">
-          <button className="new-team-btn" onClick={openModal}>
-            새로운 팀 만들기
-          </button>
-        </div>
-      </div>
+
 
         {showModal && (
           <div className="ball-modal">
@@ -239,14 +244,14 @@ function Team() {
               </div>
 
               <div>
-                <label htmlFor="image">로고</label>
+                {/* <label htmlFor="image">로고</label>
                 <br/>
                 <input
                   type="file"
                   id="image"
                   onChange={(event) => setImage(event.target.files[0])}
                 />
-                <br />
+                <br /> */}
 
                 <br/>
                 <div className="inputbox">
@@ -301,6 +306,7 @@ function Team() {
                   className='modal-input'
                 />
                 </div>
+                <br/>
               </div>
 
               <div className="modal-btns" style={{ marginTop: '10%' }}>
@@ -339,13 +345,13 @@ function Team() {
     <li key={team.id} className="team-item">
             <div className='team-item-one'>
               <Link to={`/teamdetail/${team.id}`}>
-                <img src={team.logo} alt={team.id + " 로고"} />
+                <img src={`/images/${team.logo}.png`} alt={team.id + " 로고"} />
                 </Link>
             </div>
             <div className='team-item-two'>
               {/* <Link to={`/teamdetail/${team.name}`}> */}
               <Link to={`/teamdetail/${team.id}`}>
-                {team.name}{team.id}
+                {team.name}
               </Link>
               <div>{getRegionName(team.gugun)}</div>
             </div>

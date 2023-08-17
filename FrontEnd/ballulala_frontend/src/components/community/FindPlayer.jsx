@@ -11,7 +11,7 @@ function FindPlayer() {
         navigate('/findplayer/add');
     };
 
-    const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_7.jpg";
+    const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_4.png";
 
     useEffect(() => {
         const fetchBoards = async () => {
@@ -45,18 +45,11 @@ function FindPlayer() {
         <Link to="/freeboard">
             <button className='radius-btn'>자유게시판</button>
         </Link>
-
-        <Link to="/bestboard">
-            <button className='radius-btn'>명예의 전당</button>
-        </Link>
         
         <Link to="/findplayer">
             <button className='radius-btn-selected'>용병 모집</button>
         </Link>
 
-        <Link to="/consulting">
-            <button className='radius-btn'>컨설팅</button>
-        </Link>
     </div>
 
     <div className="board-search-box">
@@ -64,7 +57,7 @@ function FindPlayer() {
         <input
         type="board"
         id="board"
-        placeholder="제목, 글쓴이, 내용으로 검색하기"
+        placeholder="검색"
         // value={board}
         // onChange={(event) => setBoard(event.target.value)}
         />

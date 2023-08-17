@@ -195,7 +195,14 @@ function FreeBoardDetail() {
 
   {
     showModal && (
-      <div className='ball-modal'>
+      <div className='ball-modal'
+      style={{
+        position: "fixed",
+        top: "50%",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        zIndex: 1000,
+      }}>
         <div className='ball-modal-content'>
           <div>정말로 삭제하시겠습니까?</div>
 
@@ -273,31 +280,54 @@ function FreeBoardDetail() {
             </div>
 
 
-            {editingComment ? (
-              <div className="ball-modal">
-                <form onSubmit={handleUpdateComment} className="ball-modal-content">
-                  <div className="ball-modal-title">
-                    <div>댓글 수정</div>
-                  </div>
-                  <input
-                  className="comment-edit-input"
-                  type="text"
-                  value={editedComment}
-                  onChange={(e) => setEditedComment(e.target.value)}
-                  style={{ marginTop: "20px", marginBottom: "30px" }}
-                />
+            {editingComment && (
+  <div
+    className="ball-modal"
+    style={{
+      position: "fixed",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      zIndex: 1000,
+    }}
+  >
+    <form
+      onSubmit={handleUpdateComment}
+      className="ball-modal-content"
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <div className="ball-modal-title">
+        <div>댓글 수정</div>
+      </div>
+      <input
+        className="comment-edit-input"
+        type="text"
+        value={editedComment}
+        onChange={(e) => setEditedComment(e.target.value)}
+        style={{
+          marginTop: "20px",
+          marginBottom: "30px",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      />
 
-                  <div className="modal-btns">
-                    <button className="modal-yes-btn" type="submit">
-                      수정 완료
-                    </button>
-                    <button className="modal-no-btn" onClick={() => setEditingComment(null)}>
-                      취소
-                    </button>
-                  </div>
-                </form>
-              </div>
-            ) : null}
+      <div className="modal-btns">
+        <button className="modal-yes-btn" type="submit">
+          수정 완료
+        </button>
+        <button className="modal-no-btn" onClick={() => setEditingComment(null)}>
+          취소
+        </button>
+      </div>
+    </form>
+  </div>
+)}
+
           </div>
         </div>
       ) : (

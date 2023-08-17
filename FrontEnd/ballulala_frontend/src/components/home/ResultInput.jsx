@@ -5,10 +5,15 @@ import { useRecoilValue } from "recoil";
 import "./ResultInput.css";
 
 function ResultInput({ match }) {
+  const matchId = match.id;
   const [userRole, setUserRole] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false); // 모달 상태
-  const [scores, setScores] = useState({});
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const token = useRecoilValue(tokenState);
+  const [teamScores, setTeamScores] = useState({});
+
+  const handleChangeScore = (scoreKey, value) => {
+    setTeamScores((prevScores) => ({ ...prevScores, [scoreKey]: value }));
+  };
 
   useEffect(() => {
     axios
@@ -38,14 +43,30 @@ function ResultInput({ match }) {
   const closeModal = () => {
     setIsModalOpen(false);
   };
+
   const handleScoreChange = (key, value) => {
-    setScores((prevScores) => ({
+    setTeamScores((prevScores) => ({
       ...prevScores,
       [key]: value,
     }));
   };
 
   const handleSubmit = async () => {
+    let scores = {};
+
+    let startId = (matchId - 1) * 6 + 1;
+
+    for (let i = 0; i < 6; i++) {
+      scores[`id${i + 1}`] = startId + i;
+    }
+
+    for (let i = 1; i <= 6; i++) {
+      scores[`teamScore${i}1`] =
+        teamScores[`teamScore${startId + (i - 1)}1`] || "";
+      scores[`teamScore${i}2`] =
+        teamScores[`teamScore${startId + (i - 1)}2`] || "";
+    }
+
     try {
       const response = await axios.post(
         "https://i9d110.p.ssafy.io:8081/play/result",
@@ -58,9 +79,9 @@ function ResultInput({ match }) {
         }
       );
 
-      if (response.status === 200) {
+      if (response.status === 202) {
         alert("경기 결과가 성공적으로 입력되었습니다.");
-        setIsModalOpen(false); // 모달을 닫습니다.
+        setIsModalOpen(false);
       } else {
         alert("경기 결과 입력에 실패했습니다.");
       }
@@ -82,17 +103,27 @@ function ResultInput({ match }) {
                   경기 {idx + 1}:
                   <input
                     type="number"
-                    value={scores[`teamScore${idx + 1}1`] || ""}
+                    value={
+                      teamScores[`teamScore${matchId * 6 - 5 + idx}1`] || ""
+                    }
                     onChange={(e) =>
-                      handleScoreChange(`teamScore${idx + 1}1`, e.target.value)
+                      handleScoreChange(
+                        `teamScore${matchId * 6 - 5 + idx}1`,
+                        e.target.value
+                      )
                     }
                   />
                   -
                   <input
                     type="number"
-                    value={scores[`teamScore${idx + 1}2`] || ""}
+                    value={
+                      teamScores[`teamScore${matchId * 6 - 5 + idx}2`] || ""
+                    }
                     onChange={(e) =>
-                      handleScoreChange(`teamScore${idx + 1}2`, e.target.value)
+                      handleScoreChange(
+                        `teamScore${matchId * 6 - 5 + idx}2`,
+                        e.target.value
+                      )
                     }
                   />
                 </label>

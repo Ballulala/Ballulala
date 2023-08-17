@@ -47,16 +47,20 @@ function UserProfile() {
   return (
     <div className="user-profile">
       <div className="left-section">
-        <p>User logo</p>
+        <p>User profile</p>
         <img
-          src={user.profileImage || "/images/first_profile.png"}
+          src={`./pointstoreimages/${user.profileImage}.png`}
           alt="User profile"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/images/first_profile.png";
+          }}
         />
         <h2>{user.nickname}</h2>
         <UserInfo
           age={calculateAge(user.birthday)}
           gender={user.gender}
-          location={`${user.sido || ""} ${user.gugun || ""}`}
+          location={`${user.gugun || ""}`}
           email={user.email}
           name={user.name}
         />

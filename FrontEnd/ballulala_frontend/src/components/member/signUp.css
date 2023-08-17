@@ -24,25 +24,24 @@
     align-items: center;
     }
 
-.ball-modal {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 95%;
-    overflow-y: auto;
-}
-
-.ball-modal-content {
-    background-color: white;
-    padding: 50px;
-    border-radius: 5px;
-    box-shadow: 0 0 2px 0 rgb(181, 181, 181);
-}
+    .ball-modal {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    
+    .ball-modal-content {
+        background-color: white;
+        padding: 50px;
+        border-radius: 5px;
+        box-shadow: 0 0 2px 0 rgb(181, 181, 181);
+    }
 
 .ball-modal-title {
     font-size: 20px;

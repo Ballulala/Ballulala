@@ -31,9 +31,11 @@
     border: 1px solid rgb(255, 145, 148);
     border-radius: 5px;
     padding: 10px;
-    height: 50px;
+    padding-left: 30px;
+    padding-right: 30px;
+    /* height: 50px;
     width: 168px;
-    margin-top: 30px;
+    margin-top: 30px; */
 }
 
 .new-team-btn:hover {

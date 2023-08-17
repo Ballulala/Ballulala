@@ -54,6 +54,12 @@ const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_8.jpg";
       <div className='list'>
         <hr />
  <div>
+ <div style={{margin: '50px', color: 'gray'}}>
+  준비 중인 서비스입니다.
+</div>
+
+
+
     {/* <ul>
       {teams.map((team, index) => (
         <li key={team.team_id}>

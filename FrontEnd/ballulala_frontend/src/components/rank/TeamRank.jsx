@@ -2,12 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./TeamRank.css";
 import TopNavbar from "../top_navbar/TopNavbar";
-import { teamDetailData } from "../team/TeamDummyData";
+import useRegionFilter from '../hooks/useRegionFilter';
 
 function TeamRank() {
   const [team, setTeam] = useState("");
   const [showRegions, setShowRegions] = useState(false);
   const [teams, setTeams] = useState([]);
+  const [filteredTeams, setFilteredTeams] = useState([]);
 
   const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_8.jpg";
   useEffect(() => {
@@ -19,6 +20,7 @@ function TeamRank() {
         const data = await response.json();
         const sortedTeams = data.matchList.sort((a, b) => b.mmr - a.mmr);
         setTeams(sortedTeams);
+        setFilteredTeams(sortedTeams);
       } catch (error) {
         console.error("Error fetching teams:", error);
       }
@@ -26,6 +28,9 @@ function TeamRank() {
 
     fetchTeams();
   }, []);
+
+  const { filterByGugun, clearFilter } = useRegionFilter(teams, filteredTeams, setFilteredTeams);
+
   return (
     <div className="team-page">
       <TopNavbar />
@@ -71,22 +76,23 @@ function TeamRank() {
             </button>
             {showRegions && (
               <div className="region-list">
-                <button>서울</button>
-                <button>경기</button>
-                <button>인천</button>
-                <button>강원</button>
-                <button>대구</button>
-                <button>대전</button>
-                <button>경남</button>
-                <button>경북</button>
-                <button>부산</button>
-                <button>울산</button>
-                <button>광주</button>
-                <button>제주</button>
-                <button>전남</button>
-                <button>전북</button>
-                <button>충남</button>
-                <button>충북</button>
+                <button onClick={() => clearFilter()}>전체 지역</button>
+                <button onClick={() => filterByGugun(0)}>서울</button>
+                <button onClick={() => filterByGugun(1)}>경기</button>
+                <button onClick={() => filterByGugun(2)}>인천</button>
+                <button onClick={() => filterByGugun(3)}>강원</button>
+                  <button onClick={() => filterByGugun(4)}>대구</button>
+                  <button onClick={() => filterByGugun(5)}>대전</button>
+                  <button onClick={() => filterByGugun(6)}>경남</button>
+                  <button onClick={() => filterByGugun(7)}>경북</button>
+                  <button onClick={() => filterByGugun(8)}>부산</button>
+                  <button onClick={() => filterByGugun(9)}>울산</button>
+                  <button onClick={() => filterByGugun(10)}>광주</button>
+                  <button onClick={() => filterByGugun(11)}>제주</button>
+                  <button onClick={() => filterByGugun(12)}>전남</button>
+                  <button onClick={() => filterByGugun(13)}>전북</button>
+                  <button onClick={() => filterByGugun(14)}>충남</button>
+                  <button onClick={() => filterByGugun(15)}>충북</button>
                 {/* 추가로 지역 버튼을 넣고 싶으시면 여기에 추가하시면 됩니다. */}
               </div>
             )}
@@ -103,7 +109,8 @@ function TeamRank() {
         <hr />
         <div>
           <ul>
-            {teams.map((team, index) => (
+            {/* {teams.map((team, index) => ( */}
+            {filteredTeams.map((team, index) => (
               <li key={team.id}>
                 <div className="team-rank-one">
                   <span>{index + 1}</span>

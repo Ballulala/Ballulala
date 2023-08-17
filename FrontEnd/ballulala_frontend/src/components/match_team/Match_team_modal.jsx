@@ -33,7 +33,10 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
         );
         const data = await response.json();
         if (data && data.teamList) {
-          setUserTeams(data.teamList);
+          setUserTeams([
+            { name: "용병팀", teamId: "mercenary" },
+            ...data.teamList,
+          ]);
         }
       } catch (error) {
         console.error("Error fetching user teams:", error);

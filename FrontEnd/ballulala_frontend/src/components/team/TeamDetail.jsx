@@ -2,22 +2,15 @@ import React, { useState, useEffect } from "react";
 import "./TeamDetail.css";
 import TopNavbar from '../top_navbar/TopNavbar';
 import { Link, useParams } from 'react-router-dom';
-// import { teamDetailData } from './TeamDummyData';
 import axios from "axios";
 import { tokenState } from "../../atoms/token";
 import { useRecoilValue } from "recoil";
 import TeamModal from "./TeamModal";
+import { getRegionName } from "../function/getRegionName";
 
 
 function TeamDetail() {
-  const [name, setName] = useState('');
-  const [age, setAge] = useState('');
-  const [phonenum, setPhonenum] = useState('');
-  const [position, setPosition] = useState('');
-  const [skill, setSkill] = useState('');
-
   const token = useRecoilValue(tokenState);
-  const temporaryToken = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfMSIsImV4cCI6MTY5MjU5NDkzOX0.W3n7FOxxkaasEeFV48_f9j0c-4fURYK_LNQkeJgvpYY';
 
 
   // const { teamName } = useParams();
@@ -30,7 +23,7 @@ function TeamDetail() {
         { id: teamId },
         {
           headers: {
-            Authorization: temporaryToken,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -95,7 +88,7 @@ function TeamDetail() {
         },
         {
           headers: {
-            Authorization: temporaryToken,
+            Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
           },
         }
@@ -110,6 +103,27 @@ function TeamDetail() {
   const handleJoinSubmit = async () => {
     await joinTeam();
   };
+
+  async function leaveTeam() {
+    try {
+      const response = await axios.get(`https://i9d110.p.ssafy.io:8081/teamUser/memberOut/${teamId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      console.log(response.data);
+      closeLeaveModal();
+    } catch (error) {
+      console.log("팀 탈퇴 신청에 실패했습니다:", error);
+    }
+  }
+  
+  const handleLeaveSubmit = async () => {
+    await leaveTeam();
+    window.location.reload();
+  };
+  
 
 
   // 필요한 변수와 함수 선언
@@ -146,7 +160,8 @@ function TeamDetail() {
 
           <div className="team-detail-more">
             <img src={"/icon_location.png"} alt="img" />
-            <div>{team.sido} {team.teamDetail.gugun}</div>
+            <div>{getRegionName(team.teamDetail.gugun)}</div>
+
           </div>
 
           <div className="team-detail-more">
@@ -155,13 +170,13 @@ function TeamDetail() {
               {team.teamDetail.winCount}승 {team.teamDetail.loseCount}패 
               ({(team.teamDetail.winCount / (team.teamDetail.winCount + team.teamDetail.loseCount) * 100).toFixed(2)}%)
             </div>
-            <button className="team-more-btn">more</button>
+            {/* <button className="team-more-btn">more</button> */}
           </div>
 
           <div className="team-detail-more">
-            <img src={"/images/point_black.png"} alt="img" />
-            <div>{team.teamDetail.point}</div>
-            <button className="team-more-btn">gave</button>
+            <img src={"/images/mmr.jpg"} alt="img" />
+            <div>{team.teamDetail.mmr}</div>
+            {/* <button className="team-more-btn">gave</button> */}
           </div>
 
           <br />
@@ -198,7 +213,7 @@ function TeamDetail() {
 
         <div className="team-more">
           <div>{team.teamDetail.description}</div>
-          <Link to={`/teamsetting/${teamId}`}>팀 관리 페이지로</Link>
+          {/* <Link to={`/teamsetting/${teamId}`}>팀 관리 페이지로</Link> */}
         </div>
       </div>
 
@@ -215,7 +230,7 @@ function TeamDetail() {
         title="탈퇴 신청"
         isOpen={showLeaveModal}
         onClose={closeLeaveModal}
-        // onSubmit={handleLeaveSubmit}
+        onSubmit={handleLeaveSubmit}
       >
         <div>탈퇴 하시겠습니까?</div>
       </TeamModal>

@@ -5,7 +5,14 @@ function TeamInfo({ teamLogo, teams, selectedTeam, onSelectTeam }) {
   return (
     <div className="team-info1">
       <p>Team logo</p>
-      <img src={teamLogo || "/images/chealsea.png"} alt="teamlogo" />
+      <img
+        src={`./images/A.png`}
+        alt="없음"
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.src = "/images/chealsea.png";
+        }}
+      />
       Team:
       <select
         value={selectedTeam ? selectedTeam.teamId : ""}
