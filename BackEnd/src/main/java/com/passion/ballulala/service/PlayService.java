@@ -103,9 +103,13 @@ public class PlayService {
         play1.setTeamScore2(playResultDto.getTeamScore12());
         if(playResultDto.getTeamScore11()>playResultDto.getTeamScore12()){
             up=calculateNewRatings(team11.getMmr(),team12.getMmr(),1);
+            team11.setWinCount(team11.getWinCount()+1);
+            team12.setWinCount(team12.getWinCount()-1);
         }
         else if(playResultDto.getTeamScore11()<playResultDto.getTeamScore12()){
             up=calculateNewRatings(team11.getMmr(),team12.getMmr(),0);
+            team11.setWinCount(team11.getWinCount()-1);
+            team12.setWinCount(team12.getWinCount()+1);
         }
         else{
             up=calculateNewRatings(team11.getMmr(),team12.getMmr(),0.5);
@@ -119,9 +123,13 @@ public class PlayService {
         play2.setTeamScore2(playResultDto.getTeamScore22());
         if(playResultDto.getTeamScore21()>playResultDto.getTeamScore22()){
             up=calculateNewRatings(team21.getMmr(),team22.getMmr(),1);
+            team21.setWinCount(team21.getWinCount()+1);
+            team22.setWinCount(team22.getWinCount()-1);
         }
         else if(playResultDto.getTeamScore21()<playResultDto.getTeamScore22()){
             up=calculateNewRatings(team21.getMmr(),team22.getMmr(),0);
+            team21.setWinCount(team21.getWinCount()-1);
+            team22.setWinCount(team22.getWinCount()+1);
         }
         else{
             up=calculateNewRatings(team21.getMmr(),team22.getMmr(),0.5);
@@ -135,9 +143,13 @@ public class PlayService {
         play3.setTeamScore2(playResultDto.getTeamScore32());
         if(playResultDto.getTeamScore31()>playResultDto.getTeamScore32()){
             up=calculateNewRatings(team31.getMmr(),team32.getMmr(),1);
+            team31.setWinCount(team31.getWinCount()+1);
+            team32.setWinCount(team32.getWinCount()-1);
         }
         else if(playResultDto.getTeamScore31()<playResultDto.getTeamScore32()){
             up=calculateNewRatings(team31.getMmr(),team32.getMmr(),0);
+            team31.setWinCount(team31.getWinCount()-1);
+            team32.setWinCount(team32.getWinCount()+1);
         }
         else{
             up=calculateNewRatings(team31.getMmr(),team32.getMmr(),0.5);
@@ -151,9 +163,13 @@ public class PlayService {
         play4.setTeamScore2(playResultDto.getTeamScore42());
         if(playResultDto.getTeamScore41()>playResultDto.getTeamScore42()){
             up=calculateNewRatings(team41.getMmr(),team42.getMmr(),1);
+            team41.setWinCount(team41.getWinCount()+1);
+            team42.setWinCount(team42.getWinCount()-1);
         }
         else if(playResultDto.getTeamScore41()<playResultDto.getTeamScore42()){
             up=calculateNewRatings(team41.getMmr(),team42.getMmr(),0);
+            team41.setWinCount(team41.getWinCount()-1);
+            team42.setWinCount(team42.getWinCount()+1);
         }
         else{
             up=calculateNewRatings(team41.getMmr(),team42.getMmr(),0.5);
@@ -167,9 +183,13 @@ public class PlayService {
         play5.setTeamScore2(playResultDto.getTeamScore52());
         if(playResultDto.getTeamScore51()>playResultDto.getTeamScore52()){
             up=calculateNewRatings(team51.getMmr(),team52.getMmr(),1);
+            team51.setWinCount(team51.getWinCount()+1);
+            team52.setWinCount(team52.getWinCount()-1);
         }
         else if(playResultDto.getTeamScore51()<playResultDto.getTeamScore52()){
             up=calculateNewRatings(team51.getMmr(),team52.getMmr(),0);
+            team51.setWinCount(team51.getWinCount()-1);
+            team52.setWinCount(team52.getWinCount()+1);
         }
         else{
             up=calculateNewRatings(team51.getMmr(),team52.getMmr(),0.5);
@@ -183,9 +203,13 @@ public class PlayService {
         play6.setTeamScore2(playResultDto.getTeamScore62());
         if(playResultDto.getTeamScore61()>playResultDto.getTeamScore62()){
             up=calculateNewRatings(team61.getMmr(),team62.getMmr(),1);
+            team61.setWinCount(team61.getWinCount()+1);
+            team62.setWinCount(team62.getWinCount()-1);
         }
         else if(playResultDto.getTeamScore61()<playResultDto.getTeamScore62()){
             up=calculateNewRatings(team61.getMmr(),team62.getMmr(),0);
+            team61.setWinCount(team61.getWinCount()-1);
+            team62.setWinCount(team62.getWinCount()+1);
         }
         else{
             up=calculateNewRatings(team61.getMmr(),team62.getMmr(),0.5);
