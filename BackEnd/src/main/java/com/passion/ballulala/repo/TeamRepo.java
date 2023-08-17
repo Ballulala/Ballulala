@@ -21,7 +21,7 @@ public interface TeamRepo extends JpaRepository<Team, Long> {
 @Query("SELECT t FROM Team t WHERE t.id <> :#{#myTeam.id} AND t.gugun = :#{#myTeam.gugun} AND t.mmr BETWEEN :#{#myTeam.mmr - 50} AND :#{#myTeam.mmr + 50}")
     List<Team> getCaurosel(Team myTeam);
 
-    @Query("SELECT new com.passion.ballulala.dto.TeamMatchListDto(tu.id, t.name) " +
+    @Query("SELECT new com.passion.ballulala.dto.TeamMatchListDto(tu.team.id, t.name) " +
             "FROM Team t JOIN TeamUser tu ON t = tu.team WHERE tu.user.id = :id")
     List<TeamMatchListDto> findAllListById(Long id);
 //    @Query("SELECT t FROM Team t WHERE t.gugun = ?1")
