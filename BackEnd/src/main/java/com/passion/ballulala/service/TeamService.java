@@ -124,4 +124,18 @@ public class TeamService {
 
         return TeamListDto.fromEntity(team);
     }
+
+    public Boolean deleteTeam(Long teamId, String accessToken) {
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        Team myTeam = teamRepo.findById(teamId).orElseThrow();
+        TeamUser teamUser = teamUserRepo.findByTeam_IdAndUser_Id(teamId, userNo);
+
+        if (teamUser.getState() == 1) {
+            teamRepo.save(myTeam);
+            teamRepo.delete(myTeam); // 영속성 컨텍스트에서 관리되는 엔티티를 삭제
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

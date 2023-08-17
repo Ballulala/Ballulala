@@ -181,6 +181,28 @@ public class TeamController {
     }
 
 
+    //팀 관리자인 경우 팀 삭제
+    @GetMapping("/delete/{teamId}")
+    public ResponseEntity<Map<String, Object>> delete(@PathVariable("teamId") Long teamId, HttpServletRequest request) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status = null;
+        try {
+            boolean flag = teamService.deleteTeam(teamId, request.getHeader("Authorization"));
+            if(flag){
+                resultMap.put("message", "success");
+                status = HttpStatus.ACCEPTED;
+            }else{
+                resultMap.put("message", "fail");
+                status = HttpStatus.ACCEPTED;
+            }
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e.getClass().getSimpleName());
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
     //팀 관리자 페이지 보기
 
     //팀 상점 인벤토리 리스트 보기
