@@ -57,4 +57,17 @@ public class TeamUserService {
             System.out.println(e.getMessage());
         }
     }
+
+    @Transactional
+    public void joinDenied(Long teamId, Long userId) {
+//        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        try{
+            System.out.println(teamId);
+            System.out.println(userId);
+            teamUserRepo.deleteByTeam_IdAndUser_Id(teamId, userId);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+
 }

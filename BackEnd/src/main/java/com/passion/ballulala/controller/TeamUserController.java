@@ -90,12 +90,12 @@ public class TeamUserController {
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
 
-    @GetMapping("/joinDenied/{teamId}")
-    public ResponseEntity<Map<String, Object>> joinDenied(@PathVariable("teamId") Long teamId, HttpServletRequest request) {
+    @GetMapping("/joinDenied")
+    public ResponseEntity<Map<String, Object>> joinDenied(@RequestBody Long teamId, Long userId) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {
-            teamUserService.memberOut(teamId, request.getHeader("Authorization"));
+            teamUserService.joinDenied(teamId, userId);
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;
         } catch (Exception e) {
