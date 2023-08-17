@@ -163,8 +163,8 @@ public class UserService {
 
     @Transactional
     public void profile(ItemDto itemDto, String accessToken) {
-        UserItem useritem = userItemRepo.findById(itemDto.getId()).orElseThrow();
+        UserItemBuyListDto useritem = userItemRepo.findByItemId(itemDto.getId());
         User user = userRepo.findById(jwtTokenProvider.decodeToken(accessToken)).orElseThrow();
-        user.setProfileImage(useritem.getItem().getName());
+        user.setProfileImage(useritem.getImg());
     }
 }

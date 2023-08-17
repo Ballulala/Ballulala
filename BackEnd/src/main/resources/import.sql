@@ -270,3 +270,26 @@ insert into free_board (create_time, hit, user_id, content, title) values (now()
 insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 6,1,"6번 게시글에 1번 사람이 댓글");
 insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 6,2,"6번 게시글에 2번 사람이 댓글");
 insert into free_board_reply (create_time, free_board_id, user_id, content) values(now(), 6,3,"6번 게시글에 3번 사람이 댓글");
+
+
+
+-- 용병 게시판 글 작성
+insert into mercenary (create_time, hit, user_id, content, title) values(now(),0,1,"1번이 쓴 용병모집", "1번이 쓴 용병모집");
+insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),1,1,"1번이 1번에 쓴 댓글");
+insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),1,2,"2번이 1번에 쓴 댓글");
+insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),1,3,"3번이 1번에 쓴 댓글");
+
+insert into mercenary (create_time, hit, user_id, content, title) values(now(),0,2,"2번이 쓴 용병모집", "2번이 쓴 용병모집");
+insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),2,2,"2번이 2번에 쓴 댓글");
+insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),2,3,"3번이 2번에 쓴 댓글");
+insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),2,4,"4번이 2번에 쓴 댓글");
+
+insert into mercenary (create_time, hit, user_id, content, title) values(now(),0,3,"3번이 쓴 용병모집", "3번이 쓴 용병모집");
+insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),3,3,"3번이 3번에 쓴 댓글");
+insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),3,4,"4번이 3번에 쓴 댓글");
+insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),3,5,"5번이 3번에 쓴 댓글");
+
+insert into mercenary (create_time, hit, user_id, content, title) values(now(),0,4,"4번이 쓴 용병모집", "4번이 쓴 용병모집");
+insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),4,5,"5번이 5번에 쓴 댓글");
+insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),4,6,"6번이 6번에 쓴 댓글");
+insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),4,4,"4번이 4번에 쓴 댓글");
