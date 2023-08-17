@@ -22,7 +22,6 @@ public class PlayController {
 
     @GetMapping("/list")
     public ResponseEntity<Map<String, Object>> add(@RequestParam(required = false) Long match) {
-        System.out.println(match);
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {

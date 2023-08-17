@@ -174,6 +174,70 @@ insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id
 insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(1,0,"2023-08-22",1,3,4,5);
 insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(3,0,"2023-08-22",1,1,2,3);
 
+-- 경기 수 채워넣기
+-- 1번 매칭
+insert into play(match_order, team_score1, team_score2, matches_id, team_id1, team_id2) values(1,0,0,1,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(2,0,0,1,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(3,0,0,1,3,1);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(4,0,0,1,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(5,0,0,1,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(6,0,0,1,3,1);
+
+-- 2번 매칭
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(1,0,0,2,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(2,0,0,2,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(3,0,0,2,3,1);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(4,0,0,2,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(5,0,0,2,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(6,0,0,2,3,1);
+
+-- 3번 매칭
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(1,0,0,3,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(2,0,0,3,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(3,0,0,3,3,1);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(4,0,0,3,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(5,0,0,3,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(6,0,0,3,3,1);
+
+-- 4번 매칭
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(1,0,0,4,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(2,0,0,4,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(3,0,0,4,3,1);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(4,0,0,4,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(5,0,0,4,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(6,0,0,4,3,1);
+
+-- 5번 매칭
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(1,0,0,5,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(2,0,0,5,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(3,0,0,5,3,1);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(4,0,0,5,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(5,0,0,5,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(6,0,0,5,3,1);
+
+-- 6번 매칭
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(1,0,0,6,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(2,0,0,6,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(3,0,0,6,3,1);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(4,0,0,6,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(5,0,0,6,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(6,0,0,6,3,1);
+
+-- 7번 매칭
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(1,0,0,7,3,4);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(2,0,0,7,4,5);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(3,0,0,7,5,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(4,0,0,7,3,4);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(5,0,0,7,4,5);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(6,0,0,7,5,3);
+
+-- 8번 매칭
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(1,0,0,8,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(2,0,0,8,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(3,0,0,8,3,1);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(4,0,0,8,1,2);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(5,0,0,8,2,3);
+insert into play(match_order, team_score1, team_score2,matches_id, team_id1, team_id2) values(6,0,0,8,3,1);
 
 
 -- 자유게시판 글 작성
