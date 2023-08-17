@@ -7,6 +7,7 @@ import com.passion.ballulala.dto.MercenaryListDto;
 import com.passion.ballulala.entity.FreeBoard;
 import com.passion.ballulala.entity.Mercenary;
 import com.passion.ballulala.entity.User;
+import com.passion.ballulala.jwt.JwtTokenProvider;
 import com.passion.ballulala.repo.MercenaryRepo;
 import com.passion.ballulala.repo.UserRepo;
 import lombok.RequiredArgsConstructor;

@@ -67,11 +67,17 @@ public class MercenaryController {
     }
 
     @GetMapping("/detail/{mercenaryId}")
-    public ResponseEntity<Map<String, Object>> detail(@PathVariable Long mercenaryId) {
+    public ResponseEntity<Map<String, Object>> detail(@PathVariable Long mercenaryId, HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status;
+        Long userNo = jwtTokenProvider.decodeToken(request.getHeader("Authorization"));
         try {
             MercenaryDetailDto mercenaryDto = mercenaryService.getMercenaryDetail(mercenaryId);
+            if(userNo == mercenaryDto.getUserNo()){
+                resultMap.put("authority", "작성자");
+            }else{
+                resultMap.put("authority", "권한없음");
+            }
             resultMap.put("mercenary", mercenaryDto);
             resultMap.put("message", "success");
             status = HttpStatus.OK;

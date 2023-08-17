@@ -18,7 +18,7 @@ public interface MercenaryRepo extends JpaRepository<Mercenary, Long> {
             "FROM Mercenary m JOIN m.userId u order by m.id desc")
     List<MercenaryListDto> findAllList();
 
-    @Query("SELECT new com.passion.ballulala.dto.MercenaryDetailDto(m.title, u.nickname, m.createTime, m.content) " +
+    @Query("SELECT new com.passion.ballulala.dto.MercenaryDetailDto(m.title, u.nickname, m.createTime, m.content, u.id) " +
             "FROM Mercenary m JOIN m.userId u where m.id = ?1")
     MercenaryDetailDto findDetail(Long id);
 

@@ -48,11 +48,13 @@ public class MercenaryReplyController {
     }
 
     @GetMapping("/list/{mercenaryId}")
-    public ResponseEntity<Map<String, Object>> list(@PathVariable(name = "mercenaryId") Long mercenaryId) {
+    public ResponseEntity<Map<String, Object>> list(@PathVariable(name = "mercenaryId") Long mercenaryId, HttpServletRequest request) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
+        Long userNo = jwtTokenProvider.decodeToken(request.getHeader("Authorization"));
         try {
             List<MercenaryReplyListDto> mercenaryReplyList = mercenaryReplyService.getList(mercenaryId);
+            resultMap.put("userId" , userNo);
             resultMap.put("replyList", mercenaryReplyList);
             resultMap.put("totalCnt", mercenaryReplyList.size());
             resultMap.put("message", "success");
