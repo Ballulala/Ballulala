@@ -15,6 +15,9 @@ insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` ,
 -- 매니저 유저 8번
 insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,2,0,0,now(),"manager@naver.com",5,"매니저","매니저","1234","010-2345-6789", "haha6");
 
+-- 1번 매니저, 이메일 manager1@naver.com, 비번 1234
+insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,10000,2,0,0,now(),"manager1@naver.com",5,"오매니저","매니저입니다","1234","010-1234-5678", "haha7");
+
 -- 1번 팀, 팀 이름 haha
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","haha", 0);
 insert into team(lose_count, mmr, point, win_count ,winning_streak , description , logo , name, gugun)values(0,1000,0,0,1,"haha", "haha","자빠지기", 0);
@@ -154,12 +157,12 @@ insert into stadium(description,name,phone_number,region)values("충남스다디
 insert into stadium(description,name,phone_number,region)values("충북스다디움","충북스다디움", "haha", 15);
 
 -- 2023-08-20
-insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(2,0,"2023-08-20",1,1,2,3);
+insert into matches(match_time, manager_id, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(2,7,0,"2023-08-20",1,1,2,3);
 insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(4,0,"2023-08-20",1,1,2,3);
 insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(6,0,"2023-08-20",1,1,2,3);
 
 -- 2023-08-21
-insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(6,0,"2023-08-21",1,1,2,3);
+insert into matches(match_time, manager_id, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(6,7,0,"2023-08-21",1,1,2,3);
 insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(6,0,"2023-08-21",1,1,2,3);
 insert into matches(match_time, state, match_date, stadium_id, team_id1, team_id2, team_id3) values(6,0,"2023-08-21",1,1,2,3);
 

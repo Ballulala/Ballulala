@@ -1,5 +1,6 @@
 package com.passion.ballulala.service;
 
+import com.passion.ballulala.dto.ManagerMatchListDto;
 import com.passion.ballulala.dto.MatchAddDto;
 import com.passion.ballulala.dto.TeamListDto;
 import com.passion.ballulala.dto.TeamMatchListDto;
@@ -93,6 +94,14 @@ public class MatchService {
 
         Long userNo = jwtTokenProvider.decodeToken(accessToken);
         return teamRepo.findAllListById(userNo);
+    }
+
+    public List<ManagerMatchListDto> getMatchesByManagerId(String accessToken){
+
+        Long managerNo = jwtTokenProvider.decodeToken(accessToken);
+        List<Match> matches =  matchRepo.findByManager(userRepo.getReferenceById(managerNo));
+
+        return matches.stream().map(ManagerMatchListDto::fromEntity).toList();
     }
 
 }

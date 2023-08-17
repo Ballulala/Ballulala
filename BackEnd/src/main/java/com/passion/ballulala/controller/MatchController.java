@@ -108,4 +108,26 @@ public class MatchController {
         }
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
+
+    @GetMapping("/managerMatchList")
+    public ResponseEntity<Map<String, Object>> getManagerMatchList(HttpServletRequest request){
+        System.out.println("managerMatchList 들어옴");
+
+        // header에 있는 accessToken을 들고옴
+        String accessToken = request.getHeader("Authorization");
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status = null;
+
+        try {
+            List<ManagerMatchListDto> matchList = matchService.getMatchesByManagerId(accessToken);
+            resultMap.put("matchList", matchList);
+            resultMap.put("message", "success");
+            status = HttpStatus.ACCEPTED;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e.getClass().getSimpleName());
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
 }

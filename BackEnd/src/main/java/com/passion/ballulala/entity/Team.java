@@ -53,11 +53,11 @@ public class Team {
     private Byte gugun;
 
     @Builder.Default
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "team", cascade = CascadeType.ALL)
     private List<TeamItem> teamItems = new ArrayList<>();
 
     @Builder.Default
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "team", cascade = CascadeType.ALL)
     private List<TeamUser> teamUsers = new ArrayList<>();
 
     public void updatePoint(int uss) {

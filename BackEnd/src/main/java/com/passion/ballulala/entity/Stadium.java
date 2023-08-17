@@ -32,7 +32,7 @@ public class Stadium {
     private String phoneNumber;
 
     @Builder.Default
-    @OneToMany(mappedBy = "stadium", cascade = CascadeType.ALL)
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "stadium", cascade = CascadeType.ALL)
     private List<Match> matches = new ArrayList<>();
 
 }
