@@ -125,6 +125,7 @@ public class TeamService {
         return TeamListDto.fromEntity(team);
     }
 
+    @Transactional
     public Boolean deleteTeam(Long teamId, String accessToken) {
         Long userNo = jwtTokenProvider.decodeToken(accessToken);
         Team myTeam = teamRepo.findById(teamId).orElseThrow();

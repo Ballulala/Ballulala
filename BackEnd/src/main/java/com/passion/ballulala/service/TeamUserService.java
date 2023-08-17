@@ -46,4 +46,15 @@ public class TeamUserService {
 //        teamUserRepo.save(teamUser);
     }
 
+    @Transactional
+    public void memberOut(Long teamId, String accessToken) {
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        try{
+            System.out.println(teamId);
+            System.out.println(userNo);
+            teamUserRepo.deleteByTeam_IdAndUser_Id(teamId, userNo);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 }

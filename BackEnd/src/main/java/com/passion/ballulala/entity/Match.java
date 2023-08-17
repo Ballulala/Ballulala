@@ -21,15 +21,15 @@ public class Match {
     @Column(name = "match_date", nullable = false, columnDefinition = "date")
     private LocalDateTime matchDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id1", nullable = true)
     private Team team1;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id2", nullable = true)
     private Team team2;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id3", nullable = true)
     private Team team3;
 

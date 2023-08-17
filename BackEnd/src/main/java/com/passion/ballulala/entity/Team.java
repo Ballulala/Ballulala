@@ -60,6 +60,19 @@ public class Team {
     @OneToMany(fetch=FetchType.LAZY, mappedBy = "team", cascade = CascadeType.ALL)
     private List<TeamUser> teamUsers = new ArrayList<>();
 
+    @Builder.Default
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "team1", cascade = CascadeType.ALL)
+    private List<Match> matches1 = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "team2", cascade = CascadeType.ALL)
+    private List<Match> matches2 = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "team3", cascade = CascadeType.ALL)
+    private List<Match> matches3 = new ArrayList<>();
+
+
     public void updatePoint(int uss) {
         this.point = uss;
     }
