@@ -1,5 +1,5 @@
 -- 1번 유저, 이메일 haha1, 비번 1234 정환
-insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,0,0,0,now(), "haha1@naver.com",0,"김정환","김정환킹","1234","010-1234-5678", "haha1");
+insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,100000,0,0,0,now(), "haha1@naver.com",0,"김정환","김정환킹","1234","010-1234-5678", "haha1");
 -- 2번 유저, 이메일 haha2, 비번 1234 근우
 insert into `user`(`gender`, `manner`, `mvp_count`, `point` , `role` ,`status` , `tier` , `birthday` , `email` , `gugun` , `name` , `nickname` , `password`, `phone_number` ,`profile_image`)values(0,0,0,1000,0,0,0,now(),"haha2@naver.com",1,"김근우","김근우짱","1234","010-2345-6789", "haha2");
 -- 3번 유저, 이메일 haha3, 비번 1234 병찬
