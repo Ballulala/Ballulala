@@ -239,5 +239,23 @@ public class UserController {
             return ExceptionHandler.exceptionResponse(response, e);
         }
     }
+
+    @PostMapping(value = "/findPw")
+    public ResponseEntity<?> findPw(HttpServletRequest request) {
+        ResponseDto<Boolean> response = new ResponseDto<Boolean>();
+        try {
+            userService.findPw(request.getHeader("Authorization"));
+            response.setState("SUCCESS");
+            response.setMessage("임시 비밀번호를 생성하였습니다.");
+            response.setData(true);
+
+            return new ResponseEntity<ResponseDto<Boolean>>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.setState("FAIL");
+            response.setMessage("메일을 보내는 중 오류가 발생했습니다.");
+            response.setData(false);
+            return ExceptionHandler.exceptionResponse(response, e);
+        }
+    }
 }
 

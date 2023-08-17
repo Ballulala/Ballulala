@@ -139,6 +139,7 @@ insert into item(cost, img, name) values(500, "croatia", "croatia");
 insert into item(cost, img, name) values(500, "spain", "spain");
 
 insert into user_item(buy_date, deadline, item_id, user_id) values(now(), now()+ INTERVAL 1 YEAR, 1, 1);
+insert into user_item(buy_date, deadline, item_id, user_id) values(now(), now()+ INTERVAL 1 YEAR, 5, 1);
 
 -- 1번 구장, 이름 haha1
 insert into stadium(description,name,phone_number,region)values("서울스다디움","서울스다디움", CASE FLOOR(1 + RAND() * (26 - 1 + 1)) WHEN 1 THEN 'A' WHEN 2 THEN 'B' WHEN 3 THEN 'C' WHEN 4 THEN 'D' WHEN 5 THEN 'E' WHEN 6 THEN 'F' WHEN 7 THEN 'G' WHEN 8 THEN 'H' WHEN 9 THEN 'I' WHEN 10 THEN 'J' WHEN 11 THEN 'K' WHEN 12 THEN 'L' WHEN 13 THEN 'M' WHEN 14 THEN 'N' WHEN 15 THEN 'O' WHEN 16 THEN 'P' WHEN 17 THEN 'Q' WHEN 18 THEN 'R' WHEN 19 THEN 'S' WHEN 20 THEN 'T' WHEN 21 THEN 'U' WHEN 22 THEN 'V' WHEN 23 THEN 'W' WHEN 24 THEN 'X' WHEN 25 THEN 'Y' ELSE 'Z' END, 0);

@@ -12,7 +12,7 @@ import java.util.List;
 @Repository
 public interface UserItemRepo extends JpaRepository<UserItem, Long> {
 
-    @Query("SELECT distinct new com.passion.ballulala.dto.UserItemBuyListDto(ui.id, ui.user.point, ui.item.img) " +
+    @Query("SELECT distinct new com.passion.ballulala.dto.UserItemBuyListDto(ui.item.id, ui.user.point, ui.item.img) " +
             "FROM UserItem ui WHERE ui.user.id = ?1")
     List<UserItemBuyListDto> findAllList(Long id);
 }

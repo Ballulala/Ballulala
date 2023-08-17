@@ -25,6 +25,7 @@ public class UserService {
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final JwtTokenProvider jwtTokenProvider;
     private final UserItemRepo userItemRepo;
+    private final SendEmailService sendEmailService;
 
     //로그인하기
     public JwtTokenDto login(UserDto user){
@@ -150,6 +151,14 @@ public class UserService {
             return true;
         }
         return false;
+    }
+
+    @Transactional
+    public void findPw(String accessToken){
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        User user = userRepo.findById(userNo).orElseThrow();
+        String tempPw = sendEmailService.createPassword(user.getEmail());
+        user.setPassword(tempPw);
     }
 
     @Transactional
