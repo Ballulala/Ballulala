@@ -57,4 +57,22 @@ public class TeamUserController {
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
 
+    @PostMapping("/joinAllow")
+    public ResponseEntity<Map<String, Object>> add2(@RequestParam(required = false) Long id) {
+        Map<String, Object> resultMap = new HashMap<>();
+        System.out.println(id);
+        HttpStatus status = null;
+        try {
+            teamUserService.teamUserAllow(id);
+            resultMap.put("message", "success");
+            status = HttpStatus.ACCEPTED;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e.getClass().getSimpleName());
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
+
 }

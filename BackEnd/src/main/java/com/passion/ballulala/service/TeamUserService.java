@@ -39,4 +39,11 @@ public class TeamUserService {
         return teamUserRepo.findByTeam_IdAndState(team, (byte)2);
     }
 
+    @Transactional
+    public void teamUserAllow(Long id){
+        TeamUser teamUser = teamUserRepo.getReferenceById(id);
+        teamUser.setState((byte)0);
+//        teamUserRepo.save(teamUser);
+    }
+
 }
