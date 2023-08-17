@@ -57,6 +57,26 @@ public class TeamUserController {
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
 
+    @GetMapping("/teamUserList")
+    public ResponseEntity<Map<String, Object>> teamUserList(@RequestParam(required = false) Long team) {
+        Map<String, Object> resultMap = new HashMap<>();
+        HttpStatus status = null;
+        System.out.println(team);
+        try {
+            List<TeamUserJoinListDto> teamList = teamUserService.teamUserList(team).stream().map((m) -> {
+                return TeamUserJoinListDto.fromEntity(m);
+            }).toList();
+            resultMap.put("matchList", teamList);
+            resultMap.put("message", "success");
+            status = HttpStatus.ACCEPTED;
+        } catch (Exception e) {
+            resultMap.put("message", "fail: " + e.getClass().getSimpleName());
+            status = HttpStatus.INTERNAL_SERVER_ERROR;
+        }
+
+        return new ResponseEntity<Map<String, Object>>(resultMap, status);
+    }
+
     @PostMapping("/joinAllow")
     public ResponseEntity<Map<String, Object>> add2(@RequestParam(required = false) Long id) {
         Map<String, Object> resultMap = new HashMap<>();

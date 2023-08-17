@@ -38,7 +38,9 @@ public class TeamUserService {
     public List<TeamUser> teamUserJoinList(Long team){
         return teamUserRepo.findByTeam_IdAndState(team, (byte)2);
     }
-
+    public List<TeamUser> teamUserList(Long team){
+        return  teamUserRepo.findByTeam_Id(team);
+    }
     @Transactional
     public void teamUserAllow(Long id){
         TeamUser teamUser = teamUserRepo.getReferenceById(id);
