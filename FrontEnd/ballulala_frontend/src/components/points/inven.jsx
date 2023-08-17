@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useRecoilValue } from "recoil";
-import { tokenState } from "../../../src/atoms";
+import { tokenState, reloadState } from "../../../src/atoms"; // 경로 수정 필요
 
 function Inventory() {
   const [items, setItems] = useState([]);
   const token = useRecoilValue(tokenState);
+  const reload = useRecoilValue(reloadState);
 
   useEffect(() => {
     const fetchPurchasedItems = async () => {
@@ -20,7 +21,7 @@ function Inventory() {
 
         if (response.ok) {
           const data = await response.json();
-          setItems(data.items || []); // API 응답에 따라 적절하게 수정해야 할 수 있습니다.
+          setItems(data.replyList || []); // API 응답에 따라 적절하게 수정해야 할 수 있습니다.
         } else {
           console.error("Failed to fetch purchased items");
         }
@@ -30,7 +31,7 @@ function Inventory() {
     };
 
     fetchPurchasedItems();
-  }, [token]);
+  }, [token, reload]);
 
   return (
     <div className="inventory-container">
@@ -38,7 +39,7 @@ function Inventory() {
       <div className="inventory-items">
         {items.map((item) => (
           <div key={item.id} className="inventory-item">
-            <img src={`/pointstoreimages/${item.image}`} alt={item.name} />
+            <img src={`/pointstoreimages/${item.img}.png`} alt={item.name} />
             <p>{item.name}</p>
           </div>
         ))}

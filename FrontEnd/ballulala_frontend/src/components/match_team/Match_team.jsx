@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import TopNavbar from "../top_navbar/TopNavbar";
 import Carousel from "./Team_Carousel";
 import { dummyData } from "./dummyData";
-import DateBar from "../date_bar/Team_Date_Bar.jsx";
+import DateBar from "../date_bar/Date_Bar.jsx";
 import TeamMatchingModal from "./Match_team_modal";
 import MatchList from "./Teammatch_list";
 import "./Match_team.css";

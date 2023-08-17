@@ -23,7 +23,7 @@ function MatchModal({ isOpen, onClose, onSubmit }) {
       if (response.data.message === "success") {
         console.log("Data successfully posted");
         if (onSubmit) {
-          onSubmit(data); // 상위 컴포넌트로 데이터 전송
+          onSubmit(data);
         }
       } else {
         console.error("Unexpected response data:", response.data);

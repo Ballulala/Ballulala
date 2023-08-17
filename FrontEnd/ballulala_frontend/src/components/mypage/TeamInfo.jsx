@@ -5,7 +5,7 @@ function TeamInfo({ teamLogo, teams, selectedTeam, onSelectTeam }) {
   return (
     <div className="team-info1">
       <p>Team logo</p>
-      <img src={teamLogo} alt="Team logo" />
+      <img src={teamLogo || "/images/chealsea.png"} alt="teamlogo" />
       Team:
       <select
         value={selectedTeam ? selectedTeam.teamId : ""}

@@ -52,12 +52,13 @@ function UserProfile() {
           src={user.profileImage || "/images/first_profile.png"}
           alt="User profile"
         />
-        <h2>{user.name}</h2>
+        <h2>{user.nickname}</h2>
         <UserInfo
           age={calculateAge(user.birthday)}
           gender={user.gender}
           location={`${user.sido || ""} ${user.gugun || ""}`}
           email={user.email}
+          name={user.name}
         />
       </div>
       <div className="right-section">

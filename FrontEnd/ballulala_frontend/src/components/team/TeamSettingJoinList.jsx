@@ -9,6 +9,9 @@ import { isEqual, uniqWith } from 'lodash';
 // import { isEqual, uniqWith, sortBy } from 'lodash';
 import 'react-datepicker/dist/react-datepicker.css';
 import { teamDetailData } from './TeamDummyData';
+import axios from "axios";
+import { tokenState } from "../../atoms/token";
+import { useRecoilValue } from "recoil";
 
 function TeamSettingJoinList() {
   const [image, setImage] = useState('');
@@ -43,12 +46,39 @@ function TeamSettingJoinList() {
   const { teamId } = useParams();
   const [team, setTeam] = useState({});
 
-  useEffect(() => {
-    const foundTeam = teamDetailData.find((t) => t.team_id === teamId);
-    if (foundTeam) {
-      setTeam(foundTeam);
+  const token = useRecoilValue(tokenState);
+  const [waitingUsers, setWaitingUsers] = useState([]);
+  
+   // 가입 대기 사용자 승인 버튼 클릭 시 실행될 함수
+   const handleUserApproval = async (userId) => {
+    try {
+      const response = await axios.post(
+        `https://i9d110.p.ssafy.io:8081/teamUser/joinAllow?id=${userId}`,
+        {},
+        {
+          headers: {
+            Authorization: token,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // if (response.status === 200) {
+        console.log("승인되었습니다.");
+        // 가입 대기 사용자 목록 업데이트
+        setWaitingUsers(waitingUsers.filter((user) => user.id !== userId));
+      // }
+    } catch (error) {
+      console.log("승인에 실패했습니다:", error);
     }
-  }, [teamId]);
+  };
+
+  // useEffect(() => {
+  //   const foundTeam = teamDetailData.find((t) => t.team_id === teamId);
+  //   if (foundTeam) {
+  //     setTeam(foundTeam);
+  //   }
+  // }, [teamId]);
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -98,6 +128,63 @@ function TeamSettingJoinList() {
       setStatusMsg(team.statusMsg);
     }
 
+    useEffect(() => {
+      async function getTeamDataFromServer() {
+        try {
+          const response = await axios.post(
+            "https://i9d110.p.ssafy.io:8081/teams/detail",
+            { id: teamId },
+            {
+              headers: {
+                Authorization: token,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+  
+          if (response.status === 200) {
+            setTeam(response.data.teamDetail);
+            console.log(response.data.teamDetail.id)
+          }
+        } catch (error) {
+          console.log("팀 데이터를 가져오는데 실패했습니다:", error);
+          console.log(teamId);
+          setTeam({});
+        }
+      }
+  
+      async function fetchWaitingUsers() {
+        try {
+          const response = await axios.get(
+            `https://i9d110.p.ssafy.io:8081/teamUser/joinList?team=${teamId}`,
+            {
+              headers: {
+                Authorization: token,
+                "Content-Type": "application/json",
+              },
+            }
+          );
+  
+          // if (response.status === 200) {
+            setWaitingUsers(response.data.matchList.map((match) => match.user));
+            console.log(response.data.matchList)
+            console.log(response.data.matchList.map((match) => match.user));
+          // }
+        } catch (error) {
+          console.log("가입 대기 사용자 목록을 가져오는데 실패했습니다:", error);
+          setWaitingUsers([]);
+        }
+      }
+  
+      getTeamDataFromServer(); // 팀 정보 호출
+      fetchWaitingUsers();      // 가입 대기 사용자 목록 호출
+
+    }, [teamId, token]);
+
+    
+
+    
+
   return (
     <div>
       <TopNavbar />
@@ -110,7 +197,7 @@ function TeamSettingJoinList() {
               src={"/empty_img_circle.png"}
               alt="Logo"
             /> */}
-            <img className="team-set-logo-img" src={team.logo} alt={`${team.name} 로고`} />
+            {/* <img className="team-set-logo-img" src={team.logo} alt={`${team.name} 로고`} /> */}
 
             <div className="team-name">{team.name}</div>
             <button className="team-edit-btn team-join-btn" onClick={openEditModal}>
@@ -123,11 +210,11 @@ function TeamSettingJoinList() {
         </div>
 
         <div className="team-settings">
-            <div className='setting-category'>
+            {/* <div className='setting-category'>
                 <Link to={`/teamsetting/${teamId}`} className='setting-link-selected'>멤버</Link>
                 <div>|</div>
                 <Link to={`/teamsettingdaily/${teamId}`} className='setting-link'>일정</Link>
-            </div>
+            </div> */}
 
         <div className="member-now">
             <img src={"/icon_member.png"} alt="img" className='set-icon'/>
@@ -147,9 +234,19 @@ function TeamSettingJoinList() {
 
           </div>
 
-        <div className='member-list'>
-          가입 대기중
-          </div>
+          <div className="member-list">
+    {waitingUsers.map((user) => (
+      <div key={user.id}>
+        {user.name} ({user.email}){" "}
+        <button
+          className="btn btn-primary"
+          onClick={() => handleUserApproval(user.id)}
+        >
+          승인
+        </button>
+      </div>
+    ))}
+  </div>
         
         </div>
       </div>

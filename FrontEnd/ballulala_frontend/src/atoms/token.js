@@ -1,6 +1,6 @@
-import { atom } from 'recoil';
+import { atom } from "recoil";
 
 export const tokenState = atom({
-  key: 'tokenState', 
-  default: '', 
+  key: "tokenState",
+  default: localStorage.getItem("token") || null
 });

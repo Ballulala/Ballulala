@@ -36,8 +36,12 @@ function ApplyMatchModal({ isOpen, onClose, match }) {
   }, [token]);
 
   const handleSubmit = async () => {
+    const dateObj = new Date(matchDate);
+    dateObj.setDate(dateObj.getDate());
+    const adjustedDate = dateObj.toISOString().split("T")[0];
+    dateObj.setDate(dateObj.getDate() - 1);
     const requestBody = {
-      matchDate: matchDate,
+      matchDate: adjustedDate,
       team: team,
       time: parseInt(startTime),
       stadium: stadium,

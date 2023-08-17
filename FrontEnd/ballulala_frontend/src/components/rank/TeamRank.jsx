@@ -1,21 +1,34 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
-import './TeamRank.css';
-import TopNavbar from '../top_navbar/TopNavbar';
-import { teamDetailData } from '../team/TeamDummyData';
-
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import "./TeamRank.css";
+import TopNavbar from "../top_navbar/TopNavbar";
+import { teamDetailData } from "../team/TeamDummyData";
 
 function TeamRank() {
-const [team, setTeam] = useState('');
-const [showRegions, setShowRegions] = useState(false);
+  const [team, setTeam] = useState("");
+  const [showRegions, setShowRegions] = useState(false);
+  const [teams, setTeams] = useState([]);
 
-const [teams, setTeams] = useState(teamDetailData);
+  const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_8.jpg";
+  useEffect(() => {
+    const fetchTeams = async () => {
+      try {
+        const response = await fetch(
+          "https://i9d110.p.ssafy.io:8081/teams/listMmr"
+        );
+        const data = await response.json();
+        const sortedTeams = data.matchList.sort((a, b) => b.mmr - a.mmr);
+        setTeams(sortedTeams);
+      } catch (error) {
+        console.error("Error fetching teams:", error);
+      }
+    };
 
-const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_8.jpg";
-
+    fetchTeams();
+  }, []);
   return (
-    <div className='team-page'>
-      <TopNavbar/>
+    <div className="team-page">
+      <TopNavbar />
 
       <div
         className="image-container sliding-image"
@@ -24,35 +37,29 @@ const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_8.jpg";
         <div className="rank-text">RANK (team)</div>
       </div>
 
-
-
-
-
-      {/* 지역별 버튼 리스트. 원하는 지역명으로 변경하고 해당 지역의 페이지 경로를 설정하세요. */}
-      <div className='search-team'>
-        <div className='buttons'>
+      <div className="search-team">
+        <div className="buttons">
           <Link to="/teamrank">
-            <button className='radius-btn-selected'>팀 순위</button>
+            <button className="radius-btn-selected">팀 순위</button>
           </Link>
 
           <Link to="/userrank">
-            <button className='radius-btn'>개인 순위</button>
+            <button className="radius-btn">개인 순위</button>
           </Link>
         </div>
 
-          <div className="team-search-box">
+        <div className="team-search-box">
           <label htmlFor="email"></label>
-            <input
-              type="team"
-              id="team"
-              placeholder="팀 이름 검색"
-              value={team}
-              onChange={(event) => setTeam(event.target.value)}
-            />
-          </div>
-
+          <input
+            type="team"
+            id="team"
+            placeholder="팀 이름 검색"
+            value={team}
+            onChange={(event) => setTeam(event.target.value)}
+          />
+        </div>
       </div>
-      
+
       <div className="rank-second-line">
         <div className="buttons">
           <div className="region-container">
@@ -86,40 +93,39 @@ const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_8.jpg";
           </div>
         </div>
 
-        <div className='rank-info'>
-          <div>경기</div>
-          <div>승률</div>
+        <div className="rank-info">
+          <div>MMR</div>
         </div>
       </div>
 
       {/* 여기에 전체 팀 리스트를 추가하세요. */}
-      <div className='list'>
-  <hr/>
-  <div>
-    <ul>
-      {teams.map((team, index) => (
-        <li key={team.team_id}>
-          <div className='team-rank-one'>
-            <span>{index + 1}</span>
-            <Link to={`/teamdetail/${team.team_id}`}>
-              <img src={team.logo} alt={team.name + " 로고"} className='rank-logo'/>
-            </Link>
-            <Link to={`/teamdetail/${team.team_id}`}>
-              {team.name}
-            </Link>
-          </div>
-          <div className='team-rank-two'>
-            <div>{team.win_count+team.lose_count}</div>
-            <div>{(team.win_count / (team.win_count + team.lose_count) * 100).toFixed(2)}%</div>
-          </div>
-        </li>
-      ))}
-    </ul>
-  </div>
-
+      <div className="list">
+        <hr />
+        <div>
+          <ul>
+            {teams.map((team, index) => (
+              <li key={team.id}>
+                <div className="team-rank-one">
+                  <span>{index + 1}</span>
+                  <Link to={`/teamdetail/${team.id}`}>
+                    <img
+                      src={`/images/${team.logo}.png`}
+                      alt={team.name + " 로고"}
+                      className="rank-logo"
+                    />
+                  </Link>
+                  <Link to={`/teamdetail/${team.id}`}>{team.name}</Link>
+                </div>
+                <div className="team-rank-two">
+                  <div>{team.mmr}</div>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
-  )
+    </div>
+  );
 }
 
-export default TeamRank
+export default TeamRank;

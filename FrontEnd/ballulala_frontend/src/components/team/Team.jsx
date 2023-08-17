@@ -30,6 +30,7 @@ function Team() {
   const { teamId } = useParams();
 
   const token = useRecoilValue(tokenState);
+  const temporaryToken = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwiYXV0aCI6IlJPTEVfMSIsImV4cCI6MTY5MjU5NDkzOX0.W3n7FOxxkaasEeFV48_f9j0c-4fURYK_LNQkeJgvpYY';
 
 
   // 팀 데이터를 가져오는 useEffect
@@ -38,8 +39,9 @@ function Team() {
       try {
         console.log('토큰 값 :');
         console.log(token)
+        console.log(temporaryToken)
         const response = await axios.get(
-          "https://i9d110.p.ssafy.io:8081/teams/list?page=1"
+          "https://i9d110.p.ssafy.io:8081/teams/list"
         );
         const matchList = response.data.matchList;
         setTeams(response.data.matchList);
@@ -78,7 +80,8 @@ function Team() {
           {
             headers: {
               "Content-Type": "multipart/form-data",
-              "Authorization": `Bearer ${token}`,
+              // "Authorization": `Bearer ${token}`,
+              "Authorization": temporaryToken,
             },
           }
         );
@@ -106,7 +109,8 @@ function Team() {
           {
             headers: {
               "Content-Type": "application/json",
-              "Authorization": `Bearer ${token}`,
+              // "Authorization": `Bearer ${token}`,
+              "Authorization": temporaryToken,
             },
           }
         );
@@ -213,7 +217,117 @@ function Team() {
             // onChange={(event) => setTeam(event.target.value)}
           />
         </div>
+
+        
       </div>
+
+      
+      <div className='search-team-2'>
+        <div className="new-team-btn-container">
+          <button className="new-team-btn" onClick={openModal}>
+            새로운 팀 만들기
+          </button>
+        </div>
+      </div>
+
+        {showModal && (
+          <div className="ball-modal">
+            <div className="ball-modal-content">
+              <div className="ball-modal-title">
+                <div>팀 등록하기</div>
+                <br/>
+              </div>
+
+              <div>
+                <label htmlFor="image">로고</label>
+                <br/>
+                <input
+                  type="file"
+                  id="image"
+                  onChange={(event) => setImage(event.target.files[0])}
+                />
+                <br />
+
+                <br/>
+                <div className="inputbox">
+                <label htmlFor="name">팀 이름</label>
+                <br />
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(event) => setName(event.target.value)}
+                  className='modal-input'
+                /></div>
+
+                <br />
+<label htmlFor="gugun">지역</label>
+<br />
+<select
+  className="inputbox selectbox"
+  id="gugun"
+  value={gugun}
+  onChange={(event) => setGugun(event.target.value)}
+>
+  <option value="">시/도</option>
+  <option value="0">서울</option>
+  <option value="1">경기</option>
+  <option value="2">인천</option>
+  <option value="3">강원</option>
+  <option value="4">대구</option>
+  <option value="5">대전</option>
+  <option value="6">경남</option>
+  <option value="7">경북</option>
+  <option value="8">부산</option>
+  <option value="9">울산</option>
+  <option value="10">광주</option>
+  <option value="11">제주</option>
+  <option value="12">전남</option>
+  <option value="13">전북</option>
+  <option value="14">충남</option>
+  <option value="15">충북</option>
+</select>
+
+
+                <div className="inputbox">
+                <br/>
+                <label htmlFor="statusMsg">소개</label>
+                <br />
+                <input
+                  type="text"
+                  id="statusMsg"
+                  value={statusMsg}
+                  onChange={(event) => setStatusMsg(event.target.value)}
+                  className='modal-input'
+                />
+                </div>
+              </div>
+
+              <div className="modal-btns" style={{ marginTop: '10%' }}>
+                <button
+                  className="modal-no-btn"
+                  type="button"
+                  onClick={() => {
+                    closeModal();
+                  }}
+                >
+                  취소
+                </button>
+
+                <button
+                  className="modal-yes-btn"
+                  type="button"
+                  onClick={() => {
+                    handleSubmit();
+                    closeModal();
+                  }}
+                >
+                  확인
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
 
 
 <div className='team-list'>
@@ -225,12 +339,13 @@ function Team() {
     <li key={team.id} className="team-item">
             <div className='team-item-one'>
               <Link to={`/teamdetail/${team.id}`}>
-                <img src={team.logo} alt={team.name + " 로고"} />
+                <img src={team.logo} alt={team.id + " 로고"} />
                 </Link>
             </div>
             <div className='team-item-two'>
+              {/* <Link to={`/teamdetail/${team.name}`}> */}
               <Link to={`/teamdetail/${team.id}`}>
-                {team.name}
+                {team.name}{team.id}
               </Link>
               <div>{getRegionName(team.gugun)}</div>
             </div>
@@ -241,7 +356,7 @@ function Team() {
 
 
       
-       <div className="new-team-btn-container">
+       {/* <div className="new-team-btn-container">
         <button className="new-team-btn" onClick={openModal}>
           새로운 팀 만들기
         </button>
@@ -324,7 +439,8 @@ function Team() {
             </div>
           </div>
         </div>
-      )}
+      )} */}
+
     </div>
   );
 };

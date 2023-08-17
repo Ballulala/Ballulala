@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import TopNavbar from "../top_navbar/TopNavbar";
-
+import DateBar_Individual from "./Date_bar_individual";
 import MatchModal from "./Match_individual_modal";
 
 function IndividualMatching() {
@@ -33,6 +33,7 @@ function IndividualMatching() {
         onClose={handleModalClose}
         onSubmit={handleModalSubmit}
       />
+      <DateBar_Individual />
     </div>
   );
 }

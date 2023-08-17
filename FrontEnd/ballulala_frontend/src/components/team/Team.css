@@ -15,9 +15,15 @@
     margin: 20px;
 }
 
-.new-team-btn-container {
+.search-team-2 {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 2rem; /* 두 영역간 간격 설정 */
+}
+
+/* .new-team-btn-container {
     float: right;
-  }
+  } */
 
 .new-team-btn {
     background-color: rgb(255, 145, 148);
@@ -25,10 +31,9 @@
     border: 1px solid rgb(255, 145, 148);
     border-radius: 5px;
     padding: 10px;
-    height: 100%;
-    width: 10vw;
+    height: 50px;
+    width: 168px;
     margin-top: 30px;
-    margin-bottom: 30px;
 }
 
 .new-team-btn:hover {

@@ -15,8 +15,14 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
 
   useEffect(() => {
     const fetchUserTeams = async () => {
+      if (!token) {
+        console.log("Token is not available yet.");
+        return;
+      }
+
+      console.log("Token being used for the request:", token);
+
       try {
-        console.log(token);
         const response = await fetch(
           "https://i9d110.p.ssafy.io:8081/teams/myTeam",
           {
@@ -36,6 +42,7 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
 
     fetchUserTeams();
   }, [token]);
+
   const openModal = () => {
     setShowModal(true);
   };
@@ -46,8 +53,11 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
   };
 
   const handleSubmit = async () => {
+    const dateObj = new Date(matchDate);
+    dateObj.setDate(dateObj.getDate());
+    const adjustedDate = dateObj.toISOString().split("T")[0];
     const requestBody = {
-      matchDate: matchDate,
+      matchDate: adjustedDate,
       team: team,
       time: parseInt(startTime),
       stadium: stadium,
@@ -115,6 +125,7 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
               <label>
                 팀 선택:
                 <select value={team} onChange={(e) => setTeam(e.target.value)}>
+                  console.log(e.target.value);
                   {userTeams.map((userTeam) => (
                     <option key={userTeam.teamId} value={userTeam.name}>
                       {userTeam.name}
@@ -122,7 +133,17 @@ function TeamMatchingModal({ isOpen, onClose, onRegister }) {
                   ))}
                 </select>
               </label>
+
               <br />
+              <label>
+                팀 이름 (텍스트 필드):
+                <input
+                  type="text"
+                  value={team}
+                  onChange={(e) => setTeam(e.target.value)}
+                  readOnly
+                />
+              </label>
 
               <label>
                 시작 시간:

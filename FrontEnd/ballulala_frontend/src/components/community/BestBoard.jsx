@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
-import TopNavbar from '../top_navbar/TopNavbar';
-import axios from 'axios';
-
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import TopNavbar from "../top_navbar/TopNavbar";
+import axios from "axios";
 
 function BestBoard() {
-  const [boards, setBoards]= useState([]);
+  const [boards, setBoards] = useState([]);
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/bestboard/add');
+    navigate("/bestboard/add");
   };
 
   const coverImagePath = process.env.PUBLIC_URL + "/images/img_stadium_4.png";
@@ -17,11 +16,11 @@ function BestBoard() {
   useEffect(() => {
     const fetchBoards = async () => {
       try {
-        const response = await axios.get('https://i9d110.p.ssafy.io:8081/highlight/list');
-        console.log('Response data:', response.data);
+        const response = await axios.get("https://i9d110.p.ssafy.io:8081/highlight/list");
+        console.log("Response data:", response.data);
         setBoards(response.data.highlightList);
       } catch (error) {
-        console.error('Failed to fetch boards:', error);
+        console.error("Failed to fetch boards:", error);
       }
     };
 
@@ -90,8 +89,9 @@ function BestBoard() {
     }}
     className="board-item"
   >
-    {board.title}
-    {/* {board.createTime} */}
+    <div className="free-board-title">{board.title}</div>
+            {/* <div>{board.createTime.slice(0, 10)}　·　{board.nickname}</div> */}
+    <div>{board.nickname}</div>
   </Link>
 ))}
 

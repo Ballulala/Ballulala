@@ -123,11 +123,11 @@ function TeamSetting() {
         </div>
 
         <div className="team-settings">
-            <div className='setting-category'>
+            {/* <div className='setting-category'>
                 <Link to={`/teamsetting/${teamId}`} className='setting-link-selected'>멤버</Link>
                 <div>|</div>
                 <Link to={`/teamsettingdaily/${teamId}`} className='setting-link'>일정</Link>
-            </div>
+            </div> */}
 
         <div className="member-now">
             <img src={"/icon_member.png"} alt="img" className='set-icon'/>

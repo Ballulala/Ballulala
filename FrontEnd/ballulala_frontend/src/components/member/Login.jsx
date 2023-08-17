@@ -101,7 +101,7 @@ const Login = () => {
           <br />
           <div className="snslogin">
             <div>SNS 계정으로 로그인</div>
-            <div className="snslogos">
+            {/* <div className="snslogos">
               <Link to="/">
                 <img src="/kakao_logo.png" alt="kakao_logo" />
               </Link>
@@ -111,7 +111,7 @@ const Login = () => {
               <Link to="/">
                 <img src="/google_logo.png" alt="google_logo" />
               </Link>
-            </div>
+            </div> */}
           </div>
           <div className="links">
             <div>

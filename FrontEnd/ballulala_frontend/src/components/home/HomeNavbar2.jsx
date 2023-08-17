@@ -9,7 +9,7 @@ function HomeNavbar2() {
     const subMenuContent = {
       match: [
         { label: "팀 매칭", link: "/Match_team" },
-        { label: "개인 매칭", link: "/Match_individual" },
+        { label: "개인 (준비중)", link: "/Match_individual" },
       ],
       rank: [
         { label: "팀 랭킹", link: "/teamrank" },
@@ -44,7 +44,7 @@ function HomeNavbar2() {
 
   return (
     <div className="nav-seul">
-      <Link to='/' className="link-no-line">
+      <Link to="/" className="link-no-line">
         <div className="nav-one">BALLULALA</div>
       </Link>
       <div className="nav-two">
@@ -61,7 +61,9 @@ function HomeNavbar2() {
               }`}
             />
             {activeMenu === item.id && (
-              <div className={`sub-menu${activeMenu === item.id ? " active" : ""}`}>
+              <div
+                className={`sub-menu${activeMenu === item.id ? " active" : ""}`}
+              >
                 {createSubMenuContent(item.id).map((subMenuItem, index) => (
                   <Link key={index} to={subMenuItem.link}>
                     <div>{subMenuItem.label}</div>

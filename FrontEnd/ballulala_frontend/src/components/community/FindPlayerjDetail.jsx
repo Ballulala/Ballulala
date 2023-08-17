@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, useLocation, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import TopNavbar from '../top_navbar/TopNavbar';
+import { tokenState } from '../../atoms/token';
+import { useRecoilValue } from "recoil";
 
 function FindPlayerDetail() {
   const [findPlayer, setFindPlayer] = useState(null);
   const { boardID } = useParams();
   const navigate = useNavigate();
+  const [authority, setAuthority] = useState(null);
+  const [currentUserID, setCurrentUserID] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null);
 
   const [showModal, setShowModal] = useState(false);
   const handleShow = () => setShowModal(true);
@@ -17,10 +22,32 @@ function FindPlayerDetail() {
   const [editingComment, setEditingComment] = useState(null);
   const [editedComment, setEditedComment] = useState('');
 
+  const token = useRecoilValue(tokenState);
+
+  useEffect(() => {
+    const fetchCurrentUser = async () => {
+      try {
+        const response = await axios.get('https://i9d110.p.ssafy.io:8081/users/myInfo', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+  
+        setCurrentUser(response.data.user);
+      } catch (error) {
+        console.error('현재 사용자 정보 가져오기 에러:', error);
+      }
+    };
+  
+    fetchCurrentUser();
+  }, [token]);
+
   useEffect(() => {
     const fetchFindPlayer = async () => {
       try {
-        const response = await axios.get(`https://i9d110.p.ssafy.io:8081/mercenary/detail/${boardID}`);
+        const response = await axios.get(`https://i9d110.p.ssafy.io:8081/mercenary/detail/${boardID}`, {
+          headers: { Authorization: `Bearer ${token}` },
+        });
         setFindPlayer(response.data.mercenary);
         console.log('받아온 게시글 데이터:', response.data.mercenary); // 받아온 데이터 확인
       } catch (error) {
@@ -30,6 +57,19 @@ function FindPlayerDetail() {
     };
 
     fetchFindPlayer();
+  }, [boardID, token]);
+
+  useEffect(() => {
+    console.log(token)
+    const fetchComments = async () => {
+      try {
+        const response = await axios.get(`https://i9d110.p.ssafy.io:8081/mercenaryreply/list/${boardID}`);
+        setComments(Array.isArray(response.data.replyList) ? response.data.replyList : []);
+      } catch (error) {
+        console.error('댓글 가져오기 에러:', error);
+      }
+    };
+    fetchComments();
   }, [boardID]);
 
   const handleDelete = async () => {
@@ -43,17 +83,17 @@ function FindPlayerDetail() {
     handleClose();
   };
 
-  useEffect(() => {
-    const fetchComments = async () => {
-      try {
-        const response = await axios.get(`https://i9d110.p.ssafy.io:8081/mercenaryreply/list/${boardID}`);
-        setComments(Array.isArray(response.data.replyList) ? response.data.replyList : []);
-      } catch (error) {
-        console.error('댓글 목록 에러:', error);
-      }
-    };
-    fetchComments();
-  }, [boardID]);
+  // useEffect(() => {
+  //   const fetchComments = async () => {
+  //     try {
+  //       const response = await axios.get(`https://i9d110.p.ssafy.io:8081/mercenaryreply/list/${boardID}`);
+  //       setComments(Array.isArray(response.data.replyList) ? response.data.replyList : []);
+  //     } catch (error) {
+  //       console.error('댓글 목록 에러:', error);
+  //     }
+  //   };
+  //   fetchComments();
+  // }, [boardID]);
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -61,11 +101,14 @@ function FindPlayerDetail() {
     try {
       const userId = 1;
 
-      await axios.post('https://i9d110.p.ssafy.io:8081/mercenaryreply/add', {
+      await axios.post('https://i9d110.p.ssafy.io:8081/mercenaryreply/add',  {          
         content: newComment,
-        userId: userId,
         board: boardID,
-      });
+                },
+                {          
+        headers: { Authorization:`Bearer ${token}` }, // 헤더에 토큰 추가       
+        }
+        );
 
       setNewComment('');
       const response = await axios.get(`https://i9d110.p.ssafy.io:8081/mercenaryreply/list/${boardID}`);
@@ -115,24 +158,19 @@ function FindPlayerDetail() {
         <div className='board-detail'>
 
           <div className='board-title'>{findPlayer.title}</div>
-          <div style={{ marginBottom: '10px' }}>작성자</div>
-          <div>작성시간</div>
+          <div style={{ marginBottom: '10px' }}>{findPlayer.nickname}</div>
           <hr />
+
           <div className='detail-line-one'>
-            <img src={'/images/like.png'} alt='like' />
-            <div>좋아요 수</div>
-            <img src={'/images/comment.png'} alt='like' />
-            <div>{comments.length}</div>
+
           </div>
           <hr />
           <div className='detail-line-two'>{findPlayer.content}</div>
 
           <div className='detail-line-three'>
+         
           <div>
-            <img src={'/images/like.png'} alt='like' />
-            <button className='like-btn'>좋아요/좋아요 취소</button>
-          </div>
-
+      {authority === "작성자" && (
           <div className='detail-btns'>
             <Link
               to={{
@@ -147,6 +185,9 @@ function FindPlayerDetail() {
             </Link>
             <button className='detail-btns-btn' onClick={handleShow}>삭제
             </button>
+            </div>
+      )}
+    </div>
 
             {
   showModal && (
@@ -173,10 +214,9 @@ function FindPlayerDetail() {
       </div>
     </div>
   )
-}
-            
+}   
          </div>
-        </div>
+
         <hr />
 
         <div className='detail-line-four'>

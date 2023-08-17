@@ -1,11 +1,12 @@
 import React from "react";
 import "./individual_card.css";
-import { tokenState } from "../../../src/atoms";
-import { useRecoilValue } from "recoil";
+import { tokenState, reloadState } from "../../../src/atoms";
+import { useRecoilValue, useRecoilState } from "recoil";
 import "./inven.css";
 
 function Card({ itemId, logoSrc }) {
   const token = useRecoilValue(tokenState);
+  const [reload, setReload] = useRecoilState(reloadState);
 
   const handlePurchase = async () => {
     try {
@@ -23,8 +24,8 @@ function Card({ itemId, logoSrc }) {
 
       if (response.ok) {
         const data = await response.json();
-
         alert("구매가 완료되었습니다!");
+        setReload(!reload);
       } else {
         const errorMsg = await response.text();
         console.error("Purchase error:", errorMsg);

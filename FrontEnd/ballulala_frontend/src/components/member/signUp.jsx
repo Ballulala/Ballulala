@@ -17,8 +17,8 @@ const SignUp = () => {
   const [birthday, setBirthday] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [gender, setGender] = useState("");
-  const [sido, setSido] = useState("");
-  // const [gugun, setGugun] = useState("");
+  // const [sido, setSido] = useState("");
+  const [gugun, setGugun] = useState("");
 
   const [isSubmitSuccess, setIsSubmitSuccess] = useState(false);
 
@@ -99,7 +99,7 @@ const SignUp = () => {
       birthday,
       phoneNumber,
       gender,
-      sido,
+      gugun,
     };
   
     try {
@@ -112,7 +112,13 @@ const SignUp = () => {
         const result = await registerUser(userData);
         if (result === 'SUCCESS') {
           setIsSubmitSuccess(true);
-          
+          Swal.fire({
+            title: "환영합니다!",
+            text: "볼루랄라 가입이 완료되었습니다.",
+            icon: "success",
+            confirmButtonText: "확인",
+          });
+          navigate('/');
         } else {
           setIsSubmitSuccess(false);
           Swal.fire({
@@ -124,8 +130,8 @@ const SignUp = () => {
         }
       } else {
         setIsSubmitSuccess(false);
-        const result = await registerUser(userData);
-        console.log(result);
+        // const result = await registerUser(userData);
+        // console.log(result);
         console.log(checkEmail);
         console.log(checkPhoneNumber);
         Swal.fire({
@@ -136,9 +142,9 @@ const SignUp = () => {
         });
       }
     } catch (error) {
-      const result = await registerUser(userData);
+      // const result = await registerUser(userData);
       console.error(error);
-      console.log(result);
+      // console.log(result);
       console.log(checkEmail);
       console.log(checkPhoneNumber);
       setIsSubmitSuccess(false);
@@ -151,18 +157,6 @@ const SignUp = () => {
     }
   };
   
-
-  const handleFinalSubmit = async (event) => {
-    event.preventDefault();
-
-    Swal.fire({
-      title: "환영합니다!",
-      text: "볼루랄라 가입이 완료되었습니다.",
-      icon: "success",
-      confirmButtonText: "확인",
-    });
-    navigate('/');
-  };
 
   return (
     <div className="join-page">
@@ -266,12 +260,12 @@ const SignUp = () => {
 
           <div className="inputbox">
         <br />
-        <label htmlFor="sido"></label>
+        <label htmlFor="gugun"></label>
         <select
           className="inputbox selectbox"
-          id="sido"
-          value={sido}
-          onChange={(event) => setSido(event.target.value)}
+          id="gugun"
+          value={gugun}
+          onChange={(event) => setGugun(event.target.value)}
         >
           <option value="">시/도</option>
           <option value="0">서울</option>
@@ -302,7 +296,7 @@ const SignUp = () => {
               handleSubmit(event);
             }}
           >
-            다음
+            가입하기
           </button>
 
           <br />

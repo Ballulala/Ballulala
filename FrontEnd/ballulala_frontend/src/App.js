@@ -10,6 +10,8 @@ import FreeBoardDetail from './components/community/FreeBoardDetail';
 import FreeBoardModify from './components/community/FreeBoardModify';
 import BestBoard from './components/community/BestBoard';
 import BestBoardAdd from './components/community/BestBoardAdd';
+import BestBoardDetail from './components/community/BestBoardDetail';
+
 import FindPlayer from './components/community/FindPlayer';
 import FindPlayerAdd from './components/community/FindPlayerAdd';
 import FindPlayerDetail from './components/community/FindPlayerjDetail';
@@ -137,8 +139,12 @@ function App() {
         <Route path="/freeboard/add" element={<FreeBoardAdd />} />
         <Route path="/freeboard/:boardID" element={<FreeBoardDetail />} />
         <Route path="/freeboard/modify/:boardID" element={<FreeBoardModify />} />
+
         <Route path="/bestboard" element={<BestBoard />} />
         <Route path="/bestboard/add" element={<BestBoardAdd />} />
+        <Route path="/bestboard/:boardID" element={<BestBoardDetail />} />
+        {/* <Route path="/bestboard/modify/:boardID" element={<BestBoardModify />} /> */}
+        
         <Route path="/findplayer" element={<FindPlayer />} />
         <Route path="/findplayer/add" element={<FindPlayerAdd />} />
         <Route path="/findplayer/:boardID" element={<FindPlayerDetail />} />
