@@ -293,3 +293,5 @@ insert into mercenary (create_time, hit, user_id, content, title) values(now(),0
 insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),4,5,"5번이 5번에 쓴 댓글");
 insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),4,6,"6번이 6번에 쓴 댓글");
 insert into mercenary_reply (create_time, mercenary_id, user_id, content) values(now(),4,4,"4번이 4번에 쓴 댓글");
+
+insert into team_user (state, team_id, user_id) values(2,1,5);

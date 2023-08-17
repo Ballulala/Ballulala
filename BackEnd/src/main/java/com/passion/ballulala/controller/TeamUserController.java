@@ -1,9 +1,6 @@
 package com.passion.ballulala.controller;
 
-import com.passion.ballulala.dto.TeamAddDto;
-import com.passion.ballulala.dto.TeamListDto;
-import com.passion.ballulala.dto.TeamUserDto;
-import com.passion.ballulala.dto.TeamUserJoinListDto;
+import com.passion.ballulala.dto.*;
 import com.passion.ballulala.service.TeamUserService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -110,12 +107,12 @@ public class TeamUserController {
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
 
-    @GetMapping("/joinDenied")
-    public ResponseEntity<Map<String, Object>> joinDenied(@RequestBody Long teamId, Long userId) {
+    @PostMapping("/joinDenied")
+    public ResponseEntity<Map<String, Object>> joinDenied(@RequestBody DeniedUserDto deniedUserDto) {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {
-            teamUserService.joinDenied(teamId, userId);
+            teamUserService.joinDenied(deniedUserDto.getTeamId(), deniedUserDto.getUserId());
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;
         } catch (Exception e) {
