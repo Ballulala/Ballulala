@@ -27,6 +27,7 @@ public class UserDto {
     private String refreshtoken;
     private int point;
     private int manner;
+    private String profileImage;
 
     public User toEntity(){
         String[] args = birthday.split("-");
@@ -46,6 +47,7 @@ public class UserDto {
                 .mvpCount(mvpCount)
                 .point(point)
                 .manner(manner)
+                .profileImage(profileImage)
                 .build();
     }
 
@@ -66,6 +68,7 @@ public class UserDto {
                 .mvpCount(user.getMvpCount())
                 .point(user.getPoint())
                 .manner(user.getManner())
+                .profileImage(user.getProfileImage())
                 .build();
     }
 }

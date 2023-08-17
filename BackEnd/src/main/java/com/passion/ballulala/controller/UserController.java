@@ -1,6 +1,7 @@
 package com.passion.ballulala.controller;
 
 import com.passion.ballulala.dto.*;
+import com.passion.ballulala.entity.Item;
 import com.passion.ballulala.entity.Team;
 import com.passion.ballulala.entity.TeamUser;
 import com.passion.ballulala.entity.User;
@@ -138,6 +139,20 @@ public class UserController {
         }
     }
 
+    @PostMapping(value = "/profile")
+    public ResponseEntity<?> profile(@RequestBody ItemDto itemDto, HttpServletRequest request) {
+        ResponseDto<Boolean> response = new ResponseDto<Boolean>();
+        try {
+            userService.profile(itemDto, request.getHeader("Authorization"));
+            response.setState("SUCCESS");
+            response.setMessage("프로필 변경에 성공하였습니다.");
+            return new ResponseEntity<ResponseDto<Boolean>>(response, HttpStatus.OK);
+        }catch(Exception e){ //로그인 중 의문의 오류 발생.
+            response.setState("FAIL");
+            response.setMessage("프로필 변경에 실패하였습니다.");
+            return ExceptionHandler.exceptionResponse(response, e);
+        }
+    }
 
     //회원가입 부분
     @PostMapping(value = "/signUp")

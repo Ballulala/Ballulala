@@ -1,11 +1,10 @@
 package com.passion.ballulala.service;
 
-import com.passion.ballulala.dto.JwtTokenDto;
-import com.passion.ballulala.dto.TeamMatchListDto;
-import com.passion.ballulala.dto.TeamUserDto;
-import com.passion.ballulala.dto.UserDto;
+import com.passion.ballulala.dto.*;
 import com.passion.ballulala.entity.User;
+import com.passion.ballulala.entity.UserItem;
 import com.passion.ballulala.jwt.JwtTokenProvider;
+import com.passion.ballulala.repo.UserItemRepo;
 import com.passion.ballulala.repo.UserRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +24,7 @@ public class UserService {
     final UserRepo userRepo;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final JwtTokenProvider jwtTokenProvider;
+    private final UserItemRepo userItemRepo;
 
     //로그인하기
     public JwtTokenDto login(UserDto user){
@@ -150,5 +150,12 @@ public class UserService {
             return true;
         }
         return false;
+    }
+
+    @Transactional
+    public void profile(ItemDto itemDto, String accessToken) {
+        UserItem useritem = userItemRepo.findById(itemDto.getId()).orElseThrow();
+        User user = userRepo.findById(jwtTokenProvider.decodeToken(accessToken)).orElseThrow();
+        user.setProfileImage(useritem.getItem().getName());
     }
 }
