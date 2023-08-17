@@ -118,13 +118,13 @@ insert into team(lose_count, mmr, point, win_count ,winning_streak , description
 -- 팀, 유저 관계
 -- 1번은 1~3번 팀에 가입
 -- insert into team_user(team_id, user_id, state) values(팀id ,유저id, 유저state);
-insert into team_user(team_id, user_id, state) values(1,1,0);
-insert into team_user(team_id, user_id, state) values(2,1,1);
-insert into team_user(team_id, user_id, state) values(3,1,1);
+insert into team_user(team_id, user_id, state) values(1,1,1);
+insert into team_user(team_id, user_id, state) values(2,1,0);
+insert into team_user(team_id, user_id, state) values(3,1,0);
 -- 2번 유저는 3~5 팀에 가입
-insert into team_user(team_id, user_id, state) values(3,2,0);
-insert into team_user(team_id, user_id, state) values(4,2,1);
-insert into team_user(team_id, user_id, state) values(5,2,1);
+insert into team_user(team_id, user_id, state) values(3,2,1);
+insert into team_user(team_id, user_id, state) values(4,2,0);
+insert into team_user(team_id, user_id, state) values(5,2,0);
 -- 3 ~ 6번 유저는 각자 맞는 팀에 가입
 insert into team_user(team_id, user_id, state) values(3,3,1);
 insert into team_user(team_id, user_id, state) values(4,4,0);

@@ -154,8 +154,6 @@ public class TeamController {
 
         Byte userState = userService.getUserState(accessToken, teamDetail.getId());
 
-        System.out.println(userState);
-
         Map<String, Object> map = new HashMap<>();
         try{
             map.put("teamDetail", teamDetail);
@@ -164,10 +162,10 @@ public class TeamController {
                 map.put("userState", "미가입자");
             }else{
                 switch (userState){
-                    case 0:
+                    case 1:
                         map.put("userState", "관리자");
                         break;
-                    case 1:
+                    case 0:
                         map.put("userState", "일반회원");
                 }
             }
