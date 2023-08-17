@@ -82,7 +82,7 @@ public class TeamController {
         return new ResponseEntity<Map<String, Object>>(resultMap, status);
     }
 
-    @PostMapping("/carousel/{teamId}")
+    @GetMapping("/carousel/{teamId}")
     public ResponseEntity<Map<String,Object>> carousel(@PathVariable (name = "teamId") Long teamId){
         Map<String ,Object> resultMap = new HashMap<>();
         HttpStatus status = null;
