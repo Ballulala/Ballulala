@@ -112,7 +112,7 @@ public class TeamUserController {
         Map<String, Object> resultMap = new HashMap<>();
         HttpStatus status = null;
         try {
-            teamUserService.joinDenied(deniedUserDto.getTeamId(), deniedUserDto.getUserId());
+            teamUserService.joinDenied(deniedUserDto);
             resultMap.put("message", "success");
             status = HttpStatus.ACCEPTED;
         } catch (Exception e) {

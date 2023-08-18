@@ -1,5 +1,6 @@
 package com.passion.ballulala.service;
 
+import com.passion.ballulala.dto.DeniedUserDto;
 import com.passion.ballulala.dto.TeamUserDto;
 import com.passion.ballulala.entity.Team;
 import com.passion.ballulala.entity.TeamUser;
@@ -62,12 +63,12 @@ public class TeamUserService {
     }
 
     @Transactional
-    public void joinDenied(Long teamId, Long userId) {
+    public void joinDenied(DeniedUserDto deniedUserDto) {
 //        Long userNo = jwtTokenProvider.decodeToken(accessToken);
         try{
-            System.out.println(teamId);
-            System.out.println(userId);
-            teamUserRepo.deleteByTeam_IdAndUser_Id(teamId, userId);
+            System.out.println("userId="+deniedUserDto.getUserId());
+            System.out.println("teamId="+deniedUserDto.getTeamId());
+            teamUserRepo.deleteByTeam_IdAndUser_Id(deniedUserDto.getTeamId(), deniedUserDto.getUserId());
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

@@ -16,5 +16,5 @@ public interface TeamUserRepo extends JpaRepository<TeamUser, Long> {
     void delete(TeamUser user);
 
 //    @Query("DELETE FROM TeamUser tu WHERE tu.team.id = :teamId AND tu.user.id = :userNo")
-    void deleteByTeam_IdAndUser_Id(Long teamId, Long userNo);
+    void deleteByTeam_IdAndUser_Id(Long teamId, Long userId);
 }
