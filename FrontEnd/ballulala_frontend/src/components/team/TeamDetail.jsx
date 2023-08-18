@@ -145,7 +145,7 @@ function TeamDetail() {
 
 <img
     className="team-logo-img"
-    src={'/empty_img_circle.png'} alt='empty'
+    src={`/images/${team.teamDetail.logo}.png`} alt='empty'
     style={{ width: '40%' }}
   />
 
