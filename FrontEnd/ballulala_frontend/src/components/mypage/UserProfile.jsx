@@ -72,7 +72,7 @@ function UserProfile() {
           selectedTeam={selectedTeam}
           onSelectTeam={setSelectedTeam}
         />
-        <UserStats mvpCount={user.mvpCount} mannerScore={user.manner} />
+        <UserStats mmr={selectedTeam ? selectedTeam.mmr : "N/A"} />
         <UserPoints points={user.point} />
       </div>
     </div>
