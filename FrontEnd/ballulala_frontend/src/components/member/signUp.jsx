@@ -118,7 +118,7 @@ const SignUp = () => {
             icon: "success",
             confirmButtonText: "확인",
           });
-          navigate('/');
+          navigate('/login');
         } else {
           setIsSubmitSuccess(false);
           Swal.fire({
