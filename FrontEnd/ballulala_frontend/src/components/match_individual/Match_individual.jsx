@@ -18,7 +18,7 @@ function IndividualMatching() {
   };
 
   return (
-    <div>
+    <div className="team-page">
       <TopNavbar />
       <div
         className="image-container sliding-image"

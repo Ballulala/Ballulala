@@ -12,6 +12,7 @@ import { getRegionName } from "../function/getRegionName";
 function TeamDetail() {
   const token = useRecoilValue(tokenState);
 
+  const [members, setMembers] = useState([]);
 
   // const { teamName } = useParams();
   const { teamId } = useParams();
@@ -36,6 +37,20 @@ function TeamDetail() {
       setTeam({});
     }
   }
+
+  useEffect(() => {
+    const fetchMembers = async () => {
+      try {
+        const response = await axios.get(`https://i9d110.p.ssafy.io:8081/teamUser/teamUserList?team=${teamId}`);
+        setMembers(Array.isArray(response.data.matchList) ? response.data.matchList : []);
+        console.log(response.data.matchList)
+      } catch (error) {
+        console.error('멤버 명단을 가져오는데 실패했습니다:', error);
+      }
+    };
+
+    fetchMembers();
+  }, [teamId]);
   
   
   const [team, setTeam] = useState({ teamDetail: {} });
@@ -193,7 +208,7 @@ function TeamDetail() {
 
 {
   team.userState === "관리자" && (
-    <Link to={`/teamsetting/${teamId}`}>
+    <Link to={`/teamsettingjoinlist/${teamId}`}>
       <button className="team-join-btn" type="submit">
         팀 관리하기
       </button>
@@ -208,14 +223,27 @@ function TeamDetail() {
     </button>
   )
 }
-
         </div>
+
 
         <div className="team-more">
-          <div>{team.teamDetail.description}</div>
-          {/* <Link to={`/teamsetting/${teamId}`}>팀 관리 페이지로</Link> */}
+          <div className="team-more-one">
+            <div className="team-more-title">✔ 팀 소개</div>
+            <div className="team-more-content-one">{team.teamDetail.description}</div>
+          </div>
+          <div className="team-more-two">
+            <div className="team-more-title">✔ 멤버 리스트</div>
+            <div>
+            <ul>
+              {members.map((member) => (
+                <li className="team-more-content-two" key={member.user.id}>{member.user.nickname}</li>
+              ))}
+            </ul>
+          </div>
+          </div>
         </div>
       </div>
+
 
       <TeamModal
         title="가입 신청"

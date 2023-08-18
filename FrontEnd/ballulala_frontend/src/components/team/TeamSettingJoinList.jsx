@@ -166,9 +166,9 @@ function TeamSettingJoinList() {
         <div className="team-settings">
           <div className="member-now">
             <img src={"/icon_member.png"} alt="img" className='set-icon'/>
-            <Link to={`/teamsetting/${teamId}`} className='setting-link'>
+            {/* <Link to={`/teamsetting/${teamId}`} className='setting-link'>
               멤버
-            </Link>
+            </Link> */}
             <Link to={`/teamsettingjoinlist/${teamId}`} className='setting-link-selected'>
               가입대기중
             </Link>
@@ -179,9 +179,10 @@ function TeamSettingJoinList() {
               <div key={user.id}>
                 {user.nickname} ({user.email}){" "}
                 <button
-                  className="btn btn-primary"
-                  onClick={() => handleUserApproval(user.id)}
-                >
+  className="btn btn-primary"
+  onClick={() => handleUserApproval(user.id)}
+  style={{ marginLeft: '20px' }}
+>
                   승인
                 </button>
                 {/* <button

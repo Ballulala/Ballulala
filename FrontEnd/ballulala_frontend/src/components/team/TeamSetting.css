@@ -33,7 +33,7 @@
 .member-now {
   display: flex;
   margin-top: 7%;
-  justify-content: space-around;
+  /* justify-content: space-around; */
   align-items: center; /* 요소들의 높이를 가운데로 정렬 */
 }
 
@@ -70,6 +70,7 @@
     color:black;
     text-decoration: none;
     font-weight: 600;
+    margin-left: 40px;
   }
 
   .interview-times-list {
