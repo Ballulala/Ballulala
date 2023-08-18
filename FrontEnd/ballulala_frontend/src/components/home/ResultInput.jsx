@@ -92,7 +92,9 @@ function ResultInput({ match }) {
 
   return (
     <>
-      <button onClick={handleResultInputClick}>경기 결과입력</button>
+      <button className="result-input-button" onClick={handleResultInputClick}>
+        경기 결과입력
+      </button>
       {isModalOpen && (
         <div className="result-modal">
           <h2>경기 결과 입력</h2>
