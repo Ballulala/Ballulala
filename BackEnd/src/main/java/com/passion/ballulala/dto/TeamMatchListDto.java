@@ -10,4 +10,8 @@ import lombok.Getter;
 public class TeamMatchListDto {
     Long TeamId;
     String name;
+    String logo;
+    Integer mmr;
+    Integer winCount;
+    Integer loseCount;
 }
