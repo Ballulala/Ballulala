@@ -21,11 +21,11 @@ import org.springframework.web.filter.CorsFilter;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    private final CorsFilter corsFilter;
+    private final CorsConfig corsFilter;
     private final JwtTokenProvider jwtTokenProvider;
 
     public SecurityConfig(
-        CorsFilter corsFilter,
+        CorsConfig corsFilter,
         JwtTokenProvider jwtTokenProvider
     ){
         this.corsFilter = corsFilter;
@@ -36,7 +36,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf->csrf.disable())
-                .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilter(corsFilter.corsFilter())
                 .authorizeRequests(
                         authorizeRequests->authorizeRequests
                                 //배포용

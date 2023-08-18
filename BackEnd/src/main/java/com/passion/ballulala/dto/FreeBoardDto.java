@@ -1,14 +1,15 @@
 package com.passion.ballulala.dto;
 
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.web.ErrorResponse;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Data
+@Builder
+@AllArgsConstructor
 public class FreeBoardDto {
 
     private String title;

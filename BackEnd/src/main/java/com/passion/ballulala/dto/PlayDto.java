@@ -6,7 +6,11 @@ import com.passion.ballulala.entity.Team;
 import jakarta.persistence.Column;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter @Setter @Data
 public class PlayDto {
 
     private Long id;

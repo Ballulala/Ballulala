@@ -1,14 +1,14 @@
 package com.passion.ballulala.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@NoArgsConstructor
-@Getter
+@NoArgsConstructor @AllArgsConstructor
+@Getter @Setter
+@Builder
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +25,7 @@ public class Message {
     private LocalDateTime sendTime;
 
     @Column(nullable = false, columnDefinition = "tinyint(1)")
-    private Boolean checked;
+    private Byte checked;
 
     @ManyToOne
     @JoinColumn(name = "send_user_id", nullable = false)

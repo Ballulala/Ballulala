@@ -8,9 +8,10 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter  @ToString
+@Getter
 @AllArgsConstructor
 @Builder
+@ToString
 public class Stadium {
 
     @Id
@@ -18,10 +19,10 @@ public class Stadium {
     @Column(name = "stadium_id", nullable = false)
     private Long id;
 
-    @Column(nullable = false, columnDefinition = "varchar(20)")
-    private String region;
+    @Column(nullable = false, columnDefinition = "tinyint")
+    private Byte region;
 
-    @Column(nullable = false, columnDefinition = "varchar(10)")
+    @Column(nullable = false, columnDefinition = "varchar(50)")
     private String name;
 
     @Column(nullable = false, columnDefinition = "longtext")
@@ -30,7 +31,8 @@ public class Stadium {
     @Column(name = "phone_number", nullable = false, columnDefinition = "varchar(30)")
     private String phoneNumber;
 
-    @OneToMany(mappedBy = "stadium", cascade = CascadeType.ALL)
+    @Builder.Default
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "stadium", cascade = CascadeType.ALL)
     private List<Match> matches = new ArrayList<>();
 
 }

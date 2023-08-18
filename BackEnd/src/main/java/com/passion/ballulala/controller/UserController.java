@@ -1,9 +1,9 @@
 package com.passion.ballulala.controller;
 
-import com.passion.ballulala.dto.JwtTokenDto;
-import com.passion.ballulala.dto.ResponseDto;
-import com.passion.ballulala.dto.UserDto;
+import com.passion.ballulala.dto.*;
+import com.passion.ballulala.entity.Item;
 import com.passion.ballulala.entity.Team;
+import com.passion.ballulala.entity.TeamUser;
 import com.passion.ballulala.entity.User;
 import com.passion.ballulala.service.TeamService;
 import com.passion.ballulala.service.UserService;
@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.passion.ballulala.exception.ExceptionHandler;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -54,21 +55,20 @@ public class UserController {
         }
     }
 
-    //회원 마이페이지 조회
+    //회원 마이페이지 조회, 아직 팀 리스트 불러오기 덜 함.
     @GetMapping(value = "myInfo")
     public ResponseEntity<?> myInfo(HttpServletRequest request){
 
-        System.out.println("토큰 받기 전");
         String accessToken = request.getHeader("Authorization");
-        System.out.println("토큰 받기 후");
         Map<String, Object> map = new HashMap<>();
-        System.out.println(accessToken);
         try{
             User user = userService.myInfo(accessToken);
-            map.put("user", user);
+            UserDto userDto = UserDto.fromEntity(user);
+            List<TeamMatchListDto> teamList = teamService.getTeamById(accessToken);
+            map.put("user", userDto);
+            map.put("teamList", teamList);
             map.put("state", "SUCCESS");
             map.put("message", "유저 정보 불러오기에 성공하였습니다.");
-//            Team teamDto = teamService.
             return new ResponseEntity<Map<String,Object>>(map, HttpStatus.OK);
         }
         catch(Exception e){
@@ -80,28 +80,27 @@ public class UserController {
 
 
     //수정하기
-//    @PutMapping(value = "{userNo}/modify")
-//    public ResponseEntity<?> modify(@PathVariable("questionNo") Long userNo, @RequestBody UserDto userDto) {
-//        ResponseDto<JwtTokenDto> response = new ResponseDto<JwtTokenDto>();
-//
-//        try {
-//            JwtTokenDto jwtTokenDto = userService.login(user);
-//            if (jwtTokenDto == null) { //해당 아이디와 비밀번호의 유저를 조회할 수 없음.
-//                response.setState("FAIL");
-//                response.setMessage("아이디 혹은 비밀번호가 일치하지 않습니다.");
-//                return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
-//            } else { //정상적으로 로그인이 진행됨.
-//                response.setState("SUCCESS");
-//                response.setMessage("정상적으로 로그인이 되었습니다.");
-//                response.setData(jwtTokenDto);
-//                return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
-//            }
-//        }catch(Exception e){ //로그인 중 의문의 오류 발생.
-//            response.setState("FAIL");
-//            response.setMessage("로그인 중 오류가 발생하였습니다.");
-//            return new ResponseEntity<ResponseDto<JwtTokenDto>>(response, HttpStatus.OK);
-//        }
-//    }
+    @PutMapping(value = "/modify")
+    public ResponseEntity<?> modify(@RequestBody UserDto user, HttpServletRequest request) {
+        ResponseDto<Boolean> response = new ResponseDto<>();
+        try {
+            String accessToken = request.getHeader("Authorization");
+            Boolean check = userService.modify(user,accessToken);
+            if (!check) { //해당 아이디와 비밀번호의 유저를 조회할 수 없음.
+                response.setState("FAIL");
+                response.setMessage("회원정보 수정에 실패하였습니다.");
+                return new ResponseEntity<ResponseDto<Boolean>>(response, HttpStatus.OK);
+            } else { //정상적으로 로그인이 진행됨.
+                response.setState("SUCCESS");
+                response.setMessage("회원정보가 성공적으로 수정 되었습니다.");
+                return new ResponseEntity<ResponseDto<Boolean>>(response, HttpStatus.OK);
+            }
+        }catch(Exception e){ //로그인 중 의문의 오류 발생.
+            response.setState("FAIL");
+            response.setMessage("회원정보 수정 중 오류가 발생하였습니다.");
+            return new ResponseEntity<ResponseDto<Boolean>>(response, HttpStatus.OK);
+        }
+    }
 
 //    @PostMapping(value = "/refresh")
 //    public ResponseEntity<?> login(@RequestBody HashMap<String, String> map) {
@@ -140,6 +139,20 @@ public class UserController {
         }
     }
 
+    @PostMapping(value = "/profile")
+    public ResponseEntity<?> profile(@RequestBody ItemDto itemDto, HttpServletRequest request) {
+        ResponseDto<Boolean> response = new ResponseDto<Boolean>();
+        try {
+            userService.profile(itemDto, request.getHeader("Authorization"));
+            response.setState("SUCCESS");
+            response.setMessage("프로필 변경에 성공하였습니다.");
+            return new ResponseEntity<ResponseDto<Boolean>>(response, HttpStatus.OK);
+        }catch(Exception e){ //로그인 중 의문의 오류 발생.
+            response.setState("FAIL");
+            response.setMessage("프로필 변경에 실패하였습니다.");
+            return ExceptionHandler.exceptionResponse(response, e);
+        }
+    }
 
     //회원가입 부분
     @PostMapping(value = "/signUp")
@@ -223,6 +236,24 @@ public class UserController {
         } catch (Exception e) { //로그인 중 의문의 오류 발생.
             response.setState("FAIL");
             response.setMessage("중복 체크 중 오류가 발생했습니다.");
+            return ExceptionHandler.exceptionResponse(response, e);
+        }
+    }
+
+    @PostMapping(value = "/findPw")
+    public ResponseEntity<?> findPw(HttpServletRequest request) {
+        ResponseDto<Boolean> response = new ResponseDto<Boolean>();
+        try {
+            userService.findPw(request.getHeader("Authorization"));
+            response.setState("SUCCESS");
+            response.setMessage("임시 비밀번호를 생성하였습니다.");
+            response.setData(true);
+
+            return new ResponseEntity<ResponseDto<Boolean>>(response, HttpStatus.OK);
+        } catch (Exception e) {
+            response.setState("FAIL");
+            response.setMessage("메일을 보내는 중 오류가 발생했습니다.");
+            response.setData(false);
             return ExceptionHandler.exceptionResponse(response, e);
         }
     }

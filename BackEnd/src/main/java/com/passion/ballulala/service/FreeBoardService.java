@@ -1,5 +1,6 @@
 package com.passion.ballulala.service;
 
+import com.passion.ballulala.dto.FreeBoardDetailDto;
 import com.passion.ballulala.dto.FreeBoardDto;
 import com.passion.ballulala.dto.FreeBoardListDto;
 import com.passion.ballulala.dto.MatchAddDto;
@@ -37,6 +38,27 @@ public class FreeBoardService {
 
     public List<FreeBoardListDto> getFreeBoardList() {
         return freeBoardRepo.findAllList();
+    }
+
+    @Transactional
+    public FreeBoardDetailDto getFreeBoardDetail(Long id) {
+        freeBoardRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+        freeBoardRepo.updateHits(id);
+
+        return freeBoardRepo.findDetail(id);
+    }
+
+    @Transactional
+    public void updateFreeBoard(Long id, FreeBoardDto freeBoardDto) {
+        FreeBoard freeBoard = freeBoardRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+        freeBoard.setTitle(freeBoardDto.getTitle());
+        freeBoard.setContent(freeBoardDto.getContent());
+    }
+
+    @Transactional
+    public void deleteFreeBoard(Long id) {
+        FreeBoard freeBoard = freeBoardRepo.findById(id).orElseThrow(() -> new IllegalStateException("존재하지 않는 게시글입니다."));
+        freeBoardRepo.delete(freeBoard);
     }
 
 

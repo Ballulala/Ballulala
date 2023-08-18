@@ -26,7 +26,7 @@ public class TeamUser {
     private Team team;
 
 
-    @Column(nullable = false)
+    @Column(name = "state", nullable = false)
     private Byte state;
 
 }

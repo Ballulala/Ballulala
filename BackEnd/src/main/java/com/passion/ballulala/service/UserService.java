@@ -1,9 +1,10 @@
 package com.passion.ballulala.service;
 
-import com.passion.ballulala.dto.JwtTokenDto;
-import com.passion.ballulala.dto.UserDto;
+import com.passion.ballulala.dto.*;
 import com.passion.ballulala.entity.User;
+import com.passion.ballulala.entity.UserItem;
 import com.passion.ballulala.jwt.JwtTokenProvider;
+import com.passion.ballulala.repo.UserItemRepo;
 import com.passion.ballulala.repo.UserRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -13,10 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.config.annotation.authentication.builders.*;
 
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +24,8 @@ public class UserService {
     final UserRepo userRepo;
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
     private final JwtTokenProvider jwtTokenProvider;
+    private final UserItemRepo userItemRepo;
+    private final SendEmailService sendEmailService;
 
     //로그인하기
     public JwtTokenDto login(UserDto user){
@@ -48,8 +49,28 @@ public class UserService {
         }
     }
 
-    public User myInfo(String accessToken){
+    @Transactional
+    public Boolean modify(UserDto user, String accessToken){
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
 
+        try{
+            User myUser = userRepo.findById(userNo)
+                    .orElseThrow(() -> new UsernameNotFoundException("해당하는 유저를 찾을 수 없습니다."));
+            myUser.setPassword(user.getPassword());
+
+            String args[] = user.getBirthday().split("-");
+            myUser.setBirthday(LocalDateTime.of(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]),0,0,0));
+            myUser.setName(user.getName());
+            myUser.setGender(user.getGender());
+
+            return true;
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    public User myInfo(String accessToken){
         User myUser;
         Long userNo;
         try{
@@ -78,6 +99,17 @@ public class UserService {
 //            return false;
 //        }
 //    }
+
+    public Byte getUserState(String accessToken, Long teamId){
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        try{
+            Byte state = userRepo.getUserState(userNo, teamId).getState();
+            return state;
+        }catch (Exception e){
+            return null;
+        }
+    }
+
 
     public Long findByRefreshtoken(String refreshToken){
         User user = userRepo.findByRefreshtoken(refreshToken);
@@ -119,5 +151,20 @@ public class UserService {
             return true;
         }
         return false;
+    }
+
+    @Transactional
+    public void findPw(String accessToken){
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        User user = userRepo.findById(userNo).orElseThrow();
+        String tempPw = sendEmailService.createPassword(user.getEmail());
+        user.setPassword(tempPw);
+    }
+
+    @Transactional
+    public void profile(ItemDto itemDto, String accessToken) {
+        UserItemBuyListDto useritem = userItemRepo.findByItemId(itemDto.getId());
+        User user = userRepo.findById(jwtTokenProvider.decodeToken(accessToken)).orElseThrow();
+        user.setProfileImage(useritem.getImg());
     }
 }

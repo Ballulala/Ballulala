@@ -13,7 +13,7 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor @AllArgsConstructor
-@Getter @Setter @Builder
+@Getter @Setter @Builder @ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,9 +51,6 @@ public class User {
     private int mvpCount;
 
     @Column(columnDefinition = "varchar(500)")
-    private String accesstoken;
-
-    @Column(columnDefinition = "varchar(500)")
     private String refreshtoken;
 
     @Column(nullable = true)
@@ -62,11 +59,8 @@ public class User {
     @Column(nullable = true)
     private int manner;
 
-    @Column(nullable = true, columnDefinition = "varchar(20)")
-    private String sido;
-
-    @Column(nullable = true, columnDefinition = "varchar(20)")
-    private String gugun;
+    @Column(nullable = true, columnDefinition = "tinyint")
+    private Byte gugun;
 
     @Column(name = "profile_image", nullable = true, columnDefinition = "varchar(100)")
     private String profileImage;
@@ -75,6 +69,26 @@ public class User {
     private int tier;
 
     @Builder.Default
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<UserItem> userItems = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<TeamUser> teamUsers = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "userId", cascade = CascadeType.ALL)
+    private List<PersonalMatchUser> personalMatchUsers = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "send", cascade = CascadeType.ALL)
+    private List<Message> send = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(mappedBy = "receive", cascade = CascadeType.ALL)
+    private List<Message> receive = new ArrayList<>();
+
+    public void updatePoint(int uss) {
+        this.point = uss;
+    }
 }

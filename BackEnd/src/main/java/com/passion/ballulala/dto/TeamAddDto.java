@@ -14,8 +14,8 @@ import java.util.List;
 @Getter @Setter @Data
 public class TeamAddDto {
     private String name;
-    private String sido;
-    private String gugun;
+    private byte gugun;
     private String description;
+    private String logo;
     private Long user;
 }

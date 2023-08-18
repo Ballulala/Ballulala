@@ -1,14 +1,12 @@
 package com.passion.ballulala.service;
 
+import com.passion.ballulala.dto.ManagerMatchListDto;
 import com.passion.ballulala.dto.MatchAddDto;
-import com.passion.ballulala.entity.Match;
-import com.passion.ballulala.entity.Stadium;
-import com.passion.ballulala.entity.Team;
-import com.passion.ballulala.entity.User;
-import com.passion.ballulala.repo.MatchRepo;
-import com.passion.ballulala.repo.StadiumRepo;
-import com.passion.ballulala.repo.TeamRepo;
-import com.passion.ballulala.repo.UserRepo;
+import com.passion.ballulala.dto.TeamListDto;
+import com.passion.ballulala.dto.TeamMatchListDto;
+import com.passion.ballulala.entity.*;
+import com.passion.ballulala.jwt.JwtTokenProvider;
+import com.passion.ballulala.repo.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,31 +23,20 @@ public class MatchService {
     private final TeamRepo teamRepo;
     private final UserRepo userRepo;
     private final StadiumRepo stadiumRepo;
+    private final JwtTokenProvider jwtTokenProvider;
+    private final PlayRepo playRepo;
+    private final PlayService playService;
     @Transactional
 
 
     public void saveMatch(MatchAddDto matchDto){
-
-
-        Team team = teamRepo.getReferenceById(matchDto.getTeam());
-        System.out.println(1);
+        Team team = teamRepo.findByName(matchDto.getTeam());
         System.out.println(matchDto);
-
-//        Team team2 = teamRepo.getReferenceById(matchDto.getTeam2());
-//        System.out.println(2);
-//        Team team3 = teamRepo.getReferenceById(matchDto.getTeam3());
-//        System.out.println(3);
-//        User manager = userRepo.getReferenceById(matchDto.getManager());
-        System.out.println(4);
         Stadium stadium = stadiumRepo.getReferenceById(matchDto.getStadium());
-
-//        Match existingMatch = matchRepo.findByTimeAndStadium_Id(matchDto.getTime(), matchDto.getStadium());
-//        System.out.println(existingMatch);
         String[] args = matchDto.getMatchDate().split("-");
         LocalDateTime date = (LocalDateTime.of(Integer.parseInt(args[0]), Integer.parseInt(args[1]),Integer.parseInt(args[2]),0,0,0));
         Match existingMatch = matchRepo.findByMatchDateAndTimeAndStadium_Id(date, matchDto.getTime(), matchDto.getStadium());
         if(existingMatch==null){
-//            System.out.println(matchRepo.findByMatchDateAndTimeAndStadium_Id(matchDto.getMatchDate(),matchDto.getTime(),matchDto.getStadium()));
             Match match = Match.builder()
                     .matchDate(date) //그날짜에
                     .team1(team)
@@ -80,6 +67,8 @@ public class MatchService {
 //                existingMatch.setState(matchDto.getState());
 
                 matchRepo.save(existingMatch);
+                playService.saveMatch(existingMatch.getTeam1(),existingMatch.getTeam2(),existingMatch.getTeam3(),existingMatch);
+
             }
             else{
                 System.out.println("already full");
@@ -88,8 +77,31 @@ public class MatchService {
         }
     }
 
-    public List<Match> getMatchesByDate(LocalDateTime matchDate, Byte state) {
-        return matchRepo.findAllByMatchDateAndState(matchDate, state);
+    public List<Match> getMatchesByDateFull(LocalDateTime matchDate) {
+        return matchRepo.findByMatchDateAndTeam3IsNotNull(matchDate);
+
+    }public List<Match> getMatchesByDateLess(LocalDateTime matchDate) {
+        return matchRepo.findByMatchDateAndTeam3IsNull(matchDate);
+
+    }
+//    public List<Match> getMatchesByDate(LocalDateTime matchDate, Byte state) {
+//
+//            return matchRepo.findAllListByMatchDateAndState(matchDate, state);
+//
+//    }
+
+    public List<TeamMatchListDto> getTeamById(String accessToken){
+
+        Long userNo = jwtTokenProvider.decodeToken(accessToken);
+        return teamRepo.findAllListById(userNo);
+    }
+
+    public List<ManagerMatchListDto> getMatchesByManagerId(String accessToken){
+
+        Long managerNo = jwtTokenProvider.decodeToken(accessToken);
+        List<Match> matches =  matchRepo.findByManager(userRepo.getReferenceById(managerNo));
+
+        return matches.stream().map(ManagerMatchListDto::fromEntity).toList();
     }
 
 }

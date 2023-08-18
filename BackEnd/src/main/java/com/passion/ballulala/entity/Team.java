@@ -8,8 +8,9 @@ import java.util.List;
 
 @Entity
 @NoArgsConstructor
-@Getter  @ToString
+@Getter  @ToString @Setter
 @AllArgsConstructor @Builder
+
 public class Team {
 
     @Id
@@ -48,17 +49,29 @@ public class Team {
     @Column(nullable = true)
     private Integer point;
 
-    @Column(nullable = false, columnDefinition = "varchar(20)")
-    private String sido;
+    @Column(nullable = false, columnDefinition = "tinyint")
+    private Byte gugun;
 
-    @Column(nullable = false, columnDefinition = "varchar(20)")
-    private String gugun;
-
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    @Builder.Default
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "team", cascade = CascadeType.ALL)
     private List<TeamItem> teamItems = new ArrayList<>();
 
-    @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
+    @Builder.Default
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "team", cascade = CascadeType.ALL)
     private List<TeamUser> teamUsers = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "team1", cascade = CascadeType.ALL)
+    private List<Match> matches1 = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "team2", cascade = CascadeType.ALL)
+    private List<Match> matches2 = new ArrayList<>();
+
+    @Builder.Default
+    @OneToMany(fetch=FetchType.LAZY, mappedBy = "team3", cascade = CascadeType.ALL)
+    private List<Match> matches3 = new ArrayList<>();
+
 
     public void updatePoint(int uss) {
         this.point = uss;
