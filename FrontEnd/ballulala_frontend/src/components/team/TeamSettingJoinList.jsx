@@ -20,10 +20,10 @@ function TeamSettingJoinList() {
   const [waitingUsers, setWaitingUsers] = useState([]);
   
    // 가입 대기 사용자 승인 버튼 클릭 시 실행될 함수
-   const handleUserApproval = async (userId) => {
+   const handleUserApproval = async (matchId) => {
     try {
       const response = await axios.post(
-        `https://i9d110.p.ssafy.io:8081/teamUser/joinAllow?id=${userId}`,
+        `https://i9d110.p.ssafy.io:8081/teamUser/joinAllow?id=${matchId}`,
         {},
         {
           headers: {
@@ -31,43 +31,43 @@ function TeamSettingJoinList() {
             "Content-Type": "application/json",
           },
         }
-      );
+      );  
 
       // if (response.status === 200) {
-        console.log("승인되었습니다.");
+        // console.log("승인되었습니다.");
         // 가입 대기 사용자 목록 업데이트
-        setWaitingUsers(waitingUsers.filter((user) => user.id !== userId));
+        // setWaitingUsers(waitingUsers.filter((user) => user.id !== userId));
       // }
     } catch (error) {
       console.log("승인에 실패했습니다:", error);
     }
   };
 
-  const handleUserDenial = async (userId) => {
-    try {
-      const response = await axios.get(
-        `https://i9d110.p.ssafy.io:8081/teamUser/joinDenied`,
-        {
-          headers: {
-            Authorization: token,
-            "Content-Type": "application/json",
-          },
-          params: {
-            teamId: teamId,
-            UserId: userId,
-          },
-        }
-      );
+  // const handleUserDenial = async (userId) => {
+  //   try {
+  //     const response = await axios.get(
+  //       `https://i9d110.p.ssafy.io:8081/teamUser/joinDenied`,
+  //       {
+  //         headers: {
+  //           Authorization: token,
+  //           "Content-Type": "application/json",
+  //         },
+  //         params: {
+  //           teamId: teamId,
+  //           UserId: userId,
+  //         },
+  //       }
+  //     );
   
-      // if (response.status === 200) {
-        console.log("거절되었습니다.");
-        // 가입 대기 사용자 목록 업데이트
-        setWaitingUsers(waitingUsers.filter((user) => user.id !== userId));
-      // }
-    } catch (error) {
-      console.log("거절에 실패했습니다:", error);
-    }
-  };
+  //     // if (response.status === 200) {
+  //       console.log("거절되었습니다.");
+  //       // 가입 대기 사용자 목록 업데이트
+  //       setWaitingUsers(waitingUsers.filter((user) => user.id !== userId));
+  //     // }
+  //   } catch (error) {
+  //     console.log("거절에 실패했습니다:", error);
+  //   }
+  // };
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -131,7 +131,12 @@ function TeamSettingJoinList() {
           );
   
           // if (response.status === 200) {
-            setWaitingUsers(response.data.matchList.map((match) => match.user));
+            setWaitingUsers(
+              response.data.matchList.map((match) => ({
+                matchId: match.id,
+                userInfo: match.user,
+              }))
+            );
             console.log(response.data.matchList)
             console.log(response.data.matchList.map((match) => match.user));
           // }
@@ -175,26 +180,20 @@ function TeamSettingJoinList() {
           </div>
 
           <div className="member-list">
-            {waitingUsers.map((user) => (
-              <div key={user.id}>
-                {user.nickname} ({user.email}){" "}
-                <button
-  className="btn btn-primary"
-  onClick={() => handleUserApproval(user.id)}
-  style={{ marginLeft: '20px' }}
->
-                  승인
-                </button>
-                {/* <button
-  className="btn btn-danger"
-  onClick={() => handleUserDenial(user.id)}
->
-  거절
-</button> */}
+  {waitingUsers.map((waitingUser) => (
+    <div key={waitingUser.userInfo.id}>
+      {waitingUser.userInfo.nickname} ({waitingUser.userInfo.email}){" "}
+      <button
+        className="btn btn-primary"
+        onClick={() => handleUserApproval(waitingUser.matchId)}
+        style={{ marginLeft: "20px" }}
+      >
+        승인
+      </button>
+    </div>
+  ))}
+</div>
 
-              </div>
-            ))}
-          </div>
         </div>
       </div>
 
