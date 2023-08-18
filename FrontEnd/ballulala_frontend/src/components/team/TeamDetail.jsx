@@ -14,7 +14,6 @@ function TeamDetail() {
 
   const [members, setMembers] = useState([]);
 
-  // const { teamName } = useParams();
   const { teamId } = useParams();
 
   async function getTeamDataFromServer() {
@@ -54,16 +53,6 @@ function TeamDetail() {
   
   
   const [team, setTeam] = useState({ teamDetail: {} });
-  // const [team, setTeam] = useState({});
-
-  // useEffect(() => {
-  //   const fetchTeamData = async () => {
-  //     const teamData = await getTeamDataFromServer(teamName);
-  //     setTeam(teamData);
-  //   };
-  
-  //   fetchTeamData();
-  // }, [teamName]);
 
   useEffect(() => {
     const fetchTeamData = async () => {
@@ -138,10 +127,7 @@ function TeamDetail() {
     await leaveTeam();
     window.location.reload();
   };
-  
 
-
-  // 필요한 변수와 함수 선언
   const handleSubmit = () => {
     console.log("Form submitted");
   };
@@ -151,12 +137,6 @@ function TeamDetail() {
       <TopNavbar />
       <div className="team-detail-page">
         <div className="team-detail">
-          {/* <img
-    className="team-logo-img"
-    src={team.teamDetail.logo}
-    alt={`${team.teamDetail.name} 로고`}
-    style={{ width: '40%' }}
-  /> */}
 
 <img
     className="team-logo-img"
@@ -166,12 +146,6 @@ function TeamDetail() {
 
           <div className="team-name">{team.teamDetail.name}</div>
           <br />
-
-          {/* <div className="team-detail-more">
-            <img src={"/icon_member.png"} alt="img" />
-            <div>{team.member_count}</div>
-              <button className="team-more-btn">more</button>
-            </div> */}
 
           <div className="team-detail-more">
             <img src={"/icon_location.png"} alt="img" />
@@ -185,13 +159,11 @@ function TeamDetail() {
               {team.teamDetail.winCount}승 {team.teamDetail.loseCount}패 
               ({(team.teamDetail.winCount / (team.teamDetail.winCount + team.teamDetail.loseCount) * 100).toFixed(2)}%)
             </div>
-            {/* <button className="team-more-btn">more</button> */}
           </div>
 
           <div className="team-detail-more">
             <img src={"/images/mmr.jpg"} alt="img" />
             <div>{team.teamDetail.mmr}</div>
-            {/* <button className="team-more-btn">gave</button> */}
           </div>
 
           <br />

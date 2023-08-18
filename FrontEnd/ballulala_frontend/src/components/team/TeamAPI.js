@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const teamURL = 'http://localhost:8080'; // 스프링 서버 URL을 입력하십시오.
+const teamURL = 'http://localhost:8080'; 
 
 export const fetchTeams = async () => {
   try {

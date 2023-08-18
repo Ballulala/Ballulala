@@ -18,8 +18,7 @@ function TeamSettingJoinList() {
 
   const token = useRecoilValue(tokenState);
   const [waitingUsers, setWaitingUsers] = useState([]);
-  
-   // 가입 대기 사용자 승인 버튼 클릭 시 실행될 함수
+
    const handleUserApproval = async (matchId) => {
     try {
       const response = await axios.post(
@@ -33,41 +32,10 @@ function TeamSettingJoinList() {
         }
       );  
 
-      // if (response.status === 200) {
-        // console.log("승인되었습니다.");
-        // 가입 대기 사용자 목록 업데이트
-        // setWaitingUsers(waitingUsers.filter((user) => user.id !== userId));
-      // }
     } catch (error) {
       console.log("승인에 실패했습니다:", error);
     }
   };
-
-  // const handleUserDenial = async (userId) => {
-  //   try {
-  //     const response = await axios.get(
-  //       `https://i9d110.p.ssafy.io:8081/teamUser/joinDenied`,
-  //       {
-  //         headers: {
-  //           Authorization: token,
-  //           "Content-Type": "application/json",
-  //         },
-  //         params: {
-  //           teamId: teamId,
-  //           UserId: userId,
-  //         },
-  //       }
-  //     );
-  
-  //     // if (response.status === 200) {
-  //       console.log("거절되었습니다.");
-  //       // 가입 대기 사용자 목록 업데이트
-  //       setWaitingUsers(waitingUsers.filter((user) => user.id !== userId));
-  //     // }
-  //   } catch (error) {
-  //     console.log("거절에 실패했습니다:", error);
-  //   }
-  // };
 
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -86,7 +54,6 @@ function TeamSettingJoinList() {
     console.log('Image file:', image.name);};
 
     const handleUpdateTeamInfo = () => {
-      // team 객체에서 원래 정보를 상태 변수에 설정합니다.
       setImage(team.image);
       setName(team.name);
       setLocation(team.location);
@@ -107,10 +74,8 @@ function TeamSettingJoinList() {
             }
           );
   
-          // if (response.status === 200) {
             setTeam(response.data.teamDetail);
             console.log(response.data.teamDetail.id)
-          // }
         } catch (error) {
           console.log("팀 데이터를 가져오는데 실패했습니다:", error);
           console.log(teamId);
@@ -130,7 +95,6 @@ function TeamSettingJoinList() {
             }
           );
   
-          // if (response.status === 200) {
             setWaitingUsers(
               response.data.matchList.map((match) => ({
                 matchId: match.id,
@@ -146,8 +110,8 @@ function TeamSettingJoinList() {
         }
       }
   
-      getTeamDataFromServer(); // 팀 정보 호출
-      fetchWaitingUsers();      // 가입 대기 사용자 목록 호출
+      getTeamDataFromServer();
+      fetchWaitingUsers();
     }, [teamId, token]);
 
   return (
@@ -163,17 +127,11 @@ function TeamSettingJoinList() {
               팀 정보 수정
             </button>
           </div>
-          {/* <button className="team-del-btn" onClick={openDeleteModal}>
-            팀 삭제하기
-          </button> */}
         </div>
 
         <div className="team-settings">
           <div className="member-now">
             <img src={"/icon_member.png"} alt="img" className='set-icon'/>
-            {/* <Link to={`/teamsetting/${teamId}`} className='setting-link'>
-              멤버
-            </Link> */}
             <Link to={`/teamsettingjoinlist/${teamId}`} className='setting-link-selected'>
               가입대기중
             </Link>

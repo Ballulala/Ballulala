@@ -51,7 +51,7 @@ function FindPlayerDetail() {
         console.log(response)
         setFindPlayer(response.data.mercenary);
         setAuthority(response.data.authority);
-        console.log('받아온 게시글 데이터:', response.data.mercenary); // 받아온 데이터 확인
+        console.log('받아온 게시글 데이터:', response.data.mercenary);
       } catch (error) {
         console.error('데이터 가져오기 에러:', error);
         console.log(boardID)
@@ -78,24 +78,11 @@ function FindPlayerDetail() {
     try {
       await axios.delete(`https://i9d110.p.ssafy.io:8081/mercenary/delete/${boardID}`);
       console.log('게시글이 삭제되었습니다.');
-      navigate('/findplayer'); // 삭제 후 이전 페이지로 이동, 원하는 경로를 지정하세요
+      navigate('/findplayer');
     } catch (error) {
       console.error('게시글 삭제 에러:', error);
     }
-    // handleClose();
   };
-
-  // useEffect(() => {
-  //   const fetchComments = async () => {
-  //     try {
-  //       const response = await axios.get(`https://i9d110.p.ssafy.io:8081/mercenaryreply/list/${boardID}`);
-  //       setComments(Array.isArray(response.data.replyList) ? response.data.replyList : []);
-  //     } catch (error) {
-  //       console.error('댓글 목록 에러:', error);
-  //     }
-  //   };
-  //   fetchComments();
-  // }, [boardID]);
 
   const handleSubmitComment = async (e) => {
     e.preventDefault();
@@ -108,7 +95,7 @@ function FindPlayerDetail() {
         mercenary: boardID,
                 },
                 {          
-        headers: { Authorization:`Bearer ${token}` }, // 헤더에 토큰 추가       
+        headers: { Authorization:`Bearer ${token}` },   
         }
         );
 
@@ -183,10 +170,6 @@ function FindPlayerDetail() {
               <Link
                 to={{
                   pathname: `/findplayer/modify/${boardID}`,
-                  // state: {
-                  //   createTime: mercenary.createTime,
-                  //   nickname: mercenary.nickname,
-                  //   },
                 }}
               >
                 <button className='detail-btns-btn'>수정</button>
@@ -237,7 +220,6 @@ function FindPlayerDetail() {
         <div className='detail-line-four'>
             <div className='detail-line-one'>
               <img src={'/images/comment.png'} alt='like' />
-              {/* <div>댓글 수</div> */}
               <div>{comments.length}</div>
             </div>
 

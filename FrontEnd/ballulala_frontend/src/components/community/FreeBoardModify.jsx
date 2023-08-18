@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-// import './FreeBoardModify.css';
 import TopNavbar from '../top_navbar/TopNavbar';
 
 function FreeBoardModify() {
@@ -15,7 +14,7 @@ function FreeBoardModify() {
       try {
         const response = await axios.get(`https://i9d110.p.ssafy.io:8081/freeboard/detail/${boardID}`);
         
-        const boardData = response.data.freeBoard; // 'freeBoard' 객체 사용
+        const boardData = response.data.freeBoard;
         setTitle(boardData.title);
         setContent(boardData.content);
       } catch (error) {
@@ -39,7 +38,6 @@ function FreeBoardModify() {
       navigate(`/freeboard/${boardID}`);
     } catch (error) {
       console.error('게시글 수정 에러:', error);
-      // 에러 처리
     }
   };
 

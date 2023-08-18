@@ -50,7 +50,6 @@
     border-radius: 3px;
     min-width: 110px;
     z-index: 1000;
-    /* visibility 및 transition 속성을 제거해도 됩니다. */
   }
 
   .sub-menu a{
@@ -59,11 +58,9 @@
   }
 
   .sub-menu > a:hover {
-    /* background-color: #f1f1f1; */
     color: white;
 }
   
-  /* :hover 상태를 제거하고 대신에 display 속성을 추가합니다. */
   .menu-item .sub-menu {
     display: none;
   }
@@ -80,20 +77,17 @@
     color:rgb(130, 130, 130);
   }
   .menu-item i {
-    margin-left: 5px; /* 여백을 조정하세요 */
-    transition: color 0.3s; /* 호버 효과의 전환속도 */
+    margin-left: 5px;
+    transition: color 0.3s;
 
   }
 
-  
-  /* 기존 스타일 생성 */
 .menu-item:hover {
     background-color: rgb(104,225,223);
     color:white;
     border-radius: 50px;
   }
   
-  /* 새로운 스타일 생성 */
   .menu-item.active {
     background-color: rgb(104,225,223);
     color:white;

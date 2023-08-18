@@ -9,8 +9,6 @@ import { useRecoilValue } from "recoil";
 function FreeBoardAdd() {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  // const [userId, setUserId] = useState('');
-  // const { boardID } = useParams();
   const navigate = useNavigate();
 
   const token = useRecoilValue(tokenState);
@@ -18,7 +16,6 @@ function FreeBoardAdd() {
   useEffect(() => {
     const fetchBoards = async () => {
         try {
-            // 요청 시 headers에 토큰 추가하기
             console.log(token);
             console.log('토큰')
             const response = await axios.post('https://i9d110.p.ssafy.io:8081/freeboard/add', {
@@ -26,7 +23,6 @@ function FreeBoardAdd() {
             });
             
            console.log("Response data:", response.data);
-          //  setBoards(response.data.freeBoardList)
        } catch (error) {
            console.error('Failed to fetch boards:', error);
        }
@@ -40,7 +36,6 @@ function FreeBoardAdd() {
     e.preventDefault();
 
     const postData = {
-      // userId: token,
       title: title,
       content: content
     };
@@ -50,13 +45,12 @@ function FreeBoardAdd() {
   headers: { Authorization: `Bearer ${token}` },
 });
 
-      console.log(response); // 전체 응답 객체를 출력합니다.
+      console.log(response);
       const newBoardID = response.data.boardID + 1
       navigate(`/freeboard/${newBoardID}`);
       navigate(`/freeboard`);
     } catch (error) {
       console.error('작성 에러:', error);
-      // 에러 처리
     }
     
   };

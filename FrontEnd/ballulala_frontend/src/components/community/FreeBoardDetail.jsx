@@ -55,13 +55,10 @@ function FreeBoardDetail() {
     const fetchFreeBoard = async () => {
       try {
         const response = await axios.get(`https://i9d110.p.ssafy.io:8081/freeboard/detail/${boardID}`, {
-          headers: { Authorization: `Bearer ${token}` }, // 헤더에 토큰 추가
+          headers: { Authorization: `Bearer ${token}` },
         });
         setFreeBoard(response.data.freeBoard);
-        setAuthority(response.data.authority); // authority 값을 state에 저장
-        // setCurrentUserID(response.data.freeBoard.userNo); // 현재 사용자의 ID를 state에 저장
-        // console.log(response.data.freeBoard.userNo)
-        // console.log(response.data)
+        setAuthority(response.data.authority);
       } catch (error) {
         console.error('데이터 가져오기 에러:', error);
       }
@@ -95,7 +92,7 @@ function FreeBoardDetail() {
    board: boardID,
            },
            {          
-   headers: { Authorization:`Bearer ${token}` }, // 헤더에 토큰 추가       
+   headers: { Authorization:`Bearer ${token}` },   
    }
    );
    
@@ -128,7 +125,7 @@ function FreeBoardDetail() {
       await axios.put(`https://i9d110.p.ssafy.io:8081/freeboardreply/modify/${editingComment.id}`, {
         content: editedComment,
       }, {
-        headers: { Authorization: `Bearer ${token}` }, // 헤더에 토큰 추가
+        headers: { Authorization: `Bearer ${token}` },
       });
 
       const response = await axios.get(`https://i9d110.p.ssafy.io:8081/freeboardreply/list/${boardID}`);
@@ -236,7 +233,6 @@ function FreeBoardDetail() {
         <div className='detail-line-four'>
             <div className='detail-line-one'>
               <img src={'/images/comment.png'} alt='like' />
-              {/* <div>댓글 수</div> */}
               <div>{comments.length}</div>
             </div>
 
@@ -262,7 +258,6 @@ function FreeBoardDetail() {
                 <span className="comment-content">{comment.content}</span>
               </div>
               <div className='comment-item-three'>
-                {/* {comment.userId === currentUserID && ( */}
                 {currentUser && comment.userId === currentUser.id && (
                   <>
                     <button className="comment-edit-btn" onClick={() => handleEditComment(comment)}>

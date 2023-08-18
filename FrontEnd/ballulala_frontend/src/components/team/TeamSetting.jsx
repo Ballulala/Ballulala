@@ -75,7 +75,6 @@ function TeamSetting() {
     console.log('Image file:', image.name);};
 
     const handleUpdateTeamInfo = () => {
-      // team 객체에서 원래 정보를 상태 변수에 설정합니다.
       setImage(team.image);
       setName(team.name);
       setLocation(team.location);
@@ -96,9 +95,6 @@ function TeamSetting() {
               팀 정보 수정
             </button>
           </div>
-          {/* <button className="team-del-btn" onClick={openDeleteModal}>
-            팀 삭제하기
-          </button> */}
         </div>
 
         <div className="team-settings">

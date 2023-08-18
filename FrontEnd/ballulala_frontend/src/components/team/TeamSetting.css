@@ -33,8 +33,7 @@
 .member-now {
   display: flex;
   margin-top: 7%;
-  /* justify-content: space-around; */
-  align-items: center; /* 요소들의 높이를 가운데로 정렬 */
+  align-items: center;
 }
 
 

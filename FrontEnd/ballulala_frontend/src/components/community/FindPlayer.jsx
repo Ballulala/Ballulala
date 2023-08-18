@@ -16,9 +16,9 @@ function FindPlayer() {
     useEffect(() => {
         const fetchBoards = async () => {
             try {
-                const response = await axios.get('https://i9d110.p.ssafy.io:8081/mercenary/list'); // 수정이 필요한 API 주소입니다.
+                const response = await axios.get('https://i9d110.p.ssafy.io:8081/mercenary/list');
                 console.log('Response data:', response.data);
-                setBoards(response.data.mercenaryList); // 필요한 경우 response 경로에 따른 수정이 필요합니다.
+                setBoards(response.data.mercenaryList);
             } catch (error) {
                 console.error('Failed to fetch boards:', error);
             }
@@ -58,8 +58,6 @@ function FindPlayer() {
         type="board"
         id="board"
         placeholder="검색"
-        // value={board}
-        // onChange={(event) => setBoard(event.target.value)}
         />
     </div>
     </div>
@@ -68,8 +66,6 @@ function FindPlayer() {
       <button className='board-add-btn' onClick={handleClick}>새 글 작성하기</button>
     </div>
 
-
-            {/* 게시물 목록 */}
             <div className='board-lists'>
                 {boards.map((board) => (
                     <Link

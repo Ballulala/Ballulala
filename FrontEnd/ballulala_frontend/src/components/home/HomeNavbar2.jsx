@@ -18,9 +18,7 @@ function HomeNavbar2() {
       team: [{ label: "전체 팀 보기", link: "/team" }],
       community: [
         { label: "자유게시판", link: "/freeboard" },
-        // { label: "명예의 전당", link: "/bestboard" },
         { label: "용병 모집", link: "/findplayer" },
-        // { label: "컨설팅", link: "/consulting" },
       ],
     };
 
