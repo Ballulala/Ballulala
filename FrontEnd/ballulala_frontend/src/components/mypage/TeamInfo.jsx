@@ -1,18 +1,25 @@
 import React from "react";
 import "./TeamInfo.css";
+import { Link } from "react-router-dom";
 
 function TeamInfo({ teamLogo, teams, selectedTeam, onSelectTeam }) {
   return (
     <div className="team-info1">
       <p>Team logo</p>
-      <img
-        src={`./images/A.png`}
-        alt="없음"
-        onError={(e) => {
-          e.target.onerror = null;
-          e.target.src = "/images/chealsea.png";
-        }}
-      />
+      <Link to={selectedTeam ? `/teamdetail/${selectedTeam.teamId}` : "#"}>
+        <img
+          src={
+            selectedTeam
+              ? `./images/${selectedTeam.logo}.png`
+              : `./images/A.png`
+          }
+          alt="없음"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = "/images/chealsea.png";
+          }}
+        />
+      </Link>
       Team:
       <select
         value={selectedTeam ? selectedTeam.teamId : ""}

@@ -1,11 +1,10 @@
 import React from "react";
 import "./UserStats.css";
 
-function UserStats({ mvpCount, mannerScore }) {
+function UserStats({ mmr }) {
   return (
     <div className="user-stats">
-      <p>MVP Count: {mvpCount}</p>
-      <p>Manner Score: {mannerScore}</p>
+      <p>MMR: {mmr}</p>
     </div>
   );
 }
