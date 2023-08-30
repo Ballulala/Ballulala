@@ -1,4 +1,44 @@
-# 볼루랄라 ( 객관적인 실력으로 간편한 풋살 매칭 서비스 )
+# # 볼루랄라(Balluala) - 볼을 룰루랄라 신나게 차자!
+
+### 풋살을 좋아하고 풋살 매칭을 원하는 사람들을 위한 종합 플랫폼
+
+### 역할 소개
+
+---
+
+- **팀원1**
+  김슬기 : 디자인 및 프론트엔드 개발
+- **팀원2**
+  김상진 : 디자인 및 프론트엔드 개발
+- **팀원3**
+  김근우 : 백엔드 개발 - 서버 배포
+- **팀원4**
+  채경호 : 백엔드 개발 - JPA 매핑, ELO 알고리즘 설계
+- **팀원5**
+  천병찬 : 백엔드 개발 - JPA 매핑, Point 상점 설계
+- **팀장**
+  김정환 : 백엔드 개발 및 기획, JWT, Spring Security
+
+---
+
+### 기술 스택:
+
+<h3 align="center">  
+  FrontEnd
+</h3>
+<p align="center">  
+  <img src= "https://img.shields.io/badge/React-blue?logo=react"/>
+   <img src= "https://img.shields.io/badge/Recoil-764ABC?style=flat-square&logo=RECOIL&logoColor=white"/>
+   <img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat-square&logo=javascript&logoColor=white"/>
+<h3 align="center">  
+  BackEnd
+</h3>
+<h3 align="center">  
+  Cooperation
+</h3>
+<p align="center">
+  <img src="https://img.shields.io/badge/GitHub-100000?logo=github" />
+  <img src= "https://img.shields.io/badge/Git-FF4500?logo=git&logoColor=white"/>
 
 ## 소개 및 시연 영상
 
@@ -20,6 +60,13 @@
 ### 프로젝트 기간 - 2023.07.10 ~ 2021.08.18
 
 ## 서비스 화면
+
+로그인 및 회원가입
+
+마이페이지
+![mypage](https://github.com/Ballulala/Ballulala/assets/122581063/aeaabb66-98e8-494c-97f1-53d1cbf2ff3a)
+팀 상세페이지
+![team setting](https://github.com/Ballulala/Ballulala/assets/122581063/aa09571b-bf77-44a8-a5da-1edfe6308406)
 
 ### 시연 사진1
 
@@ -57,9 +104,9 @@
 
 **Frontend**
 
-- 프론트 기술 환경1
-- 프론트 기술 환경2
-- 프론트 기술 환경3
+- React.js
+- Recoil
+- Node v18.16.1
 
 **Infra**
 
@@ -70,6 +117,7 @@
 ### 서비스 아키텍처
 
 서비스 아키텍처 사진
+![아키텍처](https://github.com/Ballulala/Ballulala/assets/122581063/9b1607ac-f734-45e1-bc0d-5237079b82af)
 
 ---
 
@@ -209,25 +257,6 @@ ERD 사진 올림
 
 ---
 
-### 역할 소개
-
----
-
-- **팀원1**
-  김슬기 : 디자인 및 프론트엔드 개발
-- **팀원2**
-  김상진 : 디자인 및 프론트엔드 개발
-- **팀원3**
-  김근우 : 백엔드 개발 - 서버 배포
-- **팀원4**
-  채경호 : 백엔드 개발 - JPA 매핑, ELO 알고리즘 설계
-- **팀원5**
-  천병찬 : 백엔드 개발 - JPA 매핑, Point 상점 설계
-- **팀장**
-  김정환 : 백엔드 개발 및 기획, JWT, Spring Security
-
----
-
 ### 프로젝트 수행 후기
 
 ### 김정환
@@ -246,4 +275,7 @@ ERD 사진 올림
 
 ### 김근우
 
+### 김상진
+
+- 제대로 만들어 본 첫 프로젝트라서 기획 부분에서도 많이 어설펐던 것 같고 백엔드에 대한 공부가 많이 안되서 팀원들과의 의사소통 부분에서 많은 어려움이 있었습니다. 하지만 프로젝트를 하며 많은 공부를 할 수 있었고 배웠던 부분을 프로젝트에 써볼수 있어서 좋은 경험이였다고 생각하며 협업의 중요성에 대해 많이 배우는 시간이 되었던 것 같습니다.
 - ***
