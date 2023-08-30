@@ -1,0 +1,120 @@
+.team-page {
+    width: 90%;
+    margin: 0 auto;
+  }
+
+.page-letter {
+    text-align: center;
+    font-size: 30px;
+    font-family: "ret";
+}
+
+.month-team-img {
+    width: 100%;
+    height: auto;
+    margin: 20px;
+}
+
+.search-team-2 {
+  display: flex;
+  justify-content: right;
+  margin-bottom: 2rem; /* 두 영역간 간격 설정 */
+}
+
+/* .new-team-btn-container {
+    float: right;
+  } */
+
+.new-team-btn {
+    background-color: rgb(255, 145, 148);
+    color: white;
+    border: 1px solid rgb(255, 145, 148);
+    border-radius: 5px;
+    padding: 10px;
+    padding-left: 30px;
+    padding-right: 30px;
+    /* height: 50px;
+    width: 168px;
+    margin-top: 30px; */
+}
+
+.new-team-btn:hover {
+    background-color: rgb(255, 145, 148);
+    color: rgb(49, 97, 121);
+}
+
+.search-team {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  
+  .buttons {
+    display: flex;
+  }
+  
+.team-search-box {
+    /* margin-left: 25%; */
+    padding: 5px;
+    /* width: 10vw; */
+}
+
+.team-search-box input {
+    height: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(161, 160, 160);
+}
+
+.modal-input {
+    border: 1px solid gray;
+    border-radius: 3px;
+    width: 90%;
+    padding: 7px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+/* .team-list {
+    display: flex;
+} */
+
+.team-item {
+    list-style-type: none;
+    display: inline-flex;
+    width: 48%;
+    padding: 1%;
+    padding-top: 3%;
+    padding-bottom: 3%;
+}
+
+.team-item-one {
+    width: 25%;
+    display: flex;
+  align-items: center;
+}
+
+.team-item-one img {
+    width: 40%;
+}
+
+.team-item-two {
+    width: 75%;
+}
+
+.team-item-two a {
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    color: black;
+    margin-bottom: 10px;
+    display: inline-block;
+  }
+
+  .team-item-two a:hover {
+    color:rgb(245, 100, 105);
+  }
+
+  .team-item-two div {
+    color: rgb(94, 94, 94);
+  }

@@ -1,0 +1,20 @@
+.team-info1 {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  
+    border-radius: 10px;
+   
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.team-info1 img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}

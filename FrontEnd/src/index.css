@@ -1,0 +1,64 @@
+body, button, input, a {
+  margin: 0;
+  font-family: 'three', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+@font-face {
+  font-family: player;
+  src: url("./fonts/I\ AM\ A\ PLAYER.ttf");
+}
+
+@font-face {
+  font-family: bri;
+  src: url("./fonts/britanic.ttf");
+}
+
+@font-face {
+  font-family: ret;
+  src: url("./fonts/Retroica.ttf");
+}
+
+@font-face {
+  font-family: road;
+  src: url("./fonts/Yeongdeok\ Blueroad.ttf");
+}
+
+@font-face {
+  font-family: one;
+  src: url("./fonts/esamanru\ Light.ttf");
+}
+
+@font-face {
+  font-family: two;
+  src: url("./fonts/GmarketSansTTFMedium.ttf");
+}
+
+@font-face {
+  font-family: three;
+  src: url("./fonts/SCDream4.otf");
+}
+
+@font-face {
+  font-family: four;
+  src: url("./fonts/Blinker-Black.ttf");
+}
+
+@font-face {
+  font-family: five;
+  src: url("./fonts/SHRIMP.ttf");
+}
+
+@font-face {
+  font-family: six;
+  src: url("./fonts/Chivo-ExtraBold.ttf");
+}

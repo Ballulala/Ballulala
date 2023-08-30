@@ -1,0 +1,45 @@
+.board-page-letter {
+    font-size: 30px;
+    margin-left: 100px;
+    margin-top: 20px;
+    text-align: center;
+}
+
+.board-form {
+    margin: 30px 100px 20px 100px;
+}
+
+.board-input-letter {
+    font-size: 20px;
+}
+
+.board-input-box {
+    width: 100%;
+    padding: 20px;
+    margin-top: 15px;
+    margin-bottom: 35px;
+    border-radius: 5px;
+}
+
+
+
+.board-btn-wrap {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .board-btn {
+    margin-top: 20px;
+    padding: 20px 100px 20px 100px;
+    border-radius: 5px;
+    border: solid 1px rgb(104,225,223);
+    background-color: rgb(104,225,223);
+    color: white;
+  }
+
+  .board-btn:hover {
+    background-color: rgb(255, 145, 148);
+    border: solid 1px rgb(255, 145, 148);
+  }
+  
+  

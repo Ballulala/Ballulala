@@ -1,0 +1,116 @@
+.team-detail-page {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+  
+  .team-detail {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .team-logo-img {
+    width: 100%;
+    height: auto;
+    margin: 15px;
+  }
+
+  .team-detail img {
+    width: 10%;
+  }
+
+
+  .team-name {
+    font-size: 30px;
+    font-style: bold;
+  }
+  
+  .team-more {
+    width: 60%;
+  }
+
+  .team-more-one {
+    background-color: rgb(255, 145, 148, 0.3);
+    padding: 40px;
+    height: 25%;
+    margin-bottom: 20px;
+    border-radius: 10px;
+  }
+
+  .team-more-two {
+    background-color: rgba(144, 126, 127, 0.3);
+    padding: 40px;
+    height: 50%;
+    border-radius: 10px;
+  }
+  
+  .team-detail-more {
+    display: flex;
+    align-items: center;
+    width: 70%;
+    margin-top: 20px;
+  }
+
+  .team-detail-more img {
+    margin-right: 20px;
+  }
+
+  .team-join-btn{
+    background-color: rgb(104,225,223);
+    color: white;
+    border: 1px solid rgb(104,225,223);
+    border-radius: 5px;
+    padding: 15px;
+    padding-left: 35px;
+    padding-right: 35px;
+    margin-right: 25px;
+    height: 100%;
+    width: 90%;
+    min-width: 150px;
+    max-width: 150px;
+}
+
+.team-join-btn:hover {
+    background-color: rgb(255, 145, 148);
+    border: 1px solid rgb(255, 145, 148);
+    color: white;
+}
+
+.team-more-btn {
+    background-color: rgb(255, 255, 255);
+    color: rgb(147, 147, 147);
+    border: 1px solid rgb(147, 147, 147);
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 20px;
+}
+
+.team-more-btn:hover {
+    background-color: rgb(193, 193, 191)
+}
+
+.detail-btns {
+  margin-top: 20px;
+}
+
+.team-join-modal-content {
+  padding-left: 80px;
+  padding-right: 80px;
+}
+
+.team-more-title {
+  margin-bottom: 20px;
+  font-size: 22px;
+}
+
+.team-more-content-one {
+  margin-left: 15px;
+  font-size: 18px;
+}
+
+.team-more-content-two {
+  margin-bottom: 10px;
+}

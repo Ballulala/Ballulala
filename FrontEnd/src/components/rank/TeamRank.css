@@ -1,0 +1,150 @@
+.rank-second-line {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+  align-items: center;
+}
+
+.rank-info {
+  display: flex;
+}
+
+.rank-info div{
+margin-left: 30px;
+margin-right: 30px;
+color: rgb(138, 138, 138);
+}
+
+.rank-button {
+  background-color: rgb(255, 255, 255);
+  color: rgb(255, 145, 148);
+  border: 1px solid rgb(255, 145, 148);
+  border-radius: 5px;
+  padding: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin-right: 25px;
+  height: 100%;
+  width: 20vh;
+}
+
+.rank-button:hover {
+  background-color: rgb(255, 145, 148, 0.2);
+}
+
+.rank-logo {
+  width: 30px;
+}
+
+.region-container {
+position: relative;
+}
+
+.region-list {
+position: absolute;
+top: 100%;
+left: 0;
+display: flex;
+flex-direction: column;
+background-color: white;
+padding: 10px;
+box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+z-index: 1;
+width: 17vh;
+}
+
+.region-list button {
+background-color: white;
+border: 1px solid white;
+margin-top: 6px;
+margin-bottom: 6px;
+}
+
+.region-list button:hover {
+background-color: rgb(255, 145, 148);
+color: white;
+}
+
+.list {
+margin-top: 2%;
+}
+.team-list {
+margin-top:2%;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 40vh;
+  background-size: cover; /* 백그라운드 이미지가 꽉 차게 설정 */
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.sliding-image {
+  animation: slide 10s linear infinite;
+}
+
+@keyframes slide {
+  0%,
+  100% {
+    background-position: center 65%; /* 초기 위치 변경: 아래에서 80% (맨 아래는 100%) */
+  }
+  50% {
+    background-position: center 55%; /* 중간 위치 변경: 30% 위로 이동 (80% - 30% = 50%) */
+  }
+}
+
+.rank-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-family: one;
+  font-size: 50px;
+  font-weight: bold;
+  text-shadow:
+  0 0 5px #87ceeb,
+  0 0 10px #87ceeb,
+  0 0 20px #87ceeb,
+  0 0 30px #87ceeb;
+}
+
+.list ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.list li {
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.team-rank-one span {
+  margin-right: 20px;
+}
+
+.team-rank-one img,
+.team-rank-one a {
+  margin-right: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+/* 수정 */
+.team-rank-one {
+  display: flex;
+  align-items: center; /* 추가: 요소들을 왼쪽으로 정렬 */
+  margin-bottom: 20px;
+}
+
+.team-rank-two {
+  display: flex;
+  justify-content: flex-end; /* 수정: 요소들을 오른쪽으로 정렬 */
+}
+
+.team-rank-two div {
+  margin-right: 30px;
+}

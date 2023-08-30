@@ -1,0 +1,125 @@
+.team-setting-page {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 2%;
+}
+
+.team-setting-section {
+    width: 40%;
+}
+
+.team-setting-info {
+    background-color: rgb(193, 193, 193);
+    border-radius: 5px;
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 2%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-settings {
+    width: 60%;
+}
+
+.setting-category {
+    display: flex;
+    justify-content: space-around;
+}
+
+.member-now {
+  display: flex;
+  margin-top: 7%;
+  align-items: center;
+}
+
+
+.team-edit-btn {
+    margin-top: 7%;
+    margin-bottom: 7%;
+    margin-left: 25px;
+}
+
+.team-del-btn {
+    margin-left: 12%;
+    margin-top: 5%;
+    background-color: transparent;
+    border: none;
+    color: gray;
+    cursor: pointer;
+  }
+
+  .team-del-btn:hover {
+    color: black;
+  }
+
+  .modal-element {
+    margin-bottom: 50px;
+  }
+
+  .setting-link {
+    color: gray;
+    text-decoration: none;
+  }
+
+  .setting-link-selected {
+    color:black;
+    text-decoration: none;
+    font-weight: 600;
+    margin-left: 40px;
+  }
+
+  .interview-times-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .interview-times-list li {
+    width: 30%;
+    list-style: none;
+    text-align: center;
+    padding: 2px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .interview-times-list li.selected {
+    background-color: rgb(104,225,223);
+    color: white;
+  }
+  
+  .recruit-btn {
+    background-color: rgb(104,225,223);
+    border: 1px solid rgb(104,225,223);
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .recruit-btn:hover {
+    background-color: rgb(255, 145, 148);
+    border: 1px solid rgb(255, 145, 148);
+    }
+
+  .member-list {
+    margin: 6% 10% 6% 10%;
+  }
+
+  .team-set-logo-img {
+    width: 40%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+  }
+
+  .set-icon {
+    width: 5%;
+  }

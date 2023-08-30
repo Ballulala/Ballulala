@@ -1,0 +1,11 @@
+
+.center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  .center-container button {
+    margin-top: 20px;
+  }
