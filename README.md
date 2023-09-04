@@ -33,12 +33,32 @@
 <h3 align="center">  
   BackEnd
 </h3>
+<p align="center">  
+  <img src="https://img.shields.io/badge/java-007396?style=flat-square&logo=java&logoColor=white">
+  <img src="https://img.shields.io/badge/jpa-6DB33F?style=flat-square&logo=javapersistenceapi&logoColor=white">
+  <img src= "https://img.shields.io/badge/Spring Boot-6DB33F?logo=Spring Boot&logoColor=white"/>
+  <img src= "https://img.shields.io/badge/Spring Security-6DB33F?style=flat-square&logo=Spring Security&logoColor=white"/> <br>
+  <img src= "https://img.shields.io/badge/Json Web Tokens-F7DF1F?style=flat-square&logo=jsonwebtokens&logoColor=white"/>
+  <img src="https://img.shields.io/badge/mysql-4479A1?style=flat-square&logo=mysql&logoColor=white"/>
+  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white">
 <h3 align="center">  
   Cooperation
 </h3>
 <p align="center">
-  <img src="https://img.shields.io/badge/GitHub-100000?logo=github" />
-  <img src= "https://img.shields.io/badge/Git-FF4500?logo=git&logoColor=white"/>
+  <img src="https://img.shields.io/badge/GitHub-100000?style=flat-square&logo=github" />
+  <img src= "https://img.shields.io/badge/Git-FF4500?style=flat-square&logo=git&logoColor=white"/>
+  <img src="https://img.shields.io/badge/gitlab-FC6D26?style=flat-square&logo=gitlab&logoColor=white">
+  <img src="https://img.shields.io/badge/jira-0052CC?style=flat-square&logo=jira&logoColor=white">
+  <img src="https://img.shields.io/badge/notion-000000?style=flat-square&logo=notion&logoColor=white">
+  <img src="https://img.shields.io/badge/discord-5865F2?style=flat-square&logo=discord&logoColor=white">
+<h3 align = "center">
+  Infra
+</h3>
+<p align = "center">
+<img src="https://img.shields.io/badge/amazon AWS-232F3E?style=flat-square&logo=amazonaws&logoColor=white">
+<img src="https://img.shields.io/badge/amazon EC2-FF9900?style=flat-square&logo=amazonec2&logoColor=white">
+<img src="https://img.shields.io/badge/docker-2496ED?style=flat-square&logo=docker&logoColor=white">
+<img src="https://img.shields.io/badge/nginx-009639?style=flat-square&logo=nginx&logoColor=white">
 
 ## 소개 및 시연 영상
 
