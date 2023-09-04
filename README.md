@@ -101,6 +101,10 @@
   <strong>랭킹</strong><br/>
   <img src="https://github.com/Ballulala/Ballulala/assets/122581063/0765085f-b049-4b60-98a1-770ef93344e9">
 </p>
+<p align="center">
+  <strong>커뮤니티</strong><br/>
+  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/4105f044-a88d-413d-b34d-59381bd8fc34">
+</p>
 
 
 ## 주요 기능 (기능 구현 위주로 소개)
