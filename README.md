@@ -82,23 +82,26 @@
 ## 서비스 화면
 
 로그인 및 회원가입
+<p align="center">
+  <strong>마이페이지</strong><br/>
+  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/aeaabb66-98e8-494c-97f1-53d1cbf2ff3a">
+</p>
 
-마이페이지
-![mypage](https://github.com/Ballulala/Ballulala/assets/122581063/aeaabb66-98e8-494c-97f1-53d1cbf2ff3a)
-팀 상세페이지
-![team setting](https://github.com/Ballulala/Ballulala/assets/122581063/aa09571b-bf77-44a8-a5da-1edfe6308406)
+<p align="center">
+  <strong>팀 상세페이지</strong><br/>
+  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/aa09571b-bf77-44a8-a5da-1edfe6308406">
+</p>
 
-### 시연 사진1
+<p align="center">
+  <strong>팀 매칭</strong><br/>
+  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/9e73debe-3662-4ff7-a725-c6bd1e5f6f22">
+</p>
 
-### 시연 사진2
+<p align="center">
+  <strong>랭킹</strong><br/>
+  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/0765085f-b049-4b60-98a1-770ef93344e9">
+</p>
 
-### 시연 사진3
-
-### 시연 사진4
-
-### 시연 사진5
-
-### 시연 사진...
 
 ## 주요 기능 (기능 구현 위주로 소개)
 
