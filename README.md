@@ -161,17 +161,11 @@
 
 ---
 
-### 화면 설계서
-
----
-
 ### 협업 툴 및 Code Convention
 
 ---
 
 ### Git Convention
-
-### Git Commit message
 
 ```
 FEAT:    새로운 기능을 추가할 경우
@@ -219,8 +213,7 @@ CHORE:    빌드 업무 수정(ex> dependency 추가)
     ex) feature/front/login
 
     ex) feature/webrtc
-
----
+    
 
 ### Jira 이용
 
