@@ -149,10 +149,6 @@
 
 ---
 
-### 요구사항 정의서
-
----
-
 ### 차별화 (기술 특이점 소개)
 
 1. 독자적 MMR 알고리즘 매칭 추천
@@ -169,23 +165,13 @@
 
 ---
 
-### Code Convention
-
----
-
-```
-
-```
-
-### 협업 툴 및
+### 협업 툴 및 Code Convention
 
 ---
 
 ### Git Convention
 
----
-
-**Commit message**
+### Git Commit message
 
 ```
 FEAT:    새로운 기능을 추가할 경우
