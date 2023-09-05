@@ -83,7 +83,6 @@
 
 ## 서비스 화면
 
-로그인 및 회원가입
 <p align="center">
   <strong>마이페이지</strong><br/>
   <img src="https://github.com/Ballulala/Ballulala/assets/122581063/aeaabb66-98e8-494c-97f1-53d1cbf2ff3a">
@@ -163,8 +162,6 @@
 
 ### 협업 툴 및 Code Convention
 
----
-
 ### Git Convention
 
 ```
@@ -196,9 +193,7 @@ CHORE:    빌드 업무 수정(ex> dependency 추가)
     - feature/구현파트/기능요약/ 형식으로 네이밍
 ```
 
----
-
-- Git Flow 진행 방식
+### Git Flow 진행 방식
 
   1. feature 브랜치가 완성되면 develop 브랜치로 pull request를 통해 merge한다.
 
@@ -267,4 +262,4 @@ ERD 사진 올림
 - 처음으로 모르는 사람들이랑 진행한 프로젝트였습니다.
   서로의 성격을 몰라 언성이 높아지는 일도 있었지만 시간이 지날수록 서로를 이해하고 도와주는 모습이 가장 기억에 남습니다.
   아쉬운 점도 있지만 좋았던 기억이 많이 남는 프로젝트였습니다. : )
-- ***
+***
