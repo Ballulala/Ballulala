@@ -142,6 +142,11 @@
 - AWS S3
 - Docker
 
+### ERD
+![볼루랄라 erd](https://github.com/Ballulala/Ballulala/assets/76397312/955c11e4-f1a1-4084-af1f-077fe02ea35d)
+
+---
+
 ### 서비스 아키텍처
 
 ![아키텍처](https://github.com/Ballulala/Ballulala/assets/122581063/9b1607ac-f734-45e1-bc0d-5237079b82af)
