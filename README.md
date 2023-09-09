@@ -236,7 +236,8 @@ CHORE:    빌드 업무 수정(ex> dependency 추가)
 
 ### ER Diagram
 
-ERD 사진 올림
+![볼루랄라 erd](https://github.com/Ballulala/Ballulala/assets/122581063/d9503887-a6fa-45f9-862d-1632d55e5f06)
+
 
 ---
 
