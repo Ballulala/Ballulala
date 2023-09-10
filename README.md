@@ -11,9 +11,9 @@
 - **팀원1**
   김근우 : 백엔드 개발 - 서버 배포
 - **팀원2**
-  김상진 : 디자인 및 프론트엔드 개발
+  김상진 : UI,UX 및 프론트엔드 개발
 - **팀원3**
-  김슬기 : 디자인 및 프론트엔드 개발
+  김슬기 : UI,UX 및 프론트엔드 개발
 - **팀원4**
   채경호 : 백엔드 개발 - JPA 매핑, ELO 알고리즘 설계
 - **팀원5**
@@ -30,6 +30,7 @@
   <img src= "https://img.shields.io/badge/React-blue?logo=react"/>
    <img src= "https://img.shields.io/badge/Recoil-764ABC?style=flat-square&logo=RECOIL&logoColor=white"/>
    <img src="https://img.shields.io/badge/javascript-F7DF1E?style=flat-square&logo=javascript&logoColor=white"/>
+   <img src= "https://img.shields.io/badge/HTML-red?logo=Html"/>
 <h3 align="center">  
   BackEnd
 </h3>
@@ -80,31 +81,37 @@
 ## 프로젝트 기간
 
 2023.07.10 ~ 2021.08.18
+## 홈 화면
+<p align="center">
+  <strong>홈 화면</strong><br/>
+  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/3b59a5b8-89c8-4976-af48-eb926aed9fd8">
+</p>
 
 ## 서비스 화면
 
+
 <p align="center">
   <strong>마이페이지</strong><br/>
-  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/aeaabb66-98e8-494c-97f1-53d1cbf2ff3a">
+  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/3a952128-59c0-481a-a686-2fbd8ce2f089">
 </p>
 
 <p align="center">
   <strong>팀 상세페이지</strong><br/>
-  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/aa09571b-bf77-44a8-a5da-1edfe6308406">
+  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/b30fdd34-266e-4094-a48d-436df2e7747f">
 </p>
 
 <p align="center">
   <strong>팀 매칭</strong><br/>
-  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/9e73debe-3662-4ff7-a725-c6bd1e5f6f22">
+  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/f79e09d6-3e28-474e-8374-44939f7802bd">
 </p>
 
 <p align="center">
   <strong>랭킹</strong><br/>
-  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/0765085f-b049-4b60-98a1-770ef93344e9">
+  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/e6f485f8-2d26-4ee1-acd0-fbd48cd4b5c5">
 </p>
 <p align="center">
   <strong>커뮤니티</strong><br/>
-  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/4105f044-a88d-413d-b34d-59381bd8fc34">
+  <img src="https://github.com/Ballulala/Ballulala/assets/122581063/97c2f0d2-ee3e-46b4-ae39-4cf55e06591f">
 </p>
 
 
@@ -165,7 +172,6 @@
 
 ---
 
-### 협업 툴 및 Code Convention
 
 ### Git Convention
 
